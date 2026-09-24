@@ -3,531 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>বন্ধুত্বের স্মারক সমিতি - Childhood Friends Association</title>
+    <title>বন্ধুত্বের স্মারক সমিতি - Accounts & Share Management</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-        body {
-            background-color: #f4f7f6;
-            color: #333;
-            padding: 15px;
-        }
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #fff;
-            padding: 20px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-        }
-        header {
-            text-align: center;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #007bff;
-            padding-bottom: 15px;
-        }
-        header h2 {
-            color: #007bff;
-            font-size: 24px;
-            margin-bottom: 5px;
-        }
-        header h4 {
-            color: #555;
-            font-size: 15px;
-            margin-bottom: 5px;
-            font-weight: 600;
-        }
-        header p {
-            font-size: 14px;
-            color: #666;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f4f7f6; color: #333; padding: 15px; }
+        .container { max-width: 1100px; margin: 0 auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); }
+        header { text-align: center; margin-bottom: 20px; border-bottom: 2px solid #007bff; padding-bottom: 15px; }
+        header h1 { font-size: 20px; color: #555; }
+        header h2 { color: #007bff; font-size: 26px; margin: 5px 0; }
         
-        #sec-welcome {
-            text-align: center;
-            padding: 20px 10px;
-        }
-        .welcome-hero h1 {
-            color: #007bff;
-            font-size: 28px;
-            margin-bottom: 15px;
-        }
-        .welcome-hero p {
-            font-size: 16px;
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
+        /* Control Panel */
+        .controls { display: flex; gap: 10px; justify-content: space-between; align-items: center; margin-bottom: 15px; flex-wrap: wrap; }
+        .btn { padding: 8px 16px; border: none; border-radius: 6px; cursor: pointer; font-weight: bold; font-size: 14px; transition: 0.3s; }
+        .btn-primary { background: #007bff; color: white; }
+        .btn-success { background: #28a745; color: white; }
 
-        .glass-marquee-container {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto 25px auto;
-            overflow: hidden;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.25);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
-            padding: 14px 0;
-        }
+        /* Filter & User Role Bar */
+        .role-section { background: #e2e3e5; border: 1px solid #d6d8db; padding: 10px 15px; border-radius: 6px; display: flex; align-items: center; gap: 10px; }
+        .role-section label { font-weight: bold; color: #383d41; }
+        .role-section select { padding: 6px 12px; border-radius: 4px; border: 1px solid #ced4da; font-size: 14px; }
 
-        .glass-marquee-track {
-            display: inline-block;
-            white-space: nowrap;
-            animation: marqueeRun 18s linear infinite;
-            font-size: 17px;
-            font-weight: bold;
-            color: #0056b3;
-        }
+        .filter-section { background: #fff3cd; border: 1px solid #ffeeba; padding: 10px 15px; border-radius: 6px; display: flex; align-items: center; gap: 10px; width: 100%; }
+        .filter-section label { font-weight: bold; color: #856404; }
+        .filter-section select { padding: 6px 12px; border-radius: 4px; border: 1px solid #cca01d; font-size: 14px; flex-grow: 1; }
 
-        .glass-marquee-container:hover .glass-marquee-track {
-            animation-play-state: paused;
-        }
+        /* Project Info Box */
+        .project-info { background: #e3f2fd; border: 1px solid #90caf9; padding: 12px 15px; border-radius: 8px; margin-bottom: 20px; font-size: 14px; }
+        .project-info h4 { color: #0d47a1; margin-bottom: 5px; }
 
-        @keyframes marqueeRun {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
-        }
+        /* Form Card */
+        .card { background: #f8f9fa; border: 1px solid #ddd; padding: 18px; border-radius: 8px; margin-bottom: 20px; transition: all 0.3s ease; }
+        .card.disabled-card { opacity: 0.5; pointer-events: none; background: #f8f9fa; border-color: #ddd; }
+        .card h3 { color: #007bff; margin-bottom: 12px; font-size: 18px; }
+        .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; }
+        .form-group label { display: block; font-size: 13px; font-weight: bold; margin-bottom: 4px; }
+        .form-group input, .form-group select { width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
 
-        .live-datetime-box, .location-box {
-            background: #e8f4fd;
-            padding: 12px;
-            border-radius: 8px;
-            margin: 15px auto 25px auto;
-            max-width: 450px;
-            border: 1px solid #bce8f1;
-            font-size: 15px;
-            font-weight: bold;
-            color: #007bff;
-            text-align: center;
-        }
+        /* Badges */
+        .badge-readonly { background-color: #ffc107; color: #212529; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
+        .badge-admin { background-color: #28a745; color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; }
 
-        /* Front Page Shortcut Dashboard Table */
-        .shortcut-dashboard {
-            margin: 25px auto;
-            max-width: 900px;
-            background: #ffffff;
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid #007bff;
-            box-shadow: 0 4px 12px rgba(0,123,255,0.1);
-        }
-        .shortcut-dashboard h3 {
-            color: #007bff;
-            font-size: 18px;
-            margin-bottom: 12px;
-            text-align: center;
-        }
-        
-        .passcode-box {
-            background: #e8f4fd;
-            padding: 25px;
-            border-radius: 8px;
-            margin: 20px auto;
-            max-width: 450px;
-            border: 1px solid #bce8f1;
-            text-align: left;
-        }
-        .passcode-box .form-group {
-            margin-bottom: 15px;
-        }
-        .passcode-box label {
-            display: block;
-            font-weight: bold;
-            color: #007bff;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .passcode-box input, .passcode-box select {
-            width: 100%;
-            padding: 10px 15px;
-            font-size: 15px;
-            border-radius: 5px;
-            border: 1px solid #ccc;
-            outline: none;
-            background: #fff;
-        }
-        .login-btn-container {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .unlock-btn {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 30px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-            box-shadow: 0 4px 10px rgba(0,123,255,0.3);
-            width: 100%;
-        }
-        .unlock-btn:hover {
-            background-color: #0056b3;
-        }
-        .error-msg {
-            color: #d9534f;
-            font-size: 14px;
-            margin-top: 10px;
-            font-weight: bold;
-            text-align: center;
-            display: none;
-        }
+        /* Table Design */
+        .table-responsive { overflow-x: auto; margin-bottom: 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; white-space: nowrap; }
+        th, td { padding: 10px; border: 1px solid #ddd; text-align: left; }
+        th { background-color: #007bff; color: white; }
+        tr:nth-child(even) { background-color: #f9f9f9; }
 
-        /* Front Page Calendar Widget Styling */
-        .front-calendar-box {
-            background: #ffffff;
-            border: 1px solid #bce8f1;
-            border-radius: 12px;
-            padding: 20px;
-            max-width: 450px;
-            margin: 25px auto 15px auto;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        }
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .calendar-header h3 {
-            color: #007bff;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        .calendar-header button {
-            background: #007bff;
-            color: white;
-            border: none;
-            padding: 5px 12px;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .calendar-header button:hover {
-            background: #0056b3;
-        }
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 5px;
-            text-align: center;
-        }
-        .calendar-day-head {
-            font-weight: bold;
-            color: #555;
-            padding: 6px 0;
-            font-size: 13px;
-            background: #e8f4fd;
-            border-radius: 4px;
-        }
-        .calendar-day {
-            padding: 8px 0;
-            font-size: 14px;
-            border-radius: 6px;
-            color: #333;
-        }
-        .calendar-day.empty {
-            background: transparent;
-        }
-        .calendar-day.today {
-            background-color: #007bff;
-            color: white;
-            font-weight: bold;
-            box-shadow: 0 2px 8px rgba(0,123,255,0.4);
-        }
+        .txt-credit { color: #28a745; font-weight: bold; }
+        .txt-debit { color: #dc3545; font-weight: bold; }
+        .txt-due { color: #d9534f; font-weight: bold; }
 
-        .dashboard-selector {
-            display: none; 
-            background: #e8f4fd;
-            padding: 15px;
-            border-radius: 8px;
-            margin-bottom: 25px;
-            text-align: center;
-            border: 1px solid #bce8f1;
-        }
-        .dashboard-selector.active-dropdown {
-            display: block;
-        }
-        .dashboard-selector button {
-            background-color: #dc3545;
-            color: white;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-        .dashboard-selector button:hover {
-            background-color: #c82333;
-        }
-        
-        .print-btn-container {
-            text-align: right;
-            margin-bottom: 10px;
-            display: none;
-        }
-        .print-btn {
-            background-color: #28a745;
-            color: white;
-            padding: 8px 16px;
-            font-size: 14px;
-            font-weight: bold;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-        .print-btn:hover {
-            background-color: #218838;
-        }
+        /* Financial Summary Box */
+        .summary-box { background: #f8f9fa; padding: 15px; border-radius: 8px; font-size: 14px; border: 1px solid #ddd; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px; }
+        .summary-card { background: #fff; padding: 10px 15px; border-radius: 6px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+        .summary-card h4 { font-size: 12px; color: #666; margin-bottom: 5px; }
+        .summary-card p { font-size: 18px; font-weight: bold; }
 
-        .section-block {
-            display: none;
-            margin-bottom: 30px;
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            padding: 15px;
-            border-radius: 8px;
-        }
-        .section-block.active {
-            display: block;
-        }
-        .info-box {
-            background: #f8f9fa;
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-size: 14px;
-            margin-bottom: 15px;
-            border-left: 4px solid #007bff;
-        }
-        .info-box p {
-            margin: 5px 0;
-        }
-        h3.section-title {
-            font-size: 18px;
-            margin-bottom: 12px;
-            color: #333;
-            border-left: 4px solid #007bff;
-            padding-left: 8px;
-        }
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin-bottom: 15px;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 12px;
-            white-space: nowrap;
-        }
-        th, td {
-            padding: 8px 10px;
-            border: 1px solid #ddd;
-            text-align: left;
-        }
-        th {
-            background-color: #007bff;
-            color: white;
-        }
-        tr:nth-child(even) {
-            background-color: #f9f9f9;
-        }
-        tr:hover {
-            background-color: #f1f7ff;
-        }
-        .summary-box {
-            background: #e8f4fd;
-            padding: 12px 15px;
-            border-radius: 6px;
-            font-size: 13px;
-            border-left: 4px solid #007bff;
-            margin-top: 10px;
-        }
-        .summary-box p {
-            display: flex;
-            justify-content: space-between;
-            margin: 6px 0;
-            font-weight: bold;
-        }
-        footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
-            padding-top: 15px;
-        }
-        footer a {
-            color: #007bff;
-            text-decoration: none;
-            font-weight: 600;
-        }
-        footer a:hover {
-            text-decoration: underline;
-        }
+        /* Footer Style */
+        footer { text-align: center; margin-top: 25px; padding-top: 15px; border-top: 1px solid #e0e0e0; color: #666; font-size: 13px; }
 
-        @media print {
-            body { background-color: #fff; padding: 0; }
-            .container { box-shadow: none; padding: 0; max-width: 100%; }
-            #dashboardSelectorWrapper, .print-btn-container, footer { display: none !important; }
-            .section-block { border: none; padding: 0; }
-        }
+        @media print { .controls, .card, .filter-section, .role-section { display: none !important; } }
     </style>
-    <script>
-        const accessCodes = {
-            "100234": "sec-awal",     
-            "100345": "sec-arif",     
-            "100456": "sec-babor",    
-            "100567": "sec-babul",    
-            "100678": "sec-jasim",    
-            "100789": "sec-main",     
-            "100890": "sec-saiem",    
-            "200234": "sec-selim",    
-            "200345": "sec-sanawer",  
-            "200456": "sec-inventory",
-            "200567": "sec-payment"   
-        };
-
-        function verifyPasscode() {
-            const selectedName = document.getElementById("memberNameSelect").value;
-            const code = document.getElementById("passcodeInput").value.trim();
-            const errorMsg = document.getElementById("errorMsg");
-
-            if (accessCodes[code] && selectedName === code) {
-                const targetId = accessCodes[code];
-                document.getElementById("sec-welcome").style.display = "none";
-                
-                const sections = document.getElementsByClassName("section-block");
-                for (let i = 0; i < sections.length; i++) {
-                    sections[i].classList.remove("active");
-                }
-
-                document.getElementById(targetId).classList.add("active");
-                document.getElementById("dashboardSelectorWrapper").classList.add("active-dropdown");
-                document.querySelector(".print-btn-container").style.display = "block";
-                
-                document.getElementById("passcodeInput").value = "";
-                errorMsg.style.display = "none";
-            } else {
-                errorMsg.style.display = "block";
-            }
-        }
-
-        function lockDashboard() {
-            const sections = document.getElementsByClassName("section-block");
-            for (let i = 0; i < sections.length; i++) {
-                sections[i].classList.remove("active");
-            }
-            const welcomeSec = document.getElementById("sec-welcome");
-            welcomeSec.style.display = "block";
-            welcomeSec.classList.add("active");
-            document.getElementById("dashboardSelectorWrapper").classList.remove("active-dropdown");
-            document.querySelector(".print-btn-container").style.display = "none";
-        }
-
-        let detectedTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
-        function updateLiveClock() {
-            const now = new Date();
-            const options = { 
-                weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', 
-                hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true,
-                timeZone: detectedTimeZone
-            };
-            const clockElement = document.getElementById('liveClock');
-            if (clockElement) {
-                clockElement.textContent = now.toLocaleDateString('en-GB', options);
-            }
-        }
-
-        function fetchUserLocation() {
-            fetch('https://ipapi.co/json/')
-                .then(response => response.json())
-                .then(data => {
-                    const locationElement = document.getElementById('userLocation');
-                    if (locationElement && data.country_name) {
-                        locationElement.textContent = `🌍 ${data.country_name} (${data.city || ''})`;
-                    }
-                    if (data.timezone) {
-                        detectedTimeZone = data.timezone;
-                    }
-                })
-                .catch(() => {
-                    const locationElement = document.getElementById('userLocation');
-                    if (locationElement) {
-                        locationElement.textContent = "🌍 দেশ শনাক্ত করা যায়নি";
-                    }
-                });
-        }
-
-        /* Front Page Interactive Calendar Logic */
-        let currentCalDate = new Date();
-
-        function renderFrontCalendar() {
-            const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-            const year = currentCalDate.getFullYear();
-            const month = currentCalDate.getMonth();
-
-            const calTitle = document.getElementById('calendarTitle');
-            if(calTitle) calTitle.textContent = `${monthNames[month]} ${year}`;
-
-            const daysContainer = document.getElementById('calendarDays');
-            if(!daysContainer) return;
-            daysContainer.innerHTML = '';
-
-            const firstDayIndex = new Date(year, month, 1).getDay();
-            const lastDay = new Date(year, month + 1, 0).getDate();
-            const today = new Date();
-
-            for (let i = 0; i < firstDayIndex; i++) {
-                const emptyDiv = document.createElement('div');
-                emptyDiv.classList.add('calendar-day', 'empty');
-                daysContainer.appendChild(emptyDiv);
-            }
-
-            for (let day = 1; day <= lastDay; day++) {
-                const dayDiv = document.createElement('div');
-                dayDiv.classList.add('calendar-day');
-                dayDiv.textContent = day;
-
-                if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                    dayDiv.classList.add('today');
-                }
-                daysContainer.appendChild(dayDiv);
-            }
-        }
-
-        function changeMonth(step) {
-            currentCalDate.setMonth(currentCalDate.getMonth() + step);
-            renderFrontCalendar();
-        }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            updateLiveClock();
-            setInterval(updateLiveClock, 1000);
-            fetchUserLocation();
-            renderFrontCalendar();
-
-            const printBtn = document.querySelector('.print-btn');
-            if (printBtn) {
-                printBtn.addEventListener('click', () => window.print());
-            }
-
-            const todayStr = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }); 
-            document.querySelectorAll('.dynamic-date').forEach(el => el.textContent = todayStr);
-        });
-    </script>
 </head>
 <body>
 
@@ -535,720 +72,369 @@
     <header>
         <h1>بسم الله الرحمن الرحيم</h1>
         <h2>বন্ধুত্বের স্মারক সমিতি</h2>
-        <h4>স্থাপিত: ২০২৬</h4>
         <p>বন্ধুতের সুদৃঢ় ভিত্তি, বাণিজ্যে বরকত ও উন্নতি</p>
     </header>
 
-    <!-- Welcome & Passcode Section (Main Page) -->
-    <div id="sec-welcome" class="section-block active">
-        <div class="welcome-hero">
-            <h1>السلام عليكم ورحمة الله</h1>
-            <h1>আপনাকে স্বাগতম</h1>
-            <div class="location-box" id="userLocation">
-              🌍 আপনার দেশ শনাক্ত করা হচ্ছে...
-            </div>
-            
-            <div class="live-datetime-box">
-                ⏰ <span id="liveClock">লোড হচ্ছে...</span>
-            </div>
-            <div class="glass-marquee-container">
-                <div class="glass-marquee-track">
-                    🌟 সমিতির তহবিলে বর্তমানে জমা আছে: ০০.০০ টাকা মাত্র 🌟 
-                </div>
-            </div>
+    <!-- প্রজেক্ট মূল্য এবং শেয়ারের তথ্য -->
+    <div class="project-info">
+        <h4>🏢 ক্রয়কৃত সম্পদের হিসাব:</h4>
+        <p>মোট মূল্য: <strong>৯১,০০,০০০ (৯১ লাখ) BDT</strong> | মোট শেয়ার: <strong>১২</strong> | প্রতি শেয়ারের মূল্য: <strong>৭,৫৮,৩৩৩.৩৩ BDT</strong></p>
+    </div>
 
-            <!-- Login / Passcode Form Box -->
-            <div class="passcode-box">
+    <!-- সিকিউরিটি এবং রোল প্যানেল -->
+    <div class="controls">
+        <div class="role-section">
+            <label for="userRole">👤 ইউজার মোড:</label>
+            <select id="userRole" onchange="toggleAdminAccess()">
+                <option value="READONLY">সকল সদস্য</option>
+                <option value="ADMIN">এডমিন</option>
+            </select>
+            <span id="roleBadge" class="badge-readonly">Read Only</span>
+        </div>
+
+        <div>
+            <button class="btn btn-primary" onclick="window.print()">🖨️ প্রিন্ট</button>
+            <button class="btn btn-success" onclick="exportData()">📥 ব্যাকআপ</button>
+        </div>
+    </div>
+
+    <!-- ফিল্টার প্যানেল -->
+    <div class="controls">
+        <div class="filter-section">
+            <label for="filterMember">🔍 সদস্য:</label>
+            <select id="filterMember" onchange="renderAllTables()">
+                <option value="ALL">সকল সদস্য (সদস্যদের নাম)</option>
+                <option value="আবদুল আউয়াল">আবদুল আউয়াল</option>
+                <option value="আরিফ হোসেন">আরিফ হোসেন</option>
+                <option value="বাবুল হোসেন">বাবুল হোসেন</option>
+                <option value="মঈন উদ্দিন">মঈন উদ্দিন</option>
+                <option value="সেলিম পাটোয়ারী">সেলিম পাটোয়ারী</option>
+                <option value="মোঃ সায়েম">মোঃ সায়েম</option>
+                <option value="বাবর পাটোয়ারী">বাবর পাটোয়ারী</option>
+                <option value="জসিম উদ্দিন">জসিম উদ্দিন</option>
+                <option value="সানোয়ার কাদের">সানোয়ার কাদের</option>
+            </select>
+        </div>
+    </div>
+
+    <!-- ১. সদস্যভিত্তিক শেয়ার ও বাকি টাকার সামারি টেবিল -->
+    <div class="table-responsive">
+        <h3 style="margin-bottom: 10px; color: #28a745;">📌 সদস্যদের শেয়ার ও বকেয়া হিসাব বিবরণী</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>সদস্যের নাম</th>
+                    <th>শেয়ার সংখ্যা</th>
+                    <th>মোট ধার্যকৃত মূল্য (BDT)</th>
+                    <th>বর্তমান মোট জমা (BDT)</th>
+                    <th>বকেয়া টাকা (BDT)</th>
+                </tr>
+            </thead>
+            <tbody id="shareTableBody">
+                <!-- ডায়নামিক ডাটা আসবে -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- নতুন ট্রানজেকশন এন্ট্রি ফর্ম -->
+    <div class="card disabled-card" id="entryCard">
+        <h3 id="formTitle">🔒 এন্ট্রি ফর্ম (শুধুমাত্র এডমিন এন্ট্রি দিতে পারবেন)</h3>
+        <form id="entryForm" onsubmit="addTransaction(event)">
+            <div class="form-grid">
                 <div class="form-group">
-                    <label for="memberNameSelect">User Name</label>
-                    <select id="memberNameSelect">
-                        <option value="">আপনার ফাইলটি নির্বাচন করুন</option>
-                        <option value="100234">আবদুল আউয়াল</option>
-                        <option value="100345">আরিফ হোসেন</option>
-                        <option value="100456">বাবর পাটোয়ারী</option>
-                        <option value="100567">বাবুল হোসেন</option>
-                        <option value="100678">জসিম উদ্দিন</option>
-                        <option value="100789">মঈন উদ্দিন (সুমন)</option>
-                        <option value="100890">মোঃ সায়েম (শাকিল)</option>
-                        <option value="200234">সেলিম পাটোয়ারী</option>
-                        <option value="200345">সানোয়ার কাদের (আরিফ)</option>
-                        <option value="200456">মাসিক লেনদেন এর বিবরণ</option>
-                        <option value="200567">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</option>
+                    <label>লেনদেনের ধরন (Type)</label>
+                    <select id="type" class="entry-field" required disabled>
+                        <option value="CREDIT">জমা (Deposit)</option>
+                        <option value="DEBIT">পেমেন্ট / খরচ (Payment / Debit)</option>
                     </select>
                 </div>
-
                 <div class="form-group">
-                    <label for="passcodeInput">Password</label>
-                    <input type="password" id="passcodeInput" placeholder="আপনার ব্যক্তিগত কোড লিখুন" maxlength="6">
+                    <label>সদস্য নাম</label>
+                    <select id="memberName" class="entry-field" required disabled>
+                        <option value="">নির্বাচন করুন</option>
+                        <option value="আবদুল আউয়াল">আবদুল আউয়াল</option>
+                        <option value="আরিফ হোসেন">আরিফ হোসেন</option>
+                        <option value="বাবুল হোসেন">বাবুল হোসেন</option>
+                        <option value="মঈন উদ্দিন">মঈন উদ্দিন</option>
+                        <option value="সেলিম পাটোয়ারী">সেলিম পাটোয়ারী</option>
+                        <option value="মোঃ সায়েম">মোঃ সায়েম</option>
+                        <option value="বাবর পাটোয়ারী">বাবর পাটোয়ারী</option>
+                        <option value="জসিম উদ্দিন">জসিম উদ্দিন</option>
+                        <option value="সানোয়ার কাদের">সানোয়ার কাদের</option>
+                        <option value="অন্যান্য/সমিতি খরচ">অন্যান্য / সমিতি খরচ</option>
+                    </select>
                 </div>
-
-                <div class="login-btn-container">
-                    <button class="unlock-btn" onclick="verifyPasscode()">লগইন করুন</button>
+                <div class="form-group">
+                    <label>তারিখ</label>
+                    <input type="date" id="tranDate" class="entry-field" required disabled>
                 </div>
-
-                <p id="errorMsg" class="error-msg">আপনার পাসওয়ার্ড ভুল হয়েছে! অনুগ্রহ করে আবার চেষ্টা করুন।</p>
+                <div class="form-group">
+                    <label>রেফারেন্স / রসিদ নং</label>
+                    <input type="text" id="refNo" class="entry-field" placeholder="যেমন: S7304311" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>টাকার পরিমাণ (BDT)</label>
+                    <input type="number" id="amount" class="entry-field" placeholder="0.00" step="0.01" required disabled>
+                </div>
+                <div class="form-group">
+                    <label>ব্যাংক / মাধ্যম</label>
+                    <input type="text" id="bankFrom" class="entry-field" placeholder="যেমন: Bank Plc" disabled>
+                </div>
+                <div class="form-group" style="grid-column: span 2;">
+                    <label>মাস / বিবরণের নোট</label>
+                    <input type="text" id="monthDesc" class="entry-field" placeholder="যেমন: জানুয়ারি ২০২৬" required disabled>
+                </div>
             </div>
-        </div>
-        <p style="margin-top: 15px;">"নিরাপত্তার স্বার্থে সমিতির আর্থিক বিবরণীগুলো সংরক্ষিত। আপনার ফাইলে সঠিক পাসওয়ার্ড দিয়ে লগইন করুন।"</p>
+            <button type="submit" id="saveBtn" class="btn btn-success" style="margin-top: 12px; width: 100%;" disabled>লেনদেন সেভ করুন</button>
+        </form>
+    </div>
 
-        <!-- 1. Front Page Quick Summary Dashboard (Placed inside sec-welcome) -->
-        <div class="shortcut-dashboard">
-            <h3>📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব</h3>
-            <div class="table-responsive">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>সদস্যের নাম</th>
-                            <th>মোট জমা</th>
-                            <th>অবস্থা / বকেয়া</th>
-                            <th>নির্ধারিত মূল্য</th>
-                            <th>শেয়ার</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr><td>আবদুল আউয়াল</td><td>5,18,000.00</td><td style="color:#d9534f; font-weight:bold;">-2,40,333.33</td><td>7,58,333.33</td><td>8.335%</td></tr>
-                        <tr><td>আরিফ হোসেন</td><td>2,00,000.00</td><td style="color:#d9534f; font-weight:bold;">-5,58,333.33</td><td>7,58,333.33</td><td>8.335%</td></tr>
-                        <tr><td>বাবুল হোসেন</td><td>1,80,000.00</td><td style="color:#d9534f; font-weight:bold;">-5,78,333.33</td><td>7,58,333.33</td><td>8.335%</td></tr>
-                        <tr><td>মঈন উদ্দিন</td><td>5,52,000.00</td><td style="color:#d9534f; font-weight:bold;">-2,06,333.33</td><td>7,58,333.33</td><td>8.335%</td></tr>
-                        <tr><td>সেলিম পাটোয়ারী</td><td>90,000.00</td><td style="color:#d9534f; font-weight:bold;">-6,68,333.33</td><td>7,58,333.33</td><td>8.335%</td></tr>
-                        <tr><td>মোঃ সায়েম</td><td>7,73,333.33</td><td style="color:#28a745; font-weight:bold;">+15,000.00</td><td>7,58,333.33</td><td>8.335%</td></tr>
-                        <tr><td>বাবর পাটোয়ারী</td><td>10,35,000.00</td><td style="color:#d9534f; font-weight:bold;">-4,81,666.67</td><td>15,16,666.67</td><td>16.67%</td></tr>
-                        <tr><td>জসিম উদ্দিন</td><td>9,40,000.00</td><td style="color:#d9534f; font-weight:bold;">-5,76,666.67</td><td>15,16,666.67</td><td>16.67%</td></tr>
-                        <tr><td>সানোয়ার কাদের</td><td>16,50,000.00</td><td style="color:#28a745; font-weight:bold;">+1,33,333.33</td><td>15,16,666.67</td><td>16.67%</td></tr>
-                        <tr style="font-weight: bold; background-color: #e2e8f0;">
-                            <td>সর্বমোট</td>
-                            <td>59,38,333.33</td>
-                            <td style="color:#d9534f;">-31,61,666.67</td>
-                            <td>91,00,000.00</td>
-                            <td>100%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+    <!-- ২. বিস্তারিত লেনদেনের টেবিল -->
+    <div class="table-responsive">
+        <h3 id="tableTitle" style="margin-bottom: 10px; color: #007bff;">📊 সকল লেনদেনের বিস্তারিত স্টেটমেন্ট</h3>
+        <table id="transactionTable">
+            <thead>
+                <tr>
+                    <th>তারিখ</th>
+                    <th>ধরন</th>
+                    <th>নাম/প্রাপক</th>
+                    <th>রেফারেন্স নং</th>
+                    <th>ব্যাংক/মাধ্যম</th>
+                    <th>মাস / বিবরণ</th>
+                    <th>টাকার পরিমাণ (BDT)</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <!-- ডায়নামিক ডাটা আসবে -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- সর্বমোট ক্যাশ সামারি -->
+    <div class="summary-box">
+        <div class="summary-card" style="border-left: 4px solid #28a745;">
+            <h4>মোট সংগৃহীত জমা (Credit)</h4>
+            <p id="totalCredit" class="txt-credit">0.00 BDT</p>
         </div>
-        
-        <!-- 2. Front Page Calendar Widget (Placed inside sec-welcome) -->
-        <div class="front-calendar-box">
-            <div class="calendar-header">
-                <button onclick="changeMonth(-1)">❮</button>
-                <h3 id="calendarTitle"></h3>
-                <button onclick="changeMonth(1)">❯</button>
-            </div>
-            <div class="calendar-grid">
-                <div class="calendar-day-head">Sun</div>
-                <div class="calendar-day-head">Mon</div>
-                <div class="calendar-day-head">Tue</div>
-                <div class="calendar-day-head">Wed</div>
-                <div class="calendar-day-head">Thu</div>
-                <div class="calendar-day-head">Fri</div>
-                <div class="calendar-day-head">Sat</div>
-            </div>
-            <div class="calendar-grid" id="calendarDays" style="margin-top: 5px;"></div>
+        <div class="summary-card" style="border-left: 4px solid #dc3545;">
+            <h4>মোট পেমেন্ট/খরচ (Debit)</h4>
+            <p id="totalDebit" class="txt-debit">0.00 BDT</p>
+        </div>
+        <div class="summary-card" style="border-left: 4px solid #007bff;">
+            <h4>অবশিষ্ট ক্যাশ বেলেন্স (Net Fund)</h4>
+            <p id="netBalance" style="color: #007bff;">0.00 BDT</p>
         </div>
     </div>
 
-    <!-- Lock / Logout Dashboard Bar -->
-    <div id="dashboardSelectorWrapper" class="dashboard-selector">
-        <span style="font-weight: bold; color: #007bff;">সফলভাবে লগইন করা হয়েছে।</span>
-        <p><button onclick="lockDashboard()">Homepage</button></p>
-    </div>
-
-    <!-- প্রিন্ট বাটন -->
-    <div class="print-btn-container">
-        <button class="print-btn">🖨️ প্রিন্ট</button>
-    </div>
-
-    <!-- Abdul Awal Statement -->
-    <div id="sec-awal" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Abdul Awal</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Abdul Awal - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>16/02/2026</td><td>S7304311</td><td>30,000.00</td><td>Brac Plc</td><td>IBBL-SQArif to MTB-USAkter</td><td>January</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>04/02/2026</td><td>22586703</td><td>15,000.00</td><td>MTB Plc</td><td>IBBL-SQArif to MTB-USAkter</td><td>March</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>01/04/2026</td><td>...9930</td><td>15,000.00</td><td>MTB Plc</td><td>IBBL-SQArif to MTB-USAkter</td><td>April</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>01/05/2026</td><td>24363891</td><td>15,000.00</td><td>MTB Plc</td><td>IBBL-SQArif to MTB-USAkter</td><td>May</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>01/06/2026</td><td>IB-11483760</td><td>15,000.00</td><td>MTB Plc</td><td>IBBL-SQArif to MTB-USAkter</td><td>June</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>01/07/2026</td><td>IB 11793350</td><td>15,000.00</td><td>MTB Plc</td><td>IBBL-SQArif to MTB-USAkter</td><td>July</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>26/07/2026</td><td>S61111506</td><td>100,000.00</td><td>Brac Plc</td><td>SEB-MUSumon to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>100,000.00</td></tr>
-                    <tr><td>26/07/2026</td><td>S61112063</td><td>105,000.00</td><td>Brac Plc</td><td>SEB-MUSumon to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>105,000.00</td></tr>
-                    <tr><td>30/07/2026</td><td>27345914</td><td>20,000.00</td><td>MTB Plc</td><td>MTB-Aawal to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>20,000.00</td></tr>
-                    <tr><td>27/08/2026</td><td>28334421</td><td>100,000.00</td><td>MTB Plc</td><td>MTB-Aawal to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>100,000.00</td></tr>
-                    <tr><td>30/08/2026</td><td>28442126</td><td>30,000.00</td><td>MTB Plc</td><td>MTB-Aawal to MTB-USAkter</td><td>August</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>21/09/2026</td><td>29289344</td><td>180,000.00</td><td>MTB Plc</td><td>MTB-Aawal to MTB-USAkter</td><td>September</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>165,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>0.00</td><td>Settlement of Arrears</td><td>-</td><td>Arrears</td><td>2026</td><td>-122,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>640,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>518,000.00 BDT</span></p>
-            <p><span>Equity/Share (8.335%):</span> <span>758,333.33 BDT</span></p>
-            <p style="color: #d9534f;"><span>Total Due:</span> <span>-240,333.33 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Arif Hossain Statement -->
-    <div id="sec-arif" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Arif Hossain</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Arif Hossain - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>28/07/2026</td><td>S63354815</td><td>100,000.00</td><td>Brac Plc</td><td>SEB Plc-MUSumon to MTB-USAkter</td><td>January</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>March</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>April</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>May</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>July</td><td>2026</td><td>10,000.00</td></tr>
-                    <tr><td>06/09/2026</td><td>511179085</td><td>100,000.00</td><td>DBBL Plc</td><td>MTB Plc-Aawal to MidlandSQArifRltvs</td><td>July</td><td>2026</td><td>5,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>August</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>65,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>September</td><td>2026</td><td>15,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>200,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>200,000.00 BDT</span></p>
-            <p><span>Equity/Share (8.335%):</span> <span>758,333.33 BDT</span></p>
-            <p style="color: #d9534f;"><span>Total Due:</span> <span>-558,333.33 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Babor Patwary Statement -->
-    <div id="sec-babor" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Babor Patwary</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Babor Patwary - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>03/03/2026</td><td>RMT260303-10PD92YQ5T</td><td>100,000.00</td><td>Barrak Finance KSA</td><td>IBBL Plc-SQArif to MTB-USAkter</td><td>January</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>March</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>April</td><td>2026</td><td>10,000.00</td></tr>
-                    <tr><td>29/07/2026</td><td>RMT260729-10A4E3IQ61</td><td>102,500.00</td><td>Barrak Finance KSA</td><td>MTB-USAkter</td><td>April</td><td>2026</td><td>20,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>May</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>July</td><td>2026</td><td>22,500.00</td></tr>
-                    <tr><td>30/07/2026</td><td>RMT260730-102KPCVFUN</td><td>102,500.00</td><td>Barrak Finance KSA</td><td>MTB-USAkter</td><td>July</td><td>2026</td><td>7,500.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>95,000.00</td></tr>
-                    <tr><td>30/07/2026</td><td>MTB Teller Deposit Slip</td><td>200,000.00</td><td>MTB Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>200,000.00</td></tr>
-                    <tr><td>30/08/2026</td><td>RMT260830-10DWZLBT07</td><td>166,604.81</td><td>Barrak Finance KSA</td><td>MTB Plc-Aawal to MTB-USAkter</td><td>August</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>136,604.81</td></tr>
-                    <tr><td>30/08/2026</td><td>RMT260830-1006DDK2TB</td><td>166,604.81</td><td>Barrak Finance KSA</td><td>MTB Plc-Aawal to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>166,604.81</td></tr>
-                    <tr><td>31/08/2026</td><td>RMT260831-103A4IANZR</td><td>166,344.82</td><td>Barrak Finance KSA</td><td>MTB Plc-Aawal to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>166,344.82</td></tr>
-                    <tr><td>06/09/2026</td><td>RMT260906-10QI60XU49</td><td>445.56</td><td>Barrak Finance KSA</td><td>MTB Plc-Aawal to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>445.56</td></tr>
-                    <tr><td>-</td><td>-</td><td>30,138.27</td><td>Barrak Finance KSA</td><td>MTB Plc-Aawal</td><td>September</td><td>2026</td><td>30,138.27</td></tr>
-                    <tr><td>-</td><td>-</td><td>-138.27</td><td>Adjustment</td><td>MTB Plc-Aawal</td><td>Balance</td><td>2026</td><td>-138.27</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>10,35,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>10,35,000.00 BDT</span></p>
-            <p><span>Equity/Share (16.67%):</span> <span>15,16,666.67 BDT</span></p>
-            <p style="color: #d9534f;"><span>Total Due:</span> <span>-481,666.66 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Babul Hossain Statement -->
-    <div id="sec-babul" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Babul Hossain</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Babul Hossain - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>02/08/2026</td><td>MTB Teller Deposit Slip</td><td>180,000.00</td><td>MTB Plc</td><td>MTB-USAkter</td><td>January</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>March</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>April</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>May</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>July</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>August</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>September</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>October</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>November</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>December</td><td>2026</td><td>15,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>180,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>180,000.00 BDT</span></p>
-            <p><span>Equity/Share (8.335%):</span> <span>758,333.33 BDT</span></p>
-            <p style="color: #d9534f;"><span>Total Due:</span> <span>-578,333.33 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Jasim Uddin Statement -->
-    <div id="sec-jasim" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Jasim Uddin</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Jasim Uddin - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>19/03/2026</td><td>5326021900004230</td><td>60,000.00</td><td>IBBL Plc</td><td>IBBL Plc-SQArif to MTB-USAkter</td><td>January</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>01/07/2026</td><td>9626070200024680</td><td>60,000.00</td><td>IBBL Plc</td><td>IBBL Plc-SQArif to MTB-USAkter</td><td>March</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>April</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>08/07/2026</td><td>100002336371</td><td>60,000.00</td><td>CityBank</td><td>IBBL Plc-SQArif to MTB-USAkter</td><td>May</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>13/07/2026</td><td>Br. Counter Deposit</td><td>30,000.00</td><td>SEB Plc</td><td>IBBL Plc-SQArif to MTB-USAkter</td><td>July</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>29/07/2026</td><td>LID02038838092</td><td>100,000.00</td><td>DBBL Plc</td><td>IBBL Plc-SQArif to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>100,000.00</td></tr>
-                    <tr><td>06/08/2026</td><td>Br. Counter Deposit</td><td>200,000.00</td><td>SEB Plc</td><td>SEB Plc-MUSumon to MTB Plc-Aawal to MTB-USAkter</td><td>August</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>170,000.00</td></tr>
-                    <tr><td>25/08/2026</td><td>623716989200</td><td>300,000.00</td><td>City Bank Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>300,000.00</td></tr>
-                    <tr><td>06/09/2026</td><td>Hand Cash</td><td>100,000.00</td><td>Jashim Wife</td><td>SQArifRltvs</td><td>Down Pay</td><td>2026</td><td>100,000.00</td></tr>
-                    <tr><td>15/09/2026</td><td>514108859</td><td>30,000.00</td><td>DBBL Plc</td><td>DBBL Plc-Aawal</td><td>September</td><td>2026</td><td>30,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>940,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>940,000.00 BDT</span></p>
-            <p><span>Equity/Share (16.67%):</span> <span>15,16,666.67 BDT</span></p>
-            <p style="color: #d9534f;"><span>Total Due:</span> <span>-576,666.67 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Main Uddin Statement -->
-    <div id="sec-main" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Main Uddin</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Main Uddin - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>10/04/2026</td><td>261000741937</td><td>15,000.00</td><td>Unknown</td><td>IBBL Plc-SQArif to MTB-USAkter</td><td>January</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>08/07/2026</td><td>2026070824006830</td><td>30,000.00</td><td>Pubali Bank</td><td>SEB Plc-MUSumon to MTB-USAkter</td><td>February</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>March</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>29/07/2026</td><td>202607292460995</td><td>60,000.00</td><td>Pubali Bank</td><td>MTB-USAkter</td><td>April</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>May</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>July</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>30/07/2026</td><td>MTB Teller Deposit Slip</td><td>100,000.00</td><td>MTB Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>100,000.00</td></tr>
-                    <tr><td>30/07/2026</td><td>MTB Teller Deposit Slip</td><td>100,000.00</td><td>MTB Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>100,000.00</td></tr>
-                    <tr><td>27/08/2026</td><td>S91015518</td><td>120,000.00</td><td>Brac Plc</td><td>MTB Plc-Aawal to MTB-USAKTER</td><td>August</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>105,000.00</td></tr>
-                    <tr><td>30/08/2026</td><td>28441872</td><td>80,000.00</td><td>IBBL ATM</td><td>MTB Plc-Aawal to MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>80,000.00</td></tr>
-                    <tr><td>30/08/2026</td><td>509214502</td><td>17,000.00</td><td>DBBL</td><td>MTB Plc-Aawal</td><td>September</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>2,000.00</td></tr>
-                    <tr><td>19/09/2026</td><td>2025091921021598</td><td>30,000.00</td><td>Pubali Bank Plc</td><td>MTB Plc-Aawal</td><td>Down Pay</td><td>2026</td><td>30,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>552,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>552,000.00 BDT</span></p>
-            <p><span>Equity/Share (8.335%):</span> <span>758,333.33 BDT</span></p>
-            <p style="color: #d9534f;"><span>Total Due:</span> <span>-206,333.33 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Md. Saiem Statement -->
-    <div id="sec-saiem" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Md. Saiem</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Md. Saiem - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>27/07/2026</td><td>Auto Deduction (Full Payment)</td><td>758,333.33</td><td>Auto Deduction</td><td>Auto Deduction (Full Payment)</td><td>January</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>March</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>April</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>May</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>July</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>August</td><td>2026</td><td>15,000</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>638,333.33</td></tr>
-                    <tr><td>03/09/2026</td><td>MTB Teller Deposit Slip</td><td>15,000</td><td>MTB Plc</td><td>MTB Plc-Aawal</td><td>September</td><td>2026</td><td>15,000</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>773,333.33 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>773,333.33 BDT</span></p>
-            <p><span>Equity/Share (8.335%):</span> <span>758,333.33 BDT</span></p>
-            <p style="color: #28a745;"><span>Additional Paid Amount:</span> <span>15,000.00 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Selim Patwary Statement -->
-    <div id="sec-selim" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Selim Patwary</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Selim Patwary - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>31/08/2026</td><td>28477219</td><td>90,000.00</td><td>MTB Plc</td><td>MTB-USAkter</td><td>January</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>March</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>April</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>May</td><td>2026</td><td>15,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>15,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>90,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>90,000.00 BDT</span></p>
-            <p><span>Equity/Share (8.335%):</span> <span>758,333.33 BDT</span></p>
-            <p style="color: #d9534f;"><span>Total Due:</span> <span>-668,333.33 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Sanawer Quder Statement -->
-    <div id="sec-sanawer" class="section-block">
-        <div class="info-box">
-            <p><strong>Shareholder Name:</strong> Sanawer Quder</p>
-            <p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p>
-        </div>
-        <h3 class="section-title">Sanawer Quder - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No</th>
-                        <th>Amount</th>
-                        <th>Bank From</th>
-                        <th>Bank To</th>
-                        <th>Month</th>
-                        <th>Year</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>29/07/2026</td><td>13428787</td><td>300,000.00</td><td>NRBC Plc</td><td>MTB-USAkter</td><td>January</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>February</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>March</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>April</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>May</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>June</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>July</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>90,000.00</td></tr>
-                    <tr><td>29/07/2026</td><td>FT - Br. Counter</td><td>100,000.00</td><td>Midland Bank</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>100,000.00</td></tr>
-                    <tr><td>29/07/2026</td><td>S64406836</td><td>200,000.00</td><td>Brac Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>200,000.00</td></tr>
-                    <tr><td>29/07/2026</td><td>423366 - FT - Br. Counter</td><td>390,000.00</td><td>IBBL Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>390,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>0</td><td>Settlement of Arrears</td><td>-</td><td>Arrears</td><td>2026</td><td>-340,000.00</td></tr>
-                    <tr><td>29/07/2026</td><td>29072026171034752:987370</td><td>500,000.00</td><td>DBBL Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>500,000.00</td></tr>
-                    <tr><td>30/07/2026</td><td>MTB Teller Deposit Slip</td><td>200,000.00</td><td>MTB Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>200,000.00</td></tr>
-                    <tr><td>30/07/2026</td><td>FT - Br. Counter</td><td>300,000.00</td><td>Midland Bank</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>300,000.00</td></tr>
-                    <tr><td>25/08/2026</td><td>623716062800</td><td>95,000.00</td><td>City Bank Plc</td><td>MTB-USAkter</td><td>August</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>Down Pay</td><td>2026</td><td>65,000.00</td></tr>
-                    <tr><td>25/08/2026</td><td>LID0293691548</td><td>5,000.00</td><td>DBBL Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>5,000.00</td></tr>
-                    <tr><td>31/08/2026</td><td>13911499</td><td>100,000.00</td><td>NRBC Plc</td><td>MTB-USAkter</td><td>Down Pay</td><td>2026</td><td>70,000.00</td></tr>
-                    <tr><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>September</td><td>2026</td><td>30,000.00</td></tr>
-                    <tr><td>05/09/2026</td><td>Hand Cash</td><td>0</td><td>Jashim Wife</td><td>SQArif Wife</td><td>Reverse</td><td>2026</td><td>-100,000.00</td></tr>
-                    <tr><td>08/09/2026</td><td>LID02121299036</td><td>0</td><td>DBBL Plc-Aawal</td><td>Midland -SQArifRltvs</td><td>Reverse</td><td>2026</td><td>-100,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Deposited:</span> <span>21,90,000.00 BDT</span></p>
-            <p><span>Own Share Deposited:</span> <span>16,50,000.00 BDT</span></p>
-            <p><span>Equity/Share (16.67%):</span> <span>15,16,666.67 BDT</span></p>
-            <p style="color: #28a745;"><span>Additional Paid Amount:</span> <span>133,333.33 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Friends Investments Inventory -->
-    <div id="sec-inventory" class="section-block">
-        <h3 class="section-title">Friends Investments Inventory</h3>
-        
-        <h4 style="margin: 15px 0 8px 0; color: #444;">Member Monthly Deposits</h4>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Year/Name</th>
-                        <th>Abdul Awal</th>
-                        <th>Arif Hossain</th>
-                        <th>Babul Hossain</th>
-                        <th>Main Uddin</th>
-                        <th>Selim Patwary</th>
-                        <th>Md. Saiem</th>
-                        <th>Babor Patwary</th>
-                        <th>Jasim Uddin</th>
-                        <th>Sanawer Quder</th>
-                        <th>Total Deposit</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>January 2026</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>30,000.00</td><td>30,000.00</td><td>30,000.00</td><td>180,000.00</td></tr>
-                    <tr><td>February 2026</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>30,000.00</td><td>30,000.00</td><td>30,000.00</td><td>180,000.00</td></tr>
-                    <tr><td>March 2026</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>30,000.00</td><td>30,000.00</td><td>30,000.00</td><td>180,000.00</td></tr>
-                    <tr><td>April 2026</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>30,000.00</td><td>30,000.00</td><td>30,000.00</td><td>180,000.00</td></tr>
-                    <tr><td>May 2026</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>30,000.00</td><td>30,000.00</td><td>30,000.00</td><td>180,000.00</td></tr>
-                    <tr><td>June 2026</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>15,000.00</td><td>30,000.00</td><td>30,000.00</td><td>30,000.00</td><td>180,000.00</td></tr>
-                    <tr><td>July 2026</td><td>240,000.00</td><td>15,000.00</td><td>15,000.00</td><td>215,000.00</td><td>-</td><td>15000.00</td><td>325,000.00</td><td>130,000.00</td><td>1,270,000.00</td><td>22,25,000.00</td></tr>
-                    <tr><td>August 2026</td><td>130,000.00</td><td>80,000.00</td><td>15,000.00</td><td>200,000.00</td><td>-</td><td>653333.33</td><td>500,000.00</td><td>600,000.00</td><td>170,000.00</td><td>23,63,333.33</td></tr>
-                    <tr><td>September 2026</td><td>58,000.00</td><td>15,000.00</td><td>15,000.00</td><td>47,000.00</td><td>-</td><td>15000.00</td><td>30,000.00</td><td>30000.00</td><td>30,000.00</td><td>240,000.00</td></tr>
-                    <tr><td>October 2026</td><td>-</td><td>-</td><td>15,000.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>15,000.00</td></tr>
-                    <tr><td>November 2026</td><td>-</td><td>-</td><td>15,000.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>15,000.00</td></tr>
-                    <tr><td>December 2026</td><td>-</td><td>-</td><td>15,000.00</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>15,000.00</td></tr>
-                    <tr style="font-weight: bold; background-color: #e2e8f0;">
-                        <td>Total Deposited (BDT)</td><td>518,000.00</td><td>200,000.00</td><td>180,000.00</td><td>552,000.00</td><td>90,000.00</td><td>773,333.33</td><td>10,35,000.00</td><td>940,000.00</td><td>16,50,000.00</td><td>59,38,333.33</td>
-                    </tr>
-                    <tr style="font-weight: bold; background-color: #e2e8f0;">
-                        <td>Share Wise Payable (BDT)</td><td>758,333.33</td><td>758,333.33</td><td>758,333.33</td><td>758,333.33</td><td>758,333.33</td><td>758,333.33</td><td>15,16,666.67</td><td>15,16,666.67</td><td>15,16,666.67</td><td>91,00,000.00</td>
-                    </tr>
-                    <tr style="font-weight: bold; background-color: #f8d7da;">
-                        <td>Amount Payable (BDT)</td><td>-240,333.33</td><td>-558,333.33</td><td>-578,333.33</td><td>-206,333.33</td><td>-668,333.33</td><td style="color: #28a745;">15,000.00</td><td>-481,666.67</td><td>-576,666.67</td><td style="color: #28a745;">133,333.33</td><td>-31,61,666.67</td>
-                    </tr>
-                    <tr><td>SEB Plc-MUSumon</td><td>0</td><td colspan="9">-</td></tr>
-                    <tr><td>IBBL Plc-SQArif</td><td>0</td><td colspan="9">-</td></tr>
-                    <tr><td>MTB Plc-Aawal</td><td>00.00</td><td colspan="9">-</td></tr>
-                    <tr><td>MTB Plc-UMAkter</td><td>59,38,333.33</td><td colspan="9">-</td></tr>
-                    <tr style="font-weight: bold; background-color: #e2e8f0;">
-                        <td>Grand Total (BDT)</td><td>59,38,333.33</td><td colspan="9">-</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h4 style="margin: 15px 0 8px 0; color: #444;">Association Accounts Statements (Bank to Bank)</h4>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr><th>Description</th><th>Date</th><th>Amount (BDT)</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Auto Deduction - Md. Saiem</td><td>27/07/2026</td><td>758,333.33</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>27/07/2026</td><td>100,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>28/07/2026</td><td>300,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>29/07/2026</td><td>17,77,500.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>30/07/2026</td><td>10,22,500.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>02/08/2026</td><td>180,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>23/08/2026</td><td>200,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>25/08/2026</td><td>400,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>27/08/2026</td><td>220,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>30/08/2026</td><td>440,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>31/08/2026</td><td>360,000.00</td></tr>
-                    <tr><td>Land Purchase Payment</td><td>21/09/2026</td><td>180,000.00</td></tr>
-                    <tr style="font-weight: bold; background-color: #e2e8f0;"><td colspan="2">Total Expenses</td><td>59,38,333.33</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <h4 style="margin: 15px 0 8px 0; color: #444;">Association Accounts Statements (Cash)</h4>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr><th>Description</th><th>Date</th><th>Amount (BDT)</th></tr>
-                </thead>
-                <tbody>
-                    <tr><td>Deed Vendor Fee - Salim</td><td>29/07/2026</td><td>3,000.00</td></tr>
-                    <tr style="font-weight: bold; background-color: #e2e8f0;"><td colspan="2">Total Expenses</td><td>3,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="summary-box">
-            <h3 style="margin-bottom: 8px; color: #007bff; font-size: 15px;">Association Accounts Status</h3>
-            <p><span>Association Capital by Members (Bank):</span> <span>59,38,333.33 BDT</span></p>
-            <p><span>Association Capital by Members (Cash):</span> <span>3,000.00 BDT</span></p>
-            <p><span>Association Earnings:</span> <span>0 BDT</span></p>
-            <p><span>Association Expenses:</span> <span>59,41,333.33 BDT</span></p>
-            <p style="color: #007bff;"><span>Association Liquidity:</span> <span>00.00 BDT</span></p>
-        </div>
-    </div>
-
-    <!-- Payment Statement (Umme Sarmin Akter) -->
-    <div id="sec-payment" class="section-block">
-        <div class="info-box">
-            <p><strong>Account Name:</strong> Umme Sarmin Akter</p>
-            <p><strong>Bank Name:</strong> Mutual Trust Bank</p>
-            <p><strong>Account Number:</strong> 0290310079758</p>
-        </div>
-        <h3 class="section-title">Payment Statement - Transaction Details</h3>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No (ID)</th>
-                        <th>Sender Name</th>
-                        <th>Sender Bank</th>
-                        <th>Account No</th>
-                        <th>Amount (BDT)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>27-07-2026</td><td>Auto Deduction</td><td>MD. Saiem</td><td>MD. Saiem</td><td>Auto Deduction</td><td>7,58,333.33</td></tr>
-                    <tr><td>27-07-2026</td><td>FT - Br. Counter</td><td>Sabrin Sultana</td><td>Midland Bank Plc</td><td>2101750014492</td><td>1,00,000.00</td></tr>
-                    <tr><td>28-07-2026</td><td>260728519187</td><td>Main Uddin</td><td>SEB Plc</td><td>4512100006902</td><td>3,00,000.00</td></tr>
-                    <tr><td>29-07-2026</td><td>423366 - FT</td><td>Al Noor Auto 2</td><td>IBBL Plc</td><td>Business Account</td><td>3,90,000.00</td></tr>
-                    <tr><td>29-07-2026</td><td>Remittance</td><td>Babor Patwary</td><td>Barrak Finance KSA</td><td>Money Exchange</td><td>1,02,500.00</td></tr>
-                    <tr><td>29-07-2026</td><td>13428787</td><td>For Arif Bhai</td><td>NRBC Plc</td><td>505833300002932</td><td>3,00,000.00</td></tr>
-                    <tr><td>29-07-2026</td><td>S64406836</td><td>Ma Store</td><td>Brac Plc</td><td>2074379310001</td><td>2,00,000.00</td></tr>
-                    <tr><td>29-07-2026</td><td>260729522054</td><td>Main Uddin</td><td>SEB Plc</td><td>4512100006902</td><td>2,25,000.00</td></tr>
-                    <tr><td>29-07-2026</td><td>202607292460995</td><td>Main Uddin</td><td>Pubali Bank Plc</td><td>388*******880</td><td>60,000.00</td></tr>
-                    <tr><td>29-07-2026</td><td>987370</td><td>Abul Basar</td><td>DBBL Plc</td><td>1101004282645</td><td>5,00,000.00</td></tr>
-                    <tr><td>30-07-2026</td><td>Remittance</td><td>Babor Patwary</td><td>Barrak Finance KSA</td><td>Money Exchange</td><td>1,02,500.00</td></tr>
-                    <tr><td>30-07-2026</td><td>Teller Deposit</td><td>Babor Patwary</td><td>MTB Plc</td><td>Cash Deposit</td><td>2,00,000.00</td></tr>
-                    <tr><td>30-07-2026</td><td>27345914</td><td>Abdul Awal</td><td>MTB Plc</td><td>290310020855</td><td>20,000.00</td></tr>
-                    <tr><td>30-07-2026</td><td>Teller Deposit</td><td>Main Uddin</td><td>MTB Plc</td><td>Cash Deposit</td><td>1,00,000.00</td></tr>
-                    <tr><td>30-07-2026</td><td>Teller Deposit</td><td>Main Uddin</td><td>MTB Plc</td><td>Cash Deposit</td><td>1,00,000.00</td></tr>
-                    <tr><td>30-07-2026</td><td>Teller Deposit</td><td>For Arif Bhai</td><td>MTB Plc</td><td>Cash Deposit</td><td>2,00,000.00</td></tr>
-                    <tr><td>30-07-2026</td><td>FT - Br. Counter</td><td>Sayema Sultana</td><td>IBBL Plc</td><td>Fund Transfer</td><td>3,00,000.00</td></tr>
-                    <tr><td>02-08-2026</td><td>Teller Deposit</td><td>Babul Hossain Ranna</td><td>MTB Plc</td><td>Cash Deposit</td><td>1,80,000.00</td></tr>
-                    <tr><td>23-08-2026</td><td>28210190</td><td>Abdul Awal</td><td>MTB Plc</td><td>290310020855</td><td>2,00,000.00</td></tr>
-                    <tr><td>25-08-2026</td><td>623716062800</td><td>Al Amin Mobile House</td><td>City Bank Plc</td><td>2513******2988</td><td>95,000.00</td></tr>
-                    <tr><td>25-08-2026</td><td>623716989200</td><td>Al Amin Mobile House</td><td>City Bank Plc</td><td>2513******2988</td><td>3,00,000.00</td></tr>
-                    <tr><td>25-08-2026</td><td>LID02933691548</td><td>For Arif Bhai</td><td>DBBL Plc</td><td>0120********6127</td><td>5,000.00</td></tr>
-                    <tr><td>27-08-2026</td><td>28334421</td><td>Abdul Awal</td><td>MTB Plc</td><td>290310020855</td><td>1,00,000.00</td></tr>
-                    <tr><td>27-08-2026</td><td>28353539</td><td>Main Uddin</td><td>MTB Plc</td><td>290310020855</td><td>1,20,000.00</td></tr>
-                    <tr><td>30-08-2026</td><td>28441872</td><td>Main Uddin</td><td>MTB Plc</td><td>290310020855</td><td>80,000.00</td></tr>
-                    <tr><td>30-08-2026</td><td>28442126</td><td>Abdul Awal</td><td>MTB Plc</td><td>290310020855</td><td>30,000.00</td></tr>
-                    <tr><td>30-08-2026</td><td>28457101</td><td>Babor Patwary</td><td>MTB Plc</td><td>290310020855</td><td>3,30,000.00</td></tr>
-                    <tr><td>31-08-2026</td><td>28477219</td><td>Salim Patwary</td><td>MTB Plc</td><td>290310020855</td><td>90,000.00</td></tr>
-                    <tr><td>31-08-2026</td><td>13911499</td><td>For Arif Bhai</td><td>NRBC Plc</td><td>5058********2932</td><td>1,00,000.00</td></tr>
-                    <tr><td>31-08-2026</td><td>28494840</td><td>Babor Patwary</td><td>MTB Plc</td><td>290310020855</td><td>1,70,000.00</td></tr>
-                    <tr><td>21-09-2026</td><td>29289344</td><td>Abdul Awal</td><td>MTB Plc</td><td>290310020855</td><td>1,80,000.00</td></tr>
-                </tbody>
-            </table>
-        </div>
-        <div class="summary-box">
-            <p><span>Total Paid (BDT):</span> <span>59,38,333.33</span></p>
-            <p><span>Total Due (BDT):</span> <span>31,61,666.67</span></p>
-            <p><span>Total Amount (BDT):</span> <span>91,00,000.00</span></p>
-        </div>
-    </div>
-
+    <!-- ফুটার -->
     <footer>
-        <p>Our Social Community: <a href="https://chat.whatsapp.com/CBhe3TSeaoj4UwImXaDo3J?s=cl&p=a&mlu=0&ilr=4" target="_blank">WhatsApp</a> or <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_c" target="_blank">Messenger</a></p>
-        <p>Copyright @ 2026. All Rights Reserve</p>
-        <p>It's a friends collaboration financial organization</p>
-        <p style="color: #28a745;">Portal Developed by: Abdul Awal</p>
+        <p>© সর্বস্বত্ব সংরক্ষিত - বন্ধুত্বের স্মারক সমিতি</p>
     </footer>
 </div>
+
+<script>
+    // ⚠️ আপনার Google Apps Script Web App URL
+    const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzBh5cuG-0gVO7llG4Vxbf1QAhqagFy2_AHxGl9mXn14A67PVoOxGPv3pLu5EngKnyp/exec";
+
+    const ADMIN_PIN = "1234";
+    let isAdmin = false;
+
+    // প্রজেক্ট ও শেয়ার কনফিগারেশন
+    const TOTAL_PROJECT_COST = 9100000;
+    const TOTAL_SHARES = 12;
+    const PER_SHARE_COST = TOTAL_PROJECT_COST / TOTAL_SHARES;
+
+    const memberShares = {
+        "আবদুল আউয়াল": 1,
+        "আরিফ হোসেন": 1,
+        "বাবুল হোসেন": 1,
+        "মঈন উদ্দিন": 1,
+        "সেলিম পাটোয়ারী": 1,
+        "মোঃ সায়েম": 1,
+        "বাবর পাটোয়ারী": 2,
+        "জসিম উদ্দিন": 2,
+        "সানোয়ার কাদের": 2
+    };
+
+    // পুরোনো সব ডাটা মুছে খালি অ্যারে দিয়ে নতুন করে সেট করা হলো
+    localStorage.removeItem('association_data');
+    let transactions = [];
+
+    function toggleAdminAccess() {
+        const roleSelect = document.getElementById('userRole');
+        const roleBadge = document.getElementById('roleBadge');
+        const entryCard = document.getElementById('entryCard');
+        const formTitle = document.getElementById('formTitle');
+        const entryFields = document.querySelectorAll('.entry-field');
+        const saveBtn = document.getElementById('saveBtn');
+
+        if (roleSelect.value === 'ADMIN') {
+            const pin = prompt("এডমিন এক্সেস এর জন্যে ৪ ডিজিটের পিন (PIN) দিন:");
+            if (pin === ADMIN_PIN) {
+                isAdmin = true;
+                roleBadge.textContent = "Admin Access Active";
+                roleBadge.className = "badge-admin";
+                entryCard.classList.remove('disabled-card');
+                formTitle.textContent = "➕ নতুন জমা বা পেমেন্ট এন্ট্রি করুন (শুধুমাত্র এডমিন)";
+                entryFields.forEach(field => field.disabled = false);
+                saveBtn.disabled = false;
+            } else {
+                alert("ভুল পিন দেওয়া হয়েছে!");
+                roleSelect.value = "READONLY";
+                setReadOnlyState();
+            }
+        } else {
+            setReadOnlyState();
+        }
+    }
+
+    function setReadOnlyState() {
+        isAdmin = false;
+        document.getElementById('roleBadge').textContent = "Read Only";
+        document.getElementById('roleBadge').className = "badge-readonly";
+        document.getElementById('entryCard').classList.add('disabled-card');
+        document.getElementById('formTitle').textContent = "🔒 এন্ট্রি ফর্ম (শুধুমাত্র এডমিন এন্ট্রি দিতে পারবেন)";
+        document.querySelectorAll('.entry-field').forEach(field => field.disabled = true);
+        document.getElementById('saveBtn').disabled = true;
+    }
+
+    function renderAllTables() {
+        const selectedMember = document.getElementById('filterMember').value;
+
+        // ১. শেয়ার ও বকেয়া টেবিল রেন্ডার
+        const shareTbody = document.getElementById('shareTableBody');
+        shareTbody.innerHTML = '';
+
+        for (let name in memberShares) {
+            if (selectedMember !== 'ALL' && selectedMember !== name) continue;
+
+            const shares = memberShares[name];
+            const targetAmount = shares * PER_SHARE_COST;
+
+            const totalPaid = transactions
+                .filter(t => t.name === name && t.type === 'CREDIT')
+                .reduce((sum, t) => sum + parseFloat(t.amount), 0);
+
+            const remainingDue = targetAmount - totalPaid;
+
+            shareTbody.innerHTML += `
+                <tr>
+                    <td><strong>${name}</strong></td>
+                    <td>${shares} ভাগ</td>
+                    <td>${targetAmount.toLocaleString('en-IN', {minimumFractionDigits: 2})} BDT</td>
+                    <td class="txt-credit">${totalPaid.toLocaleString('en-IN', {minimumFractionDigits: 2})} BDT</td>
+                    <td class="${remainingDue > 0 ? 'txt-due' : 'txt-credit'}">
+                        ${remainingDue > 0 ? remainingDue.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT' : 'পরিশোধিত (০.০০)'}
+                    </td>
+                </tr>
+            `;
+        }
+
+        // ২. ট্রানজেকশন টেবিল রেন্ডার
+        const tbody = document.getElementById('tableBody');
+        tbody.innerHTML = '';
+        let totalCredit = 0;
+        let totalDebit = 0;
+
+        const filteredData = selectedMember === 'ALL' 
+            ? transactions 
+            : transactions.filter(item => item.name === selectedMember);
+
+        if (filteredData.length === 0) {
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color: #888;">কোনো লেনদেনের তথ্য পাওয়া যায়নি।</td></tr>`;
+        } else {
+            filteredData.forEach((item) => {
+                const isCredit = item.type === 'CREDIT';
+                const amt = parseFloat(item.amount);
+
+                if (isCredit) totalCredit += amt;
+                else totalDebit += amt;
+
+                tbody.innerHTML += `
+                    <tr>
+                        <td>${item.date}</td>
+                        <td><span class="${isCredit ? 'txt-credit' : 'txt-debit'}">${isCredit ? 'জমা' : 'পেমেন্ট'}</span></td>
+                        <td><strong>${item.name}</strong></td>
+                        <td>${item.ref}</td>
+                        <td>${item.bank || '-'}</td>
+                        <td>${item.month || '-'}</td>
+                        <td class="${isCredit ? 'txt-credit' : 'txt-debit'}">
+                            ${isCredit ? '+' : '-'} ${amt.toLocaleString('en-IN', {minimumFractionDigits: 2})} BDT
+                        </td>
+                    </tr>
+                `;
+            });
+        }
+
+        // সামারি হিসাব
+        document.getElementById('totalCredit').textContent = totalCredit.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT';
+        document.getElementById('totalDebit').textContent = totalDebit.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT';
+        
+        const net = totalCredit - totalDebit;
+        const netElem = document.getElementById('netBalance');
+        netElem.textContent = net.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT';
+        netElem.style.color = net >= 0 ? '#007bff' : '#dc3545';
+    }
+
+    async function addTransaction(e) {
+        e.preventDefault();
+        if(!isAdmin) return alert("আপনার এন্ট্রি করার অনুমতি নেই!");
+
+        const saveBtn = document.getElementById('saveBtn');
+        saveBtn.textContent = 'সেভ হচ্ছে...';
+        saveBtn.disabled = true;
+
+        const newEntry = {
+            type: document.getElementById('type').value,
+            name: document.getElementById('memberName').value,
+            date: document.getElementById('tranDate').value,
+            ref: document.getElementById('refNo').value,
+            amount: document.getElementById('amount').value,
+            bank: document.getElementById('bankFrom').value,
+            month: document.getElementById('monthDesc').value
+        };
+
+        // ১. লোকাল স্টোরেজে নতুন এন্ট্রি সেভ
+        transactions.push(newEntry);
+        localStorage.setItem('association_data', JSON.stringify(transactions));
+
+        // ২. গুগল শীটে ডাটা ব্যাকআপ পাঠানো
+        if (GOOGLE_SHEET_URL !== "") {
+            try {
+                await fetch(GOOGLE_SHEET_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(newEntry)
+                });
+            } catch (err) {
+                console.error("গুগল শীটে সেভ করতে সমস্যা হয়েছে:", err);
+            }
+        }
+
+        document.getElementById('entryForm').reset();
+        saveBtn.textContent = 'লেনদেন সেভ করুন';
+        saveBtn.disabled = false;
+        
+        renderAllTables();
+        alert('রেকর্ড সফলভাবে সেভ করা হয়েছে!');
+    }
+
+    function exportData() {
+        const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(transactions, null, 2));
+        const downloadAnchor = document.createElement('a');
+        downloadAnchor.setAttribute("href", dataStr);
+        downloadAnchor.setAttribute("download", `association_accounts_backup_${new Date().toISOString().slice(0,10)}.json`);
+        document.body.appendChild(downloadAnchor);
+        downloadAnchor.click();
+        downloadAnchor.remove();
+    }
+
+    window.onload = function() {
+        renderAllTables();
+        setReadOnlyState();
+    };
+</script>
 
 </body>
 </html>
