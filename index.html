@@ -233,32 +233,30 @@
 </div>
 
 <script>
-    // ⚠️ আপনার Google Apps Script Web App URL
+    // Google Apps Script Web App URL
     const GOOGLE_SHEET_URL = "https://script.google.com/macros/s/AKfycbzBh5cuG-0gVO7llG4Vxbf1QAhqagFy2_AHxGl9mXn14A67PVoOxGPv3pLu5EngKnyp/exec";
 
     const ADMIN_PIN = "1234";
     let isAdmin = false;
 
-    // প্রজেক্ট ও শেয়ার কনফিগারেশন
     const TOTAL_PROJECT_COST = 9100000;
     const TOTAL_SHARES = 12;
     const PER_SHARE_COST = TOTAL_PROJECT_COST / TOTAL_SHARES;
 
     const memberShares = {
-        "আবদুল আউয়াল": 1,
-        "আরিফ হোসেন": 1,
-        "বাবুল হোসেন": 1,
-        "মঈন উদ্দিন": 1,
-        "সেলিম পাটোয়ারী": 1,
-        "মোঃ সায়েম": 1,
-        "বাবর পাটোয়ারী": 2,
-        "জসিম উদ্দিন": 2,
-        "সানোয়ার কাদের": 2
+        "            ": 1,
+        "          ": 1,
+        "           ": 1,
+        "          ": 1,
+        "               ": 1,
+        "          ": 1,
+        "              ": 2,
+        "           ": 2,
+        "              ": 2
     };
 
-    // পুরোনো সব ডাটা মুছে খালি অ্যারে দিয়ে নতুন করে সেট করা হলো
-    localStorage.removeItem('association_data');
-    let transactions = [];
+    // লোকাল স্টোরেজ থেকে ডাটা লোড করা (রিমুভ করার বদলে)
+    let transactions = JSON.parse(localStorage.getItem('association_data')) || [];
 
     function toggleAdminAccess() {
         const roleSelect = document.getElementById('userRole');
@@ -269,17 +267,17 @@
         const saveBtn = document.getElementById('saveBtn');
 
         if (roleSelect.value === 'ADMIN') {
-            const pin = prompt("এডমিন এক্সেস এর জন্যে ৪ ডিজিটের পিন (PIN) দিন:");
+            const pin = prompt("পাসওয়ার্ড (PIN) দিন:");
             if (pin === ADMIN_PIN) {
                 isAdmin = true;
                 roleBadge.textContent = "Admin Access Active";
                 roleBadge.className = "badge-admin";
                 entryCard.classList.remove('disabled-card');
-                formTitle.textContent = "➕ নতুন জমা বা পেমেন্ট এন্ট্রি করুন (শুধুমাত্র এডমিন)";
+                formTitle.textContent = "লেনদেন ডাটা এন্ট্রি করুন";
                 entryFields.forEach(field => field.disabled = false);
                 saveBtn.disabled = false;
             } else {
-                alert("ভুল পিন দেওয়া হয়েছে!");
+                alert("ভুল পাসওয়ার্ড!");
                 roleSelect.value = "READONLY";
                 setReadOnlyState();
             }
@@ -293,7 +291,7 @@
         document.getElementById('roleBadge').textContent = "Read Only";
         document.getElementById('roleBadge').className = "badge-readonly";
         document.getElementById('entryCard').classList.add('disabled-card');
-        document.getElementById('formTitle').textContent = "🔒 এন্ট্রি ফর্ম (শুধুমাত্র এডমিন এন্ট্রি দিতে পারবেন)";
+        document.getElementById('formTitle').textContent = "ডাটা এন্ট্রি (শুধু অ্যাডমিন মোডে সম্ভব)";
         document.querySelectorAll('.entry-field').forEach(field => field.disabled = true);
         document.getElementById('saveBtn').disabled = true;
     }
@@ -301,7 +299,6 @@
     function renderAllTables() {
         const selectedMember = document.getElementById('filterMember').value;
 
-        // ১. শেয়ার ও বকেয়া টেবিল রেন্ডার
         const shareTbody = document.getElementById('shareTableBody');
         shareTbody.innerHTML = '';
 
@@ -320,17 +317,16 @@
             shareTbody.innerHTML += `
                 <tr>
                     <td><strong>${name}</strong></td>
-                    <td>${shares} ভাগ</td>
+                    <td>${shares} টি</td>
                     <td>${targetAmount.toLocaleString('en-IN', {minimumFractionDigits: 2})} BDT</td>
                     <td class="txt-credit">${totalPaid.toLocaleString('en-IN', {minimumFractionDigits: 2})} BDT</td>
                     <td class="${remainingDue > 0 ? 'txt-due' : 'txt-credit'}">
-                        ${remainingDue > 0 ? remainingDue.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT' : 'পরিশোধিত (০.০০)'}
+                        ${remainingDue > 0 ? remainingDue.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT' : 'পরিশোধিত'}
                     </td>
                 </tr>
             `;
         }
 
-        // ২. ট্রানজেকশন টেবিল রেন্ডার
         const tbody = document.getElementById('tableBody');
         tbody.innerHTML = '';
         let totalCredit = 0;
@@ -341,7 +337,7 @@
             : transactions.filter(item => item.name === selectedMember);
 
         if (filteredData.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color: #888;">কোনো লেনদেনের তথ্য পাওয়া যায়নি।</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color: #888;">কোনো লেনদেনের তথ্য পাওয়া যায়নি</td></tr>`;
         } else {
             filteredData.forEach((item) => {
                 const isCredit = item.type === 'CREDIT';
@@ -353,7 +349,7 @@
                 tbody.innerHTML += `
                     <tr>
                         <td>${item.date}</td>
-                        <td><span class="${isCredit ? 'txt-credit' : 'txt-debit'}">${isCredit ? 'জমা' : 'পেমেন্ট'}</span></td>
+                        <td><span class="${isCredit ? 'txt-credit' : 'txt-debit'}">${isCredit ? 'জমা' : 'খরচ'}</span></td>
                         <td><strong>${item.name}</strong></td>
                         <td>${item.ref}</td>
                         <td>${item.bank || '-'}</td>
@@ -366,7 +362,6 @@
             });
         }
 
-        // সামারি হিসাব
         document.getElementById('totalCredit').textContent = totalCredit.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT';
         document.getElementById('totalDebit').textContent = totalDebit.toLocaleString('en-IN', {minimumFractionDigits: 2}) + ' BDT';
         
@@ -378,7 +373,7 @@
 
     async function addTransaction(e) {
         e.preventDefault();
-        if(!isAdmin) return alert("আপনার এন্ট্রি করার অনুমতি নেই!");
+        if(!isAdmin) return alert("অ্যাডমিন অ্যাক্সেস আবশ্যক!");
 
         const saveBtn = document.getElementById('saveBtn');
         saveBtn.textContent = 'সেভ হচ্ছে...';
@@ -394,30 +389,30 @@
             month: document.getElementById('monthDesc').value
         };
 
-        // ১. লোকাল স্টোরেজে নতুন এন্ট্রি সেভ
+        // লোকাল স্টোরেজে সেভ
         transactions.push(newEntry);
         localStorage.setItem('association_data', JSON.stringify(transactions));
 
-        // ২. গুগল শীটে ডাটা ব্যাকআপ পাঠানো
+        // Google Sheet-এ ডাটা ফোর্ওয়ার্ড করা
         if (GOOGLE_SHEET_URL !== "") {
             try {
                 await fetch(GOOGLE_SHEET_URL, {
                     method: 'POST',
                     mode: 'no-cors',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                     body: JSON.stringify(newEntry)
                 });
             } catch (err) {
-                console.error("গুগল শীটে সেভ করতে সমস্যা হয়েছে:", err);
+                console.error("গুগল শীটে ডাটা সেভ করার সময় ত্রুটি:", err);
             }
         }
 
         document.getElementById('entryForm').reset();
-        saveBtn.textContent = 'লেনদেন সেভ করুন';
+        saveBtn.textContent = 'সেভ করুন';
         saveBtn.disabled = false;
         
         renderAllTables();
-        alert('রেকর্ড সফলভাবে সেভ করা হয়েছে!');
+        alert('লেনদেন সফলভাবে যুক্ত করা হয়েছে!');
     }
 
     function exportData() {
@@ -435,6 +430,7 @@
         setReadOnlyState();
     };
 </script>
+
 
 </body>
 </html>
