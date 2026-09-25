@@ -473,10 +473,10 @@
                     <thead>
                         <tr>
                             <th>সদস্যের নাম</th>
-                            <th>মোট জমা (BDT)</th>
-                            <th>অবস্থা / বকেয়া</th>
-                            <th>নির্ধারিত মূল্য</th>
                             <th>শেয়ার</th>
+                            <th>নির্ধারিত মূল্য (BDT)</th>
+                            <th>মোট জমা (BDT)</th>
+                            <th>অবস্থা / বকেয়া (BDT)</th>
                         </tr>
                     </thead>
                     <tbody id="frontSummaryBody"></tbody>
@@ -548,7 +548,7 @@
 
     <!-- Member Sections -->
     <div id="sec-awal" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Abdul Awal</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-awal"></div>
         <h3 class="section-title">Abdul Awal - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -560,7 +560,7 @@
     </div>
 
     <div id="sec-arif" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Arif Hossain</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-arif"></div>
         <h3 class="section-title">Arif Hossain - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -572,7 +572,7 @@
     </div>
 
     <div id="sec-babor" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Babor Patwary</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-babor"></div>
         <h3 class="section-title">Babor Patwary - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -584,7 +584,7 @@
     </div>
 
     <div id="sec-babul" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Babul Hossain</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-babul"></div>
         <h3 class="section-title">Babul Hossain - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -596,7 +596,7 @@
     </div>
 
     <div id="sec-jasim" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Jasim Uddin</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-jasim"></div>
         <h3 class="section-title">Jasim Uddin - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -608,7 +608,7 @@
     </div>
 
     <div id="sec-main" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Main Uddin</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-main"></div>
         <h3 class="section-title">Main Uddin - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -620,7 +620,7 @@
     </div>
 
     <div id="sec-saiem" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Md. Saiem</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-saiem"></div>
         <h3 class="section-title">Md. Saiem - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -632,7 +632,7 @@
     </div>
 
     <div id="sec-selim" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Selim Patwary</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-selim"></div>
         <h3 class="section-title">Selim Patwary - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -644,7 +644,7 @@
     </div>
 
     <div id="sec-sanawer" class="section-block">
-        <div class="info-box"><p><strong>Shareholder Name:</strong> Sanawer Quder</p><p><strong>Statement Date:</strong> <span class="dynamic-date"></span></p></div>
+        <div class="info-box" id="info-sanawer"></div>
         <h3 class="section-title">Sanawer Quder - Transaction Details</h3>
         <div class="table-responsive">
             <table>
@@ -708,9 +708,25 @@
     let activePageId = "";
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
+    
+    // শেয়ার ডিস্ট্রিবিউশন (মোট ১২ শেয়ার)
+    const memberShares = {
+        awal: 1, arif: 1, babor: 2, babul: 1,
+        jasim: 2, main: 1, saiem: 1, selim: 1, sanawer: 2
+    };
+
+    const TOTAL_LAND_PRICE = 9100000; // ৯১ লক্ষ টাকা
+    const TOTAL_SHARES = 12; // মোট ১২ শেয়ার
+    const PER_SHARE_PRICE = TOTAL_LAND_PRICE / TOTAL_SHARES; // প্রতি ১ শেয়ারের মূল্য
+
     const memberNames = {
         awal: "আবদুল আউয়াল", arif: "আরিফ হোসেন", babor: "বাবর পাটোয়ারী", babul: "বাবুল হোসেন",
         jasim: "জসিম উদ্দিন", main: "মঈন উদ্দিন", saiem: "মোঃ সায়েম", selim: "সেলিম পাটোয়ারী", sanawer: "সানোয়ার কাদের"
+    };
+
+    const memberEnglishNames = {
+        awal: "Abdul Awal", arif: "Arif Hossain", babor: "Babor Patwary", babul: "Babul Hossain",
+        jasim: "Jasim Uddin", main: "Main Uddin", saiem: "Md. Saiem", selim: "Selim Patwary", sanawer: "Sanawer Quder"
     };
 
     const monthList = ["January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026", "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "December 2026"];
@@ -898,9 +914,14 @@
     }
 
     function renderAllData() {
-        let grandTotal = 0;
+        let grandTotalDeposited = 0;
+        let grandTotalTarget = 0;
+        let grandTotalDue = 0;
+
         const frontBody = document.getElementById("frontSummaryBody");
         frontBody.innerHTML = "";
+
+        const todayStr = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
 
         memberKeys.forEach(key => {
             const list = db.transactions[key] || [];
@@ -930,18 +951,39 @@
                 }
             }
 
+            const shares = memberShares[key];
+            const targetAmount = shares * PER_SHARE_PRICE;
+            const dueAmount = targetAmount - total;
+
+            // মেম্বারদের পেজের ইনফো বক্স আপডেট
+            const infoBox = document.getElementById(`info-${key}`);
+            if (infoBox) {
+                infoBox.innerHTML = `
+                    <p><strong>Shareholder Name:</strong> ${memberEnglishNames[key]}</p>
+                    <p><strong>Allocated Shares:</strong> ${shares} Share(s)</p>
+                    <p><strong>Target Amount:</strong> ${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
+                    <p><strong>Total Deposited:</strong> ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
+                    <p><strong>Remaining Due / Status:</strong> <span style="color: ${dueAmount > 0 ? '#d9534f' : '#28a745'}; font-weight: bold;">${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</span></p>
+                    <p><strong>Statement Date:</strong> ${todayStr}</p>
+                `;
+            }
+
             const totalLabel = document.getElementById(`total-${key}`);
             if (totalLabel) totalLabel.textContent = `${total.toFixed(2)} BDT`;
 
-            grandTotal += total;
+            grandTotalDeposited += total;
+            grandTotalTarget += targetAmount;
+            grandTotalDue += dueAmount;
 
             frontBody.innerHTML += `
                 <tr>
                     <td>${memberNames[key]}</td>
-                    <td>${total.toFixed(2)}</td>
-                    <td>0.00</td>
-                    <td>0.00</td>
-                    <td>-</td>
+                    <td>${shares}</td>
+                    <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td style="color: ${dueAmount > 0 ? '#d9534f' : '#28a745'}; font-weight: bold;">
+                        ${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${dueAmount > 0 ? '(বকেয়া)' : '(পরিশোধিত)'}
+                    </td>
                 </tr>
             `;
         });
@@ -949,15 +991,15 @@
         frontBody.innerHTML += `
             <tr style="font-weight: bold; background-color: #e2e8f0;">
                 <td>সর্বমোট</td>
-                <td>${grandTotal.toFixed(2)}</td>
-                <td>0.00</td>
-                <td>0.00</td>
-                <td>-</td>
+                <td>${TOTAL_SHARES}</td>
+                <td>${grandTotalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td>${grandTotalDeposited.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td>${grandTotalDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
             </tr>
         `;
 
         const totalPayment = renderPaymentStatement();
-        const netBalance = grandTotal - totalPayment;
+        const netBalance = grandTotalDeposited - totalPayment;
         document.getElementById("marqueeTotal").textContent = netBalance.toFixed(2);
         
         renderMonthlyInventory();
@@ -1056,9 +1098,6 @@
         updateLiveClock();
         setInterval(updateLiveClock, 1000);
         renderFrontCalendar();
-
-        const todayStr = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' }); 
-        document.querySelectorAll('.dynamic-date').forEach(el => el.textContent = todayStr);
 
         fetch('https://ipapi.co/json/')
             .then(res => res.json())
