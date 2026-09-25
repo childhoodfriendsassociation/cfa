@@ -446,7 +446,6 @@
                         <option value="sec-saiem">মোঃ সায়েম (শাকিল)</option>
                         <option value="sec-selim">সেলিম পাটোয়ারী</option>
                         <option value="sec-sanawer">সানোয়ার কাদের (আরিফ)</option>
-                        <option value="sec-inventory">মাসিক লেনদেন এর বিবরণ</option>
                         <option value="sec-payment">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</option>
                     </select>
                 </div>
@@ -655,22 +654,7 @@
         <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-sanawer">0.00 BDT</span></p></div>
     </div>
 
-    <!-- Inventory & Payment -->
-    <div id="sec-inventory" class="section-block">
-        <h3 class="section-title">Friends Investments Inventory</h3>
-        <h4 style="margin: 15px 0 8px 0; color: #444;">Member Monthly Deposits (Auto Synced)</h4>
-        <div class="table-responsive">
-            <table>
-                <thead>
-                    <tr>
-                        <th>Year/Name</th><th>Abdul Awal</th><th>Arif Hossain</th><th>Babul Hossain</th><th>Main Uddin</th><th>Selim Patwary</th><th>Md. Saiem</th><th>Babor Patwary</th><th>Jasim Uddin</th><th>Sanawer Quder</th><th>Total Deposit</th>
-                    </tr>
-                </thead>
-                <tbody id="monthlyInventoryBody"></tbody>
-            </table>
-        </div>
-    </div>
-
+    <!-- Payment Section -->
     <div id="sec-payment" class="section-block">
         <div class="info-box">
             <p><strong>Account Name:</strong> Umme Sarmin Akter</p>
@@ -729,12 +713,9 @@
         jasim: "Jasim Uddin", main: "Main Uddin", saiem: "Md. Saiem", selim: "Selim Patwary", sanawer: "Sanawer Quder"
     };
 
-    const monthList = ["January 2026", "February 2026", "March 2026", "April 2026", "May 2026", "June 2026", "July 2026", "August 2026", "September 2026", "October 2026", "November 2026", "December 2026"];
-
     let db = {
         transactions: { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] },
-        payments: [],
-        monthlyGrid: {}
+        payments: []
     };
 
     function showLoading(show) {
@@ -754,7 +735,6 @@
             .then(data => {
                 db.transactions = { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] };
                 db.payments = [];
-                db.monthlyGrid = {};
 
                 data.forEach(item => {
                     const target = item.target;
@@ -779,11 +759,6 @@
                             year: item.year,
                             amount: amount
                         });
-
-                        if (item.month && item.month !== "-") {
-                            if (!db.monthlyGrid[item.month]) db.monthlyGrid[item.month] = {};
-                            db.monthlyGrid[item.month][target] = (db.monthlyGrid[item.month][target] || 0) + amount;
-                        }
                     }
                 });
 
@@ -1001,28 +976,6 @@
         const totalPayment = renderPaymentStatement();
         const netBalance = grandTotalDeposited - totalPayment;
         document.getElementById("marqueeTotal").textContent = netBalance.toFixed(2);
-        
-        renderMonthlyInventory();
-    }
-
-    function renderMonthlyInventory() {
-        const tbody = document.getElementById("monthlyInventoryBody");
-        if (!tbody) return;
-        tbody.innerHTML = "";
-
-        monthList.forEach(m => {
-            let rowHtml = `<tr><td>${m}</td>`;
-            let rowSum = 0;
-
-            memberKeys.forEach(k => {
-                const cellVal = (db.monthlyGrid[m] && db.monthlyGrid[m][k]) ? db.monthlyGrid[m][k] : 0;
-                rowSum += cellVal;
-                rowHtml += `<td>${cellVal.toFixed(2)}</td>`;
-            });
-
-            rowHtml += `<td style="font-weight:bold;">${rowSum.toFixed(2)}</td></tr>`;
-            tbody.innerHTML += rowHtml;
-        });
     }
 
     function renderPaymentStatement() {
