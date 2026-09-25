@@ -710,7 +710,7 @@
 
 <script>
     // ⚠️ আপনার গুগল অ্যাপস স্ক্রিপ্ট ওয়েব অ্যাপ ইউআরএল এখানে বসিয়ে দিন
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec";
+    const SCRIPT_URL = https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec;
 
     const ADMIN_PASSWORD = "2925";
     let isAdminMode = false;
@@ -736,7 +736,7 @@
 
     // Google Sheet থেকে সরাসরি ডাটা লোড
     function fetchFromGoogleSheet() {
-        if (!SCRIPT_URL || SCRIPT_URL === "https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec") {
+        if (!SCRIPT_URL || SCRIPT_URL === https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec) {
             console.log("Google Apps Script URL Not Configured Yet.");
             return;
         }
@@ -880,7 +880,7 @@
             acc: month
         };
 
-        if (SCRIPT_URL && SCRIPT_URL !== "https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec") {
+        if (SCRIPT_URL && SCRIPT_URL !== https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec) {
             showLoading(true);
             fetch(SCRIPT_URL, {
                 method: "POST",
