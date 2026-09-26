@@ -3,6 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Security Header Meta Tags -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://script.google.com https://script.googleusercontent.com https://ipapi.co https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+
     <title>বন্ধুত্বের স্মারক সমিতি - Childhood Friends Association</title>
     <style>
         * {
@@ -15,6 +22,14 @@
             background-color: #f4f7f6;
             color: #333;
             padding: 15px;
+            -webkit-user-select: none; /* Text copy protection optional */
+            -ms-user-select: none;
+            user-select: none;
+        }
+        input, select, textarea {
+            -webkit-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
         }
         .container {
             max-width: 1000px;
@@ -495,7 +510,7 @@
 
                 <div class="form-group" id="adminPassGroup" style="display: none;">
                     <label for="adminPasscode" id="lblAdminPass" style="color: #d97706;">এডমিন পাসওয়ার্ড দিন</label>
-                    <input type="password" id="adminPasscode" placeholder="পাসওয়ার্ড লিখুন">
+                    <input type="password" id="adminPasscode" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off">
                 </div>
 
                 <div class="login-btn-container">
@@ -577,13 +592,13 @@
                     <option value="sec-payment">সম্পত্তির পরিশোধিত মূল্য</option>
                 </optgroup>
             </select>
-            <input type="date" id="inputDate">
-            <input type="text" id="inputRef" placeholder="Ref. No / ID">
-            <input type="text" id="inputBankFrom" placeholder="Sender Bank">
-            <input type="text" id="inputBankTo" placeholder="Receiver Bank">
-            <input type="text" id="inputMonth" placeholder="Month (e.g. January)">
-            <input type="text" id="inputYear" placeholder="Year (e.g. 2026)">
-            <input type="number" id="inputAmount" placeholder="Amount (BDT)">
+            <input type="date" id="inputDate" required>
+            <input type="text" id="inputRef" placeholder="Ref. No / ID" required autocomplete="off">
+            <input type="text" id="inputBankFrom" placeholder="Sender Bank" required autocomplete="off">
+            <input type="text" id="inputBankTo" placeholder="Receiver Bank" required autocomplete="off">
+            <input type="text" id="inputMonth" placeholder="Month (e.g. January)" required autocomplete="off">
+            <input type="text" id="inputYear" placeholder="Year (e.g. 2026)" required autocomplete="off">
+            <input type="number" id="inputAmount" placeholder="Amount (BDT)" required step="any">
         </div>
         <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
     </div>
@@ -726,7 +741,7 @@
     </div>
 
     <footer>
-        <p><span id="ftrSocial">Our Social Community:</span> <a href="https://chat.whatsapp.com/CBhe3TSeaoj4UwImXaDo3J?s=cl&p=a&mlu=0&ilr=4" target="_blank">WhatsApp</a> or <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_c" target="_blank">Messenger</a></p>
+        <p><span id="ftrSocial">Our Social Community:</span> <a href="https://chat.whatsapp.com/CBhe3TSeaoj4UwImXaDo3J?s=cl&p=a&mlu=0&ilr=4" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_c" target="_blank" rel="noopener noreferrer">Messenger</a></p>
         <p>Copyright @ 2026. All Rights Reserved</p>
         <p id="ftrTag">এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন</p>
         <p style="color: #28a745;" id="ftrDev">Portal Developed for: Childhood Friends Association</p>
@@ -901,6 +916,21 @@
         payments: []
     };
 
+    // SECURITY: Input Sanitization Function to block XSS Attacks
+    function sanitizeInput(str) {
+        if (typeof str !== 'string') return str;
+        return str.replace(/[&<>"']/g, function(match) {
+            const escapeMap = {
+                '&': '&amp;',
+                '<': '&lt;',
+                '>': '&gt;',
+                '"': '&quot;',
+                "'": '&#x27;'
+            };
+            return escapeMap[match];
+        });
+    }
+
     function switchLanguage(lang) {
         currentLang = lang;
 
@@ -1018,27 +1048,27 @@
                 db.payments = [];
 
                 data.forEach(item => {
-                    const target = item.target;
+                    const target = sanitizeInput(item.target);
                     const amount = parseFloat(item.amount) || 0;
 
                     if (target === "sec-payment") {
                         db.payments.push({
-                            date: item.date,
-                            ref: item.ref,
-                            senderBank: item.senderBank || item.bankFrom,
-                            receiverBank: item.receiverBank || item.bankTo,
-                            reasonTitle: item.reasonTitle || item.month,
-                            year: item.year || "-",
+                            date: sanitizeInput(item.date),
+                            ref: sanitizeInput(item.ref),
+                            senderBank: sanitizeInput(item.senderBank || item.bankFrom),
+                            receiverBank: sanitizeInput(item.receiverBank || item.bankTo),
+                            reasonTitle: sanitizeInput(item.reasonTitle || item.month),
+                            year: sanitizeInput(item.year || "-"),
                             amount: amount
                         });
                     } else if (memberKeys.includes(target)) {
                         db.transactions[target].push({
-                            date: item.date,
-                            ref: item.ref,
-                            bankFrom: item.bankFrom,
-                            bankTo: item.bankTo,
-                            month: item.month,
-                            year: item.year,
+                            date: sanitizeInput(item.date),
+                            ref: sanitizeInput(item.ref),
+                            bankFrom: sanitizeInput(item.bankFrom),
+                            bankTo: sanitizeInput(item.bankTo),
+                            month: sanitizeInput(item.month),
+                            year: sanitizeInput(item.year),
                             amount: amount
                         });
                     }
@@ -1111,6 +1141,7 @@
 
     function lockDashboard() {
         isAdminMode = false;
+        document.getElementById("adminPasscode").value = "";
         const sections = document.getElementsByClassName("section-block");
         for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
         
@@ -1122,40 +1153,38 @@
         document.getElementById("universalAdminPanel").style.display = "none";
     }
 
-    // UPDATE: খালি ঘর থাকলে ডাটা সেভ হতে বাধা দেওয়ার ফর্ম ভ্যালিডেশন
+    // UPDATE: খালি ঘর যাচাই (Form Validation) ও সিকিউর ইনপুট সেনিটাইজেশন
     function submitNewTransaction() {
-        const target = document.getElementById("targetMemberSelect").value;
-        const rawDate = document.getElementById("inputDate").value.trim();
-        const ref = document.getElementById("inputRef").value.trim();
-        const bankFrom = document.getElementById("inputBankFrom").value.trim();
-        const bankTo = document.getElementById("inputBankTo").value.trim();
-        const month = document.getElementById("inputMonth").value.trim();
-        const year = document.getElementById("inputYear").value.trim();
+        const target = sanitizeInput(document.getElementById("targetMemberSelect").value);
+        const rawDate = sanitizeInput(document.getElementById("inputDate").value.trim());
+        const ref = sanitizeInput(document.getElementById("inputRef").value.trim());
+        const bankFrom = sanitizeInput(document.getElementById("inputBankFrom").value.trim());
+        const bankTo = sanitizeInput(document.getElementById("inputBankTo").value.trim());
+        const month = sanitizeInput(document.getElementById("inputMonth").value.trim());
+        const year = sanitizeInput(document.getElementById("inputYear").value.trim());
         const rawAmount = document.getElementById("inputAmount").value.trim();
 
-        // ঘর খালি আছে কিনা যাচাই করা (Form Validation)
+        // ঘর খালি আছে কিনা কঠোরভাবে যাচাই করা
         if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
             alert(currentLang === 'bn' 
                 ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" 
                 : "⚠️ Please fill in all fields! No field can be left empty.");
-            return; // এখানেই ডাটা সাবমিশন বন্ধ হয়ে যাবে
-        }
-
-        const amount = parseFloat(rawAmount) || 0;
-        if (amount <= 0) {
-            alert(currentLang === 'bn' 
-                ? "⚠️ টাকার পরিমাণ অবশ্যই ০ এর চেয়ে বেশি হতে হবে!" 
-                : "⚠️ Amount must be greater than zero!");
             return;
         }
 
-        // সময় ক্যাপচার করার জন্য
+        const amount = parseFloat(rawAmount);
+        if (isNaN(amount) || amount <= 0) {
+            alert(currentLang === 'bn' 
+                ? "⚠️ টাকার পরিমাণ অবশ্যই সঠিক এবং ০ এর চেয়ে বেশি হতে হবে!" 
+                : "⚠️ Amount must be a valid number greater than zero!");
+            return;
+        }
+
         const now = new Date();
         const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
 
-        // ১ দিন পিছিয়ে যাওয়া বন্ধ করতে তারিখ সঠিকভাবে স্ট্রিং হিসাবে তৈরি
-        const dateParts = rawDate.split("-"); // YYYY-MM-DD
-        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // DD/MM/YYYY
+        const dateParts = rawDate.split("-");
+        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
         const formattedDateTime = `${formattedDate} ${currentTime}`;
 
         let payload = {
@@ -1372,6 +1401,14 @@
         renderFrontCalendar();
     }
 
+    // Basic Security: Block Right Click & DevTools Shortcuts
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
+            e.preventDefault();
+        }
+    });
+
     window.addEventListener('DOMContentLoaded', () => {
         fetchFromGoogleSheet();
         updateLiveClock();
@@ -1381,7 +1418,7 @@
         fetch('https://ipapi.co/json/')
             .then(res => res.json())
             .then(data => {
-                if (data.country_name) document.getElementById('userLocation').textContent = `🌍 ${data.country_name} (${data.city || ''})`;
+                if (data.country_name) document.getElementById('userLocation').textContent = `🌍 ${sanitizeInput(data.country_name)} (${sanitizeInput(data.city) || ''})`;
             }).catch(() => {
                 document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
             });
