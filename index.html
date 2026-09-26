@@ -128,7 +128,6 @@
             text-align: left;
         }
 
-        /* Language Switcher UI */
         .lang-switch-wrapper {
             display: flex;
             justify-content: space-between;
@@ -215,7 +214,6 @@
             display: none;
         }
 
-        /* Admin Entry Panel */
         .admin-entry-panel {
             display: none;
             background: #fff9e6;
@@ -469,7 +467,6 @@
 
             <!-- Login Box -->
             <div class="passcode-box">
-                <!-- Language Switcher UI -->
                 <div class="lang-switch-wrapper">
                     <span class="lang-switch-title" id="langSwitchLabel">🌐 Language / ভাষা:</span>
                     <div class="lang-toggle-group">
@@ -742,7 +739,7 @@
     const ADMIN_PASSWORD = "2925";
     let isAdminMode = false;
     let activePageId = "";
-    let currentLang = 'bn'; // Default Language set to Bengali
+    let currentLang = 'bn';
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
     
@@ -806,7 +803,6 @@
             btnSaveData: "ডাটা সেভ করুন",
             noData: "- কোন তথ্য পাওয়া যায়নি -",
             
-            // All Pages & Dynamic Tables Text
             tblDate: "তারিখ",
             tblRef: "রেফারেন্স নং",
             tblSender: "প্রেরক ব্যাংক",
@@ -822,7 +818,6 @@
             thReason: "কারণ / বিবরণ",
             lblTotalPaid: "সর্বমোট পরিশোধ (BDT):",
             
-            // Info Box Specific Labels
             lblShareholder: "শেয়ারহোল্ডারের নাম:",
             lblAllocatedShares: "বরাদ্দকৃত শেয়ার:",
             lblTargetAmount: "নির্ধারিত মূল্য:",
@@ -873,7 +868,6 @@
             btnSaveData: "Save Data",
             noData: "- No data found -",
             
-            // All Pages & Dynamic Tables Text
             tblDate: "Tran. Date",
             tblRef: "Ref. No",
             tblSender: "Sender Bank",
@@ -889,7 +883,6 @@
             thReason: "Reason / Title",
             lblTotalPaid: "Total Paid (BDT):",
             
-            // Info Box Specific Labels
             lblShareholder: "Shareholder Name:",
             lblAllocatedShares: "Allocated Shares:",
             lblTargetAmount: "Target Amount:",
@@ -916,7 +909,6 @@
 
         const t = langText[lang];
 
-        // Global Header & Banner
         document.getElementById("loadingTxt").textContent = t.loading;
         document.getElementById("hdrTitle").textContent = t.hdrTitle;
         document.getElementById("hdrEst").textContent = t.hdrEst;
@@ -925,7 +917,6 @@
         document.getElementById("marqueePrefix").textContent = t.marqueePrefix;
         document.getElementById("marqueeSuffix").textContent = t.marqueeSuffix;
 
-        // Login Box & Dropdown Options
         document.getElementById("lblMemberSelect").textContent = t.lblMemberSelect;
         document.getElementById("optDefault").textContent = t.optDefault;
         document.getElementById("optAdmin").textContent = t.optAdmin;
@@ -946,7 +937,6 @@
         document.getElementById("adminLoginBtn").textContent = t.btnAdminLogin;
         document.getElementById("errorMsg").textContent = t.errorMsg;
 
-        // Front Summary Dashboard Table
         document.getElementById("summaryTitle").textContent = t.summaryTitle;
         document.getElementById("thName").textContent = t.thName;
         document.getElementById("thShare").textContent = t.thShare;
@@ -954,16 +944,13 @@
         document.getElementById("thTotal").textContent = t.thTotal;
         document.getElementById("thStatus").textContent = t.thStatus;
 
-        // Navigation Controls
         document.getElementById("btnHome").textContent = t.btnHome;
         document.getElementById("btnPrint").textContent = t.btnPrint;
 
-        // Admin Panel Labels
         document.getElementById("grpMembers").label = t.grpMembers;
         document.getElementById("grpOthers").label = t.grpOthers;
         document.getElementById("btnSaveData").textContent = t.btnSaveData;
 
-        // All Member & Payment Table Headers
         document.querySelectorAll(".tblHeaderDate").forEach(el => el.textContent = t.tblDate);
         document.querySelectorAll(".tblHeaderRef").forEach(el => el.textContent = t.tblRef);
         document.querySelectorAll(".tblHeaderSender").forEach(el => el.textContent = t.tblSender);
@@ -973,7 +960,6 @@
         document.querySelectorAll(".titleDetailsTxt").forEach(el => el.textContent = t.tblDetailsTxt);
         document.querySelectorAll(".lblTotalDep").forEach(el => el.textContent = t.lblTotalDep);
 
-        // Payment Section Labels
         document.getElementById("lblAccName").textContent = t.lblAccName;
         document.getElementById("lblBankName").textContent = t.lblBankName;
         document.getElementById("lblAccNum").textContent = t.lblAccNum;
@@ -981,7 +967,6 @@
         document.getElementById("thReason").textContent = t.thReason;
         document.getElementById("lblTotalPaid").textContent = t.lblTotalPaid;
 
-        // Footer Text
         document.getElementById("ftrSocial").textContent = t.ftrSocial;
         document.getElementById("ftrTag").textContent = t.ftrTag;
         document.getElementById("ftrDev").textContent = t.ftrDev;
@@ -995,6 +980,7 @@
         document.getElementById('loadingOverlay').style.display = show ? 'block' : 'none';
     }
 
+    // UPDATE 1: Year ফিল্ডটি সর্বদাই দৃশ্যমান রাখা হলো
     function adjustAdminFormFields() {
         const target = document.getElementById("targetMemberSelect").value;
         const panelHeader = document.getElementById("adminPanelHeader");
@@ -1010,7 +996,8 @@
             bankFromInput.placeholder = "Sender Bank";
             bankToInput.placeholder = "Receiver Bank";
             monthInput.placeholder = currentLang === 'bn' ? "কারণ / বিবরণ" : "Reason / Title";
-            yearInput.style.display = "none";
+            yearInput.placeholder = "Year (e.g. 2026)";
+            yearInput.style.display = "inline-block"; // পেমেন্ট মোডেও চালু রাখা হয়েছে
         } else {
             panelHeader.textContent = t.adminHeaderMember;
             bankFromInput.placeholder = "Sender Bank";
@@ -1042,6 +1029,7 @@
                             senderBank: item.senderBank || item.bankFrom,
                             receiverBank: item.receiverBank || item.bankTo,
                             reasonTitle: item.reasonTitle || item.month,
+                            year: item.year || "-",
                             amount: amount
                         });
                     } else if (memberKeys.includes(target)) {
@@ -1135,6 +1123,7 @@
         document.getElementById("universalAdminPanel").style.display = "none";
     }
 
+    // UPDATE 2: পেমেন্ট এন্ট্রি সাবমিট করার সময় Year যেন বাধ্যতামূলকভাবে অ্যাপস স্ক্রিপ্টে যুক্ত হয়
     function submitNewTransaction() {
         const target = document.getElementById("targetMemberSelect").value;
         const date = document.getElementById("inputDate").value || "-";
@@ -1142,21 +1131,29 @@
         const bankFrom = document.getElementById("inputBankFrom").value || "-";
         const bankTo = document.getElementById("inputBankTo").value || "-";
         const month = document.getElementById("inputMonth").value || "-";
-        const year = document.getElementById("inputYear").value || "-";
+        
+        // Year খালি থাকলে বর্তমান বছর স্বয়ংক্রিয়ভাবে নিয়ে নিবে
+        const currentYearStr = new Date().getFullYear().toString();
+        const year = document.getElementById("inputYear").value.trim() || currentYearStr;
+        
         const amount = parseFloat(document.getElementById("inputAmount").value) || 0;
 
-        let payload = { target, date, ref, amount };
-
-        if (target === "sec-payment") {
-            payload.senderBank = bankFrom;
-            payload.receiverBank = bankTo;
-            payload.reasonTitle = month;
-        } else {
-            payload.bankFrom = bankFrom;
-            payload.bankTo = bankTo;
-            payload.month = month;
-            payload.year = year;
-        }
+        let payload = {
+            target: target,
+            date: date,
+            ref: ref,
+            amount: amount,
+            
+            // সকল ফিল্ডের তথ্য গুগল শিটে পাঠানো হচ্ছে
+            bankFrom: bankFrom,
+            bankTo: bankTo,
+            month: month,
+            year: year,
+            
+            senderBank: bankFrom,
+            receiverBank: bankTo,
+            reasonTitle: month
+        };
 
         if (SCRIPT_URL) {
             showLoading(true);
@@ -1169,6 +1166,14 @@
             .then(() => {
                 alert(currentLang === 'bn' ? "গুগল শিটে সফলভাবে ডাটা সেভ হয়েছে!" : "Data saved successfully to Google Sheet!");
                 showLoading(false);
+                
+                document.getElementById("inputAmount").value = "";
+                document.getElementById("inputRef").value = "";
+                document.getElementById("inputBankFrom").value = "";
+                document.getElementById("inputBankTo").value = "";
+                document.getElementById("inputMonth").value = "";
+                document.getElementById("inputYear").value = "";
+
                 fetchFromGoogleSheet();
             })
             .catch(err => {
@@ -1179,13 +1184,6 @@
         } else {
             alert(currentLang === 'bn' ? "অনুগ্রহ করে Google Apps Script URL যুক্ত করুন!" : "Please attach Google Apps Script URL!");
         }
-
-        document.getElementById("inputAmount").value = "";
-        document.getElementById("inputRef").value = "";
-        document.getElementById("inputBankFrom").value = "";
-        document.getElementById("inputBankTo").value = "";
-        document.getElementById("inputMonth").value = "";
-        document.getElementById("inputYear").value = "";
     }
 
     function renderAllData() {
@@ -1239,7 +1237,6 @@
             const targetAmount = shares * PER_SHARE_PRICE;
             const dueAmount = targetAmount - total;
 
-            // Updating Individual Info Boxes per language dynamically
             const infoBox = document.getElementById(`info-${key}`);
             if (infoBox) {
                 infoBox.innerHTML = `
