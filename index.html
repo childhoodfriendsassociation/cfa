@@ -22,7 +22,7 @@
             background-color: #f4f7f6;
             color: #333;
             padding: 15px;
-            -webkit-user-select: none; /* Text copy protection optional */
+            -webkit-user-select: none;
             -ms-user-select: none;
             user-select: none;
         }
@@ -749,10 +749,11 @@
 </div>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec";
+    // এখানে আপনার গুগল অ্যাপস স্ক্রিপ্টের ইউআরএল বসাবেন
+    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJTtTE3XYTGjw5nADnZDbPumt2DKuVLGx4BzWB5_yOSZPfMVb9m7GyINiBeRYaAwQ/exec";
 
-    const ADMIN_PASSWORD = "2925";
     let isAdminMode = false;
+    let globalAdminToken = ""; // পাসওয়ার্ড ক্ষণস্থায়ী সেশন
     let activePageId = "";
     let currentLang = 'bn';
 
@@ -916,7 +917,6 @@
         payments: []
     };
 
-    // SECURITY: Input Sanitization Function to block XSS Attacks
     function sanitizeInput(str) {
         if (typeof str !== 'string') return str;
         return str.replace(/[&<>"']/g, function(match) {
@@ -1100,6 +1100,7 @@
         }
     }
 
+    // ব্যাকএন্ড পাসওয়ার্ড ভ্যালিডেশন
     function openSelectedDashboard(asAdmin) {
         const selectedTarget = document.getElementById("memberNameSelect").value;
         const errorMsg = document.getElementById("errorMsg");
@@ -1111,26 +1112,46 @@
         }
 
         if (selectedTarget === "sec-admin") {
-            if (adminPass !== ADMIN_PASSWORD) {
-                errorMsg.style.display = "block";
-                return;
-            }
-            isAdminMode = true;
-            activePageId = "sec-awal";
+            showLoading(true);
+            // সার্ভারে রিকোয়েস্ট পাঠানো পাসওয়ার্ড ঠিক আছে কিনা চেক করতে
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({ action: "verify_admin", password: adminPass })
+            })
+            .then(res => res.json())
+            .then(res => {
+                showLoading(false);
+                if (res.success) {
+                    isAdminMode = true;
+                    globalAdminToken = adminPass; // সেশনের জন্য জমা রাখা
+                    activePageId = "sec-awal";
+                    renderDashboardView();
+                } else {
+                    errorMsg.style.display = "block";
+                }
+            })
+            .catch(err => {
+                showLoading(false);
+                alert("Connection error!");
+            });
         } else {
             isAdminMode = false;
+            globalAdminToken = "";
             activePageId = selectedTarget;
+            renderDashboardView();
         }
+    }
 
+    function renderDashboardView() {
         document.getElementById("sec-welcome").style.display = "none";
-        
         const sections = document.getElementsByClassName("section-block");
         for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
 
         document.getElementById(activePageId).classList.add("active");
         document.getElementById("dashboardSelectorWrapper").classList.add("active-dropdown");
         document.querySelector(".print-btn-container").style.display = "block";
-        errorMsg.style.display = "none";
+        document.getElementById("errorMsg").style.display = "none";
 
         document.getElementById("universalAdminPanel").style.display = isAdminMode ? "block" : "none";
         const t = langText[currentLang];
@@ -1141,6 +1162,7 @@
 
     function lockDashboard() {
         isAdminMode = false;
+        globalAdminToken = "";
         document.getElementById("adminPasscode").value = "";
         const sections = document.getElementsByClassName("section-block");
         for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
@@ -1153,7 +1175,7 @@
         document.getElementById("universalAdminPanel").style.display = "none";
     }
 
-    // UPDATE: খালি ঘর যাচাই (Form Validation) ও সিকিউর ইনপুট সেনিটাইজেশন
+    // ব্যাকএন্ডে যাচাইসহ ডাটা সেভ
     function submitNewTransaction() {
         const target = sanitizeInput(document.getElementById("targetMemberSelect").value);
         const rawDate = sanitizeInput(document.getElementById("inputDate").value.trim());
@@ -1164,19 +1186,14 @@
         const year = sanitizeInput(document.getElementById("inputYear").value.trim());
         const rawAmount = document.getElementById("inputAmount").value.trim();
 
-        // ঘর খালি আছে কিনা কঠোরভাবে যাচাই করা
         if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
-            alert(currentLang === 'bn' 
-                ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" 
-                : "⚠️ Please fill in all fields! No field can be left empty.");
+            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" : "⚠️ Please fill in all fields!");
             return;
         }
 
         const amount = parseFloat(rawAmount);
         if (isNaN(amount) || amount <= 0) {
-            alert(currentLang === 'bn' 
-                ? "⚠️ টাকার পরিমাণ অবশ্যই সঠিক এবং ০ এর চেয়ে বেশি হতে হবে!" 
-                : "⚠️ Amount must be a valid number greater than zero!");
+            alert(currentLang === 'bn' ? "⚠️ টাকার পরিমাণ সঠিক নয়!" : "⚠️ Invalid Amount!");
             return;
         }
 
@@ -1184,10 +1201,11 @@
         const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
 
         const dateParts = rawDate.split("-");
-        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`;
-        const formattedDateTime = `${formattedDate} ${currentTime}`;
+        const formattedDateTime = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${currentTime}`;
 
         let payload = {
+            action: "save_transaction",
+            adminPassword: globalAdminToken, // সার্ভারে যাচাই হবে
             target: target,
             date: formattedDateTime,
             ref: ref,
@@ -1195,41 +1213,37 @@
             bankFrom: bankFrom,
             bankTo: bankTo,
             month: month,
-            year: year,
-            senderBank: bankFrom,
-            receiverBank: bankTo,
-            reasonTitle: month
+            year: year
         };
 
         if (SCRIPT_URL) {
             showLoading(true);
             fetch(SCRIPT_URL, {
                 method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "application/json" },
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
                 body: JSON.stringify(payload)
             })
-            .then(() => {
-                alert(currentLang === 'bn' ? "গুগল শিটে সফলভাবে ডাটা সেভ হয়েছে!" : "Data saved successfully to Google Sheet!");
+            .then(res => res.json())
+            .then(res => {
                 showLoading(false);
-                
-                document.getElementById("inputAmount").value = "";
-                document.getElementById("inputRef").value = "";
-                document.getElementById("inputBankFrom").value = "";
-                document.getElementById("inputBankTo").value = "";
-                document.getElementById("inputMonth").value = "";
-                document.getElementById("inputYear").value = "";
-                document.getElementById("inputDate").value = "";
-
-                fetchFromGoogleSheet();
+                if (res.success) {
+                    alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
+                    document.getElementById("inputAmount").value = "";
+                    document.getElementById("inputRef").value = "";
+                    document.getElementById("inputBankFrom").value = "";
+                    document.getElementById("inputBankTo").value = "";
+                    document.getElementById("inputMonth").value = "";
+                    document.getElementById("inputYear").value = "";
+                    document.getElementById("inputDate").value = "";
+                    fetchFromGoogleSheet();
+                } else {
+                    alert("Error: " + res.message);
+                }
             })
             .catch(err => {
-                alert(currentLang === 'bn' ? "ডাটা সেভ করতে সমস্যা হয়েছে!" : "Error saving data!");
-                console.error(err);
                 showLoading(false);
+                alert("Error saving data!");
             });
-        } else {
-            alert(currentLang === 'bn' ? "অনুগ্রহ করে Google Apps Script URL যুক্ত করুন!" : "Please attach Google Apps Script URL!");
         }
     }
 
@@ -1401,7 +1415,6 @@
         renderFrontCalendar();
     }
 
-    // Basic Security: Block Right Click & DevTools Shortcuts
     document.addEventListener('contextmenu', e => e.preventDefault());
     document.addEventListener('keydown', e => {
         if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
