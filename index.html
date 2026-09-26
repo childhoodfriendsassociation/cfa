@@ -127,6 +127,43 @@
             border: 1px solid #bce8f1;
             text-align: left;
         }
+
+        /* Language Switcher UI */
+        .lang-switch-wrapper {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #bce8f1;
+        }
+        .lang-switch-title {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 14px;
+        }
+        .lang-toggle-group {
+            display: flex;
+            background: #fff;
+            border: 1px solid #007bff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .lang-toggle-btn {
+            padding: 4px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #007bff;
+            transition: all 0.3s ease;
+        }
+        .lang-toggle-btn.active {
+            background: #007bff;
+            color: #fff;
+        }
+
         .passcode-box .form-group {
             margin-bottom: 15px;
         }
@@ -406,52 +443,61 @@
 </head>
 <body>
 
-<div id="loadingOverlay">⏳ ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</div>
+<div id="loadingOverlay">⏳ <span id="loadingTxt">ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</span></div>
 
 <div class="container">
     <header>
         <h1>بسم الله الرحمن الرحيم</h1>
-        <h2>বন্ধুত্বের স্মারক সমিতি</h2>
-        <h4>স্থাপিত: ২০২৬</h4>
-        <p>বন্ধুতের সুদৃঢ় ভিত্তি, বাণিজ্যে বরকত ও উন্নতি</p>
+        <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
+        <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
+        <p id="hdrSlogan">বন্ধুতের সুদৃঢ় ভিত্তি, বাণিজ্যে বরকত ও উন্নতি</p>
     </header>
 
     <!-- Welcome Section -->
     <div id="sec-welcome" class="section-block active">
         <div class="welcome-hero">
             <h1>السلام عليكم ورحمة الله</h1>
-            <h1>আপনাকে স্বাগতম</h1>
+            <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
             <div class="location-box" id="userLocation">🌍 আপনার দেশ শনাক্ত করা হচ্ছে...</div>
             <div class="live-datetime-box">⏰ <span id="liveClock">লোড হচ্ছে...</span></div>
             
             <div class="glass-marquee-container">
                 <div class="glass-marquee-track">
-                    🌟 সমিতির তহবিলে বর্তমানে জমা আছে: <span id="marqueeTotal">0.00</span> টাকা মাত্র 🌟 
+                    🌟 <span id="marqueePrefix">সমিতির তহবিলে বর্তমানে জমা আছে:</span> <span id="marqueeTotal">0.00</span> <span id="marqueeSuffix">টাকা মাত্র</span> 🌟 
                 </div>
             </div>
 
             <!-- Login Box -->
             <div class="passcode-box">
+                <!-- Language Switcher UI -->
+                <div class="lang-switch-wrapper">
+                    <span class="lang-switch-title" id="langSwitchLabel">🌐 Language / ভাষা:</span>
+                    <div class="lang-toggle-group">
+                        <button class="lang-toggle-btn active" id="btnBN" onclick="switchLanguage('bn')">BN</button>
+                        <button class="lang-toggle-btn" id="btnEN" onclick="switchLanguage('en')">EN</button>
+                    </div>
+                </div>
+
                 <div class="form-group">
-                    <label for="memberNameSelect"> USER/সদস্য (পাসওয়ার্ড লাগবে না)</label>
+                    <label for="memberNameSelect" id="lblMemberSelect">USER/সদস্য (পাসওয়ার্ড লাগবে না)</label>
                     <select id="memberNameSelect" onchange="toggleAdminPasswordInput()">
-                        <option value="">আপনার ফাইলটি নির্বাচন করুন</option>
-                        <option value="sec-admin">এডমিন</option>
-                        <option value="sec-awal">আবদুল আউয়াল</option>
-                        <option value="sec-arif">আরিফ হোসেন</option>
-                        <option value="sec-babor">বাবর পাটোয়ারী</option>
-                        <option value="sec-babul">বাবুল হোসেন</option>
-                        <option value="sec-jasim">জসিম উদ্দিন</option>
-                        <option value="sec-main">মঈন উদ্দিন (সুমন)</option>
-                        <option value="sec-saiem">মোঃ সায়েম (শাকিল)</option>
-                        <option value="sec-selim">সেলিম পাটোয়ারী</option>
-                        <option value="sec-sanawer">সানোয়ার কাদের (আরিফ)</option>
-                        <option value="sec-payment">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</option>
+                        <option value="" id="optDefault">আপনার ফাইলটি নির্বাচন করুন</option>
+                        <option value="sec-admin" id="optAdmin">এডমিন</option>
+                        <option value="sec-awal" id="optAwal">আবদুল আউয়াল</option>
+                        <option value="sec-arif" id="optArif">আরিফ হোসেন</option>
+                        <option value="sec-babor" id="optBabor">বাবর পাটোয়ারী</option>
+                        <option value="sec-babul" id="optBabul">বাবুল হোসেন</option>
+                        <option value="sec-jasim" id="optJasim">জসিম উদ্দিন</option>
+                        <option value="sec-main" id="optMain">মঈন উদ্দিন (সুমন)</option>
+                        <option value="sec-saiem" id="optSaiem">মোঃ সায়েম (শাকিল)</option>
+                        <option value="sec-selim" id="optSelim">সেলিম পাটোয়ারী</option>
+                        <option value="sec-sanawer" id="optSanawer">সানোয়ার কাদের (আরিফ)</option>
+                        <option value="sec-payment" id="optPayment">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</option>
                     </select>
                 </div>
 
                 <div class="form-group" id="adminPassGroup" style="display: none;">
-                    <label for="adminPasscode" style="color: #d97706;">এডমিন পাসওয়ার্ড দিন</label>
+                    <label for="adminPasscode" id="lblAdminPass" style="color: #d97706;">এডমিন পাসওয়ার্ড দিন</label>
                     <input type="password" id="adminPasscode" placeholder="পাসওয়ার্ড লিখুন">
                 </div>
 
@@ -466,16 +512,16 @@
 
         <!-- Summary Table -->
         <div class="shortcut-dashboard">
-            <h3>📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)</h3>
+            <h3 id="summaryTitle">📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)</h3>
             <div class="table-responsive">
                 <table>
                     <thead>
                         <tr>
-                            <th>সদস্যের নাম</th>
-                            <th>শেয়ার</th>
-                            <th>নির্ধারিত মূল্য (BDT)</th>
-                            <th>মোট জমা (BDT)</th>
-                            <th>অবস্থা / বকেয়া (BDT)</th>
+                            <th id="thName">সদস্যের নাম</th>
+                            <th id="thShare">শেয়ার</th>
+                            <th id="thTarget">নির্ধারিত মূল্য (BDT)</th>
+                            <th id="thTotal">মোট জমা (BDT)</th>
+                            <th id="thStatus">অবস্থা / বকেয়া (BDT)</th>
                         </tr>
                     </thead>
                     <tbody id="frontSummaryBody"></tbody>
@@ -491,13 +537,13 @@
                 <button onclick="changeMonth(1)">❯</button>
             </div>
             <div class="calendar-grid">
-                <div class="calendar-day-head">Sun</div>
-                <div class="calendar-day-head">Mon</div>
-                <div class="calendar-day-head">Tue</div>
-                <div class="calendar-day-head">Wed</div>
-                <div class="calendar-day-head">Thu</div>
-                <div class="calendar-day-head">Fri</div>
-                <div class="calendar-day-head">Sat</div>
+                <div class="calendar-day-head" id="calSun">Sun</div>
+                <div class="calendar-day-head" id="calMon">Mon</div>
+                <div class="calendar-day-head" id="calTue">Tue</div>
+                <div class="calendar-day-head" id="calWed">Wed</div>
+                <div class="calendar-day-head" id="calThu">Thu</div>
+                <div class="calendar-day-head" id="calFri">Fri</div>
+                <div class="calendar-day-head" id="calSat">Sat</div>
             </div>
             <div class="calendar-grid" id="calendarDays" style="margin-top: 5px;"></div>
         </div>
@@ -506,12 +552,12 @@
     <!-- Navigation Bar -->
     <div id="dashboardSelectorWrapper" class="dashboard-selector">
         <span style="font-weight: bold; color: #007bff;" id="statusNotice">সফলভাবে ফাইল প্রদর্শন করা হয়েছে।</span>
-        <button onclick="lockDashboard()">Homepage</button>
+        <button id="btnHome" onclick="lockDashboard()">Homepage</button>
     </div>
 
     <!-- Print Button -->
     <div class="print-btn-container">
-        <button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
+        <button class="print-btn" id="btnPrint" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
     </div>
 
     <!-- Dynamic Admin Entry Panel -->
@@ -519,7 +565,7 @@
         <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
         <div class="admin-entry-grid">
             <select id="targetMemberSelect" onchange="adjustAdminFormFields()">
-                <optgroup label="সদস্যের পেজসমূহ (১-৯)">
+                <optgroup label="সদস্যের পেজসমূহ (১-৯)" id="grpMembers">
                     <option value="awal">আবদুল আউয়াল</option>
                     <option value="arif">আরিফ হোসেন</option>
                     <option value="babor">বাবর পাটোয়ারী</option>
@@ -530,7 +576,7 @@
                     <option value="selim">সেলিম পাটোয়ারী</option>
                     <option value="sanawer">সানোয়ার কাদের</option>
                 </optgroup>
-                <optgroup label="অন্যান্য পেজসমূহ">
+                <optgroup label="অন্যান্য পেজসমূহ" id="grpOthers">
                     <option value="sec-payment">সম্পত্তির পরিশোধিত মূল্য</option>
                 </optgroup>
             </select>
@@ -542,151 +588,151 @@
             <input type="text" id="inputYear" placeholder="Year (e.g. 2026)">
             <input type="number" id="inputAmount" placeholder="Amount (BDT)">
         </div>
-        <button class="admin-save-btn" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
+        <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
     </div>
 
-    <!-- Member Sections (Updated Table Headers) -->
+    <!-- All Member Sections -->
     <div id="sec-awal" class="section-block">
         <div class="info-box" id="info-awal"></div>
-        <h3 class="section-title">Abdul Awal - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Abdul Awal</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-awal"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-awal">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-awal">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-arif" class="section-block">
         <div class="info-box" id="info-arif"></div>
-        <h3 class="section-title">Arif Hossain - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Arif Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-arif"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-arif">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-arif">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-babor" class="section-block">
         <div class="info-box" id="info-babor"></div>
-        <h3 class="section-title">Babor Patwary - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Babor Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-babor"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-babor">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-babor">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-babul" class="section-block">
         <div class="info-box" id="info-babul"></div>
-        <h3 class="section-title">Babul Hossain - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Babul Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-babul"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-babul">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-babul">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-jasim" class="section-block">
         <div class="info-box" id="info-jasim"></div>
-        <h3 class="section-title">Jasim Uddin - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Jasim Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-jasim"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-jasim">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-jasim">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-main" class="section-block">
         <div class="info-box" id="info-main"></div>
-        <h3 class="section-title">Main Uddin - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Main Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-main"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-main">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-main">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-saiem" class="section-block">
         <div class="info-box" id="info-saiem"></div>
-        <h3 class="section-title">Md. Saiem - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Md. Saiem</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-saiem"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-saiem">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-saiem">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-selim" class="section-block">
         <div class="info-box" id="info-selim"></div>
-        <h3 class="section-title">Selim Patwary - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Selim Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-selim"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-selim">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-selim">0.00 BDT</span></p></div>
     </div>
 
     <div id="sec-sanawer" class="section-block">
         <div class="info-box" id="info-sanawer"></div>
-        <h3 class="section-title">Sanawer Quder - Transaction Details</h3>
+        <h3 class="section-title"><span class="titleMemberName">Sanawer Quder</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ (BDT)</th></tr></thead>
                 <tbody id="table-sanawer"></tbody>
             </table>
         </div>
-        <div class="summary-box"><p><span>Total Deposited:</span> <span id="total-sanawer">0.00 BDT</span></p></div>
+        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-sanawer">0.00 BDT</span></p></div>
     </div>
 
     <!-- Payment Section -->
     <div id="sec-payment" class="section-block">
         <div class="info-box">
-            <p><strong>Account Name:</strong> Umme Sarmin Akter</p>
-            <p><strong>Bank Name:</strong> Mutual Trust Bank</p>
-            <p><strong>Account Number:</strong> 0290310079758</p>
+            <p><strong id="lblAccName">একাউন্ট নাম:</strong> Umme Sarmin Akter</p>
+            <p><strong id="lblBankName">ব্যাংক নাম:</strong> Mutual Trust Bank</p>
+            <p><strong id="lblAccNum">একাউন্ট নম্বর:</strong> 0290310079758</p>
         </div>
-        <h3 class="section-title">Payment Statement - Transaction Details</h3>
+        <h3 class="section-title" id="pmtTitle">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</h3>
         <div class="table-responsive">
             <table>
                 <thead>
                     <tr>
-                        <th>Tran. Date</th>
-                        <th>Ref. No (ID)</th>
-                        <th>Sender Bank</th>
-                        <th>Receiver Bank</th>
-                        <th>Reason / Title</th>
-                        <th>Amount (BDT)</th>
+                        <th class="tblHeaderDate">তারিখ</th>
+                        <th class="tblHeaderRef">রেফারেন্স নং (ID)</th>
+                        <th class="tblHeaderSender">প্রেরক ব্যাংক</th>
+                        <th class="tblHeaderReceiver">প্রাপক ব্যাংক</th>
+                        <th id="thReason">কারণ / বিবরণ</th>
+                        <th class="tblHeaderAmount">পরিমাণ (BDT)</th>
                     </tr>
                 </thead>
                 <tbody id="table-payment"></tbody>
             </table>
         </div>
         <div class="summary-box">
-            <p><span>Total Paid (BDT):</span> <span id="paymentTotal">0.00</span></p>
+            <p><span id="lblTotalPaid">সর্বমোট পরিশোধ (BDT):</span> <span id="paymentTotal">0.00</span></p>
         </div>
     </div>
 
     <footer>
-        <p>Our Social Community: <a href="https://chat.whatsapp.com/CBhe3TSeaoj4UwImXaDo3J?s=cl&p=a&mlu=0&ilr=4" target="_blank">WhatsApp</a> or <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_c" target="_blank">Messenger</a></p>
+        <p><span id="ftrSocial">Our Social Community:</span> <a href="https://chat.whatsapp.com/CBhe3TSeaoj4UwImXaDo3J?s=cl&p=a&mlu=0&ilr=4" target="_blank">WhatsApp</a> or <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_c" target="_blank">Messenger</a></p>
         <p>Copyright @ 2026. All Rights Reserved</p>
-        <p>It's a friends collaboration financial organization</p>
-        <p style="color: #28a745;">Portal Developed for: Childhood Friends Association</p>
+        <p id="ftrTag">এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন</p>
+        <p style="color: #28a745;" id="ftrDev">Portal Developed for: Childhood Friends Association</p>
     </footer>
 </div>
 
@@ -696,6 +742,7 @@
     const ADMIN_PASSWORD = "2925";
     let isAdminMode = false;
     let activePageId = "";
+    let currentLang = 'bn'; // Default Language set to Bengali
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
     
@@ -709,19 +756,240 @@
     const PER_SHARE_PRICE = TOTAL_LAND_PRICE / TOTAL_SHARES;
 
     const memberNames = {
-        awal: "আবদুল আউয়াল", arif: "আরিফ হোসেন", babor: "বাবর পাটোয়ারী", babul: "বাবুল হোসেন",
-        jasim: "জসিম উদ্দিন", main: "মঈন উদ্দিন", saiem: "মোঃ সায়েম", selim: "সেলিম পাটোয়ারী", sanawer: "সানোয়ার কাদের"
+        bn: {
+            awal: "আবদুল আউয়াল", arif: "আরিফ হোসেন", babor: "বাবর পাটোয়ারী", babul: "বাবুল হোসেন",
+            jasim: "জসিম উদ্দিন", main: "মঈন উদ্দিন (সুমন)", saiem: "মোঃ সায়েম (শাকিল)", selim: "সেলিম পাটোয়ারী", sanawer: "সানোয়ার কাদের (আরিফ)"
+        },
+        en: {
+            awal: "Abdul Awal", arif: "Arif Hossain", babor: "Babor Patwary", babul: "Babul Hossain",
+            jasim: "Jasim Uddin", main: "Main Uddin (Sumon)", saiem: "Md. Saiem (Shakil)", selim: "Selim Patwary", sanawer: "Sanawer Quder (Arif)"
+        }
     };
 
-    const memberEnglishNames = {
-        awal: "Abdul Awal", arif: "Arif Hossain", babor: "Babor Patwary", babul: "Babul Hossain",
-        jasim: "Jasim Uddin", main: "Main Uddin", saiem: "Md. Saiem", selim: "Selim Patwary", sanawer: "Sanawer Quder"
+    const langText = {
+        bn: {
+            loading: "ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...",
+            hdrTitle: "বন্ধুত্বের স্মারক সমিতি",
+            hdrEst: "স্থাপিত: ২০২৬",
+            hdrSlogan: "বন্ধুতের সুদৃঢ় ভিত্তি, বাণিজ্যে বরকত ও উন্নতি",
+            welcomeHeading: "আপনাকে স্বাগতম",
+            userLocDetect: "🌍 আপনার দেশ শনাক্ত করা হচ্ছে...",
+            userLocFail: "🌍 দেশ শনাক্ত করা যায়নি",
+            marqueePrefix: "সমিতির তহবিলে বর্তমানে জমা আছে:",
+            marqueeSuffix: "টাকা মাত্র",
+            lblMemberSelect: "USER/সদস্য (পাসওয়ার্ড লাগবে না)",
+            optDefault: "আপনার ফাইলটি নির্বাচন করুন",
+            optAdmin: "এডমিন",
+            optPayment: "সম্পত্তির পরিশোধিত মূল্যের বিবরণ",
+            lblAdminPass: "এডমিন পাসওয়ার্ড দিন",
+            adminPassHolder: "পাসওয়ার্ড লিখুন",
+            btnView: "ফাইল দেখুন",
+            btnAdminLogin: "এডমিন লগইন",
+            errorMsg: "অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!",
+            summaryTitle: "📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)",
+            thName: "সদস্যের নাম",
+            thShare: "শেয়ার",
+            thTarget: "নির্ধারিত মূল্য (BDT)",
+            thTotal: "মোট জমা (BDT)",
+            thStatus: "অবস্থা / বকেয়া (BDT)",
+            dueLabel: "(বকেয়া)",
+            paidLabel: "(পরিশোধিত)",
+            grandTotal: "সর্বমোট",
+            statusView: "👁️ ভিউয়ার মোড সক্রিয়",
+            statusAdmin: "⚙️ এডমিন (Admin Mode) সক্রিয় আছে",
+            btnHome: "হোমপেজ",
+            btnPrint: "🖨️ প্রিন্ট করুন",
+            adminHeaderMember: "এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)",
+            adminHeaderProperty: "এডমিন ডাটা এন্ট্রি প্যানেল (সম্পত্তির পরিশোধিত মূল্য)",
+            grpMembers: "সদস্যের পেজসমূহ (১-৯)",
+            grpOthers: "অন্যান্য পেজসমূহ",
+            btnSaveData: "ডাটা সেভ করুন",
+            noData: "- কোন তথ্য পাওয়া যায়নি -",
+            
+            // All Pages & Dynamic Tables Text
+            tblDate: "তারিখ",
+            tblRef: "রেফারেন্স নং",
+            tblSender: "প্রেরক ব্যাংক",
+            tblReceiver: "প্রাপক ব্যাংক",
+            tblMonth: "মাস/বছর",
+            tblAmount: "পরিমাণ (BDT)",
+            tblDetailsTxt: "লেনদেনের বিবরণ",
+            lblTotalDep: "মোট জমা:",
+            lblAccName: "একাউন্ট নাম:",
+            lblBankName: "ব্যাংক নাম:",
+            lblAccNum: "একাউন্ট নম্বর:",
+            pmtTitle: "সম্পত্তির পরিশোধিত মূল্যের বিবরণ",
+            thReason: "কারণ / বিবরণ",
+            lblTotalPaid: "সর্বমোট পরিশোধ (BDT):",
+            
+            // Info Box Specific Labels
+            lblShareholder: "শেয়ারহোল্ডারের নাম:",
+            lblAllocatedShares: "বরাদ্দকৃত শেয়ার:",
+            lblTargetAmount: "নির্ধারিত মূল্য:",
+            lblTotalDeposited: "সর্বমোট জমা:",
+            lblRemainingDue: "অবশিষ্ট বকেয়া / অবস্থা:",
+            lblStatementDate: "স্টেটমেন্ট তারিখ:",
+            
+            ftrSocial: "আমাদের সামাজিক মাধ্যম:",
+            ftrTag: "এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন",
+            ftrDev: "পোর্টাল তৈরিতে: বন্ধুত্বের স্মারক সমিতি"
+        },
+        en: {
+            loading: "Processing data, please wait...",
+            hdrTitle: "Childhood Friends Association",
+            hdrEst: "Established: 2026",
+            hdrSlogan: "Strong foundation of friendship, prosperity in business",
+            welcomeHeading: "Welcome",
+            userLocDetect: "🌍 Detecting your country...",
+            userLocFail: "🌍 Country could not be detected",
+            marqueePrefix: "Current Balance in Association Fund:",
+            marqueeSuffix: "BDT only",
+            lblMemberSelect: "USER/Member (No password required)",
+            optDefault: "Select your file",
+            optAdmin: "Admin",
+            optPayment: "Paid Property Value Details",
+            lblAdminPass: "Enter Admin Password",
+            adminPassHolder: "Enter password",
+            btnView: "View File",
+            btnAdminLogin: "Admin Login",
+            errorMsg: "Please enter the correct password for Admin login!",
+            summaryTitle: "📊 Summary of Members' Accounts at a Glance (Live)",
+            thName: "Member Name",
+            thShare: "Share(s)",
+            thTarget: "Target Value (BDT)",
+            thTotal: "Total Deposited (BDT)",
+            thStatus: "Status / Due (BDT)",
+            dueLabel: "(Due)",
+            paidLabel: "(Paid)",
+            grandTotal: "Grand Total",
+            statusView: "👁️ Viewer Mode Active",
+            statusAdmin: "⚙️ Admin Mode Active",
+            btnHome: "Homepage",
+            btnPrint: "🖨️ Print",
+            adminHeaderMember: "Admin Data Entry Panel (Member Deposit)",
+            adminHeaderProperty: "Admin Data Entry Panel (Paid Property Value)",
+            grpMembers: "Member Pages (1-9)",
+            grpOthers: "Other Pages",
+            btnSaveData: "Save Data",
+            noData: "- No data found -",
+            
+            // All Pages & Dynamic Tables Text
+            tblDate: "Tran. Date",
+            tblRef: "Ref. No",
+            tblSender: "Sender Bank",
+            tblReceiver: "Receiver Bank",
+            tblMonth: "Month/Year",
+            tblAmount: "Amount (BDT)",
+            tblDetailsTxt: "Transaction Details",
+            lblTotalDep: "Total Deposited:",
+            lblAccName: "Account Name:",
+            lblBankName: "Bank Name:",
+            lblAccNum: "Account Number:",
+            pmtTitle: "Payment Statement - Transaction Details",
+            thReason: "Reason / Title",
+            lblTotalPaid: "Total Paid (BDT):",
+            
+            // Info Box Specific Labels
+            lblShareholder: "Shareholder Name:",
+            lblAllocatedShares: "Allocated Shares:",
+            lblTargetAmount: "Target Amount:",
+            lblTotalDeposited: "Total Deposited:",
+            lblRemainingDue: "Remaining Due / Status:",
+            lblStatementDate: "Statement Date:",
+            
+            ftrSocial: "Our Social Community:",
+            ftrTag: "It's a friends collaboration financial organization",
+            ftrDev: "Portal Developed for: Childhood Friends Association"
+        }
     };
 
     let db = {
         transactions: { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] },
         payments: []
     };
+
+    function switchLanguage(lang) {
+        currentLang = lang;
+
+        document.getElementById("btnBN").classList.toggle("active", lang === 'bn');
+        document.getElementById("btnEN").classList.toggle("active", lang === 'en');
+
+        const t = langText[lang];
+
+        // Global Header & Banner
+        document.getElementById("loadingTxt").textContent = t.loading;
+        document.getElementById("hdrTitle").textContent = t.hdrTitle;
+        document.getElementById("hdrEst").textContent = t.hdrEst;
+        document.getElementById("hdrSlogan").textContent = t.hdrSlogan;
+        document.getElementById("welcomeHeading").textContent = t.welcomeHeading;
+        document.getElementById("marqueePrefix").textContent = t.marqueePrefix;
+        document.getElementById("marqueeSuffix").textContent = t.marqueeSuffix;
+
+        // Login Box & Dropdown Options
+        document.getElementById("lblMemberSelect").textContent = t.lblMemberSelect;
+        document.getElementById("optDefault").textContent = t.optDefault;
+        document.getElementById("optAdmin").textContent = t.optAdmin;
+        document.getElementById("optAwal").textContent = memberNames[lang].awal;
+        document.getElementById("optArif").textContent = memberNames[lang].arif;
+        document.getElementById("optBabor").textContent = memberNames[lang].babor;
+        document.getElementById("optBabul").textContent = memberNames[lang].babul;
+        document.getElementById("optJasim").textContent = memberNames[lang].jasim;
+        document.getElementById("optMain").textContent = memberNames[lang].main;
+        document.getElementById("optSaiem").textContent = memberNames[lang].saiem;
+        document.getElementById("optSelim").textContent = memberNames[lang].selim;
+        document.getElementById("optSanawer").textContent = memberNames[lang].sanawer;
+        document.getElementById("optPayment").textContent = t.optPayment;
+
+        document.getElementById("lblAdminPass").textContent = t.lblAdminPass;
+        document.getElementById("adminPasscode").placeholder = t.adminPassHolder;
+        document.getElementById("viewBtn").textContent = t.btnView;
+        document.getElementById("adminLoginBtn").textContent = t.btnAdminLogin;
+        document.getElementById("errorMsg").textContent = t.errorMsg;
+
+        // Front Summary Dashboard Table
+        document.getElementById("summaryTitle").textContent = t.summaryTitle;
+        document.getElementById("thName").textContent = t.thName;
+        document.getElementById("thShare").textContent = t.thShare;
+        document.getElementById("thTarget").textContent = t.thTarget;
+        document.getElementById("thTotal").textContent = t.thTotal;
+        document.getElementById("thStatus").textContent = t.thStatus;
+
+        // Navigation Controls
+        document.getElementById("btnHome").textContent = t.btnHome;
+        document.getElementById("btnPrint").textContent = t.btnPrint;
+
+        // Admin Panel Labels
+        document.getElementById("grpMembers").label = t.grpMembers;
+        document.getElementById("grpOthers").label = t.grpOthers;
+        document.getElementById("btnSaveData").textContent = t.btnSaveData;
+
+        // All Member & Payment Table Headers
+        document.querySelectorAll(".tblHeaderDate").forEach(el => el.textContent = t.tblDate);
+        document.querySelectorAll(".tblHeaderRef").forEach(el => el.textContent = t.tblRef);
+        document.querySelectorAll(".tblHeaderSender").forEach(el => el.textContent = t.tblSender);
+        document.querySelectorAll(".tblHeaderReceiver").forEach(el => el.textContent = t.tblReceiver);
+        document.querySelectorAll(".tblHeaderMonth").forEach(el => el.textContent = t.tblMonth);
+        document.querySelectorAll(".tblHeaderAmount").forEach(el => el.textContent = t.tblAmount);
+        document.querySelectorAll(".titleDetailsTxt").forEach(el => el.textContent = t.tblDetailsTxt);
+        document.querySelectorAll(".lblTotalDep").forEach(el => el.textContent = t.lblTotalDep);
+
+        // Payment Section Labels
+        document.getElementById("lblAccName").textContent = t.lblAccName;
+        document.getElementById("lblBankName").textContent = t.lblBankName;
+        document.getElementById("lblAccNum").textContent = t.lblAccNum;
+        document.getElementById("pmtTitle").textContent = t.pmtTitle;
+        document.getElementById("thReason").textContent = t.thReason;
+        document.getElementById("lblTotalPaid").textContent = t.lblTotalPaid;
+
+        // Footer Text
+        document.getElementById("ftrSocial").textContent = t.ftrSocial;
+        document.getElementById("ftrTag").textContent = t.ftrTag;
+        document.getElementById("ftrDev").textContent = t.ftrDev;
+
+        adjustAdminFormFields();
+        renderAllData();
+        renderFrontCalendar();
+    }
 
     function showLoading(show) {
         document.getElementById('loadingOverlay').style.display = show ? 'block' : 'none';
@@ -735,14 +1003,16 @@
         const monthInput = document.getElementById("inputMonth");
         const yearInput = document.getElementById("inputYear");
 
+        const t = langText[currentLang];
+
         if (target === "sec-payment") {
-            panelHeader.textContent = "এডমিন ডাটা এন্ট্রি প্যানেল (সম্পত্তির পরিশোধিত মূল্য)";
+            panelHeader.textContent = t.adminHeaderProperty;
             bankFromInput.placeholder = "Sender Bank";
             bankToInput.placeholder = "Receiver Bank";
-            monthInput.placeholder = "Reason / Title";
+            monthInput.placeholder = currentLang === 'bn' ? "কারণ / বিবরণ" : "Reason / Title";
             yearInput.style.display = "none";
         } else {
-            panelHeader.textContent = "এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)";
+            panelHeader.textContent = t.adminHeaderMember;
             bankFromInput.placeholder = "Sender Bank";
             bankToInput.placeholder = "Receiver Bank";
             monthInput.placeholder = "Month (e.g. January)";
@@ -819,7 +1089,7 @@
         const adminPass = document.getElementById("adminPasscode").value;
 
         if (!selectedTarget) {
-            alert("অনুগ্রহ করে একটি ফাইল নির্বাচন করুন!");
+            alert(currentLang === 'bn' ? "অনুগ্রহ করে একটি ফাইল নির্বাচন করুন!" : "Please select a file!");
             return;
         }
 
@@ -846,7 +1116,8 @@
         errorMsg.style.display = "none";
 
         document.getElementById("universalAdminPanel").style.display = isAdminMode ? "block" : "none";
-        document.getElementById("statusNotice").textContent = isAdminMode ? "⚙️ এডমিন (Admin Mode) সক্রিয় আছে" : "👁️ ভিউয়ার মোড সক্রিয়";
+        const t = langText[currentLang];
+        document.getElementById("statusNotice").textContent = isAdminMode ? t.statusAdmin : t.statusView;
         
         adjustAdminFormFields();
     }
@@ -896,17 +1167,17 @@
                 body: JSON.stringify(payload)
             })
             .then(() => {
-                alert("গুগল শিটে সফলভাবে ডাটা সেভ হয়েছে!");
+                alert(currentLang === 'bn' ? "গুগল শিটে সফলভাবে ডাটা সেভ হয়েছে!" : "Data saved successfully to Google Sheet!");
                 showLoading(false);
                 fetchFromGoogleSheet();
             })
             .catch(err => {
-                alert("ডাটা সেভ করতে সমস্যা হয়েছে!");
+                alert(currentLang === 'bn' ? "ডাটা সেভ করতে সমস্যা হয়েছে!" : "Error saving data!");
                 console.error(err);
                 showLoading(false);
             });
         } else {
-            alert("অনুগ্রহ করে Google Apps Script URL যুক্ত করুন!");
+            alert(currentLang === 'bn' ? "অনুগ্রহ করে Google Apps Script URL যুক্ত করুন!" : "Please attach Google Apps Script URL!");
         }
 
         document.getElementById("inputAmount").value = "";
@@ -922,10 +1193,11 @@
         let grandTotalTarget = 0;
         let grandTotalDue = 0;
 
+        const t = langText[currentLang];
         const frontBody = document.getElementById("frontSummaryBody");
         frontBody.innerHTML = "";
 
-        const todayStr = new Date().toLocaleDateString('en-GB', { year: 'numeric', month: 'long', day: 'numeric' });
+        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'en-GB' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
         memberKeys.forEach(key => {
             const list = db.transactions[key] || [];
@@ -937,7 +1209,6 @@
                 list.forEach((item) => {
                     total += item.amount;
                     
-                    // Month & Year Merge Logic
                     let monthYearStr = "-";
                     if (item.month && item.month !== "-" && item.year && item.year !== "-") {
                         monthYearStr = `${item.month}/${item.year}`;
@@ -960,7 +1231,7 @@
                 });
 
                 if (list.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="6">- কোন তথ্য পাওয়া যায়নি -</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
                 }
             }
 
@@ -968,15 +1239,16 @@
             const targetAmount = shares * PER_SHARE_PRICE;
             const dueAmount = targetAmount - total;
 
+            // Updating Individual Info Boxes per language dynamically
             const infoBox = document.getElementById(`info-${key}`);
             if (infoBox) {
                 infoBox.innerHTML = `
-                    <p><strong>Shareholder Name:</strong> ${memberEnglishNames[key]}</p>
-                    <p><strong>Allocated Shares:</strong> ${shares} Share(s)</p>
-                    <p><strong>Target Amount:</strong> ${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
-                    <p><strong>Total Deposited:</strong> ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
-                    <p><strong>Remaining Due / Status:</strong> <span style="color: ${dueAmount > 0 ? '#d9534f' : '#28a745'}; font-weight: bold;">${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</span></p>
-                    <p><strong>Statement Date:</strong> ${todayStr}</p>
+                    <p><strong>${t.lblShareholder}</strong> ${memberNames[currentLang][key]}</p>
+                    <p><strong>${t.lblAllocatedShares}</strong> ${shares} Share(s)</p>
+                    <p><strong>${t.lblTargetAmount}</strong> ${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
+                    <p><strong>${t.lblTotalDeposited}</strong> ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
+                    <p><strong>${t.lblRemainingDue}</strong> <span style="color: ${dueAmount > 0 ? '#d9534f' : '#28a745'}; font-weight: bold;">${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</span></p>
+                    <p><strong>${t.lblStatementDate}</strong> ${todayStr}</p>
                 `;
             }
 
@@ -989,12 +1261,12 @@
 
             frontBody.innerHTML += `
                 <tr>
-                    <td>${memberNames[key]}</td>
+                    <td>${memberNames[currentLang][key]}</td>
                     <td>${shares}</td>
                     <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td>${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td style="color: ${dueAmount > 0 ? '#d9534f' : '#28a745'}; font-weight: bold;">
-                        ${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${dueAmount > 0 ? '(বকেয়া)' : '(পরিশোধিত)'}
+                        ${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${dueAmount > 0 ? t.dueLabel : t.paidLabel}
                     </td>
                 </tr>
             `;
@@ -1002,7 +1274,7 @@
 
         frontBody.innerHTML += `
             <tr style="font-weight: bold; background-color: #e2e8f0;">
-                <td>সর্বমোট</td>
+                <td>${t.grandTotal}</td>
                 <td>${TOTAL_SHARES}</td>
                 <td>${grandTotalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                 <td>${grandTotalDeposited.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
@@ -1021,6 +1293,8 @@
         tbody.innerHTML = "";
         let payTotal = 0;
 
+        const t = langText[currentLang];
+
         db.payments.forEach(item => {
             payTotal += item.amount;
             tbody.innerHTML += `
@@ -1036,7 +1310,7 @@
         });
 
         if (db.payments.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6">- কোন তথ্য পাওয়া যায়নি -</td></tr>`;
+            tbody.innerHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
         }
 
         document.getElementById("paymentTotal").textContent = payTotal.toFixed(2);
@@ -1046,7 +1320,7 @@
     function updateLiveClock() {
         const now = new Date();
         const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-        document.getElementById('liveClock').textContent = now.toLocaleDateString('en-GB', options);
+        document.getElementById('liveClock').textContent = now.toLocaleDateString(currentLang === 'bn' ? 'en-GB' : 'en-US', options);
     }
 
     let currentCalDate = new Date();
@@ -1094,7 +1368,7 @@
             .then(data => {
                 if (data.country_name) document.getElementById('userLocation').textContent = `🌍 ${data.country_name} (${data.city || ''})`;
             }).catch(() => {
-                document.getElementById('userLocation').textContent = "🌍 দেশ শনাক্ত করা যায়নি";
+                document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
             });
     });
 </script>
