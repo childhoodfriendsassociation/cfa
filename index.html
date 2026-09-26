@@ -514,11 +514,11 @@
         <button class="print-btn" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
     </div>
 
-    <!-- Universal Admin Entry Panel -->
+    <!-- Dynamic Admin Entry Panel -->
     <div class="admin-entry-panel" id="universalAdminPanel">
-        <h4>এডমিন ডাটা এন্ট্রি প্যানেল (Sync Enabled)</h4>
+        <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
         <div class="admin-entry-grid">
-            <select id="targetMemberSelect">
+            <select id="targetMemberSelect" onchange="adjustAdminFormFields()">
                 <optgroup label="সদস্যের পেজসমূহ (১-৯)">
                     <option value="awal">আবদুল আউয়াল</option>
                     <option value="arif">আরিফ হোসেন</option>
@@ -535,23 +535,23 @@
                 </optgroup>
             </select>
             <input type="date" id="inputDate">
-            <input type="text" id="inputRef" placeholder="Ref. No / Sender">
-            <input type="text" id="inputBankFrom" placeholder="Bank From">
-            <input type="text" id="inputBankTo" placeholder="Bank To / Acc No">
+            <input type="text" id="inputRef" placeholder="Ref. No / ID">
+            <input type="text" id="inputBankFrom" placeholder="Sender Bank">
+            <input type="text" id="inputBankTo" placeholder="Receiver Bank">
             <input type="text" id="inputMonth" placeholder="Month (e.g. January)">
-            <input type="text" id="inputYear" placeholder="Year">
+            <input type="text" id="inputYear" placeholder="Year (e.g. 2026)">
             <input type="number" id="inputAmount" placeholder="Amount (BDT)">
         </div>
         <button class="admin-save-btn" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
     </div>
 
-    <!-- Member Sections -->
+    <!-- Member Sections (Updated Table Headers) -->
     <div id="sec-awal" class="section-block">
         <div class="info-box" id="info-awal"></div>
         <h3 class="section-title">Abdul Awal - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-awal"></tbody>
             </table>
         </div>
@@ -563,7 +563,7 @@
         <h3 class="section-title">Arif Hossain - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-arif"></tbody>
             </table>
         </div>
@@ -575,7 +575,7 @@
         <h3 class="section-title">Babor Patwary - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-babor"></tbody>
             </table>
         </div>
@@ -587,7 +587,7 @@
         <h3 class="section-title">Babul Hossain - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-babul"></tbody>
             </table>
         </div>
@@ -599,7 +599,7 @@
         <h3 class="section-title">Jasim Uddin - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-jasim"></tbody>
             </table>
         </div>
@@ -611,7 +611,7 @@
         <h3 class="section-title">Main Uddin - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-main"></tbody>
             </table>
         </div>
@@ -623,7 +623,7 @@
         <h3 class="section-title">Md. Saiem - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-saiem"></tbody>
             </table>
         </div>
@@ -635,7 +635,7 @@
         <h3 class="section-title">Selim Patwary - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-selim"></tbody>
             </table>
         </div>
@@ -647,7 +647,7 @@
         <h3 class="section-title">Sanawer Quder - Transaction Details</h3>
         <div class="table-responsive">
             <table>
-                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Amount</th><th>Bank From</th><th>Bank To</th><th>Month</th><th>Year</th><th>Amount (BDT)</th></tr></thead>
+                <thead><tr><th>Tran. Date</th><th>Ref. No</th><th>Sender Bank</th><th>Receiver Bank</th><th>Month/Year</th><th>Amount (BDT)</th></tr></thead>
                 <tbody id="table-sanawer"></tbody>
             </table>
         </div>
@@ -665,7 +665,14 @@
         <div class="table-responsive">
             <table>
                 <thead>
-                    <tr><th>Tran. Date</th><th>Ref. No (ID)</th><th>Sender Name</th><th>Sender Bank</th><th>Account No</th><th>Amount (BDT)</th></tr>
+                    <tr>
+                        <th>Tran. Date</th>
+                        <th>Ref. No (ID)</th>
+                        <th>Sender Bank</th>
+                        <th>Receiver Bank</th>
+                        <th>Reason / Title</th>
+                        <th>Amount (BDT)</th>
+                    </tr>
                 </thead>
                 <tbody id="table-payment"></tbody>
             </table>
@@ -684,7 +691,6 @@
 </div>
 
 <script>
-    // ⚠️ গুগল অ্যাপস স্ক্রিপ্ট ওয়েব অ্যাপ ইউআরএল
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwNsr77j5I4RqOYnRThlMYyWk5g6C_L514x9aRciEpXhd6dO4XmFUnqu-uJ3nFA_ml2/exec";
 
     const ADMIN_PASSWORD = "2925";
@@ -693,15 +699,14 @@
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
     
-    // শেয়ার ডিস্ট্রিবিউশন (মোট ১২ শেয়ার)
     const memberShares = {
         awal: 1, arif: 1, babor: 2, babul: 1,
         jasim: 2, main: 1, saiem: 1, selim: 1, sanawer: 2
     };
 
-    const TOTAL_LAND_PRICE = 9100000; // ৯১ লক্ষ টাকা
-    const TOTAL_SHARES = 12; // মোট ১২ শেয়ার
-    const PER_SHARE_PRICE = TOTAL_LAND_PRICE / TOTAL_SHARES; // প্রতি ১ শেয়ারের মূল্য
+    const TOTAL_LAND_PRICE = 9100000;
+    const TOTAL_SHARES = 12;
+    const PER_SHARE_PRICE = TOTAL_LAND_PRICE / TOTAL_SHARES;
 
     const memberNames = {
         awal: "আবদুল আউয়াল", arif: "আরিফ হোসেন", babor: "বাবর পাটোয়ারী", babul: "বাবুল হোসেন",
@@ -722,12 +727,32 @@
         document.getElementById('loadingOverlay').style.display = show ? 'block' : 'none';
     }
 
-    // Google Sheet থেকে সরাসরি ডাটা লোড
-    function fetchFromGoogleSheet() {
-        if (!SCRIPT_URL) {
-            console.log("Google Apps Script URL Not Configured Yet.");
-            return;
+    function adjustAdminFormFields() {
+        const target = document.getElementById("targetMemberSelect").value;
+        const panelHeader = document.getElementById("adminPanelHeader");
+        const bankFromInput = document.getElementById("inputBankFrom");
+        const bankToInput = document.getElementById("inputBankTo");
+        const monthInput = document.getElementById("inputMonth");
+        const yearInput = document.getElementById("inputYear");
+
+        if (target === "sec-payment") {
+            panelHeader.textContent = "এডমিন ডাটা এন্ট্রি প্যানেল (সম্পত্তির পরিশোধিত মূল্য)";
+            bankFromInput.placeholder = "Sender Bank";
+            bankToInput.placeholder = "Receiver Bank";
+            monthInput.placeholder = "Reason / Title";
+            yearInput.style.display = "none";
+        } else {
+            panelHeader.textContent = "এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)";
+            bankFromInput.placeholder = "Sender Bank";
+            bankToInput.placeholder = "Receiver Bank";
+            monthInput.placeholder = "Month (e.g. January)";
+            yearInput.placeholder = "Year (e.g. 2026)";
+            yearInput.style.display = "inline-block";
         }
+    }
+
+    function fetchFromGoogleSheet() {
+        if (!SCRIPT_URL) return;
 
         showLoading(true);
         fetch(SCRIPT_URL)
@@ -744,9 +769,9 @@
                         db.payments.push({
                             date: item.date,
                             ref: item.ref,
-                            sender: item.sender,
-                            bank: item.bank,
-                            acc: item.acc,
+                            senderBank: item.senderBank || item.bankFrom,
+                            receiverBank: item.receiverBank || item.bankTo,
+                            reasonTitle: item.reasonTitle || item.month,
                             amount: amount
                         });
                     } else if (memberKeys.includes(target)) {
@@ -822,6 +847,8 @@
 
         document.getElementById("universalAdminPanel").style.display = isAdminMode ? "block" : "none";
         document.getElementById("statusNotice").textContent = isAdminMode ? "⚙️ এডমিন (Admin Mode) সক্রিয় আছে" : "👁️ ভিউয়ার মোড সক্রিয়";
+        
+        adjustAdminFormFields();
     }
 
     function lockDashboard() {
@@ -837,7 +864,6 @@
         document.getElementById("universalAdminPanel").style.display = "none";
     }
 
-    // Google Sheet-এ নতুন ইনপুট পাঠানো
     function submitNewTransaction() {
         const target = document.getElementById("targetMemberSelect").value;
         const date = document.getElementById("inputDate").value || "-";
@@ -848,19 +874,18 @@
         const year = document.getElementById("inputYear").value || "-";
         const amount = parseFloat(document.getElementById("inputAmount").value) || 0;
 
-        const payload = {
-            target,
-            date,
-            ref,
-            bankFrom,
-            bankTo,
-            month,
-            year,
-            amount,
-            sender: bankFrom,
-            bank: bankTo,
-            acc: month
-        };
+        let payload = { target, date, ref, amount };
+
+        if (target === "sec-payment") {
+            payload.senderBank = bankFrom;
+            payload.receiverBank = bankTo;
+            payload.reasonTitle = month;
+        } else {
+            payload.bankFrom = bankFrom;
+            payload.bankTo = bankTo;
+            payload.month = month;
+            payload.year = year;
+        }
 
         if (SCRIPT_URL) {
             showLoading(true);
@@ -886,6 +911,10 @@
 
         document.getElementById("inputAmount").value = "";
         document.getElementById("inputRef").value = "";
+        document.getElementById("inputBankFrom").value = "";
+        document.getElementById("inputBankTo").value = "";
+        document.getElementById("inputMonth").value = "";
+        document.getElementById("inputYear").value = "";
     }
 
     function renderAllData() {
@@ -907,22 +936,31 @@
                 tbody.innerHTML = "";
                 list.forEach((item) => {
                     total += item.amount;
+                    
+                    // Month & Year Merge Logic
+                    let monthYearStr = "-";
+                    if (item.month && item.month !== "-" && item.year && item.year !== "-") {
+                        monthYearStr = `${item.month}/${item.year}`;
+                    } else if (item.month && item.month !== "-") {
+                        monthYearStr = item.month;
+                    } else if (item.year && item.year !== "-") {
+                        monthYearStr = item.year;
+                    }
+
                     tbody.innerHTML += `
                         <tr>
                             <td>${item.date}</td>
                             <td>${item.ref}</td>
-                            <td>${item.amount.toFixed(2)}</td>
                             <td>${item.bankFrom}</td>
                             <td>${item.bankTo}</td>
-                            <td>${item.month}</td>
-                            <td>${item.year}</td>
+                            <td>${monthYearStr}</td>
                             <td>${item.amount.toFixed(2)} BDT</td>
                         </tr>
                     `;
                 });
 
                 if (list.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="8">- কোন তথ্য পাওয়া যায়নি -</td></tr>`;
+                    tbody.innerHTML = `<tr><td colspan="6">- কোন তথ্য পাওয়া যায়নি -</td></tr>`;
                 }
             }
 
@@ -930,7 +968,6 @@
             const targetAmount = shares * PER_SHARE_PRICE;
             const dueAmount = targetAmount - total;
 
-            // মেম্বারদের পেজের ইনফো বক্স আপডেট
             const infoBox = document.getElementById(`info-${key}`);
             if (infoBox) {
                 infoBox.innerHTML = `
@@ -990,9 +1027,9 @@
                 <tr>
                     <td>${item.date}</td>
                     <td>${item.ref}</td>
-                    <td>${item.sender}</td>
-                    <td>${item.bank}</td>
-                    <td>${item.acc}</td>
+                    <td>${item.senderBank}</td>
+                    <td>${item.receiverBank}</td>
+                    <td>${item.reasonTitle}</td>
                     <td>${item.amount.toFixed(2)}</td>
                 </tr>
             `;
