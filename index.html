@@ -1122,37 +1122,45 @@
         document.getElementById("universalAdminPanel").style.display = "none";
     }
 
-    // UPDATE: Timezone ও Time আপডেট সহ নতুন ডাটা সাবমিট ফাংশন
+    // UPDATE: খালি ঘর থাকলে ডাটা সেভ হতে বাধা দেওয়ার ফর্ম ভ্যালিডেশন
     function submitNewTransaction() {
         const target = document.getElementById("targetMemberSelect").value;
-        const rawDate = document.getElementById("inputDate").value;
-        const ref = document.getElementById("inputRef").value || "-";
-        const bankFrom = document.getElementById("inputBankFrom").value || "-";
-        const bankTo = document.getElementById("inputBankTo").value || "-";
-        const month = document.getElementById("inputMonth").value || "-";
-        
-        const currentYearStr = new Date().getFullYear().toString();
-        const year = document.getElementById("inputYear").value.trim() || currentYearStr;
-        const amount = parseFloat(document.getElementById("inputAmount").value) || 0;
+        const rawDate = document.getElementById("inputDate").value.trim();
+        const ref = document.getElementById("inputRef").value.trim();
+        const bankFrom = document.getElementById("inputBankFrom").value.trim();
+        const bankTo = document.getElementById("inputBankTo").value.trim();
+        const month = document.getElementById("inputMonth").value.trim();
+        const year = document.getElementById("inputYear").value.trim();
+        const rawAmount = document.getElementById("inputAmount").value.trim();
+
+        // ঘর খালি আছে কিনা যাচাই করা (Form Validation)
+        if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
+            alert(currentLang === 'bn' 
+                ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" 
+                : "⚠️ Please fill in all fields! No field can be left empty.");
+            return; // এখানেই ডাটা সাবমিশন বন্ধ হয়ে যাবে
+        }
+
+        const amount = parseFloat(rawAmount) || 0;
+        if (amount <= 0) {
+            alert(currentLang === 'bn' 
+                ? "⚠️ টাকার পরিমাণ অবশ্যই ০ এর চেয়ে বেশি হতে হবে!" 
+                : "⚠️ Amount must be greater than zero!");
+            return;
+        }
 
         // সময় ক্যাপচার করার জন্য
         const now = new Date();
         const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
 
         // ১ দিন পিছিয়ে যাওয়া বন্ধ করতে তারিখ সঠিকভাবে স্ট্রিং হিসাবে তৈরি
-        let formattedDateTime = "-";
-        if (rawDate) {
-            const dateParts = rawDate.split("-"); // YYYY-MM-DD
-            const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // DD/MM/YYYY
-            formattedDateTime = `${formattedDate} ${currentTime}`;
-        } else {
-            const todayDate = now.toLocaleDateString('en-GB'); // DD/MM/YYYY
-            formattedDateTime = `${todayDate} ${currentTime}`;
-        }
+        const dateParts = rawDate.split("-"); // YYYY-MM-DD
+        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // DD/MM/YYYY
+        const formattedDateTime = `${formattedDate} ${currentTime}`;
 
         let payload = {
             target: target,
-            date: formattedDateTime, // তারিখের সাথে সময় যুক্ত করে পাঠানো হলো
+            date: formattedDateTime,
             ref: ref,
             amount: amount,
             bankFrom: bankFrom,
