@@ -1175,7 +1175,7 @@
         document.getElementById("universalAdminPanel").style.display = "none";
     }
 
-    // ব্যাকএন্ডে যাচাইসহ ডাটা সেভ
+    // নতুন ডাটা সেভ করার সময় পাসওয়ার্ড পুনঃযাচাইকরণ
     function submitNewTransaction() {
         const target = sanitizeInput(document.getElementById("targetMemberSelect").value);
         const rawDate = sanitizeInput(document.getElementById("inputDate").value.trim());
@@ -1197,6 +1197,19 @@
             return;
         }
 
+        // ডাটা সেভ করার পূর্বে পুনরায় এডমিন পাসওয়ার্ড সিকিউরিটি চেক
+        const promptMsg = currentLang === 'bn' ? "ডাটা সেভ করতে এডমিন পাসওয়ার্ড লিখুন:" : "Enter Admin Password to save data:";
+        const enteredPass = prompt(promptMsg);
+
+        if (enteredPass === null) {
+            return; // ব্যবহারকারী বাতিল করলে প্রসেস থেমে যাবে
+        }
+
+        if (enteredPass !== globalAdminToken) {
+            alert(currentLang === 'bn' ? "❌ ভুল পাসওয়ার্ড! ডাটা সেভ করা সম্ভব হয়নি।" : "❌ Incorrect Password! Data save failed.");
+            return;
+        }
+
         const now = new Date();
         const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
 
@@ -1205,7 +1218,7 @@
 
         let payload = {
             action: "save_transaction",
-            adminPassword: globalAdminToken, // সার্ভারে যাচাই হবে
+            adminPassword: enteredPass, // প্রম্পটে ইনপুট করা পাসওয়ার্ড ব্যাকএন্ডে সাবমিট হচ্ছে
             target: target,
             date: formattedDateTime,
             ref: ref,
