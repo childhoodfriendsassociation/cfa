@@ -425,7 +425,6 @@
             font-weight: bold;
         }
 
-        /* Compact Complaint Box Styling */
         .complaint-box {
             background: #ffffff;
             border: 1px solid #bce8f1;
@@ -812,11 +811,10 @@
 </div>
 
 <script>
-    // আপনার গুগল অ্যাপস স্ক্রিপ্ট ইউআরএল
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJTtTE3XYTGjw5nADnZDbPumt2DKuVLGx4BzWB5_yOSZPfMVb9m7GyINiBeRYaAwQ/exec";
 
     let isAdminMode = false;
-    let globalAdminToken = ""; // পাসওয়ার্ড ক্ষণস্থায়ী সেশন
+    let globalAdminToken = ""; 
     let activePageId = "";
     let currentLang = 'bn';
 
@@ -1111,11 +1109,12 @@
         }
     }
 
+    // Google Sheet Data Fetching Optimization
     function fetchFromGoogleSheet() {
-        if (!SCRIPT_URL) return;
+        if (!SCRIPT_URL) return Promise.resolve();
 
         showLoading(true);
-        fetch(SCRIPT_URL)
+        return fetch(SCRIPT_URL)
             .then(res => res.json())
             .then(data => {
                 db.transactions = { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] };
@@ -1318,6 +1317,7 @@
         }
     }
 
+    // Performance Optimized Rendering
     function renderAllData() {
         let grandTotalDeposited = 0;
         let grandTotalTarget = 0;
@@ -1325,7 +1325,7 @@
 
         const t = langText[currentLang];
         const frontBody = document.getElementById("frontSummaryBody");
-        frontBody.innerHTML = "";
+        let frontBodyHTML = "";
 
         const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'en-GB' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
 
@@ -1335,7 +1335,7 @@
 
             const tbody = document.getElementById(`table-${key}`);
             if (tbody) {
-                tbody.innerHTML = "";
+                let tbodyHTML = "";
                 list.forEach((item) => {
                     total += item.amount;
                     
@@ -1348,7 +1348,7 @@
                         monthYearStr = item.year;
                     }
 
-                    tbody.innerHTML += `
+                    tbodyHTML += `
                         <tr>
                             <td>${item.date}</td>
                             <td>${item.ref}</td>
@@ -1361,8 +1361,9 @@
                 });
 
                 if (list.length === 0) {
-                    tbody.innerHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
+                    tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
                 }
+                tbody.innerHTML = tbodyHTML;
             }
 
             const shares = memberShares[key];
@@ -1388,7 +1389,7 @@
             grandTotalTarget += targetAmount;
             grandTotalDue += dueAmount;
 
-            frontBody.innerHTML += `
+            frontBodyHTML += `
                 <tr>
                     <td>${memberNames[currentLang][key]}</td>
                     <td>${shares}</td>
@@ -1401,7 +1402,7 @@
             `;
         });
 
-        frontBody.innerHTML += `
+        frontBodyHTML += `
             <tr style="font-weight: bold; background-color: #e2e8f0;">
                 <td>${t.grandTotal}</td>
                 <td>${TOTAL_SHARES}</td>
@@ -1411,6 +1412,8 @@
             </tr>
         `;
 
+        frontBody.innerHTML = frontBodyHTML;
+
         const totalPayment = renderPaymentStatement();
         const netBalance = grandTotalDeposited - totalPayment;
         document.getElementById("marqueeTotal").textContent = netBalance.toFixed(2);
@@ -1419,14 +1422,14 @@
     function renderPaymentStatement() {
         const tbody = document.getElementById("table-payment");
         if (!tbody) return 0;
-        tbody.innerHTML = "";
-        let payTotal = 0;
 
+        let payTotal = 0;
+        let tbodyHTML = "";
         const t = langText[currentLang];
 
         db.payments.forEach(item => {
             payTotal += item.amount;
-            tbody.innerHTML += `
+            tbodyHTML += `
                 <tr>
                     <td>${item.date}</td>
                     <td>${item.ref}</td>
@@ -1439,8 +1442,9 @@
         });
 
         if (db.payments.length === 0) {
-            tbody.innerHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
+            tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
         }
+        tbody.innerHTML = tbodyHTML;
 
         const remainingLandDue = TOTAL_LAND_PRICE - payTotal;
         document.getElementById("valLandPrice").textContent = TOTAL_LAND_PRICE.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
@@ -1465,25 +1469,21 @@
 
         document.getElementById('calendarTitle').textContent = `${monthNames[month]} ${year}`;
         const daysContainer = document.getElementById('calendarDays');
-        daysContainer.innerHTML = '';
-
+        
+        let daysHTML = '';
         const firstDayIndex = new Date(year, month, 1).getDay();
         const lastDay = new Date(year, month + 1, 0).getDate();
         const today = new Date();
 
         for (let i = 0; i < firstDayIndex; i++) {
-            daysContainer.appendChild(document.createElement('div'));
+            daysHTML += '<div></div>';
         }
 
         for (let day = 1; day <= lastDay; day++) {
-            const dayDiv = document.createElement('div');
-            dayDiv.classList.add('calendar-day');
-            dayDiv.textContent = day;
-            if (day === today.getDate() && month === today.getMonth() && year === today.getFullYear()) {
-                dayDiv.classList.add('today');
-            }
-            daysContainer.appendChild(dayDiv);
+            const isToday = (day === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+            daysHTML += `<div class="calendar-day ${isToday ? 'today' : ''}">${day}</div>`;
         }
+        daysContainer.innerHTML = daysHTML;
     }
 
     function changeMonth(step) {
@@ -1498,17 +1498,32 @@
         }
     });
 
+    // Fast Non-blocking Initialization
     window.addEventListener('DOMContentLoaded', () => {
-        fetchFromGoogleSheet();
         updateLiveClock();
         setInterval(updateLiveClock, 1000);
         renderFrontCalendar();
 
-        fetch('https://ipapi.co/json/')
-            .then(res => res.json())
+        // 1. Fetch Google Sheet Data
+        fetchFromGoogleSheet();
+
+        // 2. Fetch IP with 2s Timeout to Avoid Page Lag
+        const fetchLocation = new Promise((resolve, reject) => {
+            fetch('https://ipapi.co/json/')
+                .then(res => res.json())
+                .then(resolve)
+                .catch(reject);
+        });
+
+        const timeout = new Promise((_, reject) => setTimeout(() => reject('timeout'), 2000));
+
+        Promise.race([fetchLocation, timeout])
             .then(data => {
-                if (data.country_name) document.getElementById('userLocation').textContent = `🌍 ${sanitizeInput(data.country_name)} (${sanitizeInput(data.city) || ''})`;
-            }).catch(() => {
+                if (data && data.country_name) {
+                    document.getElementById('userLocation').textContent = `🌍 ${sanitizeInput(data.country_name)} (${sanitizeInput(data.city) || ''})`;
+                }
+            })
+            .catch(() => {
                 document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
             });
     });
