@@ -425,6 +425,90 @@
             font-weight: bold;
         }
 
+        /* Compact Complaint Box Styling */
+        .complaint-box {
+            background: #ffffff;
+            border: 1px solid #bce8f1;
+            border-radius: 10px;
+            padding: 12px 15px;
+            max-width: 450px;
+            margin: 15px auto 10px auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+        .complaint-box h3 {
+            color: #007bff;
+            font-size: 15px;
+            margin-bottom: 3px;
+            text-align: center;
+        }
+        .complaint-box p {
+            font-size: 12px;
+            color: #666;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+        .complaint-form .form-group {
+            margin-bottom: 8px;
+        }
+        .complaint-form label {
+            display: block;
+            font-size: 12px;
+            font-weight: bold;
+            color: #007bff;
+            margin-bottom: 3px;
+        }
+        .complaint-form input, .complaint-form textarea {
+            width: 100%;
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 13px;
+            outline: none;
+        }
+        .complaint-form textarea {
+            resize: vertical;
+            height: 50px;
+        }
+        .action-btn-group {
+            display: flex;
+            gap: 8px;
+            margin-top: 8px;
+        }
+        .send-wa-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1;
+            transition: background 0.3s;
+        }
+        .send-wa-btn:hover {
+            background-color: #1eb857;
+        }
+        .send-msg-btn {
+            background-color: #0084FF;
+            color: white;
+            border: none;
+            padding: 8px;
+            font-size: 13px;
+            font-weight: bold;
+            border-radius: 5px;
+            cursor: pointer;
+            flex: 1;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            transition: background 0.3s;
+        }
+        .send-msg-btn:hover {
+            background-color: #006bde;
+        }
+
         #loadingOverlay {
             display: none;
             position: fixed;
@@ -449,7 +533,7 @@
         @media print {
             body { background-color: #fff; padding: 0; }
             .container { box-shadow: none; padding: 0; max-width: 100%; }
-            #dashboardSelectorWrapper, .print-btn-container, footer, .admin-entry-panel, .passcode-box { display: none !important; }
+            #dashboardSelectorWrapper, .print-btn-container, footer, .admin-entry-panel, .passcode-box, .complaint-box { display: none !important; }
             .section-block { border: none; padding: 0; }
         }
     </style>
@@ -740,8 +824,30 @@
         </div>
     </div>
 
+    <!-- Compact Complaint & Feedback Box Section -->
+    <div class="complaint-box">
+        <h3 id="lblCompTitle">💬 সরাসরি অভিযোগ বা পরামর্শ দিন</h3>
+        <p id="lblCompSub">নিচে আপনার নাম ও বার্তা লিখে সরাসরি মেসেজ দিন:</p>
+        
+        <div class="complaint-form">
+            <div class="form-group">
+                <label for="compName" id="lblCompName">আপনার নাম:</label>
+                <input type="text" id="compName" placeholder="আপনার নাম লিখুন" required autocomplete="off">
+            </div>
+            <div class="form-group">
+                <label for="compMessage" id="lblCompMsg">আপনার বার্তা / অভিযোগ:</label>
+                <textarea id="compMessage" placeholder="এখানে বিস্তারিত লিখুন..." required></textarea>
+            </div>
+            
+            <div class="action-btn-group">
+                <button type="button" class="send-wa-btn" id="btnSendWA" onclick="sendToWhatsApp()">📲 WhatsApp</button>
+                <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnMessenger">💬 Messenger</a>
+            </div>
+        </div>
+    </div>
+
     <footer>
-        <p><span id="ftrSocial">Our Social Community:</span> <a href="https://chat.whatsapp.com/CBhe3TSeaoj4UwImXaDo3J?s=cl&p=a&mlu=0&ilr=4" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_c" target="_blank" rel="noopener noreferrer">Messenger</a></p>
+        <p><span id="ftrSocial">Our Social Community:</span> <a href="https://wa.me/88016251745114" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer">Messenger</a></p>
         <p>Copyright @ 2026. All Rights Reserved</p>
         <p id="ftrTag">এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন</p>
         <p style="color: #28a745;" id="ftrDev">Portal Developed for: Childhood Friends Association</p>
@@ -749,7 +855,7 @@
 </div>
 
 <script>
-    // এখানে আপনার গুগল অ্যাপস স্ক্রিপ্টের ইউআরএল বসাবেন
+    // আপনার গুগল অ্যাপস স্ক্রিপ্ট ইউআরএল
     const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJTtTE3XYTGjw5nADnZDbPumt2DKuVLGx4BzWB5_yOSZPfMVb9m7GyINiBeRYaAwQ/exec";
 
     let isAdminMode = false;
@@ -841,6 +947,13 @@
             lblTotalDeposited: "সর্বমোট জমা:",
             lblRemainingDue: "অবশিষ্ট বকেয়া / অবস্থা:",
             lblStatementDate: "স্টেটমেন্ট তারিখ:",
+
+            lblCompTitle: "💬 সরাসরি অভিযোগ বা পরামর্শ দিন",
+            lblCompSub: "নিচে আপনার নাম ও বার্তা লিখে সরাসরি মেসেজ দিন:",
+            lblCompName: "আপনার নাম:",
+            lblCompMsg: "আপনার বার্তা / অভিযোগ:",
+            btnSendWA: "📲 WhatsApp",
+            btnMessenger: "💬 Messenger",
             
             ftrSocial: "আমাদের সামাজিক মাধ্যম:",
             ftrTag: "এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন",
@@ -907,6 +1020,13 @@
             lblTotalDeposited: "Total Deposited:",
             lblRemainingDue: "Remaining Due / Status:",
             lblStatementDate: "Statement Date:",
+
+            lblCompTitle: "💬 Direct Complaint or Feedback",
+            lblCompSub: "Write your name and message below to send directly:",
+            lblCompName: "Your Name:",
+            lblCompMsg: "Your Message / Complaint:",
+            btnSendWA: "📲 WhatsApp",
+            btnMessenger: "💬 Messenger",
             
             ftrSocial: "Our Social Community:",
             ftrTag: "It's a friends collaboration financial organization",
@@ -998,6 +1118,13 @@
         document.getElementById("pmtTitle").textContent = t.pmtTitle;
         document.getElementById("thReason").textContent = t.thReason;
         document.getElementById("lblTotalPaid").textContent = t.lblTotalPaid;
+
+        document.getElementById("lblCompTitle").textContent = t.lblCompTitle;
+        document.getElementById("lblCompSub").textContent = t.lblCompSub;
+        document.getElementById("lblCompName").textContent = t.lblCompName;
+        document.getElementById("lblCompMsg").textContent = t.lblCompMsg;
+        document.getElementById("btnSendWA").textContent = t.btnSendWA;
+        document.getElementById("btnMessenger").textContent = t.btnMessenger;
 
         document.getElementById("ftrSocial").textContent = t.ftrSocial;
         document.getElementById("ftrTag").textContent = t.ftrTag;
@@ -1102,7 +1229,6 @@
         }
     }
 
-    // ব্যাকএন্ড পাসওয়ার্ড ভ্যালিডেশন
     function openSelectedDashboard(asAdmin) {
         const selectedTarget = document.getElementById("memberNameSelect").value;
         const errorMsg = document.getElementById("errorMsg");
@@ -1115,7 +1241,6 @@
 
         if (selectedTarget === "sec-admin") {
             showLoading(true);
-            // সার্ভারে রিকোয়েস্ট পাঠানো পাসওয়ার্ড ঠিক আছে কিনা চেক করতে
             fetch(SCRIPT_URL, {
                 method: "POST",
                 headers: { "Content-Type": "text/plain;charset=utf-8" },
@@ -1126,7 +1251,7 @@
                 showLoading(false);
                 if (res.success) {
                     isAdminMode = true;
-                    globalAdminToken = adminPass; // সেশনের জন্য জমা রাখা
+                    globalAdminToken = adminPass;
                     activePageId = "sec-awal";
                     renderDashboardView();
                 } else {
@@ -1177,7 +1302,6 @@
         document.getElementById("universalAdminPanel").style.display = "none";
     }
 
-    // ব্যাকএন্ডে যাচাইসহ ডাটা সেভ
     function submitNewTransaction() {
         const target = sanitizeInput(document.getElementById("targetMemberSelect").value);
         const rawDate = sanitizeInput(document.getElementById("inputDate").value.trim());
@@ -1207,7 +1331,7 @@
 
         let payload = {
             action: "save_transaction",
-            adminPassword: globalAdminToken, // সার্ভারে যাচাই হবে
+            adminPassword: globalAdminToken,
             target: target,
             date: formattedDateTime,
             ref: ref,
@@ -1247,6 +1371,24 @@
                 alert("Error saving data!");
             });
         }
+    }
+
+    function sendToWhatsApp() {
+        const name = document.getElementById("compName").value.trim();
+        const message = document.getElementById("compMessage").value.trim();
+
+        if (!name || !message) {
+            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে নাম এবং বার্তাটি পূরণ করুন!" : "⚠️ Please enter your name and message!");
+            return;
+        }
+
+        const fullText = `*নতুন অভিযোগ/পরামর্শ*\n\n*নাম:* ${name}\n*বার্তা:* ${message}`;
+        const encodedText = encodeURIComponent(fullText);
+
+        const whatsappNum = "88016251745114"; 
+
+        const waUrl = `https://api.whatsapp.com/send?phone=${whatsappNum}&text=${encodedText}`;
+        window.open(waUrl, '_blank');
     }
 
     function renderAllData() {
@@ -1373,7 +1515,6 @@
             tbody.innerHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
         }
 
-        // পেমেন্ট সেকশনের অটোমেটিক ক্যালকুলেশন আপডেট
         const remainingLandDue = TOTAL_LAND_PRICE - payTotal;
         document.getElementById("valLandPrice").textContent = TOTAL_LAND_PRICE.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
         document.getElementById("valPaidAmount").textContent = payTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
