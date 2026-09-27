@@ -847,7 +847,6 @@
     </div>
 
     <footer>
-        <p><span id="ftrSocial">Our Social Community:</span> <a href="https://wa.me/88016251745114" target="_blank" rel="noopener noreferrer">WhatsApp</a> or <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer">Messenger</a></p>
         <p>Copyright @ 2026. All Rights Reserved</p>
         <p id="ftrTag">এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন</p>
         <p style="color: #28a745;" id="ftrDev">Portal Developed for: Childhood Friends Association</p>
@@ -955,7 +954,6 @@
             btnSendWA: "📲 WhatsApp",
             btnMessenger: "💬 Messenger",
             
-            ftrSocial: "আমাদের সামাজিক মাধ্যম:",
             ftrTag: "এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন",
             ftrDev: "পোর্টাল তৈরিতে: বন্ধুত্বের স্মারক সমিতি"
         },
@@ -1028,7 +1026,6 @@
             btnSendWA: "📲 WhatsApp",
             btnMessenger: "💬 Messenger",
             
-            ftrSocial: "Our Social Community:",
             ftrTag: "It's a friends collaboration financial organization",
             ftrDev: "Portal Developed for: Childhood Friends Association"
         }
@@ -1126,7 +1123,6 @@
         document.getElementById("btnSendWA").textContent = t.btnSendWA;
         document.getElementById("btnMessenger").textContent = t.btnMessenger;
 
-        document.getElementById("ftrSocial").textContent = t.ftrSocial;
         document.getElementById("ftrTag").textContent = t.ftrTag;
         document.getElementById("ftrDev").textContent = t.ftrDev;
 
@@ -1385,7 +1381,7 @@
         const fullText = `*নতুন অভিযোগ/পরামর্শ*\n\n*নাম:* ${name}\n*বার্তা:* ${message}`;
         const encodedText = encodeURIComponent(fullText);
 
-        const whatsappNum = "88016251745114"; 
+        const whatsappNum = "8801625174514"; 
 
         const waUrl = `https://api.whatsapp.com/send?phone=${whatsappNum}&text=${encodedText}`;
         window.open(waUrl, '_blank');
