@@ -715,9 +715,9 @@
     <!-- Payment Section -->
     <div id="sec-payment" class="section-block">
         <div class="info-box">
-            <p><strong id="lblAccName">একাউন্ট নাম:</strong> *m** S****n *k*e*</p>
-            <p><strong id="lblBankName">ব্যাংক নাম:</strong> Mutual Trust Bank</p>
-            <p><strong id="lblAccNum">একাউন্ট নম্বর:</strong> *290*******758</p>
+            <p><strong id="lblLandPrice">খরিদকৃত জমির মূল্য:</strong> <span id="valLandPrice">9,100,000.00 BDT</span></p>
+            <p><strong id="lblPaidAmount">প্রদেয় টাকার পরিমাণ:</strong> <span id="valPaidAmount">0.00 BDT</span></p>
+            <p><strong id="lblDueAmount">প্রদানের বাকি মূল্য:</strong> <span id="valDueAmount" style="color: #d9534f; font-weight: bold;">0.00 BDT</span></p>
         </div>
         <h3 class="section-title" id="pmtTitle">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</h3>
         <div class="table-responsive">
@@ -827,9 +827,10 @@
             tblAmount: "পরিমাণ (BDT)",
             tblDetailsTxt: "লেনদেনের বিবরণ",
             lblTotalDep: "মোট জমা:",
-            lblAccName: "একাউন্ট নাম:",
-            lblBankName: "ব্যাংক নাম:",
-            lblAccNum: "একাউন্ট নম্বর:",
+            
+            lblLandPrice: "খরিদকৃত জমির মূল্য:",
+            lblPaidAmount: "প্রদেয় টাকার পরিমাণ:",
+            lblDueAmount: "প্রদানের বাকি মূল্য:",
             pmtTitle: "সম্পত্তির পরিশোধিত মূল্যের বিবরণ",
             thReason: "কারণ / বিবরণ",
             lblTotalPaid: "সর্বমোট পরিশোধ (BDT):",
@@ -892,9 +893,10 @@
             tblAmount: "Amount (BDT)",
             tblDetailsTxt: "Transaction Details",
             lblTotalDep: "Total Deposited:",
-            lblAccName: "Account Name:",
-            lblBankName: "Bank Name:",
-            lblAccNum: "Account Number:",
+            
+            lblLandPrice: "Purchased Land Value:",
+            lblPaidAmount: "Total Paid Amount:",
+            lblDueAmount: "Remaining Due Amount:",
             pmtTitle: "Payment Statement - Transaction Details",
             thReason: "Reason / Title",
             lblTotalPaid: "Total Paid (BDT):",
@@ -990,9 +992,9 @@
         document.querySelectorAll(".titleDetailsTxt").forEach(el => el.textContent = t.tblDetailsTxt);
         document.querySelectorAll(".lblTotalDep").forEach(el => el.textContent = t.lblTotalDep);
 
-        document.getElementById("lblAccName").textContent = t.lblAccName;
-        document.getElementById("lblBankName").textContent = t.lblBankName;
-        document.getElementById("lblAccNum").textContent = t.lblAccNum;
+        document.getElementById("lblLandPrice").textContent = t.lblLandPrice;
+        document.getElementById("lblPaidAmount").textContent = t.lblPaidAmount;
+        document.getElementById("lblDueAmount").textContent = t.lblDueAmount;
         document.getElementById("pmtTitle").textContent = t.pmtTitle;
         document.getElementById("thReason").textContent = t.thReason;
         document.getElementById("lblTotalPaid").textContent = t.lblTotalPaid;
@@ -1370,6 +1372,12 @@
         if (db.payments.length === 0) {
             tbody.innerHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
         }
+
+        // পেমেন্ট সেকশনের অটোমেটিক ক্যালকুলেশন আপডেট
+        const remainingLandDue = TOTAL_LAND_PRICE - payTotal;
+        document.getElementById("valLandPrice").textContent = TOTAL_LAND_PRICE.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
+        document.getElementById("valPaidAmount").textContent = payTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
+        document.getElementById("valDueAmount").textContent = remainingLandDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
 
         document.getElementById("paymentTotal").textContent = payTotal.toFixed(2);
         return payTotal;
