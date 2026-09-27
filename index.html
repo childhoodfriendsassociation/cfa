@@ -450,12 +450,14 @@
         .action-btn-group {
             display: flex;
             justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
         }
         .send-msg-btn {
             background-color: #0084FF;
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 18px;
             font-size: 14px;
             font-weight: bold;
             border-radius: 20px;
@@ -466,8 +468,12 @@
             transition: background 0.3s, transform 0.2s;
             box-shadow: 0 2px 6px rgba(0, 132, 255, 0.3);
         }
+        .send-msg-btn.profile-btn {
+            background-color: #00c6ff;
+            box-shadow: 0 2px 6px rgba(0, 198, 255, 0.3);
+        }
         .send-msg-btn:hover {
-            background-color: #006bde;
+            opacity: 0.9;
             transform: translateY(-1px);
         }
 
@@ -795,7 +801,8 @@
         <p id="lblCompSub">যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝:</p>
         
         <div class="action-btn-group">
-            <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnMessenger">🏡 এডমিন </a>
+            <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnAdminMessenger">🏡 এডমিন </a>
+            <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t" target="_blank" rel="noopener noreferrer" class="send-msg-btn profile-btn" id="btnMyMessenger">👥 সম্মানিত সদস্যবৃন্দ</a>
         </div>
     </div>
 
@@ -900,7 +907,8 @@
 
             lblCompTitle: "💥অভিযোগ বা পরামর্শ দিন💥",
             lblCompSub: "যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝",
-            btnMessenger: "🏡 এডমিন",
+            btnAdminMessenger: "🏡 এডমিন",
+            btnMyMessenger: "👥 সম্মানিত সদস্যবৃন্দ",
             
             ftrCopyright: "© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।"
         },
@@ -968,7 +976,8 @@
 
             lblCompTitle: "💥Complaints or Feedback💥",
             lblCompSub: "Please write 📝 for any complaints or suggestions:",
-            btnMessenger: "🏡 Admin",
+            btnAdminMessenger: "🏡 Admin",
+            btnMyMessenger: "👥 Honorable Members",
             
             ftrCopyright: "© 2026 Childhood Friends Association. All Rights Reserved."
         }
@@ -1061,7 +1070,8 @@
 
         document.getElementById("lblCompTitle").textContent = t.lblCompTitle;
         document.getElementById("lblCompSub").textContent = t.lblCompSub;
-        document.getElementById("btnMessenger").textContent = t.btnMessenger;
+        document.getElementById("btnAdminMessenger").textContent = t.btnAdminMessenger;
+        document.getElementById("btnMyMessenger").textContent = t.btnMyMessenger;
 
         document.getElementById("ftrCopyright").textContent = t.ftrCopyright;
 
