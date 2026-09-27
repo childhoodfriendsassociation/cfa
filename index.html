@@ -430,83 +430,45 @@
             background: #ffffff;
             border: 1px solid #bce8f1;
             border-radius: 10px;
-            padding: 12px 15px;
+            padding: 16px 20px;
             max-width: 450px;
             margin: 15px auto 10px auto;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-align: left;
+            text-align: center;
         }
         .complaint-box h3 {
             color: #007bff;
-            font-size: 15px;
-            margin-bottom: 3px;
-            text-align: center;
+            font-size: 16px;
+            margin-bottom: 6px;
         }
         .complaint-box p {
-            font-size: 12px;
-            color: #666;
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        .complaint-form .form-group {
-            margin-bottom: 8px;
-        }
-        .complaint-form label {
-            display: block;
-            font-size: 12px;
-            font-weight: bold;
-            color: #007bff;
-            margin-bottom: 3px;
-        }
-        .complaint-form input, .complaint-form textarea {
-            width: 100%;
-            padding: 6px 10px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
             font-size: 13px;
-            outline: none;
-        }
-        .complaint-form textarea {
-            resize: vertical;
-            height: 50px;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.4;
         }
         .action-btn-group {
             display: flex;
-            gap: 8px;
-            margin-top: 8px;
-        }
-        .send-wa-btn {
-            background-color: #25D366;
-            color: white;
-            border: none;
-            padding: 8px;
-            font-size: 13px;
-            font-weight: bold;
-            border-radius: 5px;
-            cursor: pointer;
-            flex: 1;
-            transition: background 0.3s;
-        }
-        .send-wa-btn:hover {
-            background-color: #1eb857;
+            justify-content: center;
         }
         .send-msg-btn {
             background-color: #0084FF;
             color: white;
             border: none;
-            padding: 8px;
-            font-size: 13px;
+            padding: 10px 20px;
+            font-size: 14px;
             font-weight: bold;
-            border-radius: 5px;
+            border-radius: 20px;
             cursor: pointer;
-            flex: 1;
             text-align: center;
             text-decoration: none;
             display: inline-block;
-            transition: background 0.3s;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 132, 255, 0.3);
         }
         .send-msg-btn:hover {
             background-color: #006bde;
+            transform: translateY(-1px);
         }
 
         #loadingOverlay {
@@ -523,11 +485,14 @@
 
         footer {
             text-align: center;
-            font-size: 12px;
-            color: #777;
-            margin-top: 20px;
-            border-top: 1px solid #ddd;
+            font-size: 13px;
+            color: #666;
+            margin-top: 25px;
+            border-top: 1px solid #e0e0e0;
             padding-top: 15px;
+        }
+        footer p {
+            font-weight: 500;
         }
 
         @media print {
@@ -826,30 +791,16 @@
 
     <!-- Compact Complaint & Feedback Box Section -->
     <div class="complaint-box">
-        <h3 id="lblCompTitle">💬 সরাসরি অভিযোগ বা পরামর্শ দিন</h3>
-        <p id="lblCompSub">নিচে আপনার নাম ও বার্তা লিখে সরাসরি মেসেজ দিন:</p>
+        <h3 id="lblCompTitle"> 💥অভিযোগ বা পরামর্শ দিন💥</h3>
+        <p id="lblCompSub">যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝:</p>
         
-        <div class="complaint-form">
-            <div class="form-group">
-                <label for="compName" id="lblCompName">আপনার নাম:</label>
-                <input type="text" id="compName" placeholder="আপনার নাম লিখুন" required autocomplete="off">
-            </div>
-            <div class="form-group">
-                <label for="compMessage" id="lblCompMsg">আপনার বার্তা / অভিযোগ:</label>
-                <textarea id="compMessage" placeholder="এখানে বিস্তারিত লিখুন..." required></textarea>
-            </div>
-            
-            <div class="action-btn-group">
-                <button type="button" class="send-wa-btn" id="btnSendWA" onclick="sendToWhatsApp()">📲 WhatsApp</button>
-                <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnMessenger">💬 Messenger</a>
-            </div>
+        <div class="action-btn-group">
+            <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnMessenger">🏡 এডমিন </a>
         </div>
     </div>
 
     <footer>
-        <p>Copyright @ 2026. All Rights Reserved</p>
-        <p id="ftrTag">এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন</p>
-        <p style="color: #28a745;" id="ftrDev">Portal Developed for: Childhood Friends Association</p>
+        <p id="ftrCopyright">© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 </div>
 
@@ -947,15 +898,11 @@
             lblRemainingDue: "অবশিষ্ট বকেয়া / অবস্থা:",
             lblStatementDate: "স্টেটমেন্ট তারিখ:",
 
-            lblCompTitle: "💬 সরাসরি অভিযোগ বা পরামর্শ দিন",
-            lblCompSub: "নিচে আপনার নাম ও বার্তা লিখে সরাসরি মেসেজ দিন:",
-            lblCompName: "আপনার নাম:",
-            lblCompMsg: "আপনার বার্তা / অভিযোগ:",
-            btnSendWA: "📲 WhatsApp",
-            btnMessenger: "💬 Messenger",
+            lblCompTitle: "💥অভিযোগ বা পরামর্শ দিন💥",
+            lblCompSub: "যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝",
+            btnMessenger: "🏡 এডমিন",
             
-            ftrTag: "এটি একটি বন্ধুদের যৌথ আর্থিক সংগঠন",
-            ftrDev: "পোর্টাল তৈরিতে: বন্ধুত্বের স্মারক সমিতি"
+            ftrCopyright: "© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।"
         },
         en: {
             loading: "Processing data, please wait...",
@@ -1019,15 +966,11 @@
             lblRemainingDue: "Remaining Due / Status:",
             lblStatementDate: "Statement Date:",
 
-            lblCompTitle: "💬 Direct Complaint or Feedback",
-            lblCompSub: "Write your name and message below to send directly:",
-            lblCompName: "Your Name:",
-            lblCompMsg: "Your Message / Complaint:",
-            btnSendWA: "📲 WhatsApp",
-            btnMessenger: "💬 Messenger",
+            lblCompTitle: "💥Complaints or Feedback💥",
+            lblCompSub: "Please write 📝 for any complaints or suggestions:",
+            btnMessenger: "🏡 Admin",
             
-            ftrTag: "It's a friends collaboration financial organization",
-            ftrDev: "Portal Developed for: Childhood Friends Association"
+            ftrCopyright: "© 2026 Childhood Friends Association. All Rights Reserved."
         }
     };
 
@@ -1118,13 +1061,9 @@
 
         document.getElementById("lblCompTitle").textContent = t.lblCompTitle;
         document.getElementById("lblCompSub").textContent = t.lblCompSub;
-        document.getElementById("lblCompName").textContent = t.lblCompName;
-        document.getElementById("lblCompMsg").textContent = t.lblCompMsg;
-        document.getElementById("btnSendWA").textContent = t.btnSendWA;
         document.getElementById("btnMessenger").textContent = t.btnMessenger;
 
-        document.getElementById("ftrTag").textContent = t.ftrTag;
-        document.getElementById("ftrDev").textContent = t.ftrDev;
+        document.getElementById("ftrCopyright").textContent = t.ftrCopyright;
 
         adjustAdminFormFields();
         renderAllData();
@@ -1367,24 +1306,6 @@
                 alert("Error saving data!");
             });
         }
-    }
-
-    function sendToWhatsApp() {
-        const name = document.getElementById("compName").value.trim();
-        const message = document.getElementById("compMessage").value.trim();
-
-        if (!name || !message) {
-            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে নাম এবং বার্তাটি পূরণ করুন!" : "⚠️ Please enter your name and message!");
-            return;
-        }
-
-        const fullText = `*নতুন অভিযোগ/পরামর্শ*\n\n*নাম:* ${name}\n*বার্তা:* ${message}`;
-        const encodedText = encodeURIComponent(fullText);
-
-        const whatsappNum = "8801625174514"; 
-
-        const waUrl = `https://api.whatsapp.com/send?phone=${whatsappNum}&text=${encodedText}`;
-        window.open(waUrl, '_blank');
     }
 
     function renderAllData() {
