@@ -45,6 +45,12 @@
             border-bottom: 2px solid #007bff;
             padding-bottom: 15px;
         }
+        header h1 {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
         header h2 {
             color: #007bff;
             font-size: 24px;
@@ -67,7 +73,12 @@
         }
         .welcome-hero h1 {
             color: #007bff;
-            font-size: 28px;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .welcome-hero h1.salam-txt {
+            font-size: 20px;
+            color: #28a745;
             margin-bottom: 15px;
         }
 
@@ -514,7 +525,7 @@
 
 <div class="container">
     <header>
-        <h1>بسم الله الرحمن الرحيم</h1>
+        <h1 id="hdrBismillah">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</h1>
         <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
         <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
         <p id="hdrSlogan">সেদিন বন্ধুরা একে অপরের শত্রু হয়ে যাবে—কেবল মুত্তাকি (আল্লাহভীরু) লোক ছাড়া।" (সূরা অজ-জুখরুফ, আয়াত: ৬৭)</p>
@@ -523,7 +534,7 @@
     <!-- Welcome Section -->
     <div id="sec-welcome" class="section-block active">
         <div class="welcome-hero">
-            <h1>السلام عليكم ورحمة الله</h1>
+            <h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
             <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
             <div class="location-box" id="userLocation">🌍 আপনার দেশ শনাক্ত করা হচ্ছে...</div>
             <div class="live-datetime-box">⏰ <span id="liveClock">লোড হচ্ছে...</span></div>
@@ -843,6 +854,8 @@
     const langText = {
         bn: {
             loading: "ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...",
+            hdrBismillah: "পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি",
+            welcomeSalam: "আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক",
             hdrTitle: "বন্ধুত্বের স্মারক সমিতি",
             hdrEst: "স্থাপিত: ২০২৬",
             hdrSlogan: "সেদিন বন্ধুরা একে অপরের শত্রু হয়ে যাবে—কেবল মুত্তাকি (আল্লাহভীরু) লোক ছাড়া। (সূরা অজ-জুখরুফ, আয়াত: ৬৭)",
@@ -912,6 +925,8 @@
         },
         en: {
             loading: "Processing data, please wait...",
+            hdrBismillah: "In the name of Allah, the Most Gracious, the Most Merciful",
+            welcomeSalam: "Peace, mercy, and blessings of Allah be upon you",
             hdrTitle: "Childhood Friends Association",
             hdrEst: "Established: 2026",
             hdrSlogan: "On that Day, friends will become enemies to one another, except the righteous. (Surah Az-Zukhruf, verse: 67)",
@@ -1009,6 +1024,8 @@
         const t = langText[lang];
 
         document.getElementById("loadingTxt").textContent = t.loading;
+        document.getElementById("hdrBismillah").textContent = t.hdrBismillah;
+        document.getElementById("welcomeSalam").textContent = t.welcomeSalam;
         document.getElementById("hdrTitle").textContent = t.hdrTitle;
         document.getElementById("hdrEst").textContent = t.hdrEst;
         document.getElementById("hdrSlogan").textContent = t.hdrSlogan;
