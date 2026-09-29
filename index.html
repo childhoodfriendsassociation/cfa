@@ -1109,6 +1109,7 @@
     let activePageId = "sec-welcome";
     let currentLang = 'bn';
     let isDarkMode = false;
+    let currCalendarDate = new Date();
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
     
@@ -1477,329 +1478,304 @@
         }
     }
 
-    function fetchFromGoogleSheet() {
-        if (!SCRIPT_URL) return Promise.resolve();
+    /* Live Time & Location */
+    function updateClock() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
+        document.getElementById('liveClock').textContent = now.toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US', options);
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
 
-        showLoading(true);
-        return fetch(SCRIPT_URL)
-            .then(res => res.json())
-            .then(data => {
-                db.transactions = { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] };
-                db.payments = [];
-
-                data.forEach(item => {
-                    const target = sanitizeInput(item.target);
-                    const amount = parseFloat(item.amount) || 0;
-
-                    if (target === "sec-payment") {
-                        db.payments.push({
-                            date: sanitizeInput(item.date),
-                            ref: sanitizeInput(item.ref),
-                            senderBank: sanitizeInput(item.senderBank || item.bankFrom),
-                            receiverBank: sanitizeInput(item.receiverBank || item.bankTo),
-                            reasonTitle: sanitizeInput(item.reasonTitle || item.month),
-                            year: sanitizeInput(item.year || "-"),
-                            amount: amount
-                        });
-                    } else if (memberKeys.includes(target)) {
-                        db.transactions[target].push({
-                            date: sanitizeInput(item.date),
-                            ref: sanitizeInput(item.ref),
-                            bankFrom: sanitizeInput(item.bankFrom),
-                            bankTo: sanitizeInput(item.bankTo),
-                            month: sanitizeInput(item.month),
-                            year: sanitizeInput(item.year),
-                            amount: amount
-                        });
-                    }
-                });
-
-                renderAllData();
-                showLoading(false);
-            })
-            .catch(err => {
-                console.error("Google Sheet Load Error:", err);
-                showLoading(false);
-            });
+    function fetchUserLocation() {
+        fetch('https://ipapi.co/json/')
+        .then(res => res.json())
+        .then(data => {
+            if (data && data.country_name) {
+                const flag = data.country_code ? String.fromCodePoint(...[...data.country_code.toUpperCase()].map(c => 127397 + c.charCodeAt())) : '🌍';
+                document.getElementById('userLocation').textContent = `${flag} ${data.city ? data.city + ', ' : ''}${data.country_name}`;
+            } else {
+                document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
+            }
+        })
+        .catch(() => {
+            document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
+        });
     }
 
-    function submitNewTransaction() {
-        const target = sanitizeInput(document.getElementById("targetMemberSelect").value);
-        const rawDate = sanitizeInput(document.getElementById("inputDate").value.trim());
-        const ref = sanitizeInput(document.getElementById("inputRef").value.trim());
-        const bankFrom = sanitizeInput(document.getElementById("inputBankFrom").value.trim());
-        const bankTo = sanitizeInput(document.getElementById("inputBankTo").value.trim());
-        const month = sanitizeInput(document.getElementById("inputMonth").value.trim());
-        const year = sanitizeInput(document.getElementById("inputYear").value.trim());
-        const rawAmount = document.getElementById("inputAmount").value.trim();
+    /* Data Fetching & Rendering */
+    function loadSheetData() {
+        showLoading(true);
+        fetch(SCRIPT_URL + "?action=get_all")
+        .then(res => res.json())
+        .then(data => {
+            showLoading(false);
+            if (data) {
+                if (data.transactions) db.transactions = data.transactions;
+                if (data.payments) db.payments = data.payments;
+                renderAllData();
+            }
+        })
+        .catch(err => {
+            showLoading(false);
+            console.error("Error fetching data:", err);
+        });
+    }
 
-        if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
-            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" : "⚠️ Please fill in all fields!");
-            return;
-        }
-
-        const amount = parseFloat(rawAmount);
-        if (isNaN(amount) || amount <= 0) {
-            alert(currentLang === 'bn' ? "⚠️ টাকার পরিমাণ সঠিক নয়!" : "⚠️ Invalid Amount!");
-            return;
-        }
-
-        const now = new Date();
-        const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
-        const dateParts = rawDate.split("-");
-        const formattedDateTime = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${currentTime}`;
-
-        let payload = {
-            action: "save_transaction",
-            adminPassword: globalAdminToken,
-            target: target,
-            date: formattedDateTime,
-            ref: ref,
-            amount: amount,
-            bankFrom: bankFrom,
-            bankTo: bankTo,
-            month: month,
-            year: year
-        };
-
-        if (SCRIPT_URL) {
-            showLoading(true);
-            fetch(SCRIPT_URL, {
-                method: "POST",
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(res => {
-                showLoading(false);
-                if (res.success) {
-                    alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
-                    document.getElementById("inputAmount").value = "";
-                    document.getElementById("inputRef").value = "";
-                    document.getElementById("inputBankFrom").value = "";
-                    document.getElementById("inputBankTo").value = "";
-                    document.getElementById("inputMonth").value = "";
-                    document.getElementById("inputYear").value = "";
-                    document.getElementById("inputDate").value = "";
-                    fetchFromGoogleSheet();
-                } else {
-                    alert("Error: " + res.message);
-                }
-            })
-            .catch(() => {
-                showLoading(false);
-                alert("Error saving data!");
-            });
-        }
+    function formatNumber(num) {
+        return parseFloat(num || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
     }
 
     function renderAllData() {
-        let grandTotalDeposited = 0;
-        let grandTotalTarget = 0;
-        let grandTotalDue = 0;
-
+        let totalAssociationFund = 0;
         const t = langText[currentLang];
-        const frontBody = document.getElementById("frontSummaryBody");
-        let frontBodyHTML = "";
+        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US');
 
-        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'en-GB' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        // 1. Render Member Details
+        memberKeys.forEach(m => {
+            const list = db.transactions[m] || [];
+            const tbody = document.getElementById(`table-${m}`);
+            tbody.innerHTML = "";
 
-        memberKeys.forEach(key => {
-            const list = db.transactions[key] || [];
-            let total = 0;
-
-            const tbody = document.getElementById(`table-${key}`);
-            if (tbody) {
-                let tbodyHTML = "";
-                list.forEach((item) => {
-                    total += item.amount;
-                    
-                    let monthYearStr = "-";
-                    if (item.month && item.month !== "-" && item.year && item.year !== "-") {
-                        monthYearStr = `${item.month}/${item.year}`;
-                    } else if (item.month && item.month !== "-") {
-                        monthYearStr = item.month;
-                    } else if (item.year && item.year !== "-") {
-                        monthYearStr = item.year;
-                    }
-
-                    tbodyHTML += `
+            let memberTotal = 0;
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="6" style="color:var(--text-muted);">${t.noData}</td></tr>`;
+            } else {
+                list.forEach(item => {
+                    const amt = parseFloat(item.amount) || 0;
+                    memberTotal += amt;
+                    const monthYear = (item.month || '') + (item.year ? ' ' + item.year : '');
+                    tbody.innerHTML += `
                         <tr>
-                            <td>${item.date}</td>
-                            <td>${item.ref}</td>
-                            <td>${item.bankFrom}</td>
-                            <td>${item.bankTo}</td>
-                            <td>${monthYearStr}</td>
-                            <td>${item.amount.toFixed(2)} BDT</td>
+                            <td>${sanitizeInput(item.date || '')}</td>
+                            <td>${sanitizeInput(item.ref || '')}</td>
+                            <td>${sanitizeInput(item.bankFrom || '')}</td>
+                            <td>${sanitizeInput(item.bankTo || '')}</td>
+                            <td>${sanitizeInput(monthYear)}</td>
+                            <td style="font-weight:600;">${formatNumber(amt)}</td>
                         </tr>
                     `;
                 });
-
-                if (list.length === 0) {
-                    tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
-                }
-                tbody.innerHTML = tbodyHTML;
             }
 
-            const shares = memberShares[key];
-            const targetAmount = shares * PER_SHARE_PRICE;
-            const dueAmount = targetAmount - total;
+            document.getElementById(`total-${m}`).textContent = `${formatNumber(memberTotal)} BDT`;
+            totalAssociationFund += memberTotal;
 
-            const infoBox = document.getElementById(`info-${key}`);
-            if (infoBox) {
-                infoBox.innerHTML = `
-                    <p><strong>${t.lblShareholder}</strong> ${memberNames[currentLang][key]}</p>
-                    <p><strong>${t.lblAllocatedShares}</strong> ${shares} Share(s)</p>
-                    <p><strong>${t.lblTargetAmount}</strong> ${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
-                    <p><strong>${t.lblTotalDeposited}</strong> ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
-                    <p><strong>${t.lblRemainingDue}</strong> <span style="color: ${dueAmount > 0 ? 'var(--accent-red)' : 'var(--accent-green)'}; font-weight: bold;">${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</span></p>
-                    <p><strong>${t.lblStatementDate}</strong> ${todayStr}</p>
+            // Render Member Info Box
+            const shares = memberShares[m];
+            const targetVal = PER_SHARE_PRICE * shares;
+            const dueVal = targetVal - memberTotal;
+            const infoBox = document.getElementById(`info-${m}`);
+            infoBox.innerHTML = `
+                <p><strong>${t.lblShareholder}</strong> ${memberNames[currentLang][m]}</p>
+                <p><strong>${t.lblAllocatedShares}</strong> ${shares}</p>
+                <p><strong>${t.lblTargetAmount}</strong> ${formatNumber(targetVal)} BDT</p>
+                <p><strong>${t.lblTotalDeposited}</strong> ${formatNumber(memberTotal)} BDT</p>
+                <p><strong>${t.lblRemainingDue}</strong> <span style="color:${dueVal > 0 ? 'var(--accent-red)' : 'var(--accent-green)'}; font-weight:bold;">${formatNumber(Math.abs(dueVal))} BDT ${dueVal > 0 ? t.dueLabel : t.paidLabel}</span></p>
+                <p><strong>${t.lblStatementDate}</strong> ${todayStr}</p>
+            `;
+            
+            // Set Section Titles
+            const sec = document.getElementById(`sec-${m}`);
+            if (sec) {
+                const titleMember = sec.querySelector(".titleMemberName");
+                if (titleMember) titleMember.textContent = memberNames[currentLang][m];
+            }
+        });
+
+        // Update Marquee Fund Total
+        document.getElementById("marqueeTotal").textContent = formatNumber(totalAssociationFund);
+
+        // 2. Render Property Payments
+        const pList = db.payments || [];
+        const pTbody = document.getElementById("table-payment");
+        pTbody.innerHTML = "";
+
+        let paidTotal = 0;
+        if (pList.length === 0) {
+            pTbody.innerHTML = `<tr><td colspan="6" style="color:var(--text-muted);">${t.noData}</td></tr>`;
+        } else {
+            pList.forEach(item => {
+                const amt = parseFloat(item.amount) || 0;
+                paidTotal += amt;
+                const reason = item.month || item.reason || '';
+                pTbody.innerHTML += `
+                    <tr>
+                        <td>${sanitizeInput(item.date || '')}</td>
+                        <td>${sanitizeInput(item.ref || '')}</td>
+                        <td>${sanitizeInput(item.bankFrom || '')}</td>
+                        <td>${sanitizeInput(item.bankTo || '')}</td>
+                        <td>${sanitizeInput(reason)}</td>
+                        <td style="font-weight:600;">${formatNumber(amt)}</td>
+                    </tr>
                 `;
-            }
+            });
+        }
 
-            const totalLabel = document.getElementById(`total-${key}`);
-            if (totalLabel) totalLabel.textContent = `${total.toFixed(2)} BDT`;
+        document.getElementById("valLandPrice").textContent = `${formatNumber(TOTAL_LAND_PRICE)} BDT`;
+        document.getElementById("valPaidAmount").textContent = `${formatNumber(paidTotal)} BDT`;
+        const landDue = TOTAL_LAND_PRICE - paidTotal;
+        document.getElementById("valDueAmount").textContent = `${formatNumber(landDue)} BDT`;
+        document.getElementById("paymentTotal").textContent = formatNumber(paidTotal);
 
-            grandTotalDeposited += total;
-            grandTotalTarget += targetAmount;
-            grandTotalDue += dueAmount;
+        // 3. Render Front Summary Table
+        renderFrontSummary(totalAssociationFund);
+    }
 
-            frontBodyHTML += `
-                <tr>
-                    <td>${memberNames[currentLang][key]}</td>
+    function renderFrontSummary(grandTotal) {
+        const tbody = document.getElementById("frontSummaryBody");
+        tbody.innerHTML = "";
+        const t = langText[currentLang];
+
+        let totalTargetSum = 0;
+        let totalDueSum = 0;
+
+        memberKeys.forEach(m => {
+            const list = db.transactions[m] || [];
+            const deposited = list.reduce((acc, curr) => acc + (parseFloat(curr.amount) || 0), 0);
+            const shares = memberShares[m];
+            const targetVal = PER_SHARE_PRICE * shares;
+            const due = targetVal - deposited;
+
+            totalTargetSum += targetVal;
+            totalDueSum += due;
+
+            tbody.innerHTML += `
+                <tr style="cursor:pointer;" onclick="openSection('sec-${m}')">
+                    <td style="text-align:left; font-weight:600; color:var(--primary-color);">${memberNames[currentLang][m]}</td>
                     <td>${shares}</td>
-                    <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td>${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td style="color: ${dueAmount > 0 ? 'var(--accent-red)' : 'var(--accent-green)'}; font-weight: bold;">
-                        ${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${dueAmount > 0 ? t.dueLabel : t.paidLabel}
+                    <td>${formatNumber(targetVal)}</td>
+                    <td style="font-weight:600;">${formatNumber(deposited)}</td>
+                    <td style="color:${due > 0 ? 'var(--accent-red)' : 'var(--accent-green)'}; font-weight:bold;">
+                        ${formatNumber(Math.abs(due))} ${due > 0 ? t.dueLabel : t.paidLabel}
                     </td>
                 </tr>
             `;
         });
 
-        frontBodyHTML += `
-            <tr style="font-weight: bold; background-color: var(--table-header-bg);">
-                <td>${t.grandTotal}</td>
+        // Summary Grand Total Row
+        tbody.innerHTML += `
+            <tr style="background-color: var(--table-header-bg); font-weight: 700;">
+                <td style="text-align:left;">${t.grandTotal}</td>
                 <td>${TOTAL_SHARES}</td>
-                <td>${grandTotalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                <td>${grandTotalDeposited.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                <td>${grandTotalDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td>${formatNumber(totalTargetSum)}</td>
+                <td style="color:var(--primary-color);">${formatNumber(grandTotal)}</td>
+                <td style="color:${totalDueSum > 0 ? 'var(--accent-red)' : 'var(--accent-green)'};">
+                    ${formatNumber(Math.abs(totalDueSum))} ${totalDueSum > 0 ? t.dueLabel : t.paidLabel}
+                </td>
             </tr>
         `;
-
-        frontBody.innerHTML = frontBodyHTML;
-
-        const totalPayment = renderPaymentStatement();
-        const netBalance = grandTotalDeposited - totalPayment;
-        document.getElementById("marqueeTotal").textContent = netBalance.toFixed(2);
     }
 
-    function renderPaymentStatement() {
-        const tbody = document.getElementById("table-payment");
-        if (!tbody) return 0;
-
-        let payTotal = 0;
-        let tbodyHTML = "";
-        const t = langText[currentLang];
-
-        db.payments.forEach(item => {
-            payTotal += item.amount;
-            tbodyHTML += `
-                <tr>
-                    <td>${item.date}</td>
-                    <td>${item.ref}</td>
-                    <td>${item.senderBank}</td>
-                    <td>${item.receiverBank}</td>
-                    <td>${item.reasonTitle}</td>
-                    <td>${item.amount.toFixed(2)}</td>
-                </tr>
-            `;
-        });
-
-        if (db.payments.length === 0) {
-            tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
-        }
-        tbody.innerHTML = tbodyHTML;
-
-        const remainingLandDue = TOTAL_LAND_PRICE - payTotal;
-        document.getElementById("valLandPrice").textContent = TOTAL_LAND_PRICE.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
-        document.getElementById("valPaidAmount").textContent = payTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
-        document.getElementById("valDueAmount").textContent = remainingLandDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
-
-        document.getElementById("paymentTotal").textContent = payTotal.toFixed(2);
-        return payTotal;
-    }
-
-    function updateLiveClock() {
-        const now = new Date();
-        const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-        document.getElementById('liveClock').textContent = now.toLocaleDateString(currentLang === 'bn' ? 'en-GB' : 'en-US', options);
-    }
-
-    let currentCalDate = new Date();
+    /* Calendar Widget */
     function renderFrontCalendar() {
-        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const year = currentCalDate.getFullYear();
-        const month = currentCalDate.getMonth();
-
-        document.getElementById('calendarTitle').textContent = `${monthNames[month]} ${year}`;
-        const daysContainer = document.getElementById('calendarDays');
+        const year = currCalendarDate.getFullYear();
+        const month = currCalendarDate.getMonth();
         
-        let daysHTML = '';
-        const firstDayIndex = new Date(year, month, 1).getDay();
-        const lastDay = new Date(year, month + 1, 0).getDate();
+        const monthNamesEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const monthNamesBn = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
+
+        document.getElementById("calendarTitle").textContent = `${currentLang === 'bn' ? monthNamesBn[month] : monthNamesEn[month]} ${year}`;
+
+        const firstDay = new Date(year, month, 1).getDay();
+        const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+        const calendarDays = document.getElementById("calendarDays");
+        calendarDays.innerHTML = "";
+
+        // Empty cells before month start
+        for (let i = 0; i < firstDay; i++) {
+            calendarDays.innerHTML += `<div></div>`;
+        }
+
         const today = new Date();
-
-        for (let i = 0; i < firstDayIndex; i++) {
-            daysHTML += '<div></div>';
+        for (let day = 1; day <= daysInMonth; day++) {
+            const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
+            calendarDays.innerHTML += `<div class="calendar-day ${isToday ? 'today' : ''}">${day}</div>`;
         }
-
-        for (let day = 1; day <= lastDay; day++) {
-            const isToday = (day === today.getDate() && month === today.getMonth() && year === today.getFullYear());
-            daysHTML += `<div class="calendar-day ${isToday ? 'today' : ''}">${day}</div>`;
-        }
-        daysContainer.innerHTML = daysHTML;
     }
 
-    function changeMonth(step) {
-        currentCalDate.setMonth(currentCalDate.getMonth() + step);
+    function changeMonth(delta) {
+        currCalendarDate.setMonth(currCalendarDate.getMonth() + delta);
         renderFrontCalendar();
     }
 
-    document.addEventListener('contextmenu', e => e.preventDefault());
-    document.addEventListener('keydown', e => {
-        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
-            e.preventDefault();
+    /* Submit New Transaction */
+    function submitNewTransaction() {
+        if (!isAdminMode || !globalAdminToken) {
+            alert("Unauthorized access!");
+            return;
         }
-    });
 
-    window.addEventListener('DOMContentLoaded', () => {
-        updateLiveClock();
-        setInterval(updateLiveClock, 1000);
-        renderFrontCalendar();
+        const target = document.getElementById("targetMemberSelect").value;
+        const date = document.getElementById("inputDate").value;
+        const ref = document.getElementById("inputRef").value.trim();
+        const bankFrom = document.getElementById("inputBankFrom").value.trim();
+        const bankTo = document.getElementById("inputBankTo").value.trim();
+        const month = document.getElementById("inputMonth").value.trim();
+        const year = document.getElementById("inputYear").value.trim();
+        const amount = document.getElementById("inputAmount").value;
 
-        fetchFromGoogleSheet();
+        if (!date || !ref || !bankFrom || !bankTo || !month || !amount) {
+            alert(currentLang === 'bn' ? "অনুগ্রহ করে সবগুলি ঘর সঠিকভাবে পূরণ করুন।" : "Please fill in all required fields.");
+            return;
+        }
 
-        const fetchLocation = new Promise((resolve, reject) => {
-            fetch('https://ipapi.co/json/')
-                .then(res => res.json())
-                .then(resolve)
-                .catch(reject);
+        const payload = {
+            action: "add_transaction",
+            password: globalAdminToken,
+            target: target,
+            data: {
+                date: date,
+                ref: ref,
+                bankFrom: bankFrom,
+                bankTo: bankTo,
+                month: month,
+                year: year,
+                amount: amount
+            }
+        };
+
+        showLoading(true);
+        fetch(SCRIPT_URL, {
+            method: "POST",
+            headers: { "Content-Type": "text/plain;charset=utf-8" },
+            body: JSON.stringify(payload)
+        })
+        .then(res => res.json())
+        .then(res => {
+            showLoading(false);
+            if (res.success) {
+                alert(currentLang === 'bn' ? "ডাটা সফলভাবে সেভ করা হয়েছে!" : "Data saved successfully!");
+                // Clear Form
+                document.getElementById("inputRef").value = "";
+                document.getElementById("inputBankFrom").value = "";
+                document.getElementById("inputBankTo").value = "";
+                document.getElementById("inputMonth").value = "";
+                document.getElementById("inputYear").value = "";
+                document.getElementById("inputAmount").value = "";
+                loadSheetData();
+            } else {
+                alert("Error: " + (res.message || "Failed to save data"));
+            }
+        })
+        .catch(err => {
+            showLoading(false);
+            console.error("Save error:", err);
+            alert("Error submitting data!");
         });
+    }
 
-        const timeout = new Promise((_, reject) => setTimeout(() => reject('timeout'), 2000));
+    /* Initial Setup */
+    window.onload = function() {
+        const todayVal = new Date().toISOString().split('T')[0];
+        document.getElementById("inputDate").value = todayVal;
 
-        Promise.race([fetchLocation, timeout])
-            .then(data => {
-                if (data && data.country_name) {
-                    document.getElementById('userLocation').textContent = `🌍 ${sanitizeInput(data.country_name)} (${sanitizeInput(data.city) || ''})`;
-                }
-            })
-            .catch(() => {
-                document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
-            });
-    });
+        fetchUserLocation();
+        renderFrontCalendar();
+        adjustAdminFormFields();
+        loadSheetData();
+    };
 </script>
-
 </body>
 </html>
