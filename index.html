@@ -743,8 +743,8 @@
         </div>
         <p id="errorMsg" class="error-msg">অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!</p>
         <div class="login-btn-container">
-            <button class="unlock-btn" onclick="submitAdminLogin()" id="btnModalLogin">লগইন</button>
             <button class="unlock-btn cancel-btn" onclick="closeAdminModal()" id="btnModalCancel">বাতিল</button>
+            <button class="unlock-btn" onclick="submitAdminLogin()" id="btnModalLogin">লগইন</button>
         </div>
     </div>
 </div>
@@ -1036,7 +1036,7 @@
     };
 
     const dayNamesData = {
-        bn: ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্রবার", "শনিবার"],
+        bn: ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি"],
         en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
     };
 
@@ -1060,8 +1060,8 @@
             lblAdminModalTitle: "এডমিন লগইন",
             lblAdminPass: "এডমিন পাসওয়ার্ড দিন",
             adminPassHolder: "পাসওয়ার্ড লিখুন",
-            btnModalLogin: "লগইন",
             btnModalCancel: "বাতিল",
+            btnModalLogin: "লগইন",
             errorMsg: "অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!",
             summaryTitle: "📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)",
             thName: "সদস্যের নাম",
@@ -1131,8 +1131,8 @@
             lblAdminModalTitle: "Admin Login",
             lblAdminPass: "Enter Admin Password",
             adminPassHolder: "Enter password",
-            btnModalLogin: "Login",
             btnModalCancel: "Cancel",
+            btnModalLogin: "Login",
             errorMsg: "Please enter the correct password for Admin login!",
             summaryTitle: "📊 Summary of Members' Accounts at a Glance (Live)",
             thName: "Member Name",
