@@ -11,340 +11,99 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <title>বন্ধুত্বের স্মারক সমিতি - Childhood Friends Association</title>
-
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
     <style>
-        /* Light Theme (Default) */
-        :root {
-            --primary-color: #3b82f6;
-            --primary-dark: #1d4ed8;
-            --secondary-color: #0d9488;
-            --bg-color: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #0f172a;
-            --text-muted: #64748b;
-            --border-color: #e2e8f0;
-            --accent-red: #ef4444;
-            --accent-green: #10b981;
-            --nav-bg: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            --table-header-bg: #f1f5f9;
-            --table-even-bg: #f8fafc;
-            --info-box-bg: #f0fdf4;
-            --summary-box-bg: #f0f9ff;
-            --input-bg: #ffffff;
-            --input-border: #cbd5e1;
-        }
-
-        /* Dark Theme Override */
-        body.dark-theme {
-            --bg-color: #0f172a;
-            --card-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --border-color: #334155;
-            --nav-bg: linear-gradient(135deg, #020617 0%, #0f172a 100%);
-            --table-header-bg: #334155;
-            --table-even-bg: #1e293b;
-            --info-box-bg: #064e3b;
-            --summary-box-bg: #075985;
-            --input-bg: #334155;
-            --input-border: #475569;
-        }
-
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Hind Siliguri', 'Inter', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-
         body {
-            background-color: var(--bg-color);
-            color: var(--text-main);
-            padding-bottom: 40px;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 15px;
             -webkit-user-select: none;
             -ms-user-select: none;
             user-select: none;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
-
         input, select, textarea {
             -webkit-user-select: auto;
             -ms-user-select: auto;
             user-select: auto;
-            background-color: var(--input-bg);
-            color: var(--text-main);
-            border-color: var(--input-border);
         }
-
-        /* Top Navbar Header */
-        .app-nav {
-            background: var(--nav-bg);
-            color: #ffffff;
-            padding: 12px 20px;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-
-        .nav-brand {
-            font-size: 18px;
-            font-weight: 700;
-            color: #60a5fa;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .nav-buttons {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        /* Standardized Uniform Button Sizes in Navbar */
-        .nav-btn {
-            background: rgba(255, 255, 255, 0.1);
-            color: #f8fafc;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 7px 14px;
-            height: 38px;
-            border-radius: 8px;
-            font-size: 13px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            position: relative;
-            white-space: nowrap;
-        }
-
-        .nav-btn:hover, .nav-btn.active {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            color: #ffffff;
-            transform: translateY(-1px);
-        }
-
-        /* Integrated Navbar Language Switcher */
-        .nav-lang-group {
-            display: inline-flex;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            padding: 2px;
-            height: 38px;
-            align-items: center;
-        }
-
-        .nav-lang-btn {
-            height: 100%;
-            padding: 0 10px;
-            font-size: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            background: transparent;
-            color: rgba(255, 255, 255, 0.7);
-            border-radius: 6px;
-            transition: all 0.2s ease;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .nav-lang-btn.active {
-            background: var(--primary-color);
-            color: #ffffff;
-        }
-
-        /* Nav Dropdown Container */
-        .nav-dropdown {
-            position: relative;
-            display: inline-block;
-        }
-
-        .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--card-bg);
-            min-width: 240px;
-            box-shadow: 0px 8px 24px rgba(0,0,0,0.25);
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-            z-index: 2000;
-            padding: 8px 0;
-            margin-top: 5px;
-            animation: fadeIn 0.2s ease-in-out;
-        }
-
-        .dropdown-menu.show {
-            display: block;
-        }
-
-        .dropdown-header {
-            padding: 6px 16px;
-            font-size: 11px;
-            font-weight: 700;
-            color: var(--text-muted);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .dropdown-item {
-            color: var(--text-main);
-            padding: 10px 16px;
-            text-decoration: none;
-            display: block;
-            font-size: 14px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: background 0.2s ease;
-        }
-
-        .dropdown-item:hover {
-            background-color: var(--border-color);
-            color: var(--primary-color);
-        }
-
-        .dropdown-divider {
-            height: 1px;
-            background-color: var(--border-color);
-            margin: 6px 0;
-        }
-
         .container {
-            max-width: 1100px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-
-        header.main-header {
-            text-align: center;
-            margin-bottom: 25px;
-            background: var(--card-bg);
-            padding: 25px 20px;
-            border-radius: 16px;
-            border: 1px solid var(--border-color);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
-        }
-
-        header.main-header h1 {
-            font-size: 16px;
-            color: var(--text-muted);
-            margin-bottom: 6px;
-            font-weight: 500;
-        }
-
-        header.main-header h2 {
-            color: #60a5fa;
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 4px;
-        }
-
-        header.main-header h4 {
-            color: var(--secondary-color);
-            font-size: 15px;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-
-        header.main-header p {
-            font-size: 14px;
-            color: var(--text-muted);
-            font-style: italic;
-            background: var(--bg-color);
-            padding: 8px 16px;
-            border-radius: 20px;
-            display: inline-block;
-            border: 1px solid var(--border-color);
-        }
-
-        /* Section Blocks */
-        .section-block {
-            display: none;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            padding: 24px;
-            border-radius: 16px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
-            margin-bottom: 25px;
-            animation: fadeIn 0.4s ease-in-out;
-        }
-
-        .section-block.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(8px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .welcome-hero {
-            text-align: center;
-        }
-
-        .salam-txt {
-            font-size: 20px;
-            color: var(--accent-green);
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .status-bar-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-
-        .status-card {
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
-            padding: 12px 16px;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
             border-radius: 12px;
-            font-size: 14px;
-            font-weight: 600;
-            color: var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        header {
             text-align: center;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 15px;
+        }
+        header h1 {
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        header h2 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        header h4 {
+            color: #555;
+            font-size: 15px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        header p {
+            font-size: 14px;
+            color: #666;
+        }
+        
+        #sec-welcome {
+            text-align: center;
+            padding: 20px 10px;
+        }
+        .welcome-hero h1 {
+            color: #007bff;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .welcome-hero h1.salam-txt {
+            font-size: 20px;
+            color: #28a745;
+            margin-bottom: 15px;
         }
 
         .glass-marquee-container {
             position: relative;
             width: 100%;
-            margin: 20px 0;
+            max-width: 600px;
+            margin: 20px auto 25px auto;
             overflow: hidden;
             border-radius: 12px;
-            background: var(--bg-color);
-            border: 1px solid var(--border-color);
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.15);
             padding: 14px 0;
         }
 
         .glass-marquee-track {
             display: inline-block;
             white-space: nowrap;
-            animation: marqueeRun 20s linear infinite;
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--primary-color);
+            animation: marqueeRun 18s linear infinite;
+            font-size: 17px;
+            font-weight: bold;
+            color: #0056b3;
         }
 
         .glass-marquee-container:hover .glass-marquee-track {
@@ -356,428 +115,407 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Tables */
-        .table-responsive {
-            width: 100%;
-            overflow-x: auto;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            border: 1px solid var(--border-color);
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            font-size: 13px;
-            white-space: nowrap;
-        }
-
-        th, td {
-            padding: 10px 12px;
-            border-bottom: 1px solid var(--border-color);
+        .live-datetime-box, .location-box {
+            background: #e8f4fd;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 15px auto 25px auto;
+            max-width: 450px;
+            border: 1px solid #bce8f1;
+            font-size: 15px;
+            font-weight: bold;
+            color: #007bff;
             text-align: center;
         }
 
-        th {
-            background-color: var(--table-header-bg);
-            color: var(--text-main);
-            font-weight: 700;
-        }
-
-        tr:last-child td {
-            border-bottom: none;
-        }
-
-        tr:nth-child(even) { background-color: var(--table-even-bg); }
-
-        .info-box {
-            background: var(--info-box-bg);
-            padding: 16px;
+        .shortcut-dashboard {
+            margin: 25px auto;
+            max-width: 900px;
+            background: #ffffff;
             border-radius: 10px;
-            font-size: 14px;
-            margin-bottom: 20px;
-            border-left: 4px solid var(--accent-green);
+            padding: 15px;
+            border: 1px solid #007bff;
+            box-shadow: 0 4px 12px rgba(0,123,255,0.1);
         }
-
-        .info-box p {
-            margin: 4px 0;
-        }
-
-        h3.section-title {
+        .shortcut-dashboard h3 {
+            color: #007bff;
             font-size: 18px;
-            margin-bottom: 14px;
-            color: var(--text-main);
-            border-left: 4px solid var(--primary-color);
-            padding-left: 10px;
+            margin-bottom: 12px;
+            text-align: center;
+        }
+        
+        .passcode-box {
+            background: #e8f4fd;
+            padding: 25px;
+            border-radius: 8px;
+            margin: 20px auto;
+            max-width: 450px;
+            border: 1px solid #bce8f1;
+            text-align: left;
         }
 
-        .summary-box {
-            background: var(--summary-box-bg);
-            padding: 14px 18px;
-            border-radius: 10px;
-            font-size: 14px;
-            border-left: 4px solid var(--primary-color);
-            margin-top: 15px;
-        }
-
-        .summary-box p {
+        .lang-switch-wrapper {
             display: flex;
             justify-content: space-between;
-            font-weight: 700;
+            align-items: center;
+            margin-bottom: 12px;
+            padding-bottom: 8px;
+            border-bottom: 1px dashed #bce8f1;
+        }
+        .lang-switch-title {
+            font-weight: bold;
+            color: #007bff;
+            font-size: 14px;
+        }
+        .lang-toggle-group {
+            display: flex;
+            background: #fff;
+            border: 1px solid #007bff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+        .lang-toggle-btn {
+            padding: 4px 12px;
+            font-size: 13px;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            background: transparent;
+            color: #007bff;
+            transition: all 0.3s ease;
+        }
+        .lang-toggle-btn.active {
+            background: #007bff;
+            color: #fff;
         }
 
-        /* Calendar */
+        .passcode-box .form-group {
+            margin-bottom: 15px;
+        }
+        .passcode-box label {
+            display: block;
+            font-weight: bold;
+            color: #007bff;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+        .passcode-box select, .passcode-box input {
+            width: 100%;
+            padding: 10px 15px;
+            font-size: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            outline: none;
+            background: #fff;
+        }
+        .login-btn-container {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .unlock-btn {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            font-size: 15px;
+            font-weight: bold;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            flex: 1;
+        }
+        .unlock-btn.admin-btn {
+            background-color: #28a745;
+        }
+        .unlock-btn:hover {
+            opacity: 0.9;
+        }
+        .error-msg {
+            color: #d9534f;
+            font-size: 14px;
+            margin-top: 10px;
+            font-weight: bold;
+            text-align: center;
+            display: none;
+        }
+
+        .admin-entry-panel {
+            display: none;
+            background: #fff9e6;
+            border: 1px solid #ffe082;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .admin-entry-panel h4 {
+            color: #d97706;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .admin-entry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .admin-entry-grid select, .admin-entry-grid input {
+            padding: 6px 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+        .admin-save-btn {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
         .front-calendar-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
+            background: #ffffff;
+            border: 1px solid #bce8f1;
+            border-radius: 12px;
             padding: 20px;
             max-width: 450px;
-            margin: 20px auto;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+            margin: 25px auto 15px auto;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
         }
-
         .calendar-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 15px;
         }
-
         .calendar-header h3 {
-            color: var(--primary-color);
-            font-size: 16px;
-            font-weight: 700;
+            color: #007bff;
+            font-size: 18px;
+            font-weight: bold;
         }
-
         .calendar-header button {
-            background: var(--primary-color);
+            background: #007bff;
             color: white;
             border: none;
-            padding: 6px 14px;
-            border-radius: 6px;
+            padding: 5px 12px;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: 700;
+            font-weight: bold;
         }
-
         .calendar-grid {
             display: grid;
             grid-template-columns: repeat(7, 1fr);
-            gap: 6px;
+            gap: 5px;
             text-align: center;
         }
-
         .calendar-day-head {
-            font-weight: 700;
-            color: var(--text-muted);
+            font-weight: bold;
+            color: #555;
             padding: 6px 0;
-            font-size: 12px;
-            background: var(--table-header-bg);
-            border-radius: 6px;
+            font-size: 13px;
+            background: #e8f4fd;
+            border-radius: 4px;
         }
-
         .calendar-day {
             padding: 8px 0;
-            font-size: 13px;
-            border-radius: 6px;
-            color: var(--text-main);
-        }
-
-        .calendar-day.today {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: 700;
-        }
-
-        /* Admin Entry Panel */
-        .admin-entry-panel {
-            display: none;
-            background: var(--card-bg);
-            border: 1px solid var(--primary-color);
-            padding: 20px;
-            border-radius: 14px;
-            margin-bottom: 25px;
-        }
-
-        .admin-entry-panel h4 {
-            color: var(--primary-color);
-            margin-bottom: 12px;
-            font-size: 16px;
-        }
-
-        .admin-entry-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-            gap: 10px;
-            margin-bottom: 12px;
-        }
-
-        .admin-entry-grid select, .admin-entry-grid input {
-            padding: 8px 12px;
-            border-radius: 6px;
-            font-size: 13px;
-            outline: none;
-        }
-
-        .admin-save-btn {
-            background-color: var(--accent-green);
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            font-weight: 700;
-            border-radius: 6px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-
-        .admin-save-btn:hover {
-            background-color: #059669;
-        }
-
-        /* Modal / Passcode Prompt */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.7);
-            z-index: 9998;
-            backdrop-filter: blur(4px);
-            align-items: center;
-            justify-content: center;
-        }
-
-        .modal-card {
-            background: var(--card-bg);
-            padding: 24px;
-            border-radius: 16px;
-            width: 90%;
-            max-width: 400px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.3);
-            text-align: center;
-            border: 1px solid var(--border-color);
-        }
-
-        .modal-card h3 {
-            margin-bottom: 12px;
-            color: var(--primary-color);
-        }
-
-        .modal-card input {
-            width: 100%;
-            padding: 10px 14px;
-            margin-bottom: 15px;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
             font-size: 14px;
-            outline: none;
+            border-radius: 6px;
+            color: #333;
+        }
+        .calendar-day.today {
+            background-color: #007bff;
+            color: white;
+            font-weight: bold;
         }
 
-        .modal-card .btn-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        .modal-card button {
-            flex: 1;
-            padding: 10px;
+        .dashboard-selector {
+            display: none; 
+            background: #e8f4fd;
+            padding: 15px;
             border-radius: 8px;
+            margin-bottom: 25px;
+            text-align: center;
+            border: 1px solid #bce8f1;
+        }
+        .dashboard-selector.active-dropdown {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .dashboard-selector button {
+            background-color: #dc3545;
+            color: white;
             border: none;
-            font-weight: 700;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        .print-btn-container {
+            text-align: right;
+            margin-bottom: 10px;
+            display: none;
+        }
+        .print-btn {
+            background-color: #28a745;
+            color: white;
+            padding: 8px 16px;
+            font-size: 14px;
+            font-weight: bold;
+            border: none;
+            border-radius: 5px;
             cursor: pointer;
         }
 
-        .btn-confirm { background: var(--primary-color); color: #fff; }
-        .btn-cancel { background: var(--border-color); color: var(--text-main); }
-
-        /* Complaints Box */
-        .complaint-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 14px;
-            padding: 20px;
-            max-width: 500px;
-            margin: 20px auto;
+        .section-block {
+            display: none;
+            margin-bottom: 30px;
+            background: #ffffff;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .section-block.active {
+            display: block;
+        }
+        .info-box {
+            background: #f8f9fa;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 14px;
+            margin-bottom: 15px;
+            border-left: 4px solid #007bff;
+        }
+        .info-box p {
+            margin: 5px 0;
+        }
+        h3.section-title {
+            font-size: 18px;
+            margin-bottom: 12px;
+            color: #333;
+            border-left: 4px solid #007bff;
+            padding-left: 8px;
+        }
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin-bottom: 15px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+        th, td {
+            padding: 8px 10px;
+            border: 1px solid #ddd;
             text-align: center;
         }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:nth-child(even) { background-color: #f9f9f9; }
 
+        .summary-box {
+            background: #e8f4fd;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            border-left: 4px solid #007bff;
+            margin-top: 10px;
+        }
+        .summary-box p {
+            display: flex;
+            justify-content: space-between;
+            margin: 6px 0;
+            font-weight: bold;
+        }
+
+        .complaint-box {
+            background: #ffffff;
+            border: 1px solid #bce8f1;
+            border-radius: 10px;
+            padding: 16px 20px;
+            max-width: 450px;
+            margin: 15px auto 10px auto;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            text-align: center;
+        }
         .complaint-box h3 {
-            color: var(--primary-color);
+            color: #007bff;
             font-size: 16px;
             margin-bottom: 6px;
         }
-
         .complaint-box p {
             font-size: 13px;
-            color: var(--text-muted);
-            margin-bottom: 15px;
+            color: #555;
+            margin-bottom: 14px;
+            line-height: 1.4;
         }
-
         .action-btn-group {
             display: flex;
             justify-content: center;
             gap: 10px;
             flex-wrap: wrap;
         }
-
         .send-msg-btn {
             background-color: #0084FF;
             color: white;
             border: none;
-            padding: 8px 18px;
-            font-size: 13px;
-            font-weight: 700;
+            padding: 10px 18px;
+            font-size: 14px;
+            font-weight: bold;
             border-radius: 20px;
             cursor: pointer;
+            text-align: center;
             text-decoration: none;
-            transition: all 0.3s;
+            display: inline-block;
+            transition: background 0.3s, transform 0.2s;
+            box-shadow: 0 2px 6px rgba(0, 132, 255, 0.3);
         }
-
         .send-msg-btn.profile-btn {
-            background-color: #0284c7;
+            background-color: #00c6ff;
+            box-shadow: 0 2px 6px rgba(0, 198, 255, 0.3);
         }
-
         .send-msg-btn:hover {
             opacity: 0.9;
             transform: translateY(-1px);
         }
 
-        /* Overlay */
         #loadingOverlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(15, 23, 42, 0.7);
+            background: rgba(0,0,0,0.5);
             color: #fff;
             text-align: center;
             padding-top: 200px;
-            font-size: 18px;
-            font-weight: 600;
+            font-size: 20px;
             z-index: 9999;
-            backdrop-filter: blur(4px);
         }
 
         footer {
             text-align: center;
             font-size: 13px;
-            color: var(--text-muted);
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid var(--border-color);
+            color: #666;
+            margin-top: 25px;
+            border-top: 1px solid #e0e0e0;
+            padding-top: 15px;
+        }
+        footer p {
+            font-weight: 500;
         }
 
-        .print-footer-msg {
-            display: none;
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #64748b;
-            border-top: 1px dashed #cbd5e1;
-            padding-top: 10px;
-            font-style: italic;
-        }
-
-        /* Status Indicator Notice Bar */
-        .status-notice-bar {
-            display: none;
-            background: var(--card-bg);
-            border: 1px solid var(--primary-color);
-            padding: 10px 16px;
-            border-radius: 8px;
-            margin-bottom: 15px;
-            font-weight: 600;
-            color: var(--primary-color);
-            text-align: center;
-        }
-
-        /* PRINT STYLES - FIXED FOR BLANK PAGE ISSUE */
         @media print {
-            html, body { 
-                background-color: #ffffff !important; 
-                color: #000000 !important; 
-                padding: 0 !important; 
-                margin: 0 !important;
-                width: 100% !important;
-                height: auto !important;
-                overflow: visible !important;
-            }
-
-            .app-nav, 
-            .complaint-box, 
-            .admin-entry-panel, 
-            #loadingOverlay, 
-            .front-calendar-box, 
-            .modal-overlay,
-            #statusNoticeBar,
-            footer { 
-                display: none !important; 
-            }
-
-            .container { 
-                max-width: 100% !important; 
-                width: 100% !important;
-                margin: 0 !important; 
-                padding: 10px !important; 
-                box-shadow: none !important;
-            }
-
-            header.main-header { 
-                border: none !important; 
-                box-shadow: none !important; 
-                padding: 10px 0 !important; 
-                margin-bottom: 15px !important; 
-                background: transparent !important; 
-            }
-
-            .section-block {
-                display: none !important;
-            }
-
-            .section-block.active {
-                display: block !important;
-                visibility: visible !important;
-                opacity: 1 !important;
-                position: static !important;
-                width: 100% !important;
-                height: auto !important;
-                border: none !important;
-                box-shadow: none !important;
-                padding: 0 !important;
-                margin: 0 !important;
-                background: transparent !important;
-            }
-
-            .table-responsive {
-                overflow: visible !important;
-                border: 1px solid #000000 !important;
-            }
-
-            table {
-                width: 100% !important;
-                border-collapse: collapse !important;
-                color: #000000 !important;
-            }
-
-            th, td {
-                border: 1px solid #666666 !important;
-                color: #000000 !important;
-                padding: 6px 8px !important;
-            }
-
-            th {
-                background-color: #f1f5f9 !important;
-                -webkit-print-color-adjust: exact;
-                print-color-adjust: exact;
-            }
-
-            .print-footer-msg { 
-                display: block !important; 
-                text-align: center;
-                margin-top: 20px;
-                font-size: 11px;
-                color: #333333;
-                border-top: 1px dashed #666;
-                padding-top: 10px;
-            }
+            body { background-color: #fff; padding: 0; }
+            .container { box-shadow: none; padding: 0; max-width: 100%; }
+            #dashboardSelectorWrapper, .print-btn-container, footer, .admin-entry-panel, .passcode-box, .complaint-box { display: none !important; }
+            .section-block { border: none; padding: 0; }
         }
     </style>
 </head>
@@ -785,128 +523,73 @@
 
 <div id="loadingOverlay">⏳ <span id="loadingTxt">ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</span></div>
 
-<!-- Top Sticky Navbar -->
-<nav class="app-nav">
-    <div class="nav-brand" onclick="openSection('sec-welcome')">
-        🤝 <span id="navTitle">বন্ধুত্বের স্মারক সমিতি</span>
-    </div>
-    <div class="nav-buttons">
-        <button class="nav-btn active" id="navBtnHome" onclick="openSection('sec-welcome')">🏠 Home</button>
-
-        <!-- Dynamic Dropdown for Members -->
-        <div class="nav-dropdown">
-            <button class="nav-btn" id="navBtnMembers" onclick="toggleMembersDropdown(event)">
-                👥 Members View ▾
-            </button>
-            <div class="dropdown-menu" id="membersDropdownMenu">
-                <div class="dropdown-header" id="dropHeaderMembers">সদস্যের পেজসমূহ</div>
-                <a class="dropdown-item" onclick="openSection('sec-awal')">আবদুল আউয়াল</a>
-                <a class="dropdown-item" onclick="openSection('sec-arif')">আরিফ হোসেন</a>
-                <a class="dropdown-item" onclick="openSection('sec-babor')">বাবর পাটোয়ারী</a>
-                <a class="dropdown-item" onclick="openSection('sec-babul')">বাবুল হোসেন</a>
-                <a class="dropdown-item" onclick="openSection('sec-jasim')">জসিম উদ্দিন</a>
-                <a class="dropdown-item" onclick="openSection('sec-main')">মঈন উদ্দিন (সুমন)</a>
-                <a class="dropdown-item" onclick="openSection('sec-saiem')">মোঃ সায়েম (শাকিল)</a>
-                <a class="dropdown-item" onclick="openSection('sec-selim')">সেলিম পাটোয়ারী</a>
-                <a class="dropdown-item" onclick="openSection('sec-sanawer')">সানোয়ার কাদের (আরিফ)</a>
-                <div class="dropdown-divider"></div>
-                <div class="dropdown-header" id="dropHeaderOthers">অন্যান্য পেজসমূহ</div>
-                <a class="dropdown-item" onclick="openSection('sec-payment')">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</a>
-            </div>
-        </div>
-
-        <button class="nav-btn" id="navBtnAdmin" onclick="promptAdminLogin()">⚙️ Admin</button>
-        <button class="nav-btn" onclick="triggerPrint()">🖨️ Print</button>
-        
-        <!-- Dark/Light Theme Toggle Button -->
-        <button class="nav-btn" id="themeToggleBtn" onclick="toggleTheme()">🌙 Dark Mode</button>
-
-        <!-- Integrated Language Switcher Bar -->
-        <div class="nav-lang-group">
-            <button class="nav-lang-btn active" id="btnBN" onclick="switchLanguage('bn')">BN</button>
-            <button class="nav-lang-btn" id="btnEN" onclick="switchLanguage('en')">EN</button>
-        </div>
-    </div>
-</nav>
-
-<!-- Admin Passcode Modal -->
-<div class="modal-overlay" id="adminModal">
-    <div class="modal-card">
-        <h3 id="modalTitle">⚙️ এডমিন লগইন</h3>
-        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">এডমিন প্যানেলে প্রবেশ করতে সঠিক পাসওয়ার্ড লিখুন:</p>
-        <input type="password" id="modalAdminPass" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off" onkeydown="if(event.key==='Enter') verifyAdminLogin()">
-        <p id="modalError" style="color: var(--accent-red); font-size: 12px; display: none; margin-bottom: 10px;">ভুল পাসওয়ার্ড! আবার চেষ্টা করুন।</p>
-        <div class="btn-group">
-            <button class="btn-confirm" onclick="verifyAdminLogin()">লগইন করুন</button>
-            <button class="btn-cancel" onclick="closeAdminModal()">বাতিল</button>
-        </div>
-    </div>
-</div>
-
 <div class="container">
-    <header class="main-header">
+    <header>
         <h1 id="hdrBismillah">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</h1>
         <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
         <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
         <p id="hdrSlogan">সেদিন বন্ধুরা একে অপরের শত্রু হয়ে যাবে—কেবল মুত্তাকি (আল্লাহভীরু) লোক ছাড়া।" (সূরা অজ-জুখরুফ, আয়াত: ৬৭)</p>
     </header>
 
-    <div id="statusNoticeBar" class="status-notice-bar">
-        <span id="statusNotice">সফলভাবে ফাইল প্রদর্শন করা হয়েছে।</span>
-    </div>
-
-    <!-- Dynamic Admin Entry Panel -->
-    <div class="admin-entry-panel" id="universalAdminPanel">
-        <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
-        <div class="admin-entry-grid">
-            <select id="targetMemberSelect" onchange="adjustAdminFormFields()">
-                <optgroup label="সদস্যের পেজসমূহ" id="grpMembers">
-                    <option value="awal">আবদুল আউয়াল</option>
-                    <option value="arif">আরিফ হোসেন</option>
-                    <option value="babor">বাবর পাটোয়ারী</option>
-                    <option value="babul">বাবুল হোসেন</option>
-                    <option value="jasim">জসিম উদ্দিন</option>
-                    <option value="main">মঈন উদ্দিন</option>
-                    <option value="saiem">মোঃ সায়েম</option>
-                    <option value="selim">সেলিম পাটোয়ারী</option>
-                    <option value="sanawer">সানোয়ার কাদের</option>
-                </optgroup>
-                <optgroup label="অন্যান্য পেজসমূহ" id="grpOthers">
-                    <option value="sec-payment">সম্পত্তির পরিশোধিত মূল্য</option>
-                </optgroup>
-            </select>
-            <input type="date" id="inputDate" required>
-            <input type="text" id="inputRef" placeholder="Ref. No / ID" required autocomplete="off">
-            <input type="text" id="inputBankFrom" placeholder="Sender Bank" required autocomplete="off">
-            <input type="text" id="inputBankTo" placeholder="Receiver Bank" required autocomplete="off">
-            <input type="text" id="inputMonth" placeholder="Month (e.g. January)" required autocomplete="off">
-            <input type="text" id="inputYear" placeholder="Year (e.g. 2026)" required autocomplete="off">
-            <input type="number" id="inputAmount" placeholder="Amount (BDT)" required step="any">
-        </div>
-        <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
-    </div>
-
-    <!-- Home Section -->
+    <!-- Welcome Section -->
     <div id="sec-welcome" class="section-block active">
         <div class="welcome-hero">
             <h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
             <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
+            <div class="location-box" id="userLocation">🌍 আপনার দেশ শনাক্ত করা হচ্ছে...</div>
+            <div class="live-datetime-box">⏰ <span id="liveClock">লোড হচ্ছে...</span></div>
             
-            <div class="status-bar-grid">
-                <div class="status-card" id="userLocation">🌍 আপনার দেশ শনাক্ত করা হচ্ছে...</div>
-                <div class="status-card">⏰ <span id="liveClock">লোড হচ্ছে...</span></div>
-            </div>
-
             <div class="glass-marquee-container">
                 <div class="glass-marquee-track">
                     🌟 <span id="marqueePrefix">সমিতির তহবিলে বর্তমানে জমা আছে:</span> <span id="marqueeTotal">0.00</span> <span id="marqueeSuffix">টাকা মাত্র</span> 🌟 
                 </div>
             </div>
+
+            <!-- Login Box -->
+            <div class="passcode-box">
+                <div class="lang-switch-wrapper">
+                    <span class="lang-switch-title" id="langSwitchLabel">🌐 Language / ভাষা:</span>
+                    <div class="lang-toggle-group">
+                        <button class="lang-toggle-btn active" id="btnBN" onclick="switchLanguage('bn')">BN</button>
+                        <button class="lang-toggle-btn" id="btnEN" onclick="switchLanguage('en')">EN</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="memberNameSelect" id="lblMemberSelect">ইউজার/সদস্য (পাসওয়ার্ড লাগবে না)</label>
+                    <select id="memberNameSelect" onchange="toggleAdminPasswordInput()">
+                        <option value="" id="optDefault">আপনার ফাইলটি নির্বাচন করুন</option>
+                        <option value="sec-admin" id="optAdmin">এডমিন</option>
+                        <option value="sec-awal" id="optAwal">আবদুল আউয়াল</option>
+                        <option value="sec-arif" id="optArif">আরিফ হোসেন</option>
+                        <option value="sec-babor" id="optBabor">বাবর পাটোয়ারী</option>
+                        <option value="sec-babul" id="optBabul">বাবুল হোসেন</option>
+                        <option value="sec-jasim" id="optJasim">জসিম উদ্দিন</option>
+                        <option value="sec-main" id="optMain">মঈন উদ্দিন (সুমন)</option>
+                        <option value="sec-saiem" id="optSaiem">মোঃ সায়েম (শাকিল)</option>
+                        <option value="sec-selim" id="optSelim">সেলিম পাটোয়ারী</option>
+                        <option value="sec-sanawer" id="optSanawer">সানোয়ার কাদের (আরিফ)</option>
+                        <option value="sec-payment" id="optPayment">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</option>
+                    </select>
+                </div>
+
+                <div class="form-group" id="adminPassGroup" style="display: none;">
+                    <label for="adminPasscode" id="lblAdminPass" style="color: #d97706;">এডমিন পাসওয়ার্ড দিন</label>
+                    <input type="password" id="adminPasscode" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off">
+                </div>
+
+                <div class="login-btn-container">
+                    <button class="unlock-btn" id="viewBtn" onclick="openSelectedDashboard(false)">ফাইল দেখুন</button>
+                    <button class="unlock-btn admin-btn" id="adminLoginBtn" style="display:none;" onclick="openSelectedDashboard(true)">এডমিন লগইন</button>
+                </div>
+
+                <p id="errorMsg" class="error-msg">অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!</p>
+            </div>
         </div>
 
-        <!-- Live Summary Table -->
-        <div style="margin-top: 30px;">
-            <h3 id="summaryTitle" style="margin-bottom: 12px; color: var(--primary-color);">📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)</h3>
+        <!-- Summary Table -->
+        <div class="shortcut-dashboard">
+            <h3 id="summaryTitle">📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)</h3>
             <div class="table-responsive">
                 <table>
                     <thead>
@@ -943,7 +626,49 @@
         </div>
     </div>
 
-    <!-- Member Sections -->
+    <!-- Navigation Bar -->
+    <div id="dashboardSelectorWrapper" class="dashboard-selector">
+        <span style="font-weight: bold; color: #007bff;" id="statusNotice">সফলভাবে ফাইল প্রদর্শন করা হয়েছে।</span>
+        <button id="btnHome" onclick="lockDashboard()">Homepage</button>
+    </div>
+
+    <!-- Print Button -->
+    <div class="print-btn-container">
+        <button class="print-btn" id="btnPrint" onclick="window.print()">🖨️ প্রিন্ট করুন</button>
+    </div>
+
+    <!-- Dynamic Admin Entry Panel -->
+    <div class="admin-entry-panel" id="universalAdminPanel">
+        <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
+        <div class="admin-entry-grid">
+            <select id="targetMemberSelect" onchange="adjustAdminFormFields()">
+                <optgroup label="সদস্যের পেজসমূহ" id="grpMembers">
+                    <option value="awal">আবদুল আউয়াল</option>
+                    <option value="arif">আরিফ হোসেন</option>
+                    <option value="babor">বাবর পাটোয়ারী</option>
+                    <option value="babul">বাবুল হোসেন</option>
+                    <option value="jasim">জসিম উদ্দিন</option>
+                    <option value="main">মঈন উদ্দিন</option>
+                    <option value="saiem">মোঃ সায়েম</option>
+                    <option value="selim">সেলিম পাটোয়ারী</option>
+                    <option value="sanawer">সানোয়ার কাদের</option>
+                </optgroup>
+                <optgroup label="অন্যান্য পেজসমূহ" id="grpOthers">
+                    <option value="sec-payment">সম্পত্তির পরিশোধিত মূল্য</option>
+                </optgroup>
+            </select>
+            <input type="date" id="inputDate" required>
+            <input type="text" id="inputRef" placeholder="Ref. No / ID" required autocomplete="off">
+            <input type="text" id="inputBankFrom" placeholder="Sender Bank" required autocomplete="off">
+            <input type="text" id="inputBankTo" placeholder="Receiver Bank" required autocomplete="off">
+            <input type="text" id="inputMonth" placeholder="Month (e.g. January)" required autocomplete="off">
+            <input type="text" id="inputYear" placeholder="Year (e.g. 2026)" required autocomplete="off">
+            <input type="number" id="inputAmount" placeholder="Amount (BDT)" required step="any">
+        </div>
+        <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
+    </div>
+
+    <!-- All Member Sections -->
     <div id="sec-awal" class="section-block">
         <div class="info-box" id="info-awal"></div>
         <h3 class="section-title"><span class="titleMemberName">Abdul Awal</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
@@ -1057,7 +782,7 @@
         <div class="info-box">
             <p><strong id="lblLandPrice">খরিদকৃত জমির মূল্য:</strong> <span id="valLandPrice">9,100,000.00 BDT</span></p>
             <p><strong id="lblPaidAmount">প্রদেয় টাকার পরিমাণ:</strong> <span id="valPaidAmount">0.00 BDT</span></p>
-            <p><strong id="lblDueAmount">প্রদানের বাকি মূল্য:</strong> <span id="valDueAmount" style="color: var(--accent-red); font-weight: bold;">0.00 BDT</span></p>
+            <p><strong id="lblDueAmount">প্রদানের বাকি মূল্য:</strong> <span id="valDueAmount" style="color: #d9534f; font-weight: bold;">0.00 BDT</span></p>
         </div>
         <h3 class="section-title" id="pmtTitle">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</h3>
         <div class="table-responsive">
@@ -1080,20 +805,15 @@
         </div>
     </div>
 
-    <!-- Complaint Box -->
+    <!-- Compact Complaint & Feedback Box Section -->
     <div class="complaint-box">
-        <h3 id="lblCompTitle">💥অভিযোগ বা পরামর্শ দিন💥</h3>
+        <h3 id="lblCompTitle"> 💥অভিযোগ বা পরামর্শ দিন💥</h3>
         <p id="lblCompSub">যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝:</p>
         
         <div class="action-btn-group">
-            <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnAdminMessenger">🏡 এডমিন</a>
+            <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnAdminMessenger">🏡 এডমিন </a>
             <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t" target="_blank" rel="noopener noreferrer" class="send-msg-btn profile-btn" id="btnMyMessenger">👥 সম্মানিত সদস্যবৃন্দ</a>
         </div>
-    </div>
-
-    <!-- System Generated Footer for Print -->
-    <div class="print-footer-msg">
-        📄 **This is a System Generated Document** — Childhood Friends Association © 2026. No physical signature required.
     </div>
 
     <footer>
@@ -1106,10 +826,8 @@
 
     let isAdminMode = false;
     let globalAdminToken = ""; 
-    let activePageId = "sec-welcome";
+    let activePageId = "";
     let currentLang = 'bn';
-    let isDarkMode = false;
-    let currCalendarDate = new Date();
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
     
@@ -1146,6 +864,15 @@
             userLocFail: "🌍 দেশ শনাক্ত করা যায়নি",
             marqueePrefix: "সমিতির তহবিলে বর্তমানে জমা আছে:",
             marqueeSuffix: "টাকা মাত্র",
+            lblMemberSelect: "ইউজার/সদস্য (পাসওয়ার্ড লাগবে না)",
+            optDefault: "আপনার ফাইলটি নির্বাচন করুন",
+            optAdmin: "এডমিন",
+            optPayment: "সম্পত্তির পরিশোধিত মূল্যের বিবরণ",
+            lblAdminPass: "এডমিন পাসওয়ার্ড দিন",
+            adminPassHolder: "পাসওয়ার্ড লিখুন",
+            btnView: "ফাইল দেখুন",
+            btnAdminLogin: "এডমিন লগইন",
+            errorMsg: "অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!",
             summaryTitle: "📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)",
             thName: "সদস্যের নাম",
             thShare: "শেয়ার",
@@ -1155,8 +882,10 @@
             dueLabel: "(বকেয়া)",
             paidLabel: "(পরিশোধিত)",
             grandTotal: "সর্বমোট",
-            statusView: "👁️ সদস্য ভিউ সক্রিয় আছে",
-            statusAdmin: "⚙️ এডমিন প্যানেল সক্রিয় আছে",
+            statusView: "👁️ সদস্য ভিউ",
+            statusAdmin: "⚙️ এডমিন সক্রিয় আছে",
+            btnHome: "হোমপেজ",
+            btnPrint: "🖨️ প্রিন্ট করুন",
             adminHeaderMember: "ডেটা এডমিনিস্ট্রেটর (সদস্যের জমা)",
             adminHeaderProperty: "ডেটা এডমিনিস্ট্রেটর (সম্পত্তির পরিশোধিত মূল্য)",
             grpMembers: "সদস্যের পেজসমূহ",
@@ -1206,6 +935,15 @@
             userLocFail: "🌍 Country could not be detected",
             marqueePrefix: "Current Balance in Association Fund:",
             marqueeSuffix: "BDT only",
+            lblMemberSelect: "USER/MEMBER (No password required)",
+            optDefault: "Select your file",
+            optAdmin: "Admin",
+            optPayment: "Paid Property Value Details",
+            lblAdminPass: "Enter Admin Password",
+            adminPassHolder: "Enter password",
+            btnView: "View File",
+            btnAdminLogin: "Admin Login",
+            errorMsg: "Please enter the correct password for Admin login!",
             summaryTitle: "📊 Summary of Members' Accounts at a Glance (Live)",
             thName: "Member Name",
             thShare: "Share(s)",
@@ -1217,6 +955,8 @@
             grandTotal: "Grand Total",
             statusView: "👁️ MEMBER VIEW ACTIVE",
             statusAdmin: "⚙️ ADMIN VIEW ACTIVE",
+            btnHome: "Homepage",
+            btnPrint: "🖨️ Print",
             adminHeaderMember: "Data Administrator (Member Deposit)",
             adminHeaderProperty: "Data Administrator (Paid Property Value)",
             grpMembers: "Member Pages",
@@ -1275,118 +1015,6 @@
         });
     }
 
-    /* Toggle Dark / Light Theme */
-    function toggleTheme() {
-        isDarkMode = !isDarkMode;
-        document.body.classList.toggle('dark-theme', isDarkMode);
-        const themeBtn = document.getElementById("themeToggleBtn");
-        if (isDarkMode) {
-            themeBtn.textContent = "☀️ Light Mode";
-        } else {
-            themeBtn.textContent = "🌙 Dark Mode";
-        }
-    }
-
-    /* Dynamic Page Switcher */
-    function openSection(secId) {
-        activePageId = secId;
-
-        // Hide all blocks
-        document.querySelectorAll('.section-block').forEach(el => el.classList.remove('active'));
-        
-        // Show target
-        const targetBlock = document.getElementById(secId);
-        if (targetBlock) {
-            targetBlock.classList.add('active');
-        }
-
-        // Active State Navigation
-        document.getElementById('navBtnHome').classList.toggle('active', secId === 'sec-welcome');
-        document.getElementById('navBtnMembers').classList.toggle('active', secId !== 'sec-welcome');
-
-        // Status Notice Bar
-        const noticeBar = document.getElementById("statusNoticeBar");
-        if (secId === 'sec-welcome') {
-            noticeBar.style.display = "none";
-        } else {
-            noticeBar.style.display = "block";
-            const t = langText[currentLang];
-            document.getElementById("statusNotice").textContent = isAdminMode ? t.statusAdmin : t.statusView;
-        }
-
-        // Close Dropdown
-        document.getElementById("membersDropdownMenu").classList.remove("show");
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    function toggleMembersDropdown(e) {
-        e.stopPropagation();
-        document.getElementById("membersDropdownMenu").classList.toggle("show");
-    }
-
-    // Close Dropdown on outside click
-    window.addEventListener('click', function() {
-        document.getElementById("membersDropdownMenu").classList.remove("show");
-    });
-
-    /* Admin Password Prompt System */
-    function promptAdminLogin() {
-        if (isAdminMode) {
-            alert(currentLang === 'bn' ? "আপনি ইতিমধ্যেই এডমিন হিসেবে লগইন করে আছেন।" : "You are already logged in as Admin.");
-            return;
-        }
-        document.getElementById("modalAdminPass").value = "";
-        document.getElementById("modalError").style.display = "none";
-        document.getElementById("adminModal").style.display = "flex";
-        document.getElementById("modalAdminPass").focus();
-    }
-
-    function closeAdminModal() {
-        document.getElementById("adminModal").style.display = "none";
-    }
-
-    function verifyAdminLogin() {
-        const pass = document.getElementById("modalAdminPass").value.trim();
-        const err = document.getElementById("modalError");
-
-        if (!pass) return;
-
-        showLoading(true);
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify({ action: "verify_admin", password: pass })
-        })
-        .then(res => res.json())
-        .then(res => {
-            showLoading(false);
-            if (res.success) {
-                isAdminMode = true;
-                globalAdminToken = pass;
-                closeAdminModal();
-                
-                document.getElementById("universalAdminPanel").style.display = "block";
-                document.getElementById("navBtnAdmin").classList.add("active");
-                
-                if (activePageId === "sec-welcome") {
-                    openSection('sec-awal');
-                } else {
-                    openSection(activePageId);
-                }
-            } else {
-                err.style.display = "block";
-            }
-        })
-        .catch(() => {
-            showLoading(false);
-            alert("Error verifying password!");
-        });
-    }
-
-    function triggerPrint() {
-        window.print();
-    }
-
     function switchLanguage(lang) {
         currentLang = lang;
 
@@ -1399,12 +1027,31 @@
         document.getElementById("hdrBismillah").textContent = t.hdrBismillah;
         document.getElementById("welcomeSalam").textContent = t.welcomeSalam;
         document.getElementById("hdrTitle").textContent = t.hdrTitle;
-        document.getElementById("navTitle").textContent = t.hdrTitle;
         document.getElementById("hdrEst").textContent = t.hdrEst;
         document.getElementById("hdrSlogan").textContent = t.hdrSlogan;
         document.getElementById("welcomeHeading").textContent = t.welcomeHeading;
         document.getElementById("marqueePrefix").textContent = t.marqueePrefix;
         document.getElementById("marqueeSuffix").textContent = t.marqueeSuffix;
+
+        document.getElementById("lblMemberSelect").textContent = t.lblMemberSelect;
+        document.getElementById("optDefault").textContent = t.optDefault;
+        document.getElementById("optAdmin").textContent = t.optAdmin;
+        document.getElementById("optAwal").textContent = memberNames[lang].awal;
+        document.getElementById("optArif").textContent = memberNames[lang].arif;
+        document.getElementById("optBabor").textContent = memberNames[lang].babor;
+        document.getElementById("optBabul").textContent = memberNames[lang].babul;
+        document.getElementById("optJasim").textContent = memberNames[lang].jasim;
+        document.getElementById("optMain").textContent = memberNames[lang].main;
+        document.getElementById("optSaiem").textContent = memberNames[lang].saiem;
+        document.getElementById("optSelim").textContent = memberNames[lang].selim;
+        document.getElementById("optSanawer").textContent = memberNames[lang].sanawer;
+        document.getElementById("optPayment").textContent = t.optPayment;
+
+        document.getElementById("lblAdminPass").textContent = t.lblAdminPass;
+        document.getElementById("adminPasscode").placeholder = t.adminPassHolder;
+        document.getElementById("viewBtn").textContent = t.btnView;
+        document.getElementById("adminLoginBtn").textContent = t.btnAdminLogin;
+        document.getElementById("errorMsg").textContent = t.errorMsg;
 
         document.getElementById("summaryTitle").textContent = t.summaryTitle;
         document.getElementById("thName").textContent = t.thName;
@@ -1413,10 +1060,11 @@
         document.getElementById("thTotal").textContent = t.thTotal;
         document.getElementById("thStatus").textContent = t.thStatus;
 
+        document.getElementById("btnHome").textContent = t.btnHome;
+        document.getElementById("btnPrint").textContent = t.btnPrint;
+
         document.getElementById("grpMembers").label = t.grpMembers;
         document.getElementById("grpOthers").label = t.grpOthers;
-        document.getElementById("dropHeaderMembers").textContent = t.grpMembers;
-        document.getElementById("dropHeaderOthers").textContent = t.grpOthers;
         document.getElementById("btnSaveData").textContent = t.btnSaveData;
 
         document.querySelectorAll(".tblHeaderDate").forEach(el => el.textContent = t.tblDate);
@@ -1478,304 +1126,425 @@
         }
     }
 
-    /* Live Time & Location */
-    function updateClock() {
-        const now = new Date();
-        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit' };
-        document.getElementById('liveClock').textContent = now.toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US', options);
-    }
-    setInterval(updateClock, 1000);
-    updateClock();
+    // Google Sheet Data Fetching Optimization
+    function fetchFromGoogleSheet() {
+        if (!SCRIPT_URL) return Promise.resolve();
 
-    function fetchUserLocation() {
-        fetch('https://ipapi.co/json/')
-        .then(res => res.json())
-        .then(data => {
-            if (data && data.country_name) {
-                const flag = data.country_code ? String.fromCodePoint(...[...data.country_code.toUpperCase()].map(c => 127397 + c.charCodeAt())) : '🌍';
-                document.getElementById('userLocation').textContent = `${flag} ${data.city ? data.city + ', ' : ''}${data.country_name}`;
-            } else {
-                document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
-            }
-        })
-        .catch(() => {
-            document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
-        });
-    }
-
-    /* Data Fetching & Rendering */
-    function loadSheetData() {
         showLoading(true);
-        fetch(SCRIPT_URL + "?action=get_all")
-        .then(res => res.json())
-        .then(data => {
-            showLoading(false);
-            if (data) {
-                if (data.transactions) db.transactions = data.transactions;
-                if (data.payments) db.payments = data.payments;
+        return fetch(SCRIPT_URL)
+            .then(res => res.json())
+            .then(data => {
+                db.transactions = { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] };
+                db.payments = [];
+
+                data.forEach(item => {
+                    const target = sanitizeInput(item.target);
+                    const amount = parseFloat(item.amount) || 0;
+
+                    if (target === "sec-payment") {
+                        db.payments.push({
+                            date: sanitizeInput(item.date),
+                            ref: sanitizeInput(item.ref),
+                            senderBank: sanitizeInput(item.senderBank || item.bankFrom),
+                            receiverBank: sanitizeInput(item.receiverBank || item.bankTo),
+                            reasonTitle: sanitizeInput(item.reasonTitle || item.month),
+                            year: sanitizeInput(item.year || "-"),
+                            amount: amount
+                        });
+                    } else if (memberKeys.includes(target)) {
+                        db.transactions[target].push({
+                            date: sanitizeInput(item.date),
+                            ref: sanitizeInput(item.ref),
+                            bankFrom: sanitizeInput(item.bankFrom),
+                            bankTo: sanitizeInput(item.bankTo),
+                            month: sanitizeInput(item.month),
+                            year: sanitizeInput(item.year),
+                            amount: amount
+                        });
+                    }
+                });
+
                 renderAllData();
-            }
-        })
-        .catch(err => {
-            showLoading(false);
-            console.error("Error fetching data:", err);
-        });
+                showLoading(false);
+            })
+            .catch(err => {
+                console.error("Google Sheet Load Error:", err);
+                showLoading(false);
+            });
     }
 
-    function formatNumber(num) {
-        return parseFloat(num || 0).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    function toggleAdminPasswordInput() {
+        const val = document.getElementById("memberNameSelect").value;
+        const passGroup = document.getElementById("adminPassGroup");
+        const adminBtn = document.getElementById("adminLoginBtn");
+        const viewBtn = document.getElementById("viewBtn");
+
+        if (val === "sec-admin") {
+            passGroup.style.display = "block";
+            adminBtn.style.display = "inline-block";
+            viewBtn.style.display = "none";
+        } else {
+            passGroup.style.display = "none";
+            adminBtn.style.display = "none";
+            viewBtn.style.display = "inline-block";
+        }
     }
 
-    function renderAllData() {
-        let totalAssociationFund = 0;
+    function openSelectedDashboard(asAdmin) {
+        const selectedTarget = document.getElementById("memberNameSelect").value;
+        const errorMsg = document.getElementById("errorMsg");
+        const adminPass = document.getElementById("adminPasscode").value;
+
+        if (!selectedTarget) {
+            alert(currentLang === 'bn' ? "অনুগ্রহ করে একটি ফাইল নির্বাচন করুন!" : "Please select a file!");
+            return;
+        }
+
+        if (selectedTarget === "sec-admin") {
+            showLoading(true);
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify({ action: "verify_admin", password: adminPass })
+            })
+            .then(res => res.json())
+            .then(res => {
+                showLoading(false);
+                if (res.success) {
+                    isAdminMode = true;
+                    globalAdminToken = adminPass;
+                    activePageId = "sec-awal";
+                    renderDashboardView();
+                } else {
+                    errorMsg.style.display = "block";
+                }
+            })
+            .catch(err => {
+                showLoading(false);
+                alert("Connection error!");
+            });
+        } else {
+            isAdminMode = false;
+            globalAdminToken = "";
+            activePageId = selectedTarget;
+            renderDashboardView();
+        }
+    }
+
+    function renderDashboardView() {
+        document.getElementById("sec-welcome").style.display = "none";
+        const sections = document.getElementsByClassName("section-block");
+        for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
+
+        document.getElementById(activePageId).classList.add("active");
+        document.getElementById("dashboardSelectorWrapper").classList.add("active-dropdown");
+        document.querySelector(".print-btn-container").style.display = "block";
+        document.getElementById("errorMsg").style.display = "none";
+
+        document.getElementById("universalAdminPanel").style.display = isAdminMode ? "block" : "none";
         const t = langText[currentLang];
-        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US');
+        document.getElementById("statusNotice").textContent = isAdminMode ? t.statusAdmin : t.statusView;
+        
+        adjustAdminFormFields();
+    }
 
-        // 1. Render Member Details
-        memberKeys.forEach(m => {
-            const list = db.transactions[m] || [];
-            const tbody = document.getElementById(`table-${m}`);
-            tbody.innerHTML = "";
+    function lockDashboard() {
+        isAdminMode = false;
+        globalAdminToken = "";
+        document.getElementById("adminPasscode").value = "";
+        const sections = document.getElementsByClassName("section-block");
+        for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
+        
+        const welcomeSec = document.getElementById("sec-welcome");
+        welcomeSec.style.display = "block";
+        welcomeSec.classList.add("active");
+        document.getElementById("dashboardSelectorWrapper").classList.remove("active-dropdown");
+        document.querySelector(".print-btn-container").style.display = "none";
+        document.getElementById("universalAdminPanel").style.display = "none";
+    }
 
-            let memberTotal = 0;
-            if (list.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="6" style="color:var(--text-muted);">${t.noData}</td></tr>`;
-            } else {
-                list.forEach(item => {
-                    const amt = parseFloat(item.amount) || 0;
-                    memberTotal += amt;
-                    const monthYear = (item.month || '') + (item.year ? ' ' + item.year : '');
-                    tbody.innerHTML += `
+    function submitNewTransaction() {
+        const target = sanitizeInput(document.getElementById("targetMemberSelect").value);
+        const rawDate = sanitizeInput(document.getElementById("inputDate").value.trim());
+        const ref = sanitizeInput(document.getElementById("inputRef").value.trim());
+        const bankFrom = sanitizeInput(document.getElementById("inputBankFrom").value.trim());
+        const bankTo = sanitizeInput(document.getElementById("inputBankTo").value.trim());
+        const month = sanitizeInput(document.getElementById("inputMonth").value.trim());
+        const year = sanitizeInput(document.getElementById("inputYear").value.trim());
+        const rawAmount = document.getElementById("inputAmount").value.trim();
+
+        if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
+            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" : "⚠️ Please fill in all fields!");
+            return;
+        }
+
+        const amount = parseFloat(rawAmount);
+        if (isNaN(amount) || amount <= 0) {
+            alert(currentLang === 'bn' ? "⚠️ টাকার পরিমাণ সঠিক নয়!" : "⚠️ Invalid Amount!");
+            return;
+        }
+
+        const now = new Date();
+        const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+
+        const dateParts = rawDate.split("-");
+        const formattedDateTime = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${currentTime}`;
+
+        let payload = {
+            action: "save_transaction",
+            adminPassword: globalAdminToken,
+            target: target,
+            date: formattedDateTime,
+            ref: ref,
+            amount: amount,
+            bankFrom: bankFrom,
+            bankTo: bankTo,
+            month: month,
+            year: year
+        };
+
+        if (SCRIPT_URL) {
+            showLoading(true);
+            fetch(SCRIPT_URL, {
+                method: "POST",
+                headers: { "Content-Type": "text/plain;charset=utf-8" },
+                body: JSON.stringify(payload)
+            })
+            .then(res => res.json())
+            .then(res => {
+                showLoading(false);
+                if (res.success) {
+                    alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
+                    document.getElementById("inputAmount").value = "";
+                    document.getElementById("inputRef").value = "";
+                    document.getElementById("inputBankFrom").value = "";
+                    document.getElementById("inputBankTo").value = "";
+                    document.getElementById("inputMonth").value = "";
+                    document.getElementById("inputYear").value = "";
+                    document.getElementById("inputDate").value = "";
+                    fetchFromGoogleSheet();
+                } else {
+                    alert("Error: " + res.message);
+                }
+            })
+            .catch(err => {
+                showLoading(false);
+                alert("Error saving data!");
+            });
+        }
+    }
+
+    // Performance Optimized Rendering
+    function renderAllData() {
+        let grandTotalDeposited = 0;
+        let grandTotalTarget = 0;
+        let grandTotalDue = 0;
+
+        const t = langText[currentLang];
+        const frontBody = document.getElementById("frontSummaryBody");
+        let frontBodyHTML = "";
+
+        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'en-GB' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+
+        memberKeys.forEach(key => {
+            const list = db.transactions[key] || [];
+            let total = 0;
+
+            const tbody = document.getElementById(`table-${key}`);
+            if (tbody) {
+                let tbodyHTML = "";
+                list.forEach((item) => {
+                    total += item.amount;
+                    
+                    let monthYearStr = "-";
+                    if (item.month && item.month !== "-" && item.year && item.year !== "-") {
+                        monthYearStr = `${item.month}/${item.year}`;
+                    } else if (item.month && item.month !== "-") {
+                        monthYearStr = item.month;
+                    } else if (item.year && item.year !== "-") {
+                        monthYearStr = item.year;
+                    }
+
+                    tbodyHTML += `
                         <tr>
-                            <td>${sanitizeInput(item.date || '')}</td>
-                            <td>${sanitizeInput(item.ref || '')}</td>
-                            <td>${sanitizeInput(item.bankFrom || '')}</td>
-                            <td>${sanitizeInput(item.bankTo || '')}</td>
-                            <td>${sanitizeInput(monthYear)}</td>
-                            <td style="font-weight:600;">${formatNumber(amt)}</td>
+                            <td>${item.date}</td>
+                            <td>${item.ref}</td>
+                            <td>${item.bankFrom}</td>
+                            <td>${item.bankTo}</td>
+                            <td>${monthYearStr}</td>
+                            <td>${item.amount.toFixed(2)} BDT</td>
                         </tr>
                     `;
                 });
+
+                if (list.length === 0) {
+                    tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
+                }
+                tbody.innerHTML = tbodyHTML;
             }
 
-            document.getElementById(`total-${m}`).textContent = `${formatNumber(memberTotal)} BDT`;
-            totalAssociationFund += memberTotal;
+            const shares = memberShares[key];
+            const targetAmount = shares * PER_SHARE_PRICE;
+            const dueAmount = targetAmount - total;
 
-            // Render Member Info Box
-            const shares = memberShares[m];
-            const targetVal = PER_SHARE_PRICE * shares;
-            const dueVal = targetVal - memberTotal;
-            const infoBox = document.getElementById(`info-${m}`);
-            infoBox.innerHTML = `
-                <p><strong>${t.lblShareholder}</strong> ${memberNames[currentLang][m]}</p>
-                <p><strong>${t.lblAllocatedShares}</strong> ${shares}</p>
-                <p><strong>${t.lblTargetAmount}</strong> ${formatNumber(targetVal)} BDT</p>
-                <p><strong>${t.lblTotalDeposited}</strong> ${formatNumber(memberTotal)} BDT</p>
-                <p><strong>${t.lblRemainingDue}</strong> <span style="color:${dueVal > 0 ? 'var(--accent-red)' : 'var(--accent-green)'}; font-weight:bold;">${formatNumber(Math.abs(dueVal))} BDT ${dueVal > 0 ? t.dueLabel : t.paidLabel}</span></p>
-                <p><strong>${t.lblStatementDate}</strong> ${todayStr}</p>
-            `;
-            
-            // Set Section Titles
-            const sec = document.getElementById(`sec-${m}`);
-            if (sec) {
-                const titleMember = sec.querySelector(".titleMemberName");
-                if (titleMember) titleMember.textContent = memberNames[currentLang][m];
-            }
-        });
-
-        // Update Marquee Fund Total
-        document.getElementById("marqueeTotal").textContent = formatNumber(totalAssociationFund);
-
-        // 2. Render Property Payments
-        const pList = db.payments || [];
-        const pTbody = document.getElementById("table-payment");
-        pTbody.innerHTML = "";
-
-        let paidTotal = 0;
-        if (pList.length === 0) {
-            pTbody.innerHTML = `<tr><td colspan="6" style="color:var(--text-muted);">${t.noData}</td></tr>`;
-        } else {
-            pList.forEach(item => {
-                const amt = parseFloat(item.amount) || 0;
-                paidTotal += amt;
-                const reason = item.month || item.reason || '';
-                pTbody.innerHTML += `
-                    <tr>
-                        <td>${sanitizeInput(item.date || '')}</td>
-                        <td>${sanitizeInput(item.ref || '')}</td>
-                        <td>${sanitizeInput(item.bankFrom || '')}</td>
-                        <td>${sanitizeInput(item.bankTo || '')}</td>
-                        <td>${sanitizeInput(reason)}</td>
-                        <td style="font-weight:600;">${formatNumber(amt)}</td>
-                    </tr>
+            const infoBox = document.getElementById(`info-${key}`);
+            if (infoBox) {
+                infoBox.innerHTML = `
+                    <p><strong>${t.lblShareholder}</strong> ${memberNames[currentLang][key]}</p>
+                    <p><strong>${t.lblAllocatedShares}</strong> ${shares} Share(s)</p>
+                    <p><strong>${t.lblTargetAmount}</strong> ${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
+                    <p><strong>${t.lblTotalDeposited}</strong> ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
+                    <p><strong>${t.lblRemainingDue}</strong> <span style="color: ${dueAmount > 0 ? '#d9534f' : '#28a745'}; font-weight: bold;">${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</span></p>
+                    <p><strong>${t.lblStatementDate}</strong> ${todayStr}</p>
                 `;
-            });
-        }
+            }
 
-        document.getElementById("valLandPrice").textContent = `${formatNumber(TOTAL_LAND_PRICE)} BDT`;
-        document.getElementById("valPaidAmount").textContent = `${formatNumber(paidTotal)} BDT`;
-        const landDue = TOTAL_LAND_PRICE - paidTotal;
-        document.getElementById("valDueAmount").textContent = `${formatNumber(landDue)} BDT`;
-        document.getElementById("paymentTotal").textContent = formatNumber(paidTotal);
+            const totalLabel = document.getElementById(`total-${key}`);
+            if (totalLabel) totalLabel.textContent = `${total.toFixed(2)} BDT`;
 
-        // 3. Render Front Summary Table
-        renderFrontSummary(totalAssociationFund);
-    }
+            grandTotalDeposited += total;
+            grandTotalTarget += targetAmount;
+            grandTotalDue += dueAmount;
 
-    function renderFrontSummary(grandTotal) {
-        const tbody = document.getElementById("frontSummaryBody");
-        tbody.innerHTML = "";
-        const t = langText[currentLang];
-
-        let totalTargetSum = 0;
-        let totalDueSum = 0;
-
-        memberKeys.forEach(m => {
-            const list = db.transactions[m] || [];
-            const deposited = list.reduce((acc, curr) => acc + (parseFloat(curr.amount) || 0), 0);
-            const shares = memberShares[m];
-            const targetVal = PER_SHARE_PRICE * shares;
-            const due = targetVal - deposited;
-
-            totalTargetSum += targetVal;
-            totalDueSum += due;
-
-            tbody.innerHTML += `
-                <tr style="cursor:pointer;" onclick="openSection('sec-${m}')">
-                    <td style="text-align:left; font-weight:600; color:var(--primary-color);">${memberNames[currentLang][m]}</td>
+            frontBodyHTML += `
+                <tr>
+                    <td>${memberNames[currentLang][key]}</td>
                     <td>${shares}</td>
-                    <td>${formatNumber(targetVal)}</td>
-                    <td style="font-weight:600;">${formatNumber(deposited)}</td>
-                    <td style="color:${due > 0 ? 'var(--accent-red)' : 'var(--accent-green)'}; font-weight:bold;">
-                        ${formatNumber(Math.abs(due))} ${due > 0 ? t.dueLabel : t.paidLabel}
+                    <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td style="color: ${dueAmount > 0 ? '#d9534f' : '#28a745'}; font-weight: bold;">
+                        ${dueAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${dueAmount > 0 ? t.dueLabel : t.paidLabel}
                     </td>
                 </tr>
             `;
         });
 
-        // Summary Grand Total Row
-        tbody.innerHTML += `
-            <tr style="background-color: var(--table-header-bg); font-weight: 700;">
-                <td style="text-align:left;">${t.grandTotal}</td>
+        frontBodyHTML += `
+            <tr style="font-weight: bold; background-color: #e2e8f0;">
+                <td>${t.grandTotal}</td>
                 <td>${TOTAL_SHARES}</td>
-                <td>${formatNumber(totalTargetSum)}</td>
-                <td style="color:var(--primary-color);">${formatNumber(grandTotal)}</td>
-                <td style="color:${totalDueSum > 0 ? 'var(--accent-red)' : 'var(--accent-green)'};">
-                    ${formatNumber(Math.abs(totalDueSum))} ${totalDueSum > 0 ? t.dueLabel : t.paidLabel}
-                </td>
+                <td>${grandTotalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td>${grandTotalDeposited.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td>${grandTotalDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
             </tr>
         `;
+
+        frontBody.innerHTML = frontBodyHTML;
+
+        const totalPayment = renderPaymentStatement();
+        const netBalance = grandTotalDeposited - totalPayment;
+        document.getElementById("marqueeTotal").textContent = netBalance.toFixed(2);
     }
 
-    /* Calendar Widget */
-    function renderFrontCalendar() {
-        const year = currCalendarDate.getFullYear();
-        const month = currCalendarDate.getMonth();
-        
-        const monthNamesEn = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-        const monthNamesBn = ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"];
+    function renderPaymentStatement() {
+        const tbody = document.getElementById("table-payment");
+        if (!tbody) return 0;
 
-        document.getElementById("calendarTitle").textContent = `${currentLang === 'bn' ? monthNamesBn[month] : monthNamesEn[month]} ${year}`;
+        let payTotal = 0;
+        let tbodyHTML = "";
+        const t = langText[currentLang];
 
-        const firstDay = new Date(year, month, 1).getDay();
-        const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-        const calendarDays = document.getElementById("calendarDays");
-        calendarDays.innerHTML = "";
-
-        // Empty cells before month start
-        for (let i = 0; i < firstDay; i++) {
-            calendarDays.innerHTML += `<div></div>`;
-        }
-
-        const today = new Date();
-        for (let day = 1; day <= daysInMonth; day++) {
-            const isToday = day === today.getDate() && month === today.getMonth() && year === today.getFullYear();
-            calendarDays.innerHTML += `<div class="calendar-day ${isToday ? 'today' : ''}">${day}</div>`;
-        }
-    }
-
-    function changeMonth(delta) {
-        currCalendarDate.setMonth(currCalendarDate.getMonth() + delta);
-        renderFrontCalendar();
-    }
-
-    /* Submit New Transaction */
-    function submitNewTransaction() {
-        if (!isAdminMode || !globalAdminToken) {
-            alert("Unauthorized access!");
-            return;
-        }
-
-        const target = document.getElementById("targetMemberSelect").value;
-        const date = document.getElementById("inputDate").value;
-        const ref = document.getElementById("inputRef").value.trim();
-        const bankFrom = document.getElementById("inputBankFrom").value.trim();
-        const bankTo = document.getElementById("inputBankTo").value.trim();
-        const month = document.getElementById("inputMonth").value.trim();
-        const year = document.getElementById("inputYear").value.trim();
-        const amount = document.getElementById("inputAmount").value;
-
-        if (!date || !ref || !bankFrom || !bankTo || !month || !amount) {
-            alert(currentLang === 'bn' ? "অনুগ্রহ করে সবগুলি ঘর সঠিকভাবে পূরণ করুন।" : "Please fill in all required fields.");
-            return;
-        }
-
-        const payload = {
-            action: "add_transaction",
-            password: globalAdminToken,
-            target: target,
-            data: {
-                date: date,
-                ref: ref,
-                bankFrom: bankFrom,
-                bankTo: bankTo,
-                month: month,
-                year: year,
-                amount: amount
-            }
-        };
-
-        showLoading(true);
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify(payload)
-        })
-        .then(res => res.json())
-        .then(res => {
-            showLoading(false);
-            if (res.success) {
-                alert(currentLang === 'bn' ? "ডাটা সফলভাবে সেভ করা হয়েছে!" : "Data saved successfully!");
-                // Clear Form
-                document.getElementById("inputRef").value = "";
-                document.getElementById("inputBankFrom").value = "";
-                document.getElementById("inputBankTo").value = "";
-                document.getElementById("inputMonth").value = "";
-                document.getElementById("inputYear").value = "";
-                document.getElementById("inputAmount").value = "";
-                loadSheetData();
-            } else {
-                alert("Error: " + (res.message || "Failed to save data"));
-            }
-        })
-        .catch(err => {
-            showLoading(false);
-            console.error("Save error:", err);
-            alert("Error submitting data!");
+        db.payments.forEach(item => {
+            payTotal += item.amount;
+            tbodyHTML += `
+                <tr>
+                    <td>${item.date}</td>
+                    <td>${item.ref}</td>
+                    <td>${item.senderBank}</td>
+                    <td>${item.receiverBank}</td>
+                    <td>${item.reasonTitle}</td>
+                    <td>${item.amount.toFixed(2)}</td>
+                </tr>
+            `;
         });
+
+        if (db.payments.length === 0) {
+            tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
+        }
+        tbody.innerHTML = tbodyHTML;
+
+        const remainingLandDue = TOTAL_LAND_PRICE - payTotal;
+        document.getElementById("valLandPrice").textContent = TOTAL_LAND_PRICE.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
+        document.getElementById("valPaidAmount").textContent = payTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
+        document.getElementById("valDueAmount").textContent = remainingLandDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
+
+        document.getElementById("paymentTotal").textContent = payTotal.toFixed(2);
+        return payTotal;
     }
 
-    /* Initial Setup */
-    window.onload = function() {
-        const todayVal = new Date().toISOString().split('T')[0];
-        document.getElementById("inputDate").value = todayVal;
+    function updateLiveClock() {
+        const now = new Date();
+        const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+        document.getElementById('liveClock').textContent = now.toLocaleDateString(currentLang === 'bn' ? 'en-GB' : 'en-US', options);
+    }
 
-        fetchUserLocation();
+    let currentCalDate = new Date();
+    function renderFrontCalendar() {
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const year = currentCalDate.getFullYear();
+        const month = currentCalDate.getMonth();
+
+        document.getElementById('calendarTitle').textContent = `${monthNames[month]} ${year}`;
+        const daysContainer = document.getElementById('calendarDays');
+        
+        let daysHTML = '';
+        const firstDayIndex = new Date(year, month, 1).getDay();
+        const lastDay = new Date(year, month + 1, 0).getDate();
+        const today = new Date();
+
+        for (let i = 0; i < firstDayIndex; i++) {
+            daysHTML += '<div></div>';
+        }
+
+        for (let day = 1; day <= lastDay; day++) {
+            const isToday = (day === today.getDate() && month === today.getMonth() && year === today.getFullYear());
+            daysHTML += `<div class="calendar-day ${isToday ? 'today' : ''}">${day}</div>`;
+        }
+        daysContainer.innerHTML = daysHTML;
+    }
+
+    function changeMonth(step) {
+        currentCalDate.setMonth(currentCalDate.getMonth() + step);
         renderFrontCalendar();
-        adjustAdminFormFields();
-        loadSheetData();
-    };
+    }
+
+    document.addEventListener('contextmenu', e => e.preventDefault());
+    document.addEventListener('keydown', e => {
+        if (e.key === 'F12' || (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) || (e.ctrlKey && e.key === 'U')) {
+            e.preventDefault();
+        }
+    });
+
+    // Fast Non-blocking Initialization
+    window.addEventListener('DOMContentLoaded', () => {
+        updateLiveClock();
+        setInterval(updateLiveClock, 1000);
+        renderFrontCalendar();
+
+        // 1. Fetch Google Sheet Data
+        fetchFromGoogleSheet();
+
+        // 2. Fetch IP with 2s Timeout to Avoid Page Lag
+        const fetchLocation = new Promise((resolve, reject) => {
+            fetch('https://ipapi.co/json/')
+                .then(res => res.json())
+                .then(resolve)
+                .catch(reject);
+        });
+
+        const timeout = new Promise((_, reject) => setTimeout(() => reject('timeout'), 2000));
+
+        Promise.race([fetchLocation, timeout])
+            .then(data => {
+                if (data && data.country_name) {
+                    document.getElementById('userLocation').textContent = `🌍 ${sanitizeInput(data.country_name)} (${sanitizeInput(data.city) || ''})`;
+                }
+            })
+            .catch(() => {
+                document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
+            });
+    });
 </script>
+
 </body>
 </html>
