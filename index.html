@@ -1273,9 +1273,8 @@
         const year = sanitizeInput(document.getElementById("inputYear").value.trim());
         const rawAmount = document.getElementById("inputAmount").value.trim();
 
-        // Check if any field is empty
         if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
-            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" : "⚠️ Please fill in all fields! No field can be left empty.");
+            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" : "⚠️ Please fill in all fields!");
             return;
         }
 
