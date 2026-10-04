@@ -68,7 +68,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-top: 118px; /* Adjusted to accommodate nav + slightly larger top live widgets bar */
+            padding-top: 118px; 
             padding-bottom: 20px;
             -webkit-user-select: none;
             -ms-user-select: none;
@@ -234,14 +234,22 @@
         header h4 {
             color: var(--text-muted);
             font-size: 14px;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
             font-weight: 600;
         }
 
-        header p {
-            font-size: 13px;
-            color: var(--text-muted);
+        /* Static Quote Box in Header (Replaced Old Slogan & Removed 🤝 icon) */
+        .static-quote-box {
+            background: var(--box-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin-top: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--box-text);
             line-height: 1.5;
+            text-align: center;
         }
 
         #sec-welcome {
@@ -261,7 +269,7 @@
             font-weight: 600;
         }
 
-        /* Four Live Widgets Row Layout (Navbar Second Row) - Larger Size with Icons */
+        /* Four Live Widgets Row Layout */
         .live-widget-card {
             background: var(--box-bg);
             padding: 4px 8px;
@@ -300,6 +308,7 @@
             line-height: 1.2;
         }
 
+        /* Moving Marquee for Total Fund */
         .glass-marquee-container {
             position: relative;
             width: 100%;
@@ -770,7 +779,11 @@
         <h1 id="hdrBismillah">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</h1>
         <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
         <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
-        <p id="hdrSlogan">সেদিন বন্ধুরা একে অপরের শত্রু হয়ে যাবে—কেবল মুত্তাকি (আল্লাহভীরু) লোক ছাড়া।" (সূরা অজ-জুখরুফ, আয়াত: ৬৭)</p>
+        
+        <!-- Static Quote Box in Header (Replaced Old Slogan & Removed 🤝 icon) -->
+        <div class="static-quote-box" id="dynamicQuoteStatic">
+            লোড হচ্ছে...
+        </div>
     </header>
 
     <!-- Welcome Section -->
@@ -778,7 +791,8 @@
         <div class="welcome-hero">
             <h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
             <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
-            
+
+            <!-- Association Total Fund Marquee (Moving) -->
             <div class="glass-marquee-container">
                 <div class="glass-marquee-track">
                     🌟 <span id="marqueePrefix">সমিতির তহবিলে বর্তমানে জমা আছে:</span> <span id="marqueeTotal">0.00</span> <span id="marqueeSuffix">টাকা মাত্র</span> 🌟 
@@ -1002,7 +1016,20 @@
     let globalAdminToken = ""; 
     let activePageId = "";
     let currentLang = 'bn';
-    let userDetectedTimezone = ""; // Store detected user timezone
+    let userDetectedTimezone = ""; 
+
+    // Islamic & Philosophical Quotes in Bengali (Friendship & Business/Commerce - No 🤝 icon)
+    const islamicAndPhilosophicalQuotes = [
+        "\"মুমিনগণ পরস্পর ভাই ভাই, অতএব তোমরা তোমাদের ভাইদের মধ্যে আপস-মীমাংসা করে দাও।\" — আল-কুরআন (সূরা আল-হুজুরাত: ১০)",
+        "\"হে ঈমানদারগণ! একে অপরের সম্পত্তি অন্যায়ভাবে ভক্ষণ করো না, কেবল পারস্পরিক সম্মতির ভিত্তিতে যে ব্যবসা করা হয় তা ভিন্ন।\" — আল-কুরআন (সূরা আন-নিসা: ২৯)",
+        "\"সৎ ও বিশ্বস্ত ব্যবসায়ী কিয়ামতের দিন নবীগণ, সিদ্দিক ও শহীদগণের সাথে থাকবে।\" — আল-হাদীস (তিরমিজি)",
+        "\"যে ব্যক্তি কোনো মুমিনের দুনিয়াবি বিপদ দূর করে, আল্লাহ তাআলা কিয়ামতের দিন তার বিপদ দূর করবেন।\" — আল-হাদীস (সহীহ মুসলিম)",
+        "\"ব্যবসা হলো সততা এবং আস্থার এক পবিত্র বন্ধন, যেখানে লাভ শুধু অর্থের নয়, বরং বিশ্বাসের।\" — দার্শনিক উক্তি",
+        "\"দুজন ভালো বন্ধুর মিলন মানে একটি নতুন শক্তির জন্ম, যা যেকোনো কঠিন পাহাড়সম কাজকে সহজ করে দিতে পারে।\" — দার্শনিক উক্তি",
+        "\"সত্যিকারের বন্ধু সেই যে বিপদে পাশে থাকে এবং লেনদেনে পরম বিশ্বস্ততা বজায় রাখে।\" — ইসলামিক প্রবাদ",
+        "\"যে ব্যবসায় সততা ও পারস্পরিক সহযোগিতা থাকে, সেখানে আল্লাহর বরকত স্বয়ংক্রিয়ভাবে নেমে আসে।\" — ইসলামিক নীতি",
+        "\"পরস্পর সৎকর্মে ও তাকওয়ায় একে অপরকে সহযোগিতা করো এবং পাপ ও সীমা লঙ্ঘনে সহযোগিতা করো না।\" — আল-কুরআন (সূরা আল-মায়িদা: ২)"
+    ];
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
     
@@ -1033,7 +1060,6 @@
             welcomeSalam: "আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক",
             hdrTitle: "বন্ধুত্বের স্মারক সমিতি",
             hdrEst: "স্থাপিত: ২০২৬",
-            hdrSlogan: "সেদিন বন্ধুরা একে অপরের শত্রু হয়ে যাবে—কেবল মুত্তাকি (আল্লাহভীরু) লোক ছাড়া। (সূরা অজ-জুখরুফ, আয়াত: ৬৭)",
             welcomeHeading: "আপনাকে স্বাগতম",
             userLocFail: "বাংলাদেশ (BD)",
             weatherFail: "তথ্য নেই",
@@ -1109,7 +1135,6 @@
             welcomeSalam: "Peace, mercy, and blessings of Allah be upon you",
             hdrTitle: "Childhood Friends Association",
             hdrEst: "Established: 2026",
-            hdrSlogan: "On that Day, friends will become enemies to one another, except the righteous. (Surah Az-Zukhruf, verse: 67)",
             welcomeHeading: "Welcome",
             userLocFail: "Bangladesh (BD)",
             weatherFail: "No Weather",
@@ -1186,6 +1211,15 @@
         payments: []
     };
 
+    // Load static random quote on every refresh (Fixed in Header)
+    function loadRandomQuote() {
+        const randomIndex = Math.floor(Math.random() * islamicAndPhilosophicalQuotes.length);
+        const quoteEl = document.getElementById("dynamicQuoteStatic");
+        if (quoteEl) {
+            quoteEl.textContent = islamicAndPhilosophicalQuotes[randomIndex];
+        }
+    }
+
     function sanitizeInput(str) {
         if (typeof str !== 'string') return str;
         return str.replace(/[&<>"']/g, function(match) {
@@ -1235,7 +1269,6 @@
         document.getElementById("welcomeSalam").textContent = t.welcomeSalam;
         document.getElementById("hdrTitle").textContent = t.hdrTitle;
         document.getElementById("hdrEst").textContent = t.hdrEst;
-        document.getElementById("hdrSlogan").textContent = t.hdrSlogan;
         document.getElementById("welcomeHeading").textContent = t.welcomeHeading;
         document.getElementById("lblLocTitle").textContent = t.lblLocTitle;
         document.getElementById("lblTimeTitle").textContent = t.lblTimeTitle;
@@ -1688,16 +1721,13 @@
         const now = new Date();
         let localeStr = currentLang === 'bn' ? 'bn-BD' : 'en-US';
         
-        // Timezone options support country/city specific time shift
         let timeZoneOptions = userDetectedTimezone ? { timeZone: userDetectedTimezone } : {};
 
-        // Live Time
         const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, ...timeZoneOptions };
         const timeString = now.toLocaleTimeString(localeStr, timeOptions);
         const clockEl = document.getElementById("liveClock");
         if (clockEl) clockEl.textContent = timeString;
 
-        // Live Date
         const dateOptions = { year: 'numeric', month: 'short', day: 'numeric', ...timeZoneOptions };
         const dateString = now.toLocaleDateString(localeStr, dateOptions);
         const dateEl = document.getElementById("liveDate");
@@ -1718,7 +1748,7 @@
                 }
 
                 if (data && data.timezone) {
-                    userDetectedTimezone = data.timezone; // Capturing country/city specific timezone from ipapi
+                    userDetectedTimezone = data.timezone; 
                     updateLiveClockAndDate();
                 }
 
@@ -1788,6 +1818,8 @@
     window.addEventListener('DOMContentLoaded', () => {
         const todayStr = new Date().toISOString().split('T')[0];
         document.getElementById("inputDate").value = todayStr;
+
+        loadRandomQuote(); // Loads a static random quote in the header on every reload
 
         updateLiveClockAndDate();
         setInterval(updateLiveClockAndDate, 1000);
