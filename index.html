@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Security Header Meta Tags -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://script.google.com https://script.googleusercontent.com https://ipapi.co https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://script.google.com https://script.googleusercontent.com https://ipapi.co https://api.open-meteo.com https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https:;">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
     <title>Childhood Friends Association</title>
     
-    <!-- Premium Google Fonts: Anek Bangla (Modern & Vivid Bangla) & Inter (English) -->
+    <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -68,7 +68,7 @@
         body {
             background-color: var(--bg-color);
             color: var(--text-color);
-            padding-top: 65px;
+            padding-top: 118px; /* Adjusted to accommodate nav + slightly larger top live widgets bar */
             padding-bottom: 20px;
             -webkit-user-select: none;
             -ms-user-select: none;
@@ -98,6 +98,31 @@
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             backdrop-filter: blur(8px);
+        }
+
+        /* Top Secondary Live Widgets Bar (Second Row) */
+        .top-widgets-bar {
+            position: fixed;
+            top: 55px;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background: var(--nav-bg);
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 8px;
+            z-index: 999;
+            backdrop-filter: blur(8px);
+        }
+
+        .top-widgets-inner {
+            display: flex;
+            gap: 8px;
+            width: 100%;
+            max-width: 900px;
+            justify-content: space-between;
         }
 
         .nav-menu {
@@ -236,10 +261,49 @@
             font-weight: 600;
         }
 
+        /* Four Live Widgets Row Layout (Navbar Second Row) - Larger Size with Icons */
+        .live-widget-card {
+            background: var(--box-bg);
+            padding: 4px 8px;
+            border-radius: 10px;
+            flex: 1;
+            height: 44px;
+            border: 1px solid var(--border-color);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--box-text);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+            overflow: hidden;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.03);
+        }
+
+        .live-widget-card .widget-label {
+            font-size: 9px;
+            color: var(--text-muted);
+            font-weight: 600;
+            text-transform: uppercase;
+            line-height: 1;
+        }
+
+        .live-widget-card .widget-value {
+            font-size: 11.5px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            line-height: 1.2;
+        }
+
         .glass-marquee-container {
             position: relative;
             width: 100%;
-            margin: 12px 0;
+            margin: 10px 0;
             overflow: hidden;
             border-radius: 10px;
             background: var(--box-bg);
@@ -263,19 +327,6 @@
         @keyframes marqueeRun {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
-        }
-
-        .live-datetime-box, .location-box {
-            background: var(--box-bg);
-            padding: 8px;
-            border-radius: 8px;
-            margin: 6px auto;
-            width: 100%;
-            border: 1px solid var(--border-color);
-            font-size: 13px;
-            font-weight: 600;
-            color: var(--box-text);
-            text-align: center;
         }
 
         .shortcut-dashboard {
@@ -425,67 +476,6 @@
             cursor: pointer;
             width: 100%;
             font-size: 14px;
-        }
-
-        /* Calendar Box */
-        .front-calendar-box {
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            border-radius: 12px;
-            padding: 12px;
-            width: 100%;
-            margin: 16px auto;
-        }
-
-        .calendar-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 8px;
-        }
-
-        .calendar-header h3 {
-            color: var(--primary-color);
-            font-size: 15px;
-            font-weight: 600;
-        }
-
-        .calendar-header button {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 2px 8px;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .calendar-grid {
-            display: grid;
-            grid-template-columns: repeat(7, 1fr);
-            gap: 2px;
-            text-align: center;
-        }
-
-        .calendar-day-head {
-            font-weight: 600;
-            color: var(--text-muted);
-            padding: 4px 0;
-            font-size: 12px;
-            background: var(--box-bg);
-            border-radius: 4px;
-        }
-
-        .calendar-day {
-            padding: 5px 0;
-            font-size: 13px;
-            border-radius: 4px;
-            color: var(--text-color);
-        }
-
-        .calendar-day.today {
-            background-color: var(--primary-color);
-            color: white;
-            font-weight: bold;
         }
 
         /* Section Blocks & Tables */
@@ -648,7 +638,7 @@
 
         /* Responsive Mobile Specific Fixes */
         @media (max-width: 600px) {
-            body { padding-top: 58px; }
+            body { padding-top: 112px; }
             .container { padding: 12px; border-radius: 12px; }
             header h2 { font-size: 20px; }
             header h1 { font-size: 13px; }
@@ -656,6 +646,10 @@
             .hide-mobile { display: none; }
             .nav-btn { font-size: 12px; padding: 5px 8px; }
             th, td { padding: 5px 6px; font-size: 12px; }
+            .top-widgets-bar { height: 50px; }
+            .live-widget-card { height: 40px; font-size: 10px; padding: 3px 4px; }
+            .live-widget-card .widget-value { font-size: 10px; }
+            .live-widget-card .widget-label { font-size: 8px; }
         }
 
         /* Modern Print Styling */
@@ -665,7 +659,7 @@
                 color: #000 !important;
                 padding: 0 !important;
             }
-            .navbar, .modal-overlay, .admin-entry-panel, .complaint-box, footer, #loadingOverlay {
+            .navbar, .top-widgets-bar, .modal-overlay, .admin-entry-panel, .complaint-box, footer, #loadingOverlay {
                 display: none !important;
             }
             .container {
@@ -733,6 +727,28 @@
     </ul>
 </nav>
 
+<!-- Top Secondary Live Widgets Bar (Second Row Under Navbar) -->
+<div class="top-widgets-bar">
+    <div class="top-widgets-inner">
+        <div class="live-widget-card">
+            <span class="widget-label" id="lblLocTitle">📍 LOCATION</span>
+            <span class="widget-value" id="userLocation">লোড হচ্ছে...</span>
+        </div>
+        <div class="live-widget-card">
+            <span class="widget-label" id="lblTimeTitle">⏰ LIVE TIME</span>
+            <span class="widget-value" id="liveClock">লোড হচ্ছে...</span>
+        </div>
+        <div class="live-widget-card">
+            <span class="widget-label" id="lblDateTitle">📅 DATE</span>
+            <span class="widget-value" id="liveDate">লোড হচ্ছে...</span>
+        </div>
+        <div class="live-widget-card">
+            <span class="widget-label" id="lblWeatherTitle">🌤 WEATHER</span>
+            <span class="widget-value" id="userWeather">লোড হচ্ছে...</span>
+        </div>
+    </div>
+</div>
+
 <!-- Admin Passcode Modal -->
 <div class="modal-overlay" id="adminModal">
     <div class="passcode-box">
@@ -762,8 +778,6 @@
         <div class="welcome-hero">
             <h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
             <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
-            <div class="location-box" id="userLocation">🌍 আপনার দেশ শনাক্ত করা হচ্ছে...</div>
-            <div class="live-datetime-box">⏰ <span id="liveClock">লোড হচ্ছে...</span></div>
             
             <div class="glass-marquee-container">
                 <div class="glass-marquee-track">
@@ -789,25 +803,6 @@
                     <tbody id="frontSummaryBody"></tbody>
                 </table>
             </div>
-        </div>
-        
-        <!-- Calendar Widget -->
-        <div class="front-calendar-box">
-            <div class="calendar-header">
-                <button onclick="changeMonth(-1)">❮</button>
-                <h3 id="calendarTitle"></h3>
-                <button onclick="changeMonth(1)">❯</button>
-            </div>
-            <div class="calendar-grid" id="calendarDaysHead">
-                <div class="calendar-day-head" id="cdh-sun">Sun</div>
-                <div class="calendar-day-head" id="cdh-mon">Mon</div>
-                <div class="calendar-day-head" id="cdh-tue">Tue</div>
-                <div class="calendar-day-head" id="cdh-wed">Wed</div>
-                <div class="calendar-day-head" id="cdh-thu">Thu</div>
-                <div class="calendar-day-head" id="cdh-fri">Fri</div>
-                <div class="calendar-day-head" id="cdh-sat">Sat</div>
-            </div>
-            <div class="calendar-grid" id="calendarDays" style="margin-top: 4px;"></div>
         </div>
     </div>
 
@@ -1007,6 +1002,7 @@
     let globalAdminToken = ""; 
     let activePageId = "";
     let currentLang = 'bn';
+    let userDetectedTimezone = ""; // Store detected user timezone
 
     const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
     
@@ -1030,16 +1026,6 @@
         }
     };
 
-    const monthNamesData = {
-        bn: ["জানুয়ারি", "ফেব্রুয়ারি", "মার্চ", "এপ্রিল", "মে", "জুন", "জুলাই", "আগস্ট", "সেপ্টেম্বর", "অক্টোবর", "নভেম্বর", "ডিসেম্বর"],
-        en: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-    };
-
-    const dayNamesData = {
-        bn: ["রবি", "সোম", "মঙ্গল", "বুধ", "বৃহঃ", "শুক্র", "শনি"],
-        en: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-    };
-
     const langText = {
         bn: {
             loading: "ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...",
@@ -1049,7 +1035,12 @@
             hdrEst: "স্থাপিত: ২০২৬",
             hdrSlogan: "সেদিন বন্ধুরা একে অপরের শত্রু হয়ে যাবে—কেবল মুত্তাকি (আল্লাহভীরু) লোক ছাড়া। (সূরা অজ-জুখরুফ, আয়াত: ৬৭)",
             welcomeHeading: "আপনাকে স্বাগতম",
-            userLocFail: "🌍 দেশ শনাক্ত করা যায়নি",
+            userLocFail: "বাংলাদেশ (BD)",
+            weatherFail: "তথ্য নেই",
+            lblLocTitle: "📍 লোকেশন",
+            lblTimeTitle: "⏰ সময়",
+            lblDateTitle: "📅 তারিখ",
+            lblWeatherTitle: "🌤️ আবহাওয়া",
             marqueePrefix: "সমিতির তহবিলে বর্তমানে জমা আছে:",
             marqueeSuffix: "টাকা মাত্র",
             lblNavHome: "হোম",
@@ -1120,7 +1111,12 @@
             hdrEst: "Established: 2026",
             hdrSlogan: "On that Day, friends will become enemies to one another, except the righteous. (Surah Az-Zukhruf, verse: 67)",
             welcomeHeading: "Welcome",
-            userLocFail: "🌍 Country could not be detected",
+            userLocFail: "Bangladesh (BD)",
+            weatherFail: "No Weather",
+            lblLocTitle: "📍 LOCATION",
+            lblTimeTitle: "⏰ LIVE TIME",
+            lblDateTitle: "📅 DATE",
+            lblWeatherTitle: "🌤️ WEATHER",
             marqueePrefix: "Current Balance in Association Fund:",
             marqueeSuffix: "BDT only",
             lblNavHome: "Home",
@@ -1241,6 +1237,10 @@
         document.getElementById("hdrEst").textContent = t.hdrEst;
         document.getElementById("hdrSlogan").textContent = t.hdrSlogan;
         document.getElementById("welcomeHeading").textContent = t.welcomeHeading;
+        document.getElementById("lblLocTitle").textContent = t.lblLocTitle;
+        document.getElementById("lblTimeTitle").textContent = t.lblTimeTitle;
+        document.getElementById("lblDateTitle").textContent = t.lblDateTitle;
+        document.getElementById("lblWeatherTitle").textContent = t.lblWeatherTitle;
         document.getElementById("marqueePrefix").textContent = t.marqueePrefix;
         document.getElementById("marqueeSuffix").textContent = t.marqueeSuffix;
 
@@ -1250,7 +1250,6 @@
         document.getElementById("lblNavAdmin").textContent = t.lblNavAdmin;
         document.getElementById("lblNavLogout").textContent = t.lblNavLogout;
 
-        // Dynamic Menu Bar & Admin Option Names
         memberKeys.forEach(key => {
             const name = memberNames[currentLang][key];
             const menuEl = document.getElementById(`menu-${key}`);
@@ -1304,20 +1303,10 @@
         document.getElementById("ftrCopyright").textContent = t.ftrCopyright;
         document.getElementById("printSystemNotice").textContent = t.printNotice;
 
-        // Calendar Day Headers Translation
-        const days = dayNamesData[currentLang];
-        document.getElementById("cdh-sun").textContent = days[0];
-        document.getElementById("cdh-mon").textContent = days[1];
-        document.getElementById("cdh-tue").textContent = days[2];
-        document.getElementById("cdh-wed").textContent = days[3];
-        document.getElementById("cdh-thu").textContent = days[4];
-        document.getElementById("cdh-fri").textContent = days[5];
-        document.getElementById("cdh-sat").textContent = days[6];
-
         adjustAdminFormFields();
         renderAllData();
-        renderFrontCalendar();
-        updateLiveClock();
+        updateLiveClockAndDate();
+        fetchUserLocationAndWeather();
     }
 
     function showLoading(show) {
@@ -1414,7 +1403,6 @@
         }
     }
 
-    // Fetch Google Sheet Data
     function fetchFromGoogleSheet() {
         if (!SCRIPT_URL) return Promise.resolve();
 
@@ -1472,18 +1460,18 @@
         const rawAmount = document.getElementById("inputAmount").value.trim();
 
         if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
-            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" : "⚠️ Please fill in all fields!");
+            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন! কোনো ঘর খালি রাখা যাবে না।" : "⚠ Please fill in all fields!");
             return;
         }
 
         const amount = parseFloat(rawAmount);
         if (isNaN(amount) || amount <= 0) {
-            alert(currentLang === 'bn' ? "⚠️ টাকার পরিমাণ সঠিক নয়!" : "⚠️ Invalid Amount!");
+            alert(currentLang === 'bn' ? "⚠️ টাকার পরিমাণ সঠিক নয়!" : "⚠ Invalid Amount!");
             return;
         }
 
         const now = new Date();
-        const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true });
+        const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: userDetectedTimezone || undefined });
 
         const dateParts = rawDate.split("-");
         const formattedDateTime = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${currentTime}`;
@@ -1541,7 +1529,7 @@
         const frontBody = document.getElementById("frontSummaryBody");
         let frontBodyHTML = "";
 
-        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: userDetectedTimezone || undefined });
 
         memberKeys.forEach(key => {
             const list = db.transactions[key] || [];
@@ -1582,23 +1570,19 @@
 
             const shares = memberShares[key];
             const targetAmount = shares * PER_SHARE_PRICE;
-            const balanceDiff = targetAmount - total; // positive = Due, negative = Surplus
+            const balanceDiff = targetAmount - total;
 
-            // Status Logic & Styling
             let statusText = "";
             let statusColor = "";
 
             if (balanceDiff > 0) {
-                // Due
                 statusText = `${balanceDiff.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${t.dueLabel}`;
                 statusColor = "#ef4444";
             } else if (balanceDiff < 0) {
-                // Surplus
                 const surplusVal = Math.abs(balanceDiff);
                 statusText = `+${surplusVal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${t.surplusLabel}`;
                 statusColor = "#10b981";
             } else {
-                // Paid
                 statusText = `0.00 ${t.paidLabel}`;
                 statusColor = "#10b981";
             }
@@ -1700,57 +1684,98 @@
         return payTotal;
     }
 
-    function updateLiveClock() {
+    function updateLiveClockAndDate() {
         const now = new Date();
-        const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
-        document.getElementById('liveClock').textContent = now.toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US', options);
-    }
-
-    let currentCalDate = new Date();
-    function renderFrontCalendar() {
-        const year = currentCalDate.getFullYear();
-        const month = currentCalDate.getMonth();
-
-        const monthName = monthNamesData[currentLang][month];
-        document.getElementById('calendarTitle').textContent = `${monthName} ${year}`;
-        const daysContainer = document.getElementById('calendarDays');
+        let localeStr = currentLang === 'bn' ? 'bn-BD' : 'en-US';
         
-        let daysHTML = '';
-        const firstDayIndex = new Date(year, month, 1).getDay();
-        const lastDay = new Date(year, month + 1, 0).getDate();
-        const today = new Date();
+        // Timezone options support country/city specific time shift
+        let timeZoneOptions = userDetectedTimezone ? { timeZone: userDetectedTimezone } : {};
 
-        for (let i = 0; i < firstDayIndex; i++) {
-            daysHTML += '<div></div>';
-        }
+        // Live Time
+        const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, ...timeZoneOptions };
+        const timeString = now.toLocaleTimeString(localeStr, timeOptions);
+        const clockEl = document.getElementById("liveClock");
+        if (clockEl) clockEl.textContent = timeString;
 
-        for (let day = 1; day <= lastDay; day++) {
-            const isToday = (day === today.getDate() && month === today.getMonth() && year === today.getFullYear());
-            daysHTML += `<div class="calendar-day ${isToday ? 'today' : ''}">${day}</div>`;
-        }
-        daysContainer.innerHTML = daysHTML;
+        // Live Date
+        const dateOptions = { year: 'numeric', month: 'short', day: 'numeric', ...timeZoneOptions };
+        const dateString = now.toLocaleDateString(localeStr, dateOptions);
+        const dateEl = document.getElementById("liveDate");
+        if (dateEl) dateEl.textContent = dateString;
     }
 
-    function changeMonth(step) {
-        currentCalDate.setMonth(currentCalDate.getMonth() + step);
-        renderFrontCalendar();
-    }
-
-    function fetchUserLocation() {
+    function fetchUserLocationAndWeather() {
         fetch('https://ipapi.co/json/')
             .then(res => res.json())
             .then(data => {
-                if (data && data.country_name) {
-                    const country = sanitizeInput(data.country_name);
-                    const city = data.city ? sanitizeInput(data.city) : '';
-                    document.getElementById('userLocation').textContent = `🌍 ${city ? city + ', ' : ''}${country}`;
+                const locBox = document.getElementById("userLocation");
+                if (locBox && data && (data.country_name || data.country)) {
+                    const countryCode = sanitizeInput(data.country_code || data.country || "");
+                    const city = data.city ? sanitizeInput(data.city) : "";
+                    locBox.textContent = `${city ? city + ', ' : ''}${countryCode}`;
                 } else {
-                    document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
+                    fallbackLocation();
+                }
+
+                if (data && data.timezone) {
+                    userDetectedTimezone = data.timezone; // Capturing country/city specific timezone from ipapi
+                    updateLiveClockAndDate();
+                }
+
+                if (data && data.latitude && data.longitude) {
+                    fetchWeather(data.latitude, data.longitude);
+                } else {
+                    fallbackWeather();
                 }
             })
             .catch(() => {
-                document.getElementById('userLocation').textContent = langText[currentLang].userLocFail;
+                fallbackLocation();
+                fallbackWeather();
             });
+    }
+
+    function fetchWeather(lat, lon) {
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`)
+            .then(res => res.json())
+            .then(weatherData => {
+                const weatherBox = document.getElementById("userWeather");
+                if (weatherBox && weatherData && weatherData.current) {
+                    const temp = weatherData.current.temperature_2m;
+                    const code = weatherData.current.weather_code;
+                    let condition = getWeatherCondition(code);
+                    weatherBox.textContent = `${condition}, ${temp}°C`;
+                } else {
+                    fallbackWeather();
+                }
+            })
+            .catch(() => {
+                fallbackWeather();
+            });
+    }
+
+    function getWeatherCondition(code) {
+        if (code === 0) return currentLang === 'bn' ? 'রৌদ্রোজ্জ্বল' : 'Clear';
+        if (code >= 1 && code <= 3) return currentLang === 'bn' ? 'মেঘলা' : 'Cloudy';
+        if (code >= 45 && code <= 48) return currentLang === 'bn' ? 'কুয়াশা' : 'Foggy';
+        if (code >= 51 && code <= 67) return currentLang === 'bn' ? 'বৃষ্টি' : 'Rain';
+        if (code >= 71 && code <= 77) return currentLang === 'bn' ? 'তুষার' : 'Snow';
+        if (code >= 80 && code <= 82) return currentLang === 'bn' ? 'বজ্র' : 'Showers';
+        if (code >= 95 && code <= 99) return currentLang === 'bn' ? 'ঝড়' : 'Storm';
+        return currentLang === 'bn' ? 'স্বাভাবিক' : 'Fair';
+    }
+
+    function fallbackLocation() {
+        const locBox = document.getElementById("userLocation");
+        if (locBox) {
+            locBox.textContent = langText[currentLang].userLocFail;
+        }
+    }
+
+    function fallbackWeather() {
+        const weatherBox = document.getElementById("userWeather");
+        if (weatherBox) {
+            weatherBox.textContent = langText[currentLang].weatherFail;
+        }
     }
 
     document.addEventListener('contextmenu', e => e.preventDefault());
@@ -1764,11 +1789,10 @@
         const todayStr = new Date().toISOString().split('T')[0];
         document.getElementById("inputDate").value = todayStr;
 
-        updateLiveClock();
-        setInterval(updateLiveClock, 1000);
+        updateLiveClockAndDate();
+        setInterval(updateLiveClockAndDate, 1000);
 
-        renderFrontCalendar();
-        fetchUserLocation();
+        fetchUserLocationAndWeather();
         applyLanguageStrings();
         fetchFromGoogleSheet();
     });
