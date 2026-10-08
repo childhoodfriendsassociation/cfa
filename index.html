@@ -238,7 +238,7 @@
             font-weight: 600;
         }
 
-        /* Static Quote Box in Header (Replaced Old Slogan & Removed 🤝 icon) */
+        /* Static Quote Box in Header */
         .static-quote-box {
             background: var(--box-bg);
             border: 1px solid var(--border-color);
@@ -475,6 +475,11 @@
             width: 100%;
         }
 
+        .admin-action-buttons {
+            display: flex;
+            gap: 8px;
+        }
+
         .admin-save-btn {
             background-color: var(--accent-color);
             color: white;
@@ -485,6 +490,23 @@
             cursor: pointer;
             width: 100%;
             font-size: 14px;
+        }
+
+        .whatsapp-share-btn {
+            background-color: #25D366;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            white-space: nowrap;
         }
 
         /* Section Blocks & Tables */
@@ -780,7 +802,7 @@
         <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
         <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
         
-        <!-- Static Quote Box in Header (Replaced Old Slogan & Removed 🤝 icon) -->
+        <!-- Static Quote Box in Header -->
         <div class="static-quote-box" id="dynamicQuoteStatic">
             লোড হচ্ছে...
         </div>
@@ -792,7 +814,7 @@
             <h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
             <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
 
-            <!-- Association Total Fund Marquee (Moving) -->
+            <!-- Association Total Fund Marquee -->
             <div class="glass-marquee-container">
                 <div class="glass-marquee-track">
                     🌟 <span id="marqueePrefix">সমিতির তহবিলে বর্তমানে জমা আছে:</span> <span id="marqueeTotal">0.00</span> <span id="marqueeSuffix">টাকা মাত্র</span> 🌟 
@@ -848,7 +870,12 @@
             <input type="text" id="inputYear" placeholder="Year (e.g. 2026)" required autocomplete="off">
             <input type="number" id="inputAmount" placeholder="Amount (BDT)" required step="any">
         </div>
-        <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
+        <div class="admin-action-buttons">
+            <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
+            <a id="whatsappShareBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-share-btn" style="display: none;">
+                💬 WhatsApp-এ পাঠান
+            </a>
+        </div>
     </div>
 
     <!-- All Member Sections -->
@@ -1018,7 +1045,7 @@
     let currentLang = 'bn';
     let userDetectedTimezone = ""; 
 
-    // Islamic & Philosophical Quotes in Bengali (Friendship & Business/Commerce - No 🤝 icon)
+    // Islamic & Philosophical Quotes in Bengali
     const islamicAndPhilosophicalQuotes = [
         "\"মুমিনগণ পরস্পর ভাই ভাই, অতএব তোমরা তোমাদের ভাইদের মধ্যে আপস-মীমাংসা করে দাও।\" — আল-কুরআন (সূরা আল-হুজুরাত: ১০)",
         "\"হে ঈমানদারগণ! একে অপরের সম্পত্তি অন্যায়ভাবে ভক্ষণ করো না, কেবল পারস্পরিক সম্মতির ভিত্তিতে যে ব্যবসা করা হয় তা ভিন্ন।\" — আল-কুরআন (সূরা আন-নিসা: ২৯)",
@@ -1211,7 +1238,6 @@
         payments: []
     };
 
-    // Load static random quote on every refresh (Fixed in Header)
     function loadRandomQuote() {
         const randomIndex = Math.floor(Math.random() * islamicAndPhilosophicalQuotes.length);
         const quoteEl = document.getElementById("dynamicQuoteStatic");
@@ -1234,7 +1260,6 @@
         });
     }
 
-    /* UI Interactions & Modals */
     function toggleDropdown(id) {
         document.getElementById(id).classList.toggle('show');
     }
@@ -1389,6 +1414,7 @@
         globalAdminToken = "";
         document.getElementById("logoutNavItem").style.display = "none";
         document.getElementById("universalAdminPanel").style.display = "none";
+        document.getElementById("whatsappShareBtn").style.display = "none";
     }
 
     function showHomepage() {
@@ -1534,6 +1560,24 @@
                 showLoading(false);
                 if (res.success) {
                     alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
+                    
+                    // Generate WhatsApp Message Text with "আপনাকে অনেক ধন্যবাদ"
+                    let targetNameStr = target === "sec-payment" ? "সম্পত্তির পরিশোধিত মূল্য" : memberNames['bn'][target];
+                    let waMessage = `📢 *বন্ধুত্বের স্মারক সমিতি - নতুন জমা এন্ট্রি*\n\n` +
+                                    `👤 *নাম/খাত:* ${targetNameStr}\n` +
+                                    `💰 *পরিমাণ:* ${amount.toFixed(2)} BDT\n` +
+                                    `📅 *তারিখ:* ${formattedDateTime}\n` +
+                                    `🔢 *রেফারেন্স নং:* ${ref}\n` +
+                                    `🏦 *প্রেরক ব্যাংক:* ${bankFrom}\n` +
+                                    `🏦 *প্রাপক ব্যাংক:* ${bankTo}\n` +
+                                    `📌 *মাস/বছর:* ${month} ${year}\n\n` +
+                                    `🙏 প্রিয় *${targetNameStr}*, আপনাকে অনেক ধন্যবাদ! বিস্তারিত দেখতে ভিজিট করুন: https://childhoodfriendsassociation.github.io/cfa`;
+
+                    // Set WhatsApp Share Link
+                    const waBtn = document.getElementById("whatsappShareBtn");
+                    waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(waMessage)}`;
+                    waBtn.style.display = "inline-flex";
+
                     document.getElementById("inputAmount").value = "";
                     document.getElementById("inputRef").value = "";
                     document.getElementById("inputBankFrom").value = "";
@@ -1819,7 +1863,7 @@
         const todayStr = new Date().toISOString().split('T')[0];
         document.getElementById("inputDate").value = todayStr;
 
-        loadRandomQuote(); // Loads a static random quote in the header on every reload
+        loadRandomQuote();
 
         updateLiveClockAndDate();
         setInterval(updateLiveClockAndDate, 1000);
