@@ -1588,16 +1588,63 @@
                 if (res.success) {
                     alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
                     
-                    // Generate Shareable Message Text
+                    // Temporarily add the new transaction to local db so the fund balance and member total compute correctly right away
+                    if (target === "sec-payment") {
+                        db.payments.push({ amount: amount });
+                    } else if (memberKeys.includes(target)) {
+                        db.transactions[target].push({ amount: amount });
+                    }
+
+                    // Recalculate total deposits and fund balance including the new entry
+                    let calcTotalDeposited = 0;
+                    memberKeys.forEach(k => {
+                        (db.transactions[k] || []).forEach(item => { calcTotalDeposited += item.amount; });
+                    });
+                    let calcTotalPayment = 0;
+                    db.payments.forEach(item => { calcTotalPayment += item.amount; });
+                    
+                    const updatedNetBalance = calcTotalDeposited - calcTotalPayment;
+                    const currentFundBalanceStr = updatedNetBalance.toFixed(2);
+
+                    // Calculate specific member's total deposit and status if target is a member
+                    let memberExtraInfo = "";
                     let targetNameStr = target === "sec-payment" ? "সম্পত্তির পরিশোধিত মূল্য" : memberNames['bn'][target];
+
+                    if (memberKeys.includes(target)) {
+                        let memberTotal = 0;
+                        if (db.transactions[target]) {
+                            db.transactions[target].forEach(item => memberTotal += item.amount);
+                        }
+                        const shares = memberShares[target];
+                        const targetAmount = shares * PER_SHARE_PRICE;
+                        const diff = targetAmount - memberTotal;
+
+                        let statusText = "";
+                        if (diff > 0) {
+                            statusText = `${diff.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT (বকেয়া)`;
+                        } else if (diff < 0) {
+                            statusText = `+${Math.abs(diff).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT (উদ্বৃত্ত)`;
+                        } else {
+                            statusText = `0.00 BDT (পরিশোধিত)`;
+                        }
+
+                        memberExtraInfo = `👤 *সদস্যের মোট জমা:* ${memberTotal.toFixed(2)} BDT\n` +
+                                          `📊 *অবস্থা/বকেয়া:* ${statusText}\n`;
+                    }
+
+                    // Generate Shareable Message Text with Member details and updated Association Fund
                     lastGeneratedMessage = `📢 *বন্ধুত্বের স্মারক সমিতি - নতুন জমা এন্ট্রি*\n\n` +
                                            `👤 *নাম/খাত:* ${targetNameStr}\n` +
-                                           `💰 *পরিমাণ:* ${amount.toFixed(2)} BDT\n` +
+                                           `💰 *এবারের জমা:* ${amount.toFixed(2)} BDT\n` +
+                                           `${memberExtraInfo}` +
                                            `📅 *তারিখ:* ${formattedDateTime}\n` +
                                            `🔢 *রেফারেন্স নং:* ${ref}\n` +
                                            `🏦 *প্রেরক ব্যাংক:* ${bankFrom}\n` +
                                            `🏦 *প্রাপক ব্যাংক:* ${bankTo}\n` +
                                            `📌 *মাস/বছর:* ${month} ${year}\n\n` +
+                                           `━━━━━━━━━━━━━━━\n` +
+                                           `💼 *সমিতির তহবিলে বর্তমান জমা:* ${currentFundBalanceStr} BDT\n` +
+                                           `━━━━━━━━━━━━━━━\n\n` +
                                            `🙏 প্রিয় *${targetNameStr}*, আপনাকে অনেক ধন্যবাদ! বিস্তারিত দেখতে ভিজিট করুন: https://childhoodfriendsassociation.github.io/cfa`;
 
                     // Set WhatsApp Share Link
