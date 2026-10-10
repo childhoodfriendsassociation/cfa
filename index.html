@@ -478,6 +478,7 @@
         .admin-action-buttons {
             display: flex;
             gap: 8px;
+            flex-wrap: wrap;
         }
 
         .admin-save-btn {
@@ -507,6 +508,25 @@
             justify-content: center;
             gap: 5px;
             white-space: nowrap;
+            flex: 1;
+        }
+
+        .messenger-share-btn {
+            background-color: #0084FF;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-weight: 600;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            white-space: nowrap;
+            flex: 1;
         }
 
         /* Section Blocks & Tables */
@@ -870,11 +890,16 @@
             <input type="text" id="inputYear" placeholder="Year (e.g. 2026)" required autocomplete="off">
             <input type="number" id="inputAmount" placeholder="Amount (BDT)" required step="any">
         </div>
-        <div class="admin-action-buttons">
+        <div class="admin-action-buttons" style="flex-direction: column;">
             <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
-            <a id="whatsappShareBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-share-btn" style="display: none;">
-                💬 WhatsApp-এ পাঠান
-            </a>
+            <div style="display: flex; gap: 8px; width: 100%;">
+                <a id="whatsappShareBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-share-btn" style="display: none;">
+                    💬 WhatsApp-এ পাঠান
+                </a>
+                <button id="messengerShareBtn" onclick="shareToMessenger()" class="messenger-share-btn" style="display: none;">
+                    💬 Messenger-এ পাঠান
+                </button>
+            </div>
         </div>
     </div>
 
@@ -1044,6 +1069,7 @@
     let activePageId = "";
     let currentLang = 'bn';
     let userDetectedTimezone = ""; 
+    let lastGeneratedMessage = ""; // Storage for shareable message text
 
     // Islamic & Philosophical Quotes in Bengali
     const islamicAndPhilosophicalQuotes = [
@@ -1415,6 +1441,7 @@
         document.getElementById("logoutNavItem").style.display = "none";
         document.getElementById("universalAdminPanel").style.display = "none";
         document.getElementById("whatsappShareBtn").style.display = "none";
+        document.getElementById("messengerShareBtn").style.display = "none";
     }
 
     function showHomepage() {
@@ -1561,22 +1588,26 @@
                 if (res.success) {
                     alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
                     
-                    // Generate WhatsApp Message Text with "আপনাকে অনেক ধন্যবাদ"
+                    // Generate Shareable Message Text
                     let targetNameStr = target === "sec-payment" ? "সম্পত্তির পরিশোধিত মূল্য" : memberNames['bn'][target];
-                    let waMessage = `📢 *বন্ধুত্বের স্মারক সমিতি - নতুন জমা এন্ট্রি*\n\n` +
-                                    `👤 *নাম/খাত:* ${targetNameStr}\n` +
-                                    `💰 *পরিমাণ:* ${amount.toFixed(2)} BDT\n` +
-                                    `📅 *তারিখ:* ${formattedDateTime}\n` +
-                                    `🔢 *রেফারেন্স নং:* ${ref}\n` +
-                                    `🏦 *প্রেরক ব্যাংক:* ${bankFrom}\n` +
-                                    `🏦 *প্রাপক ব্যাংক:* ${bankTo}\n` +
-                                    `📌 *মাস/বছর:* ${month} ${year}\n\n` +
-                                    `🙏 প্রিয় *${targetNameStr}*, আপনাকে অনেক ধন্যবাদ! বিস্তারিত দেখতে ভিজিট করুন: https://childhoodfriendsassociation.github.io/cfa`;
+                    lastGeneratedMessage = `📢 *বন্ধুত্বের স্মারক সমিতি - নতুন জমা এন্ট্রি*\n\n` +
+                                           `👤 *নাম/খাত:* ${targetNameStr}\n` +
+                                           `💰 *পরিমাণ:* ${amount.toFixed(2)} BDT\n` +
+                                           `📅 *তারিখ:* ${formattedDateTime}\n` +
+                                           `🔢 *রেফারেন্স নং:* ${ref}\n` +
+                                           `🏦 *প্রেরক ব্যাংক:* ${bankFrom}\n` +
+                                           `🏦 *প্রাপক ব্যাংক:* ${bankTo}\n` +
+                                           `📌 *মাস/বছর:* ${month} ${year}\n\n` +
+                                           `🙏 প্রিয় *${targetNameStr}*, আপনাকে অনেক ধন্যবাদ! বিস্তারিত দেখতে ভিজিট করুন: https://childhoodfriendsassociation.github.io/cfa`;
 
                     // Set WhatsApp Share Link
                     const waBtn = document.getElementById("whatsappShareBtn");
-                    waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(waMessage)}`;
+                    waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(lastGeneratedMessage)}`;
                     waBtn.style.display = "inline-flex";
+
+                    // Show Messenger Share Button
+                    const messengerBtn = document.getElementById("messengerShareBtn");
+                    messengerBtn.style.display = "inline-flex";
 
                     document.getElementById("inputAmount").value = "";
                     document.getElementById("inputRef").value = "";
@@ -1595,6 +1626,24 @@
                 alert("Error saving data!");
             });
         }
+    }
+
+    // Advanced Messenger Share Function
+    function shareToMessenger() {
+        if (!lastGeneratedMessage) return;
+
+        // Auto Copy text to Clipboard
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(lastGeneratedMessage).then(() => {
+                alert(currentLang === 'bn' 
+                    ? "📋 মেসেজের বিবরণীটি কপি করা হয়েছে! মেসেঞ্জার অপশন খোলার পর চ্যাটে Paste করে দিন।" 
+                    : "📋 Message copied! Paste it in Messenger chat.");
+            }).catch(() => {});
+        }
+
+        // Redirect directly to the Association Messenger Group / Direct Chat Link
+        const messengerGroupUrl = "https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t";
+        window.open(messengerGroupUrl, "_blank");
     }
 
     function renderAllData() {
