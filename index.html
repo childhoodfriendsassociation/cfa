@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- Security Header Meta Tags -->
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://script.google.com https://script.googleusercontent.com https://ipapi.co https://api.open-meteo.com https://fonts.googleapis.com https://fonts.gstatic.com; img-src 'self' data: https:;">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' 'unsafe-eval' https://script.google.com https://script.googleusercontent.com https://ipapi.co https://api.open-meteo.com https://fonts.googleapis.com https://fonts.gstatic.com https://lh3.googleusercontent.com; img-src 'self' data: https:;">
     <meta http-equiv="X-Frame-Options" content="DENY">
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
@@ -360,14 +360,10 @@
             width: 55px;
             height: 55px;
             border-radius: 50%;
-            background: var(--box-bg);
-            color: var(--primary-color);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 26px;
+            object-fit: cover;
             border: 2px solid var(--primary-color);
             flex-shrink: 0;
+            background: var(--box-bg);
         }
 
         .member-info h4 {
@@ -620,16 +616,51 @@
 
         .info-box {
             background: var(--box-bg);
-            padding: 10px 12px;
-            border-radius: 8px;
+            padding: 12px 14px;
+            border-radius: 12px;
             font-size: 14px;
-            margin-bottom: 12px;
+            margin-bottom: 14px;
             border-left: 4px solid var(--primary-color);
-            line-height: 1.5;
+            line-height: 1.6;
             color: var(--text-color);
         }
 
         .info-box p { margin: 4px 0; }
+
+        /* Member Profile Header Card in Individual Pages */
+        .profile-header-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            margin-bottom: 12px;
+            box-shadow: var(--shadow);
+        }
+
+        .profile-header-avatar {
+            width: 65px;
+            height: 65px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            flex-shrink: 0;
+            background: var(--box-bg);
+        }
+
+        .profile-header-info h3 {
+            font-size: 17px;
+            color: var(--text-color);
+            margin-bottom: 3px;
+        }
+
+        .profile-header-info p {
+            font-size: 12.5px;
+            color: var(--text-muted);
+            margin-bottom: 3px;
+        }
 
         h3.section-title {
             font-size: 16px;
@@ -982,6 +1013,7 @@
 
     <!-- All Member Sections -->
     <div id="sec-awal" class="section-block">
+        <div class="profile-header-card" id="profile-card-awal"></div>
         <div class="info-box" id="info-awal"></div>
         <h3 class="section-title"><span id="title-awal">Abdul Awal</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -994,6 +1026,7 @@
     </div>
 
     <div id="sec-arif" class="section-block">
+        <div class="profile-header-card" id="profile-card-arif"></div>
         <div class="info-box" id="info-arif"></div>
         <h3 class="section-title"><span id="title-arif">Arif Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1006,6 +1039,7 @@
     </div>
 
     <div id="sec-babor" class="section-block">
+        <div class="profile-header-card" id="profile-card-babor"></div>
         <div class="info-box" id="info-babor"></div>
         <h3 class="section-title"><span id="title-babor">Babor Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1018,6 +1052,7 @@
     </div>
 
     <div id="sec-babul" class="section-block">
+        <div class="profile-header-card" id="profile-card-babul"></div>
         <div class="info-box" id="info-babul"></div>
         <h3 class="section-title"><span id="title-babul">Babul Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1030,6 +1065,7 @@
     </div>
 
     <div id="sec-jasim" class="section-block">
+        <div class="profile-header-card" id="profile-card-jasim"></div>
         <div class="info-box" id="info-jasim"></div>
         <h3 class="section-title"><span id="title-jasim">Jasim Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1042,6 +1078,7 @@
     </div>
 
     <div id="sec-main" class="section-block">
+        <div class="profile-header-card" id="profile-card-main"></div>
         <div class="info-box" id="info-main"></div>
         <h3 class="section-title"><span id="title-main">Main Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1054,6 +1091,7 @@
     </div>
 
     <div id="sec-saiem" class="section-block">
+        <div class="profile-header-card" id="profile-card-saiem"></div>
         <div class="info-box" id="info-saiem"></div>
         <h3 class="section-title"><span id="title-saiem">Md. Saiem</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1066,6 +1104,7 @@
     </div>
 
     <div id="sec-selim" class="section-block">
+        <div class="profile-header-card" id="profile-card-selim"></div>
         <div class="info-box" id="info-selim"></div>
         <h3 class="section-title"><span id="title-selim">Selim Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1078,6 +1117,7 @@
     </div>
 
     <div id="sec-sanawer" class="section-block">
+        <div class="profile-header-card" id="profile-card-sanawer"></div>
         <div class="info-box" id="info-sanawer"></div>
         <h3 class="section-title"><span id="title-sanawer">Sanawer Quder</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
         <div class="table-responsive">
@@ -1166,17 +1206,62 @@
         jasim: 2, main: 1, saiem: 1, selim: 1, sanawer: 2
     };
 
-    // Abdul Awal Blood Group set to B+, others set to "-"
+    // Member Directory with Google Drive Direct Image Links & Blood Groups
     const memberDirectory = {
-        awal: { blood: "B+", fb: "https://www.facebook.com/musafiraawal", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        arif: { blood: "-", fb: "https://www.facebook.com/arif.hussein.3726", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        babor: { blood: "-", fb: "https://www.facebook.com/babor.babor.96558", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        babul: { blood: "-", fb: "https://www.facebook.com/mohbabulhossain.rana", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        jasim: { blood: "-", fb: "https://www.facebook.com/md.jasim.uddin.660296", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        main: { blood: "-", fb: "https://www.facebook.com/moin.ahamed.sumon", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        saiem: { blood: "-", fb: "https://www.facebook.com/md.shakil.752", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        selim: { blood: "-", fb: "https://www.facebook.com/salim.patwary.846831", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        sanawer: { blood: "-", fb: "https://www.facebook.com/sq.arif", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } }
+        awal: { 
+            blood: "B+", 
+            photo: "https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u", 
+            fb: "https://www.facebook.com/musafiraawal", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        arif: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw", 
+            fb: "https://www.facebook.com/arif.hussein.3726", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        babor: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl", 
+            fb: "https://www.facebook.com/babor.babor.96558", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        babul: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA", 
+            fb: "https://www.facebook.com/mohbabulhossain.rana", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        jasim: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK", 
+            fb: "https://www.facebook.com/md.jasim.uddin.660296", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        main: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX", 
+            fb: "https://www.facebook.com/moin.ahamed.sumon", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        saiem: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG", 
+            fb: "https://www.facebook.com/md.shakil.752", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        selim: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0", 
+            fb: "https://www.facebook.com/salim.patwary.846831", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        },
+        sanawer: { 
+            blood: "-", 
+            photo: "https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J", 
+            fb: "https://www.facebook.com/sq.arif", 
+            role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
+        }
     };
 
     const TOTAL_LAND_PRICE = 9100000;
@@ -1453,7 +1538,7 @@
 
             html += `
                 <div class="member-card">
-                    <div class="member-avatar">👤</div>
+                    <img src="${info.photo}" alt="${name}" class="member-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'55\\' height=\\'55\\' viewBox=\\'0 0 24 24\\'><path fill=\\'%232563eb\\' d=\\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z\\'/>';">
                     <div class="member-info">
                         <h4>${name}</h4>
                         <p>${roleTxt}</p>
@@ -1826,6 +1911,35 @@
             } else {
                 statusText = `0.00 ${t.paidLabel}`;
                 statusColor = "#10b981";
+            }
+
+            // Render Individual Profile Header Card with Photo & Blood Group
+            const infoProfileCard = document.getElementById(`profile-card-${key}`);
+            if (infoProfileCard) {
+                const info = memberDirectory[key];
+                const memberName = memberNames[currentLang][key];
+                const roleTxt = info.role[currentLang];
+
+                const fbSvgIcon = `
+                    <svg width="34" height="34" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                        <path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/>
+                        <path fill="#FFFFFF" d="M24.238 23.203l.752-5.203h-4.707v-3.352c0-1.342.657-2.65 2.764-2.65h2.141V7.82s-1.943-.332-3.8-.332c-3.877 0-6.41 2.35-6.41 6.602V18H10.88v5.203h4.308v12.572C16.136 35.918 17.058 36 18 36c.942 0 1.864-.082 2.812-.225V23.203h3.426z"/>
+                    </svg>
+                `;
+
+                infoProfileCard.innerHTML = `
+                    <img src="${info.photo}" alt="${memberName}" class="profile-header-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'65\\' height=\\'65\\' viewBox=\\'0 0 24 24\\'><path fill=\\'%232563eb\\' d=\\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z\\'/>';">
+                    <div class="profile-header-info">
+                        <h3>${memberName}</h3>
+                        <p>${roleTxt}</p>
+                        <span class="blood-badge">🩸 Group: ${info.blood}</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook Profile">
+                            ${fbSvgIcon}
+                        </a>
+                    </div>
+                `;
             }
 
             const infoBox = document.getElementById(`info-${key}`);
