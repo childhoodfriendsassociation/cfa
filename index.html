@@ -10,7 +10,7 @@
     <meta http-equiv="X-Content-Type-Options" content="nosniff">
     <meta name="referrer" content="strict-origin-when-cross-origin">
 
-    <title>Childhood Friends Association</title>
+    <title id="pageDynamicTitle">Childhood Friends Association</title>
     
     <!-- Premium Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -858,9 +858,10 @@
             text-align: center;
             margin-top: 30px;
             padding-top: 10px;
-            border-top: 1px dashed #666;
-            font-size: 11px;
-            color: #555;
+            border-top: 1px dashed var(--primary-color);
+            font-size: 12px;
+            color: var(--text-color);
+            font-weight: 700;
         }
 
         @media (max-width: 600px) {
@@ -879,9 +880,11 @@
 
         @media print {
             body {
-                background-color: #fff !important;
-                color: #000 !important;
+                background-color: var(--bg-color) !important;
+                color: var(--text-color) !important;
                 padding: 0 !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             .navbar, .top-widgets-bar, .modal-overlay, .admin-entry-panel, .complaint-box, footer, #loadingOverlay {
                 display: none !important;
@@ -890,13 +893,22 @@
                 box-shadow: none !important;
                 padding: 0 !important;
                 max-width: 100% !important;
-                background: transparent !important;
+                background: var(--card-bg) !important;
             }
             .section-block { display: none !important; }
             .section-block.active { display: block !important; }
+            
             th {
-                background-color: #f2f2f2 !important;
-                color: #000 !important;
+                background-color: var(--table-header-bg) !important;
+                color: var(--table-header-text) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            .info-box, .summary-box, .static-quote-box {
+                background-color: var(--box-bg) !important;
+                color: var(--box-text) !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
             }
             .print-only-footer { display: block !important; }
         }
@@ -1710,6 +1722,9 @@
         const sections = document.getElementsByClassName("section-block");
         for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
         document.getElementById("sec-welcome").classList.add("active");
+        
+        // Update document title for Home Page PDF/Print
+        document.getElementById("pageDynamicTitle").textContent = "CFA Homepage";
     }
 
     function openMemberPage(sectionId) {
@@ -1721,6 +1736,17 @@
             targetSec.classList.add("active");
             activePageId = sectionId;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // Update document title for Print / PDF save according to page
+            if (sectionId === "sec-payment") {
+                document.getElementById("pageDynamicTitle").textContent = "Payment CFA";
+            } else if (memberKeys.some(k => sectionId === `sec-${k}`)) {
+                const memberKey = sectionId.replace("sec-", "");
+                const memberName = memberNames['bn'][memberKey];
+                document.getElementById("pageDynamicTitle").textContent = `${memberName} Statement`;
+            } else if (sectionId === "sec-directory") {
+                document.getElementById("pageDynamicTitle").textContent = "CFA Directory & Blood Bank";
+            }
         }
     }
 
