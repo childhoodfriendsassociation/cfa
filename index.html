@@ -94,13 +94,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            padding: 0 10px;
+            padding: 0 4px;
             z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.05);
             backdrop-filter: blur(8px);
         }
 
-        /* Top Secondary Live Widgets Bar (Second Row) */
+        /* Top Secondary Live Widgets Bar */
         .top-widgets-bar {
             position: fixed;
             top: 55px;
@@ -130,9 +130,9 @@
             align-items: center;
             justify-content: space-around;
             width: 100%;
-            max-width: 600px;
+            max-width: 700px;
             list-style: none;
-            gap: 4px;
+            gap: 2px;
         }
 
         .nav-item {
@@ -143,14 +143,15 @@
             background: transparent;
             border: none;
             color: var(--text-color);
-            padding: 6px 10px;
+            padding: 6px 8px;
             border-radius: 20px;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 600;
             display: flex;
             align-items: center;
-            gap: 4px;
+            gap: 3px;
+            white-space: nowrap;
         }
 
         .nav-btn:hover {
@@ -182,10 +183,10 @@
         .dropdown-item {
             padding: 10px 14px;
             display: block;
-            color: var(--text-color);
+            color: var(--primary-color);
             text-decoration: none;
             font-size: 14px;
-            font-weight: 500;
+            font-weight: 700;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
         }
@@ -238,7 +239,6 @@
             font-weight: 600;
         }
 
-        /* Static Quote Box in Header */
         .static-quote-box {
             background: var(--box-bg);
             border: 1px solid var(--border-color);
@@ -269,7 +269,6 @@
             font-weight: 600;
         }
 
-        /* Four Live Widgets Row Layout */
         .live-widget-card {
             background: var(--box-bg);
             padding: 4px 8px;
@@ -308,7 +307,6 @@
             line-height: 1.2;
         }
 
-        /* Moving Marquee for Total Fund */
         .glass-marquee-container {
             position: relative;
             width: 100%;
@@ -336,6 +334,95 @@
         @keyframes marqueeRun {
             0% { transform: translateX(100%); }
             100% { transform: translateX(-100%); }
+        }
+
+        /* Member Profiles & Blood Bank Grid */
+        .member-cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .member-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 12px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .member-avatar {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--box-bg);
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            border: 2px solid var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .member-info h4 {
+            font-size: 15px;
+            color: var(--text-color);
+            margin-bottom: 2px;
+        }
+
+        .member-info p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 2px;
+        }
+
+        /* Enhanced High-Contrast Blood Badge Style */
+        .blood-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #dc2626;
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 20px;
+            margin-top: 4px;
+        }
+
+        body.dark-mode .blood-badge {
+            background: rgba(239, 68, 68, 0.25);
+            color: #fca5a5;
+            border-color: rgba(239, 68, 68, 0.5);
+        }
+
+        .card-actions {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+        }
+
+        .action-icon-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            background: transparent;
+            transition: transform 0.2s ease;
+        }
+
+        .action-icon-btn:hover {
+            transform: scale(1.1);
         }
 
         .shortcut-dashboard {
@@ -367,9 +454,7 @@
             padding: 15px;
         }
 
-        .modal-overlay.show {
-            display: flex;
-        }
+        .modal-overlay.show { display: flex; }
 
         .passcode-box {
             background: var(--card-bg);
@@ -388,9 +473,7 @@
             font-size: 17px;
         }
 
-        .passcode-box .form-group {
-            margin-bottom: 12px;
-        }
+        .passcode-box .form-group { margin-bottom: 12px; }
 
         .passcode-box label {
             display: block;
@@ -429,9 +512,7 @@
             flex: 1;
         }
 
-        .unlock-btn.cancel-btn {
-            background-color: #ef4444;
-        }
+        .unlock-btn.cancel-btn { background-color: #ef4444; }
 
         .error-msg {
             color: #ef4444;
@@ -442,7 +523,7 @@
             display: none;
         }
 
-        /* Universal Admin Panel */
+        /* Admin Panel */
         .admin-entry-panel {
             display: none;
             background: rgba(245, 158, 11, 0.12);
@@ -535,9 +616,7 @@
             margin-bottom: 16px;
         }
 
-        .section-block.active {
-            display: block;
-        }
+        .section-block.active { display: block; }
 
         .info-box {
             background: var(--box-bg);
@@ -550,9 +629,7 @@
             color: var(--text-color);
         }
 
-        .info-box p {
-            margin: 4px 0;
-        }
+        .info-box p { margin: 4px 0; }
 
         h3.section-title {
             font-size: 16px;
@@ -652,9 +729,7 @@
             display: inline-block;
         }
 
-        .send-msg-btn.profile-btn {
-            background-color: #0284c7;
-        }
+        .send-msg-btn.profile-btn { background-color: #0284c7; }
 
         #loadingOverlay {
             display: none;
@@ -687,15 +762,13 @@
             color: #555;
         }
 
-        /* Responsive Mobile Specific Fixes */
         @media (max-width: 600px) {
             body { padding-top: 112px; }
             .container { padding: 12px; border-radius: 12px; }
             header h2 { font-size: 20px; }
             header h1 { font-size: 13px; }
             .glass-marquee-track { font-size: 13px; }
-            .hide-mobile { display: none; }
-            .nav-btn { font-size: 12px; padding: 5px 8px; }
+            .nav-btn { font-size: 11.5px; padding: 4px 5px; }
             th, td { padding: 5px 6px; font-size: 12px; }
             .top-widgets-bar { height: 50px; }
             .live-widget-card { height: 40px; font-size: 10px; padding: 3px 4px; }
@@ -703,7 +776,6 @@
             .live-widget-card .widget-label { font-size: 8px; }
         }
 
-        /* Modern Print Styling */
         @media print {
             body {
                 background-color: #fff !important;
@@ -719,19 +791,13 @@
                 max-width: 100% !important;
                 background: transparent !important;
             }
-            .section-block {
-                display: none !important;
-            }
-            .section-block.active {
-                display: block !important;
-            }
+            .section-block { display: none !important; }
+            .section-block.active { display: block !important; }
             th {
                 background-color: #f2f2f2 !important;
                 color: #000 !important;
             }
-            .print-only-footer {
-                display: block !important;
-            }
+            .print-only-footer { display: block !important; }
         }
     </style>
 </head>
@@ -744,6 +810,9 @@
     <ul class="nav-menu">
         <li class="nav-item">
             <button class="nav-btn" onclick="showHomepage()">🏠 <span id="lblNavHome">হোম</span></button>
+        </li>
+        <li class="nav-item">
+            <button class="nav-btn" onclick="openMemberPage('sec-directory')" title="সদস্য প্রোফাইল ও ব্লাড ব্যাংক"><span id="lblNavDirectory">🩸প্রোফাইল</span></button>
         </li>
         <li class="nav-item">
             <button class="nav-btn" onclick="toggleDropdown('membersDropdown')">👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</button>
@@ -761,10 +830,10 @@
             </div>
         </li>
         <li class="nav-item" id="adminNavItem">
-            <button class="nav-btn" onclick="openAdminModal()">⚙️ <span id="lblNavAdmin">এডমিন</span></button>
+            <button class="nav-btn" onclick="openAdminModal()" title="এডমিন লগইন">⚙️</button>
         </li>
         <li class="nav-item" id="logoutNavItem" style="display: none;">
-            <button class="nav-btn" onclick="logoutAdmin()" style="color: #ef4444;">🚪 <span id="lblNavLogout">লগআউট</span></button>
+            <button class="nav-btn" onclick="logoutAdmin()" style="color: #ef4444;" title="লগআউট">🚪</button>
         </li>
         <li class="nav-item">
             <button class="nav-btn" onclick="window.print()">🖨️</button>
@@ -778,7 +847,7 @@
     </ul>
 </nav>
 
-<!-- Top Secondary Live Widgets Bar (Second Row Under Navbar) -->
+<!-- Top Secondary Live Widgets Bar -->
 <div class="top-widgets-bar">
     <div class="top-widgets-inner">
         <div class="live-widget-card">
@@ -822,7 +891,6 @@
         <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
         <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
         
-        <!-- Static Quote Box in Header -->
         <div class="static-quote-box" id="dynamicQuoteStatic">
             লোড হচ্ছে...
         </div>
@@ -862,7 +930,16 @@
         </div>
     </div>
 
-    <!-- Dynamic Admin Entry Panel -->
+    <!-- Member Directory & Emergency Contact Section -->
+    <div id="sec-directory" class="section-block">
+        <h3 class="section-title" id="dirTitle">সদস্যবৃন্দের ডায়রেক্টরি ও ব্লাড ব্যাংক</h3>
+        <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;" id="dirSub">জরুরি প্রয়োজনে সদস্যদের সাথে সরাসরি যোগাযোগ ও রক্তের গ্রুপিং বিবরণী:</p>
+        <div class="member-cards-grid" id="memberCardsGrid">
+            <!-- Cards populated dynamically via JS -->
+        </div>
+    </div>
+
+    <!-- Admin Entry Panel -->
     <div class="admin-entry-panel" id="universalAdminPanel">
         <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
         <div class="admin-entry-grid">
@@ -1055,7 +1132,6 @@
         <p id="ftrCopyright">© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
-    <!-- Dynamic Print Notice Footer -->
     <div class="print-only-footer" id="printSystemNotice">
         🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই।
     </div>
@@ -1069,9 +1145,8 @@
     let activePageId = "";
     let currentLang = 'bn';
     let userDetectedTimezone = ""; 
-    let lastGeneratedMessage = ""; // Storage for shareable message text
+    let lastGeneratedMessage = ""; 
 
-    // Islamic & Philosophical Quotes in Bengali
     const islamicAndPhilosophicalQuotes = [
         "\"মুমিনগণ পরস্পর ভাই ভাই, অতএব তোমরা তোমাদের ভাইদের মধ্যে আপস-মীমাংসা করে দাও।\" — আল-কুরআন (সূরা আল-হুজুরাত: ১০)",
         "\"হে ঈমানদারগণ! একে অপরের সম্পত্তি অন্যায়ভাবে ভক্ষণ করো না, কেবল পারস্পরিক সম্মতির ভিত্তিতে যে ব্যবসা করা হয় তা ভিন্ন।\" — আল-কুরআন (সূরা আন-নিসা: ২৯)",
@@ -1089,6 +1164,19 @@
     const memberShares = {
         awal: 1, arif: 1, babor: 2, babul: 1,
         jasim: 2, main: 1, saiem: 1, selim: 1, sanawer: 2
+    };
+
+    // Abdul Awal Blood Group set to B+, others set to "-"
+    const memberDirectory = {
+        awal: { blood: "B+", fb: "https://www.facebook.com/musafiraawal", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        arif: { blood: "-", fb: "https://www.facebook.com/arif.hussein.3726", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        babor: { blood: "-", fb: "https://www.facebook.com/babor.babor.96558", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        babul: { blood: "-", fb: "https://www.facebook.com/mohbabulhossain.rana", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        jasim: { blood: "-", fb: "https://www.facebook.com/md.jasim.uddin.660296", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        main: { blood: "-", fb: "https://www.facebook.com/moin.ahamed.sumon", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        saiem: { blood: "-", fb: "https://www.facebook.com/md.shakil.752", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        selim: { blood: "-", fb: "https://www.facebook.com/salim.patwary.846831", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
+        sanawer: { blood: "-", fb: "https://www.facebook.com/sq.arif", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } }
     };
 
     const TOTAL_LAND_PRICE = 9100000;
@@ -1124,9 +1212,8 @@
             marqueeSuffix: "টাকা মাত্র",
             lblNavHome: "হোম",
             lblNavMembers: "সদস্যবৃন্দ",
+            lblNavDirectory: "🩸প্রোফাইল",
             lblNavProperty: "সম্পত্তির পরিশোধিত মূল্য",
-            lblNavAdmin: "এডমিন",
-            lblNavLogout: "লগআউট",
             lblAdminModalTitle: "এডমিন লগইন",
             lblAdminPass: "এডমিন পাসওয়ার্ড দিন",
             adminPassHolder: "পাসওয়ার্ড লিখুন",
@@ -1151,36 +1238,17 @@
             btnSaveData: "ডাটা সেভ করুন",
             noData: "- কোন তথ্য পাওয়া যায়নি -",
             
-            tblDate: "তারিখ ও সময়",
-            tblRef: "রেফারেন্স নং",
-            tblSender: "প্রেরক ব্যাংক",
-            tblReceiver: "প্রাপক ব্যাংক",
-            tblMonth: "মাস/বছর",
-            tblAmount: "পরিমাণ (BDT)",
-            tblDetailsTxt: "লেনদেনের বিবরণ",
-            lblTotalDep: "মোট জমা:",
-            
-            lblLandPrice: "খরিদকৃত জমির মূল্য:",
-            lblPaidAmount: "প্রদেয় টাকার পরিমাণ:",
-            lblDueAmount: "প্রদানের বাকি মূল্য:",
-            pmtTitle: "সম্পত্তির পরিশোধিত মূল্যের বিবরণ",
-            thReason: "কারণ / বিবরণ",
-            lblTotalPaid: "সর্বমোট পরিশোধ (BDT):",
-            
-            lblShareholder: "শেয়ারহোল্ডারের নাম:",
-            lblAllocatedShares: "বরাদ্দকৃত শেয়ার:",
-            lblTargetAmount: "নির্ধারিত মূল্য:",
-            lblTotalDeposited: "সর্বমোট জমা:",
-            lblRemainingDue: "অবশিষ্ট বকেয়া / অবস্থা:",
-            lblStatementDate: "স্টেটমেন্ট তারিখ:",
+            dirTitle: "সদস্যবৃন্দের ডায়রেক্টরি ও ব্লাড ব্যাংক",
+            dirSub: "জরুরি প্রয়োজনে সদস্যদের সাথে সরাসরি যোগাযোগ ও রক্তের গ্রুপিং বিবরণী:",
 
-            lblCompTitle: "💥অভিযোগ বা পরামর্শ দিন💥",
-            lblCompSub: "যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝",
-            btnAdminMessenger: "🏡 এডমিন",
-            btnMyMessenger: "👥 সম্মানিত সদস্যবৃন্দ",
+            tblDate: "তারিখ ও সময়", tblRef: "রেফারেন্স নং", tblSender: "প্রেরক ব্যাংক", tblReceiver: "প্রাপক ব্যাংক", tblMonth: "মাস/বছর", tblAmount: "পরিমাণ (BDT)", tblDetailsTxt: "লেনদেনের বিবরণ", lblTotalDep: "মোট জমা:",
             
-            ftrCopyright: "© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।",
-            printNotice: "🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই।"
+            lblLandPrice: "খরিদকৃত জমির মূল্য:", lblPaidAmount: "প্রদেয় টাকার পরিমাণ:", lblDueAmount: "প্রদানের বাকি মূল্য:", pmtTitle: "সম্পত্তির পরিশোধিত মূল্যের বিবরণ", thReason: "কারণ / বিবরণ", lblTotalPaid: "সর্বমোট পরিশোধ (BDT):",
+            
+            lblShareholder: "শেয়ারহোল্ডারের নাম:", lblAllocatedShares: "বরাদ্দকৃত শেয়ার:", lblTargetAmount: "নির্ধারিত মূল্য:", lblTotalDeposited: "সর্বমোট জমা:", lblRemainingDue: "অবশিষ্ট বকেয়া / অবস্থা:", lblStatementDate: "স্টেটমেন্ট তারিখ:",
+
+            lblCompTitle: "💥অভিযোগ বা পরামর্শ দিন💥", lblCompSub: "যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝", btnAdminMessenger: "🏡 এডমিন", btnMyMessenger: "👥 সম্মানিত সদস্যবৃন্দ",
+            ftrCopyright: "© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।", printNotice: "🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই।"
         },
         en: {
             loading: "Processing data, please wait...",
@@ -1199,9 +1267,8 @@
             marqueeSuffix: "BDT only",
             lblNavHome: "Home",
             lblNavMembers: "Members",
+            lblNavDirectory: "🩸Profile",
             lblNavProperty: "Paid Property Value",
-            lblNavAdmin: "Admin",
-            lblNavLogout: "Logout",
             lblAdminModalTitle: "Admin Login",
             lblAdminPass: "Enter Admin Password",
             adminPassHolder: "Enter password",
@@ -1226,36 +1293,17 @@
             btnSaveData: "Save Data",
             noData: "- No data found -",
             
-            tblDate: "Date & Time",
-            tblRef: "Ref. No",
-            tblSender: "Sender Bank",
-            tblReceiver: "Receiver Bank",
-            tblMonth: "Month/Year",
-            tblAmount: "Amount (BDT)",
-            tblDetailsTxt: "Transaction Details",
-            lblTotalDep: "Total Deposited:",
-            
-            lblLandPrice: "Purchased Land Value:",
-            lblPaidAmount: "Total Paid Amount:",
-            lblDueAmount: "Remaining Due Amount:",
-            pmtTitle: "Payment Statement - Transaction Details",
-            thReason: "Reason / Title",
-            lblTotalPaid: "Total Paid (BDT):",
-            
-            lblShareholder: "Shareholder Name:",
-            lblAllocatedShares: "Allocated Shares:",
-            lblTargetAmount: "Target Amount:",
-            lblTotalDeposited: "Total Deposited:",
-            lblRemainingDue: "Remaining Due / Status:",
-            lblStatementDate: "Statement Date:",
+            dirTitle: "Member Directory & Blood Bank",
+            dirSub: "Direct contact info and blood group records for emergency needs:",
 
-            lblCompTitle: "💥Complaints or Feedback💥",
-            lblCompSub: "Please write 📝 for any complaints or suggestions:",
-            btnAdminMessenger: "🏡 Admin",
-            btnMyMessenger: "👥 Honorable Members",
+            tblDate: "Date & Time", tblRef: "Ref. No", tblSender: "Sender Bank", tblReceiver: "Receiver Bank", tblMonth: "Month/Year", tblAmount: "Amount (BDT)", tblDetailsTxt: "Transaction Details", lblTotalDep: "Total Deposited:",
             
-            ftrCopyright: "© 2026 Childhood Friends Association. All Rights Reserved.",
-            printNotice: "🔒 This is a system-generated automatic document. No signature is required."
+            lblLandPrice: "Purchased Land Value:", lblPaidAmount: "Total Paid Amount:", lblDueAmount: "Remaining Due Amount:", pmtTitle: "Payment Statement - Transaction Details", thReason: "Reason / Title", lblTotalPaid: "Total Paid (BDT):",
+            
+            lblShareholder: "Shareholder Name:", lblAllocatedShares: "Allocated Shares:", lblTargetAmount: "Target Amount:", lblTotalDeposited: "Total Deposited:", lblRemainingDue: "Remaining Due / Status:", lblStatementDate: "Statement Date:",
+
+            lblCompTitle: "💥Complaints or Feedback💥", lblCompSub: "Please write 📝 for any complaints or suggestions:", btnAdminMessenger: "🏡 Admin", btnMyMessenger: "👥 Honorable Members",
+            ftrCopyright: "© 2026 Childhood Friends Association. All Rights Reserved.", printNotice: "🔒 This is a system-generated automatic document. No signature is required."
         }
     };
 
@@ -1267,21 +1315,13 @@
     function loadRandomQuote() {
         const randomIndex = Math.floor(Math.random() * islamicAndPhilosophicalQuotes.length);
         const quoteEl = document.getElementById("dynamicQuoteStatic");
-        if (quoteEl) {
-            quoteEl.textContent = islamicAndPhilosophicalQuotes[randomIndex];
-        }
+        if (quoteEl) quoteEl.textContent = islamicAndPhilosophicalQuotes[randomIndex];
     }
 
     function sanitizeInput(str) {
         if (typeof str !== 'string') return str;
         return str.replace(/[&<>"']/g, function(match) {
-            const escapeMap = {
-                '&': '&amp;',
-                '<': '&lt;',
-                '>': '&gt;',
-                '"': '&quot;',
-                "'": '&#x27;'
-            };
+            const escapeMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' };
             return escapeMap[match];
         });
     }
@@ -1295,9 +1335,7 @@
             const dropdowns = document.getElementsByClassName("dropdown-menu");
             for (let i = 0; i < dropdowns.length; i++) {
                 const openDropdown = dropdowns[i];
-                if (openDropdown.classList.contains('show')) {
-                    openDropdown.classList.remove('show');
-                }
+                if (openDropdown.classList.contains('show')) openDropdown.classList.remove('show');
             }
         }
     }
@@ -1330,9 +1368,11 @@
 
         document.getElementById("lblNavHome").textContent = t.lblNavHome;
         document.getElementById("lblNavMembers").textContent = t.lblNavMembers;
+        document.getElementById("lblNavDirectory").textContent = t.lblNavDirectory;
         document.getElementById("lblNavProperty").textContent = t.lblNavProperty;
-        document.getElementById("lblNavAdmin").textContent = t.lblNavAdmin;
-        document.getElementById("lblNavLogout").textContent = t.lblNavLogout;
+
+        document.getElementById("dirTitle").textContent = t.dirTitle;
+        document.getElementById("dirSub").textContent = t.dirSub;
 
         memberKeys.forEach(key => {
             const name = memberNames[currentLang][key];
@@ -1389,8 +1429,45 @@
 
         adjustAdminFormFields();
         renderAllData();
+        renderMemberDirectory();
         updateLiveClockAndDate();
         fetchUserLocationAndWeather();
+    }
+
+    function renderMemberDirectory() {
+        const grid = document.getElementById("memberCardsGrid");
+        if (!grid) return;
+        let html = "";
+        memberKeys.forEach(key => {
+            const name = memberNames[currentLang][key];
+            const info = memberDirectory[key];
+            const roleTxt = info.role[currentLang];
+            
+            // High Resolution Official Blue Facebook Logo SVG
+            const fbSvgIcon = `
+                <svg width="34" height="34" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+                    <path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/>
+                    <path fill="#FFFFFF" d="M24.238 23.203l.752-5.203h-4.707v-3.352c0-1.342.657-2.65 2.764-2.65h2.141V7.82s-1.943-.332-3.8-.332c-3.877 0-6.41 2.35-6.41 6.602V18H10.88v5.203h4.308v12.572C16.136 35.918 17.058 36 18 36c.942 0 1.864-.082 2.812-.225V23.203h3.426z"/>
+                </svg>
+            `;
+
+            html += `
+                <div class="member-card">
+                    <div class="member-avatar">👤</div>
+                    <div class="member-info">
+                        <h4>${name}</h4>
+                        <p>${roleTxt}</p>
+                        <span class="blood-badge">🩸 Group: ${info.blood}</span>
+                    </div>
+                    <div class="card-actions">
+                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook Profile">
+                            ${fbSvgIcon}
+                        </a>
+                    </div>
+                </div>
+            `;
+        });
+        grid.innerHTML = html;
     }
 
     function showLoading(show) {
@@ -1429,7 +1506,7 @@
                 document.getElementById("errorMsg").style.display = "block";
             }
         })
-        .catch(err => {
+        .catch(() => {
             showLoading(false);
             alert("Connection error!");
         });
@@ -1588,14 +1665,12 @@
                 if (res.success) {
                     alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
                     
-                    // Temporarily add the new transaction to local db so the fund balance and member total compute correctly right away
                     if (target === "sec-payment") {
                         db.payments.push({ amount: amount });
                     } else if (memberKeys.includes(target)) {
                         db.transactions[target].push({ amount: amount });
                     }
 
-                    // Recalculate total deposits and fund balance including the new entry
                     let calcTotalDeposited = 0;
                     memberKeys.forEach(k => {
                         (db.transactions[k] || []).forEach(item => { calcTotalDeposited += item.amount; });
@@ -1606,7 +1681,6 @@
                     const updatedNetBalance = calcTotalDeposited - calcTotalPayment;
                     const currentFundBalanceStr = updatedNetBalance.toFixed(2);
 
-                    // Calculate specific member's total deposit and status if target is a member
                     let memberExtraInfo = "";
                     let targetNameStr = target === "sec-payment" ? "সম্পত্তির পরিশোধিত মূল্য" : memberNames['bn'][target];
 
@@ -1632,7 +1706,6 @@
                                           `📊 *অবস্থা/বকেয়া:* ${statusText}\n`;
                     }
 
-                    // Generate Shareable Message Text with Member details and updated Association Fund
                     lastGeneratedMessage = `📢 *বন্ধুত্বের স্মারক সমিতি - নতুন জমা এন্ট্রি*\n\n` +
                                            `👤 *নাম/খাত:* ${targetNameStr}\n` +
                                            `💰 *এবারের জমা:* ${amount.toFixed(2)} BDT\n` +
@@ -1647,12 +1720,10 @@
                                            `━━━━━━━━━━━━━━━\n\n` +
                                            `🙏 প্রিয় *${targetNameStr}*, আপনাকে অনেক ধন্যবাদ! বিস্তারিত দেখতে ভিজিট করুন: https://childhoodfriendsassociation.github.io/cfa`;
 
-                    // Set WhatsApp Share Link
                     const waBtn = document.getElementById("whatsappShareBtn");
                     waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(lastGeneratedMessage)}`;
                     waBtn.style.display = "inline-flex";
 
-                    // Show Messenger Share Button
                     const messengerBtn = document.getElementById("messengerShareBtn");
                     messengerBtn.style.display = "inline-flex";
 
@@ -1668,18 +1739,16 @@
                     alert("Error: " + res.message);
                 }
             })
-            .catch(err => {
+            .catch(() => {
                 showLoading(false);
                 alert("Error saving data!");
             });
         }
     }
 
-    // Advanced Messenger Share Function
     function shareToMessenger() {
         if (!lastGeneratedMessage) return;
 
-        // Auto Copy text to Clipboard
         if (navigator.clipboard && navigator.clipboard.writeText) {
             navigator.clipboard.writeText(lastGeneratedMessage).then(() => {
                 alert(currentLang === 'bn' 
@@ -1688,7 +1757,6 @@
             }).catch(() => {});
         }
 
-        // Redirect directly to the Association Messenger Group / Direct Chat Link
         const messengerGroupUrl = "https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t";
         window.open(messengerGroupUrl, "_blank");
     }
@@ -1936,16 +2004,12 @@
 
     function fallbackLocation() {
         const locBox = document.getElementById("userLocation");
-        if (locBox) {
-            locBox.textContent = langText[currentLang].userLocFail;
-        }
+        if (locBox) locBox.textContent = langText[currentLang].userLocFail;
     }
 
     function fallbackWeather() {
         const weatherBox = document.getElementById("userWeather");
-        if (weatherBox) {
-            weatherBox.textContent = langText[currentLang].weatherFail;
-        }
+        if (weatherBox) weatherBox.textContent = langText[currentLang].weatherFail;
     }
 
     document.addEventListener('contextmenu', e => e.preventDefault());
