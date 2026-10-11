@@ -169,7 +169,7 @@
             border: 1px solid var(--border-color);
             border-radius: 12px;
             box-shadow: var(--shadow);
-            min-width: 200px;
+            min-width: 210px;
             max-height: 75vh;
             overflow-y: auto;
             z-index: 1001;
@@ -181,11 +181,13 @@
         }
 
         .dropdown-item {
-            padding: 10px 14px;
-            display: block;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
             color: var(--primary-color);
             text-decoration: none;
-            font-size: 14px;
+            font-size: 13.5px;
             font-weight: 700;
             cursor: pointer;
             border-bottom: 1px solid var(--border-color);
@@ -198,6 +200,19 @@
         .dropdown-item:hover {
             background: var(--primary-color);
             color: #ffffff !important;
+        }
+
+        .dropdown-item:hover .dropdown-avatar {
+            border-color: #ffffff;
+        }
+
+        .dropdown-avatar {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--primary-color);
+            flex-shrink: 0;
         }
 
         .container {
@@ -364,6 +379,23 @@
             border: 2px solid var(--primary-color);
             flex-shrink: 0;
             background: var(--box-bg);
+        }
+
+        /* Summary Table Avatar Cell */
+        .summary-name-cell {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            text-align: left;
+        }
+
+        .summary-avatar {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--primary-color);
+            flex-shrink: 0;
         }
 
         .member-info h4 {
@@ -774,6 +806,7 @@
             z-index: 9999;
         }
 
+        /* Footer & Centered Admin Button */
         footer {
             text-align: center;
             font-size: 12px;
@@ -781,6 +814,43 @@
             margin-top: 20px;
             border-top: 1px solid var(--border-color);
             padding-top: 12px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .discrete-admin-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 10px;
+            border-radius: 8px;
+            opacity: 0.35;
+            transition: opacity 0.2s, background 0.2s;
+        }
+
+        .discrete-admin-btn:hover {
+            opacity: 1;
+            background: var(--box-bg);
+        }
+
+        .discrete-admin-avatar {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--primary-color);
+        }
+
+        .discrete-admin-label {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--text-muted);
+            white-space: nowrap;
         }
 
         .print-only-footer {
@@ -848,20 +918,44 @@
         <li class="nav-item">
             <button class="nav-btn" onclick="toggleDropdown('membersDropdown')">👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</button>
             <div class="dropdown-menu" id="membersDropdown">
-                <a class="dropdown-item" id="menu-awal" onclick="openMemberPage('sec-awal')">আবদুল আউয়াল</a>
-                <a class="dropdown-item" id="menu-arif" onclick="openMemberPage('sec-arif')">আরিফ হোসেন</a>
-                <a class="dropdown-item" id="menu-babor" onclick="openMemberPage('sec-babor')">বাবর পাটোয়ারী</a>
-                <a class="dropdown-item" id="menu-babul" onclick="openMemberPage('sec-babul')">বাবুল হোসেন</a>
-                <a class="dropdown-item" id="menu-jasim" onclick="openMemberPage('sec-jasim')">জসিম উদ্দিন</a>
-                <a class="dropdown-item" id="menu-main" onclick="openMemberPage('sec-main')">মঈন উদ্দিন (সুমন)</a>
-                <a class="dropdown-item" id="menu-saiem" onclick="openMemberPage('sec-saiem')">মোঃ সায়েম (শাকিল)</a>
-                <a class="dropdown-item" id="menu-selim" onclick="openMemberPage('sec-selim')">সেলিম পাটোয়ারী</a>
-                <a class="dropdown-item" id="menu-sanawer" onclick="openMemberPage('sec-sanawer')">সানোয়ার কাদের (আরিফ)</a>
-                <a class="dropdown-item" onclick="openMemberPage('sec-payment')" style="font-weight: bold; color: var(--primary-color);" id="lblNavProperty">সম্পত্তির পরিশোধিত মূল্য</a>
+                <a class="dropdown-item" id="menu-awal" onclick="openMemberPage('sec-awal')">
+                    <img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" alt="Awal" class="dropdown-avatar">
+                    <span>আবদুল আউয়াল</span>
+                </a>
+                <a class="dropdown-item" id="menu-arif" onclick="openMemberPage('sec-arif')">
+                    <img src="https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw" alt="Arif" class="dropdown-avatar">
+                    <span>আরিফ হোসেন</span>
+                </a>
+                <a class="dropdown-item" id="menu-babor" onclick="openMemberPage('sec-babor')">
+                    <img src="https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl" alt="Babor" class="dropdown-avatar">
+                    <span>বাবর পাটোয়ারী</span>
+                </a>
+                <a class="dropdown-item" id="menu-babul" onclick="openMemberPage('sec-babul')">
+                    <img src="https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA" alt="Babul" class="dropdown-avatar">
+                    <span>বাবুল হোসেন</span>
+                </a>
+                <a class="dropdown-item" id="menu-jasim" onclick="openMemberPage('sec-jasim')">
+                    <img src="https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK" alt="Jasim" class="dropdown-avatar">
+                    <span>জসিম উদ্দিন</span>
+                </a>
+                <a class="dropdown-item" id="menu-main" onclick="openMemberPage('sec-main')">
+                    <img src="https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX" alt="Main" class="dropdown-avatar">
+                    <span>মঈন উদ্দিন</span>
+                </a>
+                <a class="dropdown-item" id="menu-saiem" onclick="openMemberPage('sec-saiem')">
+                    <img src="https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG" alt="Saiem" class="dropdown-avatar">
+                    <span>মোঃ সায়েম</span>
+                </a>
+                <a class="dropdown-item" id="menu-selim" onclick="openMemberPage('sec-selim')">
+                    <img src="https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0" alt="Selim" class="dropdown-avatar">
+                    <span>সেলিম পাটোয়ারী</span>
+                </a>
+                <a class="dropdown-item" id="menu-sanawer" onclick="openMemberPage('sec-sanawer')">
+                    <img src="https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J" alt="Sanawer" class="dropdown-avatar">
+                    <span>সানোয়ার কাদের</span>
+                </a>
+                <a class="dropdown-item" onclick="openMemberPage('sec-payment')" style="font-weight: bold; color: var(--primary-color); justify-content: center;" id="lblNavProperty">সম্পত্তির পরিশোধিত মূল্য</a>
             </div>
-        </li>
-        <li class="nav-item" id="adminNavItem">
-            <button class="nav-btn" onclick="openAdminModal()" title="এডমিন লগইন">⚙️</button>
         </li>
         <li class="nav-item" id="logoutNavItem" style="display: none;">
             <button class="nav-btn" onclick="logoutAdmin()" style="color: #ef4444;" title="লগআউট">🚪</button>
@@ -1169,6 +1263,10 @@
     </div>
 
     <footer>
+        <button class="discrete-admin-btn" onclick="openAdminModal()" title="Data Administrator">
+            <img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" alt="Abdul Awal" class="discrete-admin-avatar">
+            <span class="discrete-admin-label">ডাটা এডমিনিস্ট্রেটর</span>
+        </button>
         <p id="ftrCopyright">© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।</p>
     </footer>
 
@@ -1271,11 +1369,11 @@
     const memberNames = {
         bn: {
             awal: "আবদুল আউয়াল", arif: "আরিফ হোসেন", babor: "বাবর পাটোয়ারী", babul: "বাবুল হোসেন",
-            jasim: "জসিম উদ্দিন", main: "মঈন উদ্দিন (সুমন)", saiem: "মোঃ সায়েম (শাকিল)", selim: "সেলিম পাটোয়ারী", sanawer: "সানোয়ার কাদের (আরিফ)"
+            jasim: "জসিম উদ্দিন", main: "মঈন উদ্দিন", saiem: "মোঃ সায়েম", selim: "সেলিম পাটোয়ারী", sanawer: "সানোয়ার কাদের"
         },
         en: {
             awal: "Abdul Awal", arif: "Arif Hossain", babor: "Babor Patwary", babul: "Babul Hossain",
-            jasim: "Jasim Uddin", main: "Main Uddin (Sumon)", saiem: "Md. Saiem (Shakil)", selim: "Selim Patwary", sanawer: "Sanawer Quder (Arif)"
+            jasim: "Jasim Uddin", main: "Main Uddin", saiem: "Md. Saiem", selim: "Selim Patwary", sanawer: "Sanawer Quder"
         }
     };
 
@@ -1333,7 +1431,7 @@
             lblShareholder: "শেয়ারহোল্ডারের নাম:", lblAllocatedShares: "বরাদ্দকৃত শেয়ার:", lblTargetAmount: "নির্ধারিত মূল্য:", lblTotalDeposited: "সর্বমোট জমা:", lblRemainingDue: "অবশিষ্ট বকেয়া / অবস্থা:", lblStatementDate: "স্টেটমেন্ট তারিখ:",
 
             lblCompTitle: "💥অভিযোগ বা পরামর্শ দিন💥", lblCompSub: "যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝", btnAdminMessenger: "🏡 এডমিন", btnMyMessenger: "👥 সম্মানিত সদস্যবৃন্দ",
-            ftrCopyright: "© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।", printNotice: "🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই।"
+            ftrCopyright: "© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।", printNotice: "🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই."
         },
         en: {
             loading: "Processing data, please wait...",
@@ -1464,7 +1562,10 @@
             const menuEl = document.getElementById(`menu-${key}`);
             const optEl = document.getElementById(`opt-${key}`);
             const titleEl = document.getElementById(`title-${key}`);
-            if (menuEl) menuEl.textContent = name;
+            if (menuEl) {
+                const spanEl = menuEl.querySelector("span");
+                if (spanEl) spanEl.textContent = name;
+            }
             if (optEl) optEl.textContent = name;
             if (titleEl) titleEl.textContent = name;
         });
@@ -1528,7 +1629,6 @@
             const info = memberDirectory[key];
             const roleTxt = info.role[currentLang];
             
-            // High Resolution Official Blue Facebook Logo SVG
             const fbSvgIcon = `
                 <svg width="34" height="34" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
                     <path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/>
@@ -1961,9 +2061,17 @@
             grandTotalTarget += targetAmount;
             grandTotalDue += balanceDiff;
 
+            const memberPhotoUrl = memberDirectory[key].photo;
+            const memberDisplayName = memberNames[currentLang][key];
+
             frontBodyHTML += `
                 <tr>
-                    <td>${memberNames[currentLang][key]}</td>
+                    <td>
+                        <div class="summary-name-cell">
+                            <img src="${memberPhotoUrl}" alt="${memberDisplayName}" class="summary-avatar">
+                            <span>${memberDisplayName}</span>
+                        </div>
+                    </td>
                     <td>${shares}</td>
                     <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                     <td>${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
