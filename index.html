@@ -561,10 +561,36 @@
             margin-bottom: 16px;
         }
 
+        .admin-panel-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
         .admin-entry-panel h4 {
             color: #f59e0b;
-            margin-bottom: 8px;
             font-size: 15px;
+            margin-bottom: 0;
+        }
+
+        .panel-logout-btn {
+            background-color: #ef4444;
+            color: #ffffff;
+            border: none;
+            padding: 4px 10px;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            transition: background-color 0.2s;
+        }
+
+        .panel-logout-btn:hover {
+            background-color: #dc2626;
         }
 
         .admin-entry-grid {
@@ -969,9 +995,6 @@
                 <a class="dropdown-item" onclick="openMemberPage('sec-payment')" style="font-weight: bold; color: var(--primary-color); justify-content: center;" id="lblNavProperty">সম্পত্তির পরিশোধিত মূল্য</a>
             </div>
         </li>
-        <li class="nav-item" id="logoutNavItem" style="display: none;">
-            <button class="nav-btn" onclick="logoutAdmin()" style="color: #ef4444;" title="লগআউট">🚪</button>
-        </li>
         <li class="nav-item">
             <button class="nav-btn" onclick="window.print()">🖨️</button>
         </li>
@@ -1078,7 +1101,10 @@
 
     <!-- Admin Entry Panel -->
     <div class="admin-entry-panel" id="universalAdminPanel">
-        <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
+        <div class="admin-panel-top">
+            <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
+            <button class="panel-logout-btn" onclick="logoutAdmin()" title="লগআউট">🚪 লগআউট</button>
+        </div>
         <div class="admin-entry-grid">
             <select id="targetMemberSelect" onchange="adjustAdminFormFields()">
                 <optgroup label="সদস্যের পেজসমূহ" id="grpMembers">
@@ -1275,7 +1301,7 @@
     </div>
 
     <footer>
-        <button class="discrete-admin-btn" onclick="openAdminModal()" title="Data Administrator">
+        <button class="discrete-admin-btn" id="discreteAdminBtn" onclick="openAdminModal()" title="Data Administrator">
             <img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" alt="Abdul Awal" class="discrete-admin-avatar">
             <span class="discrete-admin-label">ডাটা এডমিনিস্ট্রেটর</span>
         </button>
@@ -1696,7 +1722,7 @@
                 isAdminMode = true;
                 globalAdminToken = adminPass;
                 closeAdminModal();
-                document.getElementById("logoutNavItem").style.display = "block";
+                document.getElementById("discreteAdminBtn").style.display = "none";
                 document.getElementById("universalAdminPanel").style.display = "block";
                 adjustAdminFormFields();
             } else {
@@ -1712,7 +1738,7 @@
     function logoutAdmin() {
         isAdminMode = false;
         globalAdminToken = "";
-        document.getElementById("logoutNavItem").style.display = "none";
+        document.getElementById("discreteAdminBtn").style.display = "inline-flex";
         document.getElementById("universalAdminPanel").style.display = "none";
         document.getElementById("whatsappShareBtn").style.display = "none";
         document.getElementById("messengerShareBtn").style.display = "none";
