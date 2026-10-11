@@ -610,6 +610,99 @@
             width: 100%;
         }
 
+        /* Custom Admin Member Dropdown with Avatars */
+        .custom-select-wrapper {
+            position: relative;
+            width: 100%;
+            user-select: none;
+        }
+
+        .custom-select-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 5px 8px;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--card-bg);
+            color: var(--text-color);
+            font-size: 13px;
+            cursor: pointer;
+            height: 33px;
+        }
+
+        .custom-select-trigger-content {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .custom-select-avatar {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid var(--primary-color);
+            flex-shrink: 0;
+        }
+
+        .custom-options-container {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1050;
+            margin-top: 2px;
+        }
+
+        .custom-options-container.open {
+            display: block;
+        }
+
+        .custom-option-header {
+            padding: 4px 8px;
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            background: var(--box-bg);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .custom-option-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 6px 8px;
+            font-size: 13px;
+            cursor: pointer;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .custom-option-item:last-child {
+            border-bottom: none;
+        }
+
+        .custom-option-item:hover, .custom-option-item.selected {
+            background: var(--primary-color);
+            color: #ffffff;
+        }
+
+        .custom-option-item:hover .custom-select-avatar, 
+        .custom-option-item.selected .custom-select-avatar {
+            border-color: #ffffff;
+        }
+
         .admin-action-buttons {
             display: flex;
             gap: 8px;
@@ -1106,22 +1199,62 @@
             <button class="panel-logout-btn" onclick="logoutAdmin()" title="লগআউট">🚪 লগআউট</button>
         </div>
         <div class="admin-entry-grid">
-            <select id="targetMemberSelect" onchange="adjustAdminFormFields()">
-                <optgroup label="সদস্যের পেজসমূহ" id="grpMembers">
-                    <option value="awal" id="opt-awal">আবদুল আউয়াল</option>
-                    <option value="arif" id="opt-arif">আরিফ হোসেন</option>
-                    <option value="babor" id="opt-babor">বাবর পাটোয়ারী</option>
-                    <option value="babul" id="opt-babul">বাবুল হোসেন</option>
-                    <option value="jasim" id="opt-jasim">জসিম উদ্দিন</option>
-                    <option value="main" id="opt-main">মঈন উদ্দিন</option>
-                    <option value="saiem" id="opt-saiem">মোঃ সায়েম</option>
-                    <option value="selim" id="opt-selim">সেলিম পাটোয়ারী</option>
-                    <option value="sanawer" id="opt-sanawer">সানোয়ার কাদের</option>
-                </optgroup>
-                <optgroup label="অন্যান্য পেজসমূহ" id="grpOthers">
-                    <option value="sec-payment" id="opt-payment">সম্পত্তির পরিশোধিত মূল্য</option>
-                </optgroup>
-            </select>
+            <!-- Custom Member Select Dropdown with Avatar Photos -->
+            <div class="custom-select-wrapper">
+                <input type="hidden" id="targetMemberSelect" value="awal">
+                <div class="custom-select-trigger" onclick="toggleCustomMemberSelect()">
+                    <div class="custom-select-trigger-content" id="selectedMemberDisplay">
+                        <img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" class="custom-select-avatar" alt="Awal">
+                        <span>আবদুল আউয়াল</span>
+                    </div>
+                    <span style="font-size: 10px;">▼</span>
+                </div>
+                <div class="custom-options-container" id="customMemberOptions">
+                    <div class="custom-option-header" id="grpMembers">সদস্যের পেজসমূহ</div>
+                    <div class="custom-option-item selected" onclick="selectMemberOption('awal')">
+                        <img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" class="custom-select-avatar" alt="Awal">
+                        <span id="opt-awal">আবদুল আউয়াল</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('arif')">
+                        <img src="https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw" class="custom-select-avatar" alt="Arif">
+                        <span id="opt-arif">আরিফ হোসেন</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('babor')">
+                        <img src="https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl" class="custom-select-avatar" alt="Babor">
+                        <span id="opt-babor">বাবর পাটোয়ারী</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('babul')">
+                        <img src="https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA" class="custom-select-avatar" alt="Babul">
+                        <span id="opt-babul">বাবুল হোসেন</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('jasim')">
+                        <img src="https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK" class="custom-select-avatar" alt="Jasim">
+                        <span id="opt-jasim">জসিম উদ্দিন</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('main')">
+                        <img src="https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX" class="custom-select-avatar" alt="Main">
+                        <span id="opt-main">মঈন উদ্দিন</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('saiem')">
+                        <img src="https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG" class="custom-select-avatar" alt="Saiem">
+                        <span id="opt-saiem">মোঃ সায়েম</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('selim')">
+                        <img src="https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0" class="custom-select-avatar" alt="Selim">
+                        <span id="opt-selim">সেলিম পাটোয়ারী</span>
+                    </div>
+                    <div class="custom-option-item" onclick="selectMemberOption('sanawer')">
+                        <img src="https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J" class="custom-select-avatar" alt="Sanawer">
+                        <span id="opt-sanawer">সানোয়ার কাদের</span>
+                    </div>
+                    <div class="custom-option-header" id="grpOthers">অন্যান্য পেজসমূহ</div>
+                    <div class="custom-option-item" onclick="selectMemberOption('sec-payment')">
+                        <span style="font-size: 16px;">🏢</span>
+                        <span id="opt-payment">সম্পত্তির পরিশোধিত মূল্য</span>
+                    </div>
+                </div>
+            </div>
+
             <input type="date" id="inputDate" required>
             <input type="text" id="inputRef" placeholder="Ref. No / ID" required autocomplete="off">
             <input type="text" id="inputBankFrom" placeholder="Sender Bank" required autocomplete="off">
@@ -1551,12 +1684,43 @@
         document.getElementById(id).classList.toggle('show');
     }
 
+    /* Toggle Custom Member Selection Dropdown */
+    function toggleCustomMemberSelect() {
+        document.getElementById("customMemberOptions").classList.toggle("open");
+    }
+
+    function selectMemberOption(val) {
+        document.getElementById("targetMemberSelect").value = val;
+        
+        const display = document.getElementById("selectedMemberDisplay");
+        if (val === "sec-payment") {
+            display.innerHTML = `<span style="font-size:16px;">🏢</span> <span>${langText[currentLang].optPayment}</span>`;
+        } else {
+            const photo = memberDirectory[val].photo;
+            const name = memberNames[currentLang][val];
+            display.innerHTML = `<img src="${photo}" class="custom-select-avatar" alt="${val}"> <span>${name}</span>`;
+        }
+
+        const items = document.querySelectorAll(".custom-option-item");
+        items.forEach(item => item.classList.remove("selected"));
+        event.currentTarget.classList.add("selected");
+
+        document.getElementById("customMemberOptions").classList.remove("open");
+        adjustAdminFormFields();
+    }
+
     window.onclick = function(event) {
         if (!event.target.matches('.nav-btn')) {
             const dropdowns = document.getElementsByClassName("dropdown-menu");
             for (let i = 0; i < dropdowns.length; i++) {
                 const openDropdown = dropdowns[i];
                 if (openDropdown.classList.contains('show')) openDropdown.classList.remove('show');
+            }
+        }
+        if (!event.target.closest('.custom-select-wrapper')) {
+            const customOpt = document.getElementById("customMemberOptions");
+            if (customOpt && customOpt.classList.contains("open")) {
+                customOpt.classList.remove("open");
             }
         }
     }
@@ -1622,10 +1786,21 @@
         document.getElementById("thTotal").textContent = t.thTotal;
         document.getElementById("thStatus").textContent = t.thStatus;
 
-        document.getElementById("grpMembers").label = t.grpMembers;
-        document.getElementById("grpOthers").label = t.grpOthers;
+        document.getElementById("grpMembers").textContent = t.grpMembers;
+        document.getElementById("grpOthers").textContent = t.grpOthers;
         document.getElementById("opt-payment").textContent = t.optPayment;
         document.getElementById("btnSaveData").textContent = t.btnSaveData;
+
+        // Update selected display string
+        const currentTargetVal = document.getElementById("targetMemberSelect").value;
+        const display = document.getElementById("selectedMemberDisplay");
+        if (currentTargetVal === "sec-payment") {
+            display.innerHTML = `<span style="font-size:16px;">🏢</span> <span>${t.optPayment}</span>`;
+        } else {
+            const photo = memberDirectory[currentTargetVal].photo;
+            const name = memberNames[currentLang][currentTargetVal];
+            display.innerHTML = `<img src="${photo}" class="custom-select-avatar" alt="${currentTargetVal}"> <span>${name}</span>`;
+        }
 
         document.querySelectorAll(".tblHeaderDate").forEach(el => el.textContent = t.tblDate);
         document.querySelectorAll(".tblHeaderRef").forEach(el => el.textContent = t.tblRef);
