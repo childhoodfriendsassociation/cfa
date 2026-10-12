@@ -150,12 +150,11 @@
             font-weight: 600;
             display: flex;
             align-items: center;
-            justify-content: center; /* মাঝবরাবর ক্লিক ফিক্স করার জন্য */
+            justify-content: center;
             gap: 3px;
             white-space: nowrap;
         }
 
-        /* ভেতরের টেক্সট বা আইকনের জন্য pointer-events বন্ধ করা হলো যাতে পুরো বাটনে ক্লিক করলে কাজ করে */
         .nav-btn * {
             pointer-events: none; 
         }
@@ -387,7 +386,6 @@
             background: var(--box-bg);
         }
 
-        /* Summary Table Avatar Cell */
         .summary-name-cell {
             display: flex;
             align-items: center;
@@ -416,7 +414,6 @@
             margin-bottom: 2px;
         }
 
-        /* Enhanced High-Contrast Blood Badge Style */
         .blood-badge {
             display: inline-flex;
             align-items: center;
@@ -616,7 +613,6 @@
             width: 100%;
         }
 
-        /* Custom Admin Member Dropdown with Avatars */
         .custom-select-wrapper {
             position: relative;
             width: 100%;
@@ -763,7 +759,6 @@
             flex: 1;
         }
 
-        /* Section Blocks & Tables */
         .section-block {
             display: none;
             margin-bottom: 16px;
@@ -784,7 +779,6 @@
 
         .info-box p { margin: 4px 0; }
 
-        /* Member Profile Header Card in Individual Pages */
         .profile-header-card {
             display: flex;
             align-items: center;
@@ -874,7 +868,6 @@
             font-weight: 700;
         }
 
-        /* Complaints & Feedback */
         .complaint-box {
             background: var(--card-bg);
             border: 1px solid var(--border-color);
@@ -931,7 +924,6 @@
             z-index: 9999;
         }
 
-        /* Footer & Centered Admin Button */
         footer {
             text-align: center;
             font-size: 12px;
@@ -1041,19 +1033,26 @@
 </head>
 <body>
 
-<div id="loadingOverlay">⏳ <span id="loadingTxt">ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</span></div>
+<!-- Updated Loading Overlay with Retry Option -->
+<div id="loadingOverlay">
+    <div id="loadingContent">
+        <span id="loadingTxt">ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</span>
+        <br>
+        <button id="retryBtn" onclick="fetchFromGoogleSheet()" style="display:none; margin-top:12px; padding:8px 16px; background:#2563eb; color:#fff; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">পুনরায় চেষ্টা করুন (Retry)</button>
+    </div>
+</div>
 
 <!-- Top Navigation Bar -->
 <nav class="navbar">
     <ul class="nav-menu">
         <li class="nav-item">
-            <button class="nav-btn" onclick="showHomepage()">🏠 <span id="lblNavHome">হোম</span></button>
+            <button class="nav-btn" onclick="showHomepage()" aria-label="Go to Homepage">🏠 <span id="lblNavHome">হোম</span></button>
         </li>
         <li class="nav-item">
-            <button class="nav-btn" onclick="openMemberPage('sec-directory')" title="সদস্য প্রোফাইল ও ব্লাড ব্যাংক"><span id="lblNavDirectory">🩸প্রোফাইল</span></button>
+            <button class="nav-btn" onclick="openMemberPage('sec-directory')" aria-label="Member Directory and Blood Bank"><span id="lblNavDirectory">🩸প্রোফাইল</span></button>
         </li>
         <li class="nav-item">
-            <button class="nav-btn" onclick="toggleDropdown('membersDropdown')">
+            <button class="nav-btn" onclick="toggleDropdown('membersDropdown')" aria-label="Members Menu">
                 <span>👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</span>
             </button>
             <div class="dropdown-menu" id="membersDropdown">
@@ -1097,13 +1096,13 @@
             </div>
         </li>
         <li class="nav-item">
-            <button class="nav-btn" onclick="window.print()">🖨️</button>
+            <button class="nav-btn" onclick="window.print()" aria-label="Print Page">🖨️</button>
         </li>
         <li class="nav-item">
-            <button class="nav-btn" onclick="toggleDarkMode()">🌙</button>
+            <button class="nav-btn" onclick="toggleDarkMode()" aria-label="Toggle Dark Mode">🌙</button>
         </li>
         <li class="nav-item">
-            <button class="nav-btn" id="langBtn" onclick="toggleLanguage()">EN</button>
+            <button class="nav-btn" id="langBtn" onclick="toggleLanguage()" aria-label="Change Language">EN</button>
         </li>
     </ul>
 </nav>
@@ -1163,7 +1162,6 @@
             <h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
             <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
 
-            <!-- Association Total Fund Marquee -->
             <div class="glass-marquee-container">
                 <div class="glass-marquee-track">
                     🌟 <span id="marqueePrefix">সমিতির তহবিলে বর্তমানে জমা আছে:</span> <span id="marqueeTotal">0.00</span> <span id="marqueeSuffix">টাকা মাত্র</span> 🌟 
@@ -1171,7 +1169,6 @@
             </div>
         </div>
 
-        <!-- Summary Table -->
         <div class="shortcut-dashboard">
             <h3 id="summaryTitle">📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)</h3>
             <div class="table-responsive">
@@ -1195,9 +1192,7 @@
     <div id="sec-directory" class="section-block">
         <h3 class="section-title" id="dirTitle">সদস্যবৃন্দের ডায়রেক্টরি ও ব্লাড ব্যাংক</h3>
         <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;" id="dirSub">জরুরি প্রয়োজনে সদস্যদের সাথে সরাসরি যোগাযোগ ও রক্তের গ্রুপিং বিবরণী:</p>
-        <div class="member-cards-grid" id="memberCardsGrid">
-            <!-- Cards populated dynamically via JS -->
-        </div>
+        <div class="member-cards-grid" id="memberCardsGrid"></div>
     </div>
 
     <!-- Admin Entry Panel -->
@@ -1207,7 +1202,6 @@
             <button class="panel-logout-btn" onclick="logoutAdmin()" title="লগআউট">🚪 লগআউট</button>
         </div>
         <div class="admin-entry-grid">
-            <!-- Custom Member Select Dropdown with Avatar Photos -->
             <div class="custom-select-wrapper">
                 <input type="hidden" id="targetMemberSelect" value="awal">
                 <div class="custom-select-trigger" onclick="toggleCustomMemberSelect()">
@@ -1430,7 +1424,6 @@
         </div>
     </div>
 
-    <!-- Complaint & Feedback Box Section -->
     <div class="complaint-box">
         <h3 id="lblCompTitle"> 💥অভিযোগ বা পরামর্শ দিন💥</h3>
         <p id="lblCompSub">যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝:</p>
@@ -1483,7 +1476,6 @@
         jasim: 2, main: 1, saiem: 1, selim: 1, sanawer: 2
     };
 
-    // Member Directory with Google Drive Direct Image Links & Blood Groups
     const memberDirectory = {
         awal: { 
             blood: "B+", 
@@ -1692,7 +1684,6 @@
         document.getElementById(id).classList.toggle('show');
     }
 
-    /* Toggle Custom Member Selection Dropdown */
     function toggleCustomMemberSelect() {
         document.getElementById("customMemberOptions").classList.toggle("open");
     }
@@ -1799,7 +1790,6 @@
         document.getElementById("opt-payment").textContent = t.optPayment;
         document.getElementById("btnSaveData").textContent = t.btnSaveData;
 
-        // Update selected display string
         const currentTargetVal = document.getElementById("targetMemberSelect").value;
         const display = document.getElementById("selectedMemberDisplay");
         if (currentTargetVal === "sec-payment") {
@@ -1866,7 +1856,7 @@
                         <span class="blood-badge">🩸 Group: ${info.blood}</span>
                     </div>
                     <div class="card-actions">
-                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook Profile">
+                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" aria-label="Visit Facebook Profile of ${name}">
                             ${fbSvgIcon}
                         </a>
                     </div>
@@ -1931,8 +1921,6 @@
         const sections = document.getElementsByClassName("section-block");
         for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
         document.getElementById("sec-welcome").classList.add("active");
-        
-        // Update document title for Home Page PDF/Print
         document.getElementById("pageDynamicTitle").textContent = "CFA Homepage";
     }
 
@@ -1946,7 +1934,6 @@
             activePageId = sectionId;
             window.scrollTo({ top: 0, behavior: 'smooth' });
 
-            // Update document title for Print / PDF save according to page
             if (sectionId === "sec-payment") {
                 document.getElementById("pageDynamicTitle").textContent = "Payment CFA";
             } else if (memberKeys.some(k => sectionId === `sec-${k}`)) {
@@ -1986,12 +1973,20 @@
         }
     }
 
+    // Updated fetchFromGoogleSheet with Robust Error Handling & Retry Option
     function fetchFromGoogleSheet() {
         if (!SCRIPT_URL) return Promise.resolve();
 
         showLoading(true);
+        const retryBtn = document.getElementById("retryBtn");
+        if(retryBtn) retryBtn.style.display = "none";
+        document.getElementById("loadingTxt").textContent = langText[currentLang].loading;
+
         return fetch(SCRIPT_URL)
-            .then(res => res.json())
+            .then(res => {
+                if (!res.ok) throw new Error("Network response was not ok");
+                return res.json();
+            })
             .then(data => {
                 db.transactions = { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] };
                 db.payments = [];
@@ -2028,7 +2023,11 @@
             })
             .catch(err => {
                 console.error("Google Sheet Load Error:", err);
-                showLoading(false);
+                document.getElementById("loadingTxt").textContent = currentLang === 'bn' 
+                    ? "⚠️ ডাটা লোড করতে ব্যর্থ হয়েছে। ইন্টারনেট কানেকশন চেক করুন।" 
+                    : "⚠️ Failed to load data. Check your internet connection.";
+                
+                if(retryBtn) retryBtn.style.display = "inline-block";
             });
     }
 
@@ -2248,7 +2247,6 @@
                 statusColor = "#10b981";
             }
 
-            // Render Individual Profile Header Card with Photo & Blood Group
             const infoProfileCard = document.getElementById(`profile-card-${key}`);
             if (infoProfileCard) {
                 const info = memberDirectory[key];
@@ -2270,7 +2268,7 @@
                         <span class="blood-badge">🩸 Group: ${info.blood}</span>
                     </div>
                     <div class="card-actions">
-                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook Profile">
+                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" aria-label="Visit Facebook Profile of ${memberName}">
                             ${fbSvgIcon}
                         </a>
                     </div>
@@ -2385,7 +2383,6 @@
     function updateLiveClockAndDate() {
         const now = new Date();
         let localeStr = currentLang === 'bn' ? 'bn-BD' : 'en-US';
-        
         let timeZoneOptions = userDetectedTimezone ? { timeZone: userDetectedTimezone } : {};
 
         const timeOptions = { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, ...timeZoneOptions };
