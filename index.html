@@ -1047,7 +1047,10 @@
             <button class="nav-btn" onclick="openMemberPage('sec-directory')" title="সদস্য প্রোফাইল ও ব্লাড ব্যাংক"><span id="lblNavDirectory">🩸প্রোফাইল</span></button>
         </li>
         <li class="nav-item">
-            <button class="nav-btn" onclick="toggleDropdown('membersDropdown')">👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</button>
+            <!-- পরিবর্তন: পুরো বাটনে ক্লিক করলে ড্রপডাউন খোলার জন্য onclick এবং pointer-events যোগ করা হয়েছে -->
+            <button class="nav-btn" onclick="toggleDropdown('membersDropdown')" style="pointer-events: auto;">
+                <span style="pointer-events: none;">👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</span>
+            </button>
             <div class="dropdown-menu" id="membersDropdown">
                 <a class="dropdown-item" id="menu-awal" onclick="openMemberPage('sec-awal')">
                     <img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" alt="Awal" class="dropdown-avatar">
@@ -1710,7 +1713,7 @@
     }
 
     window.onclick = function(event) {
-        if (!event.target.matches('.nav-btn')) {
+        if (!event.target.closest('.nav-item')) {
             const dropdowns = document.getElementsByClassName("dropdown-menu");
             for (let i = 0; i < dropdowns.length; i++) {
                 const openDropdown = dropdowns[i];
