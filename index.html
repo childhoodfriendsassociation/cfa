@@ -244,11 +244,30 @@
             font-weight: 500;
         }
 
+        /* Association Logo & Title Flex Container */
+        .header-title-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 4px;
+        }
+
+        .association-logo {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--primary-color);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
         header h2 {
             color: var(--primary-color);
             font-size: 25px;
             font-weight: 700;
-            margin-bottom: 4px;
+            margin-bottom: 0;
             letter-spacing: -0.3px;
         }
 
@@ -356,7 +375,6 @@
             100% { transform: translateX(-100%); }
         }
 
-        /* Member Profiles & Blood Bank Grid */
         .member-cards-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -473,7 +491,6 @@
             font-weight: 700;
         }
 
-        /* Modal / Passcode Box */
         .modal-overlay {
             display: none;
             position: fixed;
@@ -554,7 +571,6 @@
             display: none;
         }
 
-        /* Admin Panel */
         .admin-entry-panel {
             display: none;
             background: rgba(245, 158, 11, 0.12);
@@ -986,6 +1002,7 @@
             .container { padding: 12px; border-radius: 12px; }
             header h2 { font-size: 20px; }
             header h1 { font-size: 13px; }
+            .association-logo { width: 30px; height: 30px; }
             .glass-marquee-track { font-size: 13px; }
             .nav-btn { font-size: 11.5px; padding: 4px 5px; }
             th, td { padding: 5px 6px; font-size: 12px; }
@@ -1033,7 +1050,6 @@
 </head>
 <body>
 
-<!-- Updated Loading Overlay with Retry Option -->
 <div id="loadingOverlay">
     <div id="loadingContent">
         <span id="loadingTxt">ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</span>
@@ -1148,7 +1164,13 @@
 <div class="container">
     <header>
         <h1 id="hdrBismillah">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</h1>
-        <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
+        
+        <!-- Header Title with CFA Logo -->
+        <div class="header-title-container">
+            <img src="https://lh3.googleusercontent.com/d/1Tg-8lq2_Zd1_4i7smErkt19zE_5aeCmI" alt="CFA Logo" class="association-logo">
+            <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
+        </div>
+        
         <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
         
         <div class="static-quote-box" id="dynamicQuoteStatic">
@@ -1436,7 +1458,7 @@
 
     <footer>
         <button class="discrete-admin-btn" id="discreteAdminBtn" onclick="openAdminModal()" title="Data Administrator">
-            <img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" alt="Abdul Awal" class="discrete-admin-avatar">
+            <img src="https://lh3.googleusercontent.com/d/1Tg-8lq2_Zd1_4i7smErkt19zE_5aeCmI" alt="CFA Logo" class="discrete-admin-avatar">
             <span class="discrete-admin-label">ডাটা এডমিনিস্ট্রেটর</span>
         </button>
         <p id="ftrCopyright">© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।</p>
@@ -1973,7 +1995,6 @@
         }
     }
 
-    // Updated fetchFromGoogleSheet with Robust Error Handling & Retry Option
     function fetchFromGoogleSheet() {
         if (!SCRIPT_URL) return Promise.resolve();
 
