@@ -150,8 +150,14 @@
             font-weight: 600;
             display: flex;
             align-items: center;
+            justify-content: center; /* মাঝবরাবর ক্লিক ফিক্স করার জন্য */
             gap: 3px;
             white-space: nowrap;
+        }
+
+        /* ভেতরের টেক্সট বা আইকনের জন্য pointer-events বন্ধ করা হলো যাতে পুরো বাটনে ক্লিক করলে কাজ করে */
+        .nav-btn * {
+            pointer-events: none; 
         }
 
         .nav-btn:hover {
@@ -1047,9 +1053,8 @@
             <button class="nav-btn" onclick="openMemberPage('sec-directory')" title="সদস্য প্রোফাইল ও ব্লাড ব্যাংক"><span id="lblNavDirectory">🩸প্রোফাইল</span></button>
         </li>
         <li class="nav-item">
-            <!-- পরিবর্তন: পুরো বাটনে ক্লিক করলে ড্রপডাউন খোলার জন্য onclick এবং pointer-events যোগ করা হয়েছে -->
-            <button class="nav-btn" onclick="toggleDropdown('membersDropdown')" style="pointer-events: auto;">
-                <span style="pointer-events: none;">👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</span>
+            <button class="nav-btn" onclick="toggleDropdown('membersDropdown')">
+                <span>👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</span>
             </button>
             <div class="dropdown-menu" id="membersDropdown">
                 <a class="dropdown-item" id="menu-awal" onclick="openMemberPage('sec-awal')">
