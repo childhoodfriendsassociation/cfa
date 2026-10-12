@@ -1478,6 +1478,7 @@
     let currentLang = 'bn';
     let userDetectedTimezone = ""; 
     let lastGeneratedMessage = ""; 
+    let lastFetchedWeather = null; // Store weather data to re-render instantly on language change
 
     const islamicAndPhilosophicalQuotes = [
         "\"মুমিনগণ পরস্পর ভাই ভাই, অতএব তোমরা তোমাদের ভাইদের মধ্যে আপস-মীমাংসা করে দাও।\" — আল-কুরআন (সূরা আল-হুজুরাত: ১০)",
@@ -1850,7 +1851,13 @@
         renderAllData();
         renderMemberDirectory();
         updateLiveClockAndDate();
-        fetchUserLocationAndWeather();
+        
+        // Re-render weather immediately in the newly selected language
+        if (lastFetchedWeather) {
+            displayWeather(lastFetchedWeather.temp, lastFetchedWeather.code, lastFetchedWeather.isDay);
+        } else {
+            fetchDeviceLocationAndWeather();
+        }
     }
 
     function renderMemberDirectory() {
@@ -2417,7 +2424,47 @@
         if (dateEl) dateEl.textContent = dateString;
     }
 
-    function fetchUserLocationAndWeather() {
+    function fetchDeviceLocationAndWeather() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                (position) => {
+                    const lat = position.coords.latitude;
+                    const lon = position.coords.longitude;
+                    
+                    fetch(`https://ipapi.co/json/`)
+                        .then(res => res.json())
+                        .then(data => {
+                            const locBox = document.getElementById("userLocation");
+                            if (locBox && data && (data.country_name || data.country)) {
+                                const countryCode = sanitizeInput(data.country_code || data.country || "");
+                                const city = data.city ? sanitizeInput(data.city) : "";
+                                locBox.textContent = `${city ? city + ', ' : ''}${countryCode}`;
+                            } else {
+                                fallbackLocation();
+                            }
+                            if (data && data.timezone) {
+                                userDetectedTimezone = data.timezone;
+                                updateLiveClockAndDate();
+                            }
+                        })
+                        .catch(() => {
+                            fallbackLocation();
+                        });
+
+                    fetchWeather(lat, lon);
+                },
+                (error) => {
+                    console.warn("Geolocation permission denied or error. Falling back to IP location.", error);
+                    fetchIPLocationAndWeather();
+                },
+                { timeout: 10000, maximumAge: 60000 }
+            );
+        } else {
+            fetchIPLocationAndWeather();
+        }
+    }
+
+    function fetchIPLocationAndWeather() {
         fetch('https://ipapi.co/json/')
             .then(res => res.json())
             .then(data => {
@@ -2448,15 +2495,17 @@
     }
 
     function fetchWeather(lat, lon) {
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code`)
+        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day`)
             .then(res => res.json())
             .then(weatherData => {
-                const weatherBox = document.getElementById("userWeather");
-                if (weatherBox && weatherData && weatherData.current) {
-                    const temp = weatherData.current.temperature_2m;
+                if (weatherData && weatherData.current) {
+                    const temp = Math.round(weatherData.current.temperature_2m);
                     const code = weatherData.current.weather_code;
-                    let condition = getWeatherCondition(code);
-                    weatherBox.textContent = `${condition}, ${temp}°C`;
+                    const isDay = weatherData.current.is_day; // 1 = Day, 0 = Night
+
+                    // Save weather state for instant updates when language toggles
+                    lastFetchedWeather = { temp, code, isDay };
+                    displayWeather(temp, code, isDay);
                 } else {
                     fallbackWeather();
                 }
@@ -2466,15 +2515,34 @@
             });
     }
 
-    function getWeatherCondition(code) {
-        if (code === 0) return currentLang === 'bn' ? 'রৌদ্রোজ্জ্বল' : 'Clear';
-        if (code >= 1 && code <= 3) return currentLang === 'bn' ? 'মেঘলা' : 'Cloudy';
-        if (code >= 45 && code <= 48) return currentLang === 'bn' ? 'কুয়াশা' : 'Foggy';
-        if (code >= 51 && code <= 67) return currentLang === 'bn' ? 'বৃষ্টি' : 'Rain';
-        if (code >= 71 && code <= 77) return currentLang === 'bn' ? 'তুষার' : 'Snow';
-        if (code >= 80 && code <= 82) return currentLang === 'bn' ? 'বজ্র' : 'Showers';
-        if (code >= 95 && code <= 99) return currentLang === 'bn' ? 'ঝড়' : 'Storm';
-        return currentLang === 'bn' ? 'স্বাভাবিক' : 'Fair';
+    function displayWeather(temp, code, isDay) {
+        const weatherBox = document.getElementById("userWeather");
+        if (weatherBox) {
+            const weatherInfo = getCompactWeatherIconAndText(code, isDay);
+            weatherBox.innerHTML = `<span style="font-size:13px;">${weatherInfo.icon}</span> ${temp}°C <span style="font-size:10px; opacity:0.8;">${weatherInfo.text}</span>`;
+        }
+    }
+
+    function getCompactWeatherIconAndText(code, isDay) {
+        let icon = "☀️", text = currentLang === 'bn' ? 'রৌদ্রোজ্জ্বল' : 'Clear';
+        if (code === 0) {
+            if (isDay === 0) { icon = "🌙"; text = currentLang === 'bn' ? 'পরিষ্কার' : 'Clear'; }
+            else { icon = "☀️"; text = currentLang === 'bn' ? 'রৌদ্রোজ্জ্বল' : 'Sunny'; }
+        } else if (code >= 1 && code <= 3) {
+            if (isDay === 0) { icon = "☁️"; text = currentLang === 'bn' ? 'মেঘলা' : 'Cloudy'; }
+            else { icon = "⛅"; text = currentLang === 'bn' ? 'আংশিক মেঘলা' : 'Partly Cloudy'; }
+        } else if (code >= 45 && code <= 48) {
+            icon = "🌫️"; text = currentLang === 'bn' ? 'কুয়াশাচ্ছন্ন' : 'Foggy';
+        } else if (code >= 51 && code <= 67) {
+            icon = "🌧️"; text = currentLang === 'bn' ? 'বৃষ্টি' : 'Rainy';
+        } else if (code >= 71 && code <= 77) {
+            icon = "❄️"; text = currentLang === 'bn' ? 'তুষারপাত' : 'Snowy';
+        } else if (code >= 80 && code <= 82) {
+            icon = "🌦️"; text = currentLang === 'bn' ? 'বজ্রবৃষ্টি' : 'Showers';
+        } else if (code >= 95 && code <= 99) {
+            icon = "⛈️"; text = currentLang === 'bn' ? 'ঝড়-বৃষ্টি' : 'Stormy';
+        }
+        return { icon, text };
     }
 
     function fallbackLocation() {
@@ -2503,7 +2571,7 @@
         updateLiveClockAndDate();
         setInterval(updateLiveClockAndDate, 1000);
 
-        fetchUserLocationAndWeather();
+        fetchDeviceLocationAndWeather();
         applyLanguageStrings();
         fetchFromGoogleSheet();
     });
