@@ -452,15 +452,19 @@
             border-color: rgba(239, 68, 68, 0.5);
         }
 
+        /* Action Buttons: Vertical Layout (Gmail Top, FB Bottom) */
         .card-actions {
             margin-left: auto;
             display: flex;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            gap: 6px;
         }
 
         .action-icon-btn {
-            width: 38px;
-            height: 38px;
+            width: 32px;
+            height: 32px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -471,7 +475,7 @@
         }
 
         .action-icon-btn:hover {
-            transform: scale(1.1);
+            transform: scale(1.15);
         }
 
         .shortcut-dashboard {
@@ -1478,7 +1482,7 @@
     let currentLang = 'bn';
     let userDetectedTimezone = ""; 
     let lastGeneratedMessage = ""; 
-    let lastFetchedWeather = null; // Store weather data to re-render instantly on language change
+    let lastFetchedWeather = null;
 
     const islamicAndPhilosophicalQuotes = [
         "\"মুমিনগণ পরস্পর ভাই ভাই, অতএব তোমরা তোমাদের ভাইদের মধ্যে আপস-মীমাংসা করে দাও।\" — আল-কুরআন (সূরা আল-হুজুরাত: ১০)",
@@ -1504,54 +1508,63 @@
             blood: "B+", 
             photo: "https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u", 
             fb: "https://www.facebook.com/musafiraawal", 
+            email: "aawal86@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         arif: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw", 
             fb: "https://www.facebook.com/arif.hussein.3726", 
+            email: "mdarifbaibd2022@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         babor: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl", 
             fb: "https://www.facebook.com/babor.babor.96558", 
+            email: "baborhossain693@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         babul: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA", 
             fb: "https://www.facebook.com/mohbabulhossain.rana", 
+            email: "babulrana778800@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         jasim: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK", 
             fb: "https://www.facebook.com/md.jasim.uddin.660296", 
+            email: "jasimuddin7072@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         main: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX", 
             fb: "https://www.facebook.com/moin.ahamed.sumon", 
+            email: "sumonraipur987@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         saiem: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG", 
             fb: "https://www.facebook.com/md.shakil.752", 
+            email: "mdsaiem86@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         selim: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0", 
             fb: "https://www.facebook.com/salim.patwary.846831", 
+            email: "salimpatwarys111@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         },
         sanawer: { 
             blood: "-", 
             photo: "https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J", 
             fb: "https://www.facebook.com/sq.arif", 
+            email: "sqarif84@gmail.com",
             role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } 
         }
     };
@@ -1688,6 +1701,25 @@
         transactions: { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] },
         payments: []
     };
+
+    // Official Google Gmail Vector SVG Icon (Enlarged to 32px)
+    const gmailSvgIcon = `
+        <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#4285F4" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/>
+            <path fill="#34A853" d="M2 6v12c0 1.1.9 2 2 2h2V8.5L2 6z"/>
+            <path fill="#EA4335" d="M20 4H4c-.7 0-1.3.4-1.7 1L12 12.5 21.7 5c-.4-.6-1-.9-1.7-.9z"/>
+            <path fill="#FBBC04" d="M22 6l-4 2.5V20h2c1.1 0 2-.9 2-2V6z"/>
+            <path fill="#C5221F" d="M12 12.5L2 6v2.5l10 6.5 10-6.5V6l-10 6.5z"/>
+        </svg>
+    `;
+
+    // Facebook Vector SVG Icon (Enlarged to 32px)
+    const fbSvgIcon = `
+        <svg width="32" height="32" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+            <path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/>
+            <path fill="#FFFFFF" d="M24.238 23.203l.752-5.203h-4.707v-3.352c0-1.342.657-2.65 2.764-2.65h2.141V7.82s-1.943-.332-3.8-.332c-3.877 0-6.41 2.35-6.41 6.602V18H10.88v5.203h4.308v12.572C16.136 35.918 17.058 36 18 36c.942 0 1.864-.082 2.812-.225V23.203h3.426z"/>
+        </svg>
+    `;
 
     function loadRandomQuote() {
         const randomIndex = Math.floor(Math.random() * islamicAndPhilosophicalQuotes.length);
@@ -1852,7 +1884,6 @@
         renderMemberDirectory();
         updateLiveClockAndDate();
         
-        // Re-render weather immediately in the newly selected language
         if (lastFetchedWeather) {
             displayWeather(lastFetchedWeather.temp, lastFetchedWeather.code, lastFetchedWeather.isDay);
         } else {
@@ -1868,13 +1899,6 @@
             const name = memberNames[currentLang][key];
             const info = memberDirectory[key];
             const roleTxt = info.role[currentLang];
-            
-            const fbSvgIcon = `
-                <svg width="34" height="34" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                    <path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/>
-                    <path fill="#FFFFFF" d="M24.238 23.203l.752-5.203h-4.707v-3.352c0-1.342.657-2.65 2.764-2.65h2.141V7.82s-1.943-.332-3.8-.332c-3.877 0-6.41 2.35-6.41 6.602V18H10.88v5.203h4.308v12.572C16.136 35.918 17.058 36 18 36c.942 0 1.864-.082 2.812-.225V23.203h3.426z"/>
-                </svg>
-            `;
 
             html += `
                 <div class="member-card">
@@ -1885,7 +1909,10 @@
                         <span class="blood-badge">🩸 Group: ${info.blood}</span>
                     </div>
                     <div class="card-actions">
-                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" aria-label="Visit Facebook Profile of ${name}">
+                        <a href="mailto:${info.email}" class="action-icon-btn" title="Email ${name}">
+                            ${gmailSvgIcon}
+                        </a>
+                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook Profile">
                             ${fbSvgIcon}
                         </a>
                     </div>
@@ -1962,6 +1989,8 @@
             targetSec.classList.add("active");
             activePageId = sectionId;
             window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            document.getElementById("membersDropdown").classList.remove("show");
 
             if (sectionId === "sec-payment") {
                 document.getElementById("pageDynamicTitle").textContent = "Payment CFA";
@@ -2281,13 +2310,6 @@
                 const memberName = memberNames[currentLang][key];
                 const roleTxt = info.role[currentLang];
 
-                const fbSvgIcon = `
-                    <svg width="34" height="34" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-                        <path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/>
-                        <path fill="#FFFFFF" d="M24.238 23.203l.752-5.203h-4.707v-3.352c0-1.342.657-2.65 2.764-2.65h2.141V7.82s-1.943-.332-3.8-.332c-3.877 0-6.41 2.35-6.41 6.602V18H10.88v5.203h4.308v12.572C16.136 35.918 17.058 36 18 36c.942 0 1.864-.082 2.812-.225V23.203h3.426z"/>
-                    </svg>
-                `;
-
                 infoProfileCard.innerHTML = `
                     <img src="${info.photo}" alt="${memberName}" class="profile-header-avatar" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns=\\'http://www.w3.org/2000/svg\\' width=\\'65\\' height=\\'65\\' viewBox=\\'0 0 24 24\\'><path fill=\\'%232563eb\\' d=\\'M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 3c1.66 0 3 1.34 3 3s-1.34 3-3 3-3-1.34-3-3 1.34-3 3-3zm0 14.2c-2.5 0-4.71-1.28-6-3.22.03-1.99 4-3.08 6-3.08 1.99 0 5.97 1.09 6 3.08-1.29 1.94-3.5 3.22-6 3.22z\\'/>';">
                     <div class="profile-header-info">
@@ -2296,7 +2318,10 @@
                         <span class="blood-badge">🩸 Group: ${info.blood}</span>
                     </div>
                     <div class="card-actions">
-                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" aria-label="Visit Facebook Profile of ${memberName}">
+                        <a href="mailto:${info.email}" class="action-icon-btn" title="Email ${memberName}">
+                            ${gmailSvgIcon}
+                        </a>
+                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook Profile">
                             ${fbSvgIcon}
                         </a>
                     </div>
@@ -2501,9 +2526,8 @@
                 if (weatherData && weatherData.current) {
                     const temp = Math.round(weatherData.current.temperature_2m);
                     const code = weatherData.current.weather_code;
-                    const isDay = weatherData.current.is_day; // 1 = Day, 0 = Night
+                    const isDay = weatherData.current.is_day;
 
-                    // Save weather state for instant updates when language toggles
                     lastFetchedWeather = { temp, code, isDay };
                     displayWeather(temp, code, isDay);
                 } else {
