@@ -2190,6 +2190,9 @@
                         const shares = memberShares[target];
                         const targetAmount = shares * PER_SHARE_PRICE;
                         const diff = targetAmount - memberTotal;
+                        
+                        let memberPct = (memberTotal / targetAmount) * 100;
+                        if (isNaN(memberPct)) memberPct = 0;
 
                         let statusText = "";
                         if (diff > 0) {
@@ -2201,6 +2204,7 @@
                         }
 
                         memberExtraInfo = `👤 *সদস্যের মোট জমা:* ${memberTotal.toFixed(2)} BDT\n` +
+                                          `📈 *পরিশোধের অগ্রগতি:* ${memberPct.toFixed(1)}%\n` +
                                           `📊 *অবস্থা/বকেয়া:* ${statusText}\n`;
                     }
 
