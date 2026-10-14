@@ -244,7 +244,6 @@
             font-weight: 500;
         }
 
-        /* Association Logo & Title Flex Container */
         .header-title-container {
             display: flex;
             align-items: center;
@@ -452,7 +451,32 @@
             border-color: rgba(239, 68, 68, 0.5);
         }
 
-        /* Action Buttons: Vertical Layout (Gmail Top, FB Bottom) */
+        /* Progress Bar / Diagram Styles */
+        .progress-bar-container {
+            width: 100%;
+            background-color: var(--border-color);
+            border-radius: 10px;
+            height: 10px;
+            overflow: hidden;
+            margin-top: 6px;
+            position: relative;
+        }
+
+        .progress-bar-fill {
+            height: 100%;
+            background-color: var(--accent-color);
+            border-radius: 10px;
+            transition: width 0.6s ease;
+        }
+
+        .progress-text-label {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-top: 2px;
+            display: block;
+        }
+
         .card-actions {
             margin-left: auto;
             display: flex;
@@ -1203,9 +1227,9 @@
                         <tr>
                             <th id="thName">সদস্যের নাম</th>
                             <th id="thShare">শেয়ার</th>
-                            <th id="thTarget">নির্ধারিত মূল্য (BDT)</th>
                             <th id="thTotal">মোট জমা (BDT)</th>
                             <th id="thStatus">অবস্থা / বকেয়া (BDT)</th>
+                            <th id="thTarget">নির্ধারিত মূল্য (BDT)</th>
                         </tr>
                     </thead>
                     <tbody id="frontSummaryBody"></tbody>
@@ -1613,9 +1637,9 @@
             summaryTitle: "📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)",
             thName: "সদস্যের নাম",
             thShare: "শেয়ার",
-            thTarget: "নির্ধারিত মূল্য (BDT)",
             thTotal: "মোট জমা (BDT)",
             thStatus: "অবস্থা / বকেয়া (BDT)",
+            thTarget: "নির্ধারিত মূল্য (BDT)",
             dueLabel: "(বকেয়া)",
             surplusLabel: "(উদ্বৃত্ত)",
             paidLabel: "(পরিশোধিত)",
@@ -1668,9 +1692,9 @@
             summaryTitle: "📊 Summary of Members' Accounts at a Glance (Live)",
             thName: "Member Name",
             thShare: "Share(s)",
-            thTarget: "Target Value (BDT)",
             thTotal: "Total Deposited (BDT)",
             thStatus: "Status / Due (BDT)",
+            thTarget: "Target Value (BDT)",
             dueLabel: "(Due)",
             surplusLabel: "(Surplus)",
             paidLabel: "(Paid)",
@@ -1702,7 +1726,6 @@
         payments: []
     };
 
-    // Official Google Gmail Vector SVG Icon (Enlarged to 32px)
     const gmailSvgIcon = `
         <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path fill="#4285F4" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/>
@@ -1713,7 +1736,6 @@
         </svg>
     `;
 
-    // Facebook Vector SVG Icon (Enlarged to 32px)
     const fbSvgIcon = `
         <svg width="32" height="32" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
             <path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/>
@@ -1836,9 +1858,9 @@
         document.getElementById("summaryTitle").textContent = t.summaryTitle;
         document.getElementById("thName").textContent = t.thName;
         document.getElementById("thShare").textContent = t.thShare;
-        document.getElementById("thTarget").textContent = t.thTarget;
         document.getElementById("thTotal").textContent = t.thTotal;
         document.getElementById("thStatus").textContent = t.thStatus;
+        document.getElementById("thTarget").textContent = t.thTarget;
 
         document.getElementById("grpMembers").textContent = t.grpMembers;
         document.getElementById("grpOthers").textContent = t.grpOthers;
@@ -2288,6 +2310,10 @@
             const shares = memberShares[key];
             const targetAmount = shares * PER_SHARE_PRICE;
             const balanceDiff = targetAmount - total;
+            
+            let rawPercentage = (total / targetAmount) * 100;
+            let percentage = rawPercentage > 100 ? 100 : rawPercentage;
+            if (isNaN(percentage)) percentage = 0;
 
             let statusText = "";
             let statusColor = "";
@@ -2299,6 +2325,7 @@
                 const surplusVal = Math.abs(balanceDiff);
                 statusText = `+${surplusVal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${t.surplusLabel}`;
                 statusColor = "#10b981";
+                percentage = 100;
             } else {
                 statusText = `0.00 ${t.paidLabel}`;
                 statusColor = "#10b981";
@@ -2337,6 +2364,13 @@
                     <p><strong>${t.lblTotalDeposited}</strong> ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
                     <p><strong>${t.lblRemainingDue}</strong> <span style="color: ${statusColor}; font-weight: bold;">${statusText}</span></p>
                     <p><strong>${t.lblStatementDate}</strong> ${todayStr}</p>
+                    
+                    <div style="margin-top: 10px;">
+                        <span class="progress-text-label">💳 Payment Progress: ${rawPercentage.toFixed(1)}% Paid</span>
+                        <div class="progress-bar-container">
+                            <div class="progress-bar-fill" style="width: ${percentage}%; background-color: ${rawPercentage >= 100 ? '#10b981' : '#2563eb'};"></div>
+                        </div>
+                    </div>
                 `;
             }
 
@@ -2359,11 +2393,17 @@
                         </div>
                     </td>
                     <td>${shares}</td>
-                    <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                    <td>${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                    <td>
+                        ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                        <div class="progress-bar-container" style="width: 100px; height: 6px; margin: 2px auto 0 auto;">
+                            <div class="progress-bar-fill" style="width: ${percentage}%; background-color: ${rawPercentage >= 100 ? '#10b981' : '#2563eb'};"></div>
+                        </div>
+                        <span style="font-size: 9.5px; color: var(--text-muted); font-weight: 700;">${rawPercentage.toFixed(1)}%</span>
+                    </td>
                     <td style="color: ${statusColor}; font-weight: bold;">
                         ${statusText}
                     </td>
+                    <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
                 </tr>
             `;
         });
@@ -2380,13 +2420,23 @@
             grandStatusText = `0.00 ${t.paidLabel}`;
         }
 
+        let grandPercentage = (grandTotalDeposited / grandTotalTarget) * 100;
+        if (isNaN(grandPercentage)) grandPercentage = 0;
+        if (grandPercentage > 100) grandPercentage = 100;
+
         frontBodyHTML += `
             <tr style="font-weight: bold; background-color: var(--box-bg);">
                 <td>${t.grandTotal}</td>
                 <td>${TOTAL_SHARES}</td>
-                <td>${grandTotalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                <td>${grandTotalDeposited.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
+                <td>
+                    ${grandTotalDeposited.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+                    <div class="progress-bar-container" style="width: 100px; height: 6px; margin: 2px auto 0 auto;">
+                        <div class="progress-bar-fill" style="width: ${grandPercentage}%;"></div>
+                    </div>
+                    <span style="font-size: 9.5px; color: var(--text-muted); font-weight: 700;">${grandPercentage.toFixed(1)}%</span>
+                </td>
                 <td style="color: ${grandStatusColor};">${grandStatusText}</td>
+                <td>${grandTotalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
             </tr>
         `;
 
