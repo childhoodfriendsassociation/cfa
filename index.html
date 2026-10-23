@@ -1091,52 +1091,149 @@
         }
     </style>
 
-<style id="flagTheme">
+<style id="heritageBase">
 @media screen{
-:root{--primary-color:#006a4e;--primary-dark:#00402f;--accent-color:#f42a41;--bg-color:#eef4ef;--card-bg:#ffffff;--text-color:#0f1f18;--text-muted:#52645a;--border-color:#d3e0d6;--table-header-bg:#006a4e;--nav-bg:#00402f;--box-bg:rgba(0,106,78,.07);--box-text:#00402f;--shadow:0 6px 22px -6px rgba(0,64,47,.22)}
-body.dark-mode{--primary-color:#3fbf94;--primary-dark:#2a9d78;--accent-color:#ff5468;--bg-color:#07130e;--card-bg:#0f231a;--text-color:#eaf3ed;--text-muted:#a5bbad;--border-color:#21392d;--table-header-bg:#00573f;--nav-bg:#00281d;--box-bg:rgba(63,191,148,.12);--box-text:#bfeedd}
+:root{--primary-color:#1b1f5e;--primary-dark:#0f1238;--accent-color:#b8532e;--bg-color:#f6efdf;--card-bg:#fffaf0;--text-color:#241c12;--text-muted:#6b5d49;--border-color:#e2d3ac;--table-header-bg:#1b1f5e;--table-header-text:#f1d98f;--nav-bg:#1b1f5e;--shadow:0 6px 22px rgba(27,31,94,.12);--box-bg:rgba(212,167,58,.14);--box-text:#1b1f5e}
+body.dark-mode{--primary-color:#e9c97a;--primary-dark:#d4a73a;--accent-color:#e08a62;--bg-color:#0b0d26;--card-bg:#161a45;--text-color:#f4ecd8;--text-muted:#c4bb9f;--border-color:#2b3070;--table-header-bg:#0f1238;--table-header-text:#f1d98f;--nav-bg:#10143f;--shadow:0 6px 22px rgba(0,0,0,.45);--box-bg:rgba(233,201,122,.12);--box-text:#e9c97a}
 *{font-family:'Anek Bangla','Inter',system-ui,sans-serif}
-.navbar{background:var(--nav-bg);border-bottom:3px solid #f42a41;box-shadow:0 3px 14px rgba(0,0,0,.28)}
+.navbar{background:var(--nav-bg);border-bottom:3px solid #d4a73a;box-shadow:0 3px 14px rgba(0,0,0,.28)}
 .nav-btn{color:#fff}.nav-btn:hover{background:rgba(255,255,255,.16);color:#fff}
-.top-widgets-bar{background:#006a4e}
+.top-widgets-bar{background:#1b1f5e}
 .live-widget-card{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.28);color:#fff}
 .live-widget-card .widget-value,.live-widget-card .widget-label{color:#fff}
-.dropdown-menu{border-top:3px solid #f42a41}
-.dropdown-item:hover{background:rgba(0,106,78,.1)}
-.dropdown-avatar,.custom-select-avatar,.summary-avatar{border:2px solid #f42a41;object-fit:cover;background:#fff}
+.dropdown-menu{border-top:3px solid #d4a73a}
+.dropdown-item:hover{background:rgba(27,31,94,.1)}
+.dropdown-avatar,.custom-select-avatar,.summary-avatar{border:2px solid #d4a73a;object-fit:cover;background:#fff}
 .container{border-radius:0 0 18px 18px;padding:0 0 16px;overflow:hidden}
 .container>*:not(header){margin-left:14px;margin-right:14px}
 .container>.section-block:not(.active){display:none}
-header{background:#006a4e;color:#fff;margin:0 0 18px;padding:26px 16px 30px;border-bottom:0;position:relative;
+header{background:#1b1f5e;color:#fff;margin:0 0 18px;padding:26px 16px 30px;border-bottom:0;position:relative;
  background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 1px,transparent 1px 44px)}
-header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:#f42a41}
+header::after{content:"";position:absolute;left:0;right:0;bottom:0;height:6px;background:#d4a73a}
 header h1{color:rgba(255,255,255,.88);font-weight:500}
 header h2{color:#fff;font-size:30px;font-weight:800}
-header h4{color:#fff;display:inline-block;border-top:3px solid #f42a41;padding-top:3px;margin-top:6px}
+header h4{color:#fff;display:inline-block;border-top:3px solid #d4a73a;padding-top:3px;margin-top:6px}
 .header-title-container{flex-direction:column;gap:12px;margin:12px 0 6px}
-.association-logo{width:104px;height:104px;border:6px solid #f42a41;background:#fff;box-shadow:0 0 0 8px rgba(244,42,65,.25),0 8px 22px rgba(0,0,0,.3)}
+.association-logo{width:104px;height:104px;border:6px solid #d4a73a;background:#fff;box-shadow:0 0 0 8px rgba(212,167,58,.25),0 8px 22px rgba(0,0,0,.3)}
 .static-quote-box{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.3);color:#fff}
 .welcome-hero{text-align:center;margin-top:4px}
 .welcome-hero h1{color:var(--primary-color);font-size:24px;font-weight:800}
-.welcome-hero h1.salam-txt{color:#f42a41}
-.glass-marquee-container{background:#f42a41;border:0;border-radius:99px;padding:10px 0;box-shadow:0 0 0 5px rgba(244,42,65,.18)}
+.welcome-hero h1.salam-txt{color:#d4a73a}
+.glass-marquee-container{background:#d4a73a;border:0;border-radius:99px;padding:10px 0;box-shadow:0 0 0 5px rgba(212,167,58,.18)}
 .glass-marquee-track{color:#fff}
-.shortcut-dashboard,.member-card,.profile-header-card,.complaint-box{border-top:4px solid #006a4e;border-radius:8px}
-.shortcut-dashboard h3,h3.section-title{border-left:6px solid #f42a41;padding-left:10px;text-align:left;color:var(--text-color)}
-.member-avatar,.profile-header-avatar{border:3px solid #f42a41;box-shadow:0 0 0 3px var(--card-bg)}
+.shortcut-dashboard,.member-card,.profile-header-card,.complaint-box{border-top:4px solid #1b1f5e;border-radius:8px}
+.shortcut-dashboard h3,h3.section-title{border-left:6px solid #d4a73a;padding-left:10px;text-align:left;color:var(--text-color)}
+.member-avatar,.profile-header-avatar{border:3px solid #d4a73a;box-shadow:0 0 0 3px var(--card-bg)}
 .member-avatar,.profile-header-avatar,.summary-avatar{background:#fff}
 .profile-header-avatar{width:84px;height:84px}.member-avatar{width:64px;height:64px}
-.info-box,.summary-box{border-left:6px solid #f42a41;border-radius:8px}
-th{background:#006a4e;color:#fff}
-tbody tr:nth-child(even){background:rgba(0,106,78,.05)}
-.admin-save-btn{background:#006a4e}.admin-save-btn:hover{background:#00402f}
-.send-msg-btn{background:#006a4e}.send-msg-btn.profile-btn{background:#f42a41}
-footer{border-top:4px solid #f42a41}
-.discrete-admin-avatar{width:40px;height:40px;border:3px solid #f42a41;background:#fff}
+.info-box,.summary-box{border-left:6px solid #d4a73a;border-radius:8px}
+th{background:#1b1f5e;color:#fff}
+tbody tr:nth-child(even){background:rgba(27,31,94,.05)}
+.admin-save-btn{background:#1b1f5e}.admin-save-btn:hover{background:#0f1238}
+.send-msg-btn{background:#1b1f5e}.send-msg-btn.profile-btn{background:#d4a73a}
+footer{border-top:4px solid #d4a73a}
+.discrete-admin-avatar{width:40px;height:40px;border:3px solid #d4a73a;background:#fff}
 }
 @media screen and (max-width:600px){header h2{font-size:23px}.association-logo{width:86px;height:86px}}
 </style>
-<meta name="theme-color" content="#00402f">
+<meta name="theme-color" content="#0f1238">
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;700;800&display=swap" rel="stylesheet">
+<style id="heritageTheme">
+@media screen{
+:root{--gold:#d4a73a;--gold-l:#f1d98f;--ink:#1b1f5e;--deep:#0f1238;--terra:#b8532e;--lattice:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-opacity='.38' stroke-width='1'%3E%3Cpath d='M28 2 L54 28 L28 54 L2 28 Z'/%3E%3Cpath d='M28 12 L44 28 L28 44 L12 28 Z'/%3E%3Cpath d='M0 0 L56 56 M56 0 L0 56' stroke-opacity='.1'/%3E%3C/g%3E%3Cg fill='%23d4a73a'%3E%3Ccircle cx='28' cy='28' r='2.6' fill-opacity='.75'/%3E%3Ccircle cx='0' cy='0' r='2' fill-opacity='.5'/%3E%3Ccircle cx='56' cy='0' r='2' fill-opacity='.5'/%3E%3Ccircle cx='0' cy='56' r='2' fill-opacity='.5'/%3E%3Ccircle cx='56' cy='56' r='2' fill-opacity='.5'/%3E%3C/g%3E%3C/svg%3E");--stitch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='10' viewBox='0 0 28 10'%3E%3Crect width='28' height='10' fill='%230f1238'/%3E%3Cpath d='M2 5 H12 M16 5 H26' stroke='%23e9c97a' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M14 1 L16 5 L14 9 L12 5 Z' fill='%23b8532e'/%3E%3C/svg%3E");--orn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='20' viewBox='0 0 220 20'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M6 10 H88'/%3E%3Cpath d='M132 10 H214'/%3E%3Cpath d='M88 10 C96 2 104 2 110 10 C116 18 124 18 132 10'/%3E%3C/g%3E%3Cpath d='M110 3 L117 10 L110 17 L103 10 Z' fill='%23b8532e' stroke='%23d4a73a' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='10' r='2.5' fill='%23d4a73a'/%3E%3Ccircle cx='214' cy='10' r='2.5' fill='%23d4a73a'/%3E%3C/svg%3E");--star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='%231b1f5e' stroke-opacity='.075' stroke-width='.8'%3E%3Crect x='-26' y='-26' width='52' height='52'/%3E%3Crect x='-26' y='-26' width='52' height='52' transform='rotate%2845%29'/%3E%3Ccircle r='34'/%3E%3Ccircle r='20'/%3E%3Crect x='-14' y='-14' width='28' height='28' transform='rotate%2822.5%29'/%3E%3Crect x='-14' y='-14' width='28' height='28' transform='rotate%2867.5%29'/%3E%3C/g%3E%3Ccircle r='3' fill='%23d4a73a' fill-opacity='.2'/%3E%3C/svg%3E");--corner:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M3 31 V12 Q3 3 12 3 H31'/%3E%3Cpath d='M9 31 V16 Q9 9 16 9 H31' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M3 3 L8 3 L3 8 Z' fill='%23b8532e'/%3E%3Ccircle cx='15' cy='15' r='2.4' fill='%23d4a73a'/%3E%3C/svg%3E");--mehrab:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34' viewBox='0 0 120 34'%3E%3Cpath d='M0 34 V30 Q60 -22 120 30 V34 Z' fill='%23d4a73a'/%3E%3Cpath d='M0 34 V32 Q60 -14 120 32 V34 Z' fill='%23b8532e'/%3E%3C/svg%3E");--serif:'Noto Serif Bengali','Anek Bangla',serif}
+body.dark-mode{--ink:#e9c97a}
+
+/* পটভূমি: হাতে-তৈরি কাগজ + মন্দালা ওয়াটারমার্ক */
+body{background-color:var(--bg-color);
+ background-image:var(--star),var(--star),radial-gradient(circle at 1px 1px,rgba(184,83,46,.13) 1px,transparent 1.4px);
+ background-size:260px 260px,260px 260px,18px 18px;
+ background-repeat:no-repeat,no-repeat,repeat;background-position:right -80px top 340px,left -100px bottom 80px,0 0;background-attachment:fixed,fixed,scroll}
+body.dark-mode{background-image:radial-gradient(circle at 1px 1px,rgba(233,201,122,.07) 1px,transparent 1.4px);background-size:18px 18px;background-repeat:repeat;background-attachment:scroll}
+.container{background:transparent;border:0;box-shadow:0 18px 50px rgba(15,18,56,.28);background-color:var(--card-bg)}
+
+/* নেভবার */
+.navbar{background:linear-gradient(180deg,#232880,#10143f);border-bottom:0}
+.navbar::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;background:var(--stitch) repeat-x;background-size:28px 10px;box-shadow:0 3px 8px rgba(0,0,0,.3)}
+.nav-btn{color:var(--gold-l);font-weight:600;border-radius:10px;letter-spacing:.2px}
+.nav-btn:hover{background:rgba(212,167,58,.2);color:#fff}
+.top-widgets-bar{padding-top:10px;background:linear-gradient(180deg,#0f1238,#171b4d);border-bottom:1px solid rgba(212,167,58,.4)}
+.live-widget-card{background:rgba(212,167,58,.1);border:1px solid rgba(212,167,58,.55);border-radius:12px;color:var(--gold-l)}
+.live-widget-card .widget-value,.live-widget-card .widget-label{color:var(--gold-l)}
+.dropdown-menu{border-top:3px solid var(--gold);border-radius:12px;box-shadow:0 14px 34px rgba(15,18,56,.4)}
+
+/* হেডার: জামদানি জালি + মেহরাব বাঁক */
+header{background-color:#12163f;background-image:var(--lattice),radial-gradient(120% 100% at 50% 0%,#2a3092 0%,#1b1f5e 50%,#0d1033 100%);background-size:56px 56px,auto;
+ border-radius:0 0 50% 50%/0 0 34px 34px;padding-bottom:44px;margin-bottom:26px}
+header::before{content:"";position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);width:130px;height:36px;background:var(--mehrab) center bottom/100% 100% no-repeat;opacity:.95}
+header::after{height:5px;left:12%;right:12%;bottom:0;border-radius:99px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+header h1,header h1#hdrBismillah{color:var(--gold-l);font-family:var(--serif);font-size:15px;font-weight:500;opacity:.95}
+header h2{font-family:var(--serif);font-size:30px;font-weight:800;background:linear-gradient(180deg,#fff7d6,#e3b94f 60%,#c9972a);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;text-shadow:none;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
+header h4{border-top:0;padding:5px 20px;border-radius:99px;color:var(--gold-l);background:rgba(0,0,0,.28);box-shadow:inset 0 0 0 1.5px var(--gold),0 0 0 3px rgba(212,167,58,.25);font-family:var(--serif);font-weight:500}
+.association-logo{border:5px solid var(--gold);background:#fff;box-shadow:0 0 0 5px #0f1238,0 0 0 8px var(--gold),0 0 0 15px rgba(212,167,58,.2),0 14px 30px rgba(0,0,0,.5)}
+.static-quote-box{background:rgba(255,255,255,.07);border:1px solid rgba(212,167,58,.6);border-radius:14px;color:#f7ecc7;font-style:italic;box-shadow:inset 0 0 0 4px rgba(15,18,56,.5)}
+
+/* স্বাগতম */
+.welcome-hero h1.salam-txt{font-family:var(--serif);color:var(--terra);font-size:18px;line-height:1.6;font-weight:700}
+body.dark-mode .welcome-hero h1.salam-txt{color:#e9a07e}
+.welcome-hero h1#welcomeHeading{font-family:var(--serif);font-size:28px;font-weight:800;color:var(--ink)}
+.welcome-hero h1#welcomeHeading::after{content:"";display:block;height:20px;width:min(240px,80%);margin:8px auto 6px;background:var(--orn) center/contain no-repeat}
+.glass-marquee-container{background:linear-gradient(90deg,#8d3a1c,#b8532e,#8d3a1c);border:2px solid var(--gold);box-shadow:0 0 0 4px #0f1238,0 0 0 6px var(--gold),0 10px 22px rgba(15,18,56,.35);border-radius:99px;font-weight:700}
+.glass-marquee-track{color:#fff3cf;font-family:var(--serif)}
+
+/* কার্ড: দুই-স্তরের সোনালি ফ্রেম + কোণার অলংকরণ */
+.shortcut-dashboard,.member-card,.profile-header-card,.complaint-box{position:relative;background:var(--card-bg);border:1px solid var(--gold);border-top:1px solid var(--gold);border-radius:6px;
+ outline:1px solid rgba(212,167,58,.55);outline-offset:-7px;box-shadow:0 10px 26px rgba(27,31,94,.13);padding-top:22px}
+.shortcut-dashboard::before,.profile-header-card::before{content:"";position:absolute;left:5px;top:5px;width:34px;height:34px;background:var(--corner) no-repeat;background-size:contain;height:34px;right:auto;border-radius:0}
+.shortcut-dashboard::after,.profile-header-card::after,.member-card::after{content:"";position:absolute;right:5px;bottom:5px;width:34px;height:34px;background:var(--corner) no-repeat;background-size:contain;transform:rotate(180deg);opacity:1;pointer-events:none}
+.member-card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(27,31,94,.25)}
+.shortcut-dashboard h3,h3.section-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);border:0;padding:0 0 18px;display:block;text-align:center;position:relative}
+.shortcut-dashboard h3::before,h3.section-title::before{display:none}
+.shortcut-dashboard h3::after,h3.section-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(200px,70%);height:16px;background:var(--orn) center/contain no-repeat}
+
+/* সদস্যের ছবি */
+.member-avatar,.profile-header-avatar,.summary-avatar{border:3px solid var(--gold);background:#fff;box-shadow:0 0 0 3px var(--card-bg),0 0 0 5px var(--terra),0 6px 14px rgba(0,0,0,.25)}
+
+/* টেবিল */
+.table-responsive{border:1px solid var(--gold);border-radius:10px;box-shadow:0 0 0 3px rgba(212,167,58,.18)}
+th{background:linear-gradient(180deg,#242a82,#10143f);color:var(--gold-l);font-family:var(--serif);border-bottom:3px solid var(--gold);letter-spacing:.2px}
+td{border-bottom:1px dashed rgba(184,83,46,.3)}
+tbody tr:nth-child(even){background:rgba(212,167,58,.14)}
+tbody tr:hover{background:rgba(184,83,46,.12)}
+body.dark-mode tbody tr:nth-child(even){background:rgba(233,201,122,.07)}
+
+/* ইনফো বক্স */
+.info-box,.summary-box{background:linear-gradient(90deg,rgba(212,167,58,.2),rgba(255,255,255,0));border:1px solid rgba(212,167,58,.6);border-left:6px solid var(--terra);border-radius:8px}
+
+/* বাটন */
+.admin-save-btn,.send-msg-btn,.unlock-btn{background:linear-gradient(180deg,#2a3092,#10143f);color:var(--gold-l);border:1.5px solid var(--gold);border-radius:99px;font-family:var(--serif);box-shadow:0 4px 0 #080a24,0 8px 16px rgba(15,18,56,.3);transition:transform .15s,box-shadow .15s}
+.admin-save-btn:hover,.send-msg-btn:hover,.unlock-btn:hover{background:linear-gradient(180deg,#e3b94f,#b8892a);color:#10143f}
+.admin-save-btn:active,.send-msg-btn:active,.unlock-btn:active{transform:translateY(3px);box-shadow:0 1px 0 #080a24}
+.send-msg-btn.profile-btn{background:linear-gradient(180deg,#c9622f,#8d3a1c);color:#fff3cf;box-shadow:0 4px 0 #5e2410,0 8px 16px rgba(141,58,28,.35)}
+
+/* ব্লাড ব্যাজ */
+.blood-badge{background:radial-gradient(circle at 30% 30%,#d9434f,#7a1020);color:#fff;border:2px solid var(--gold);box-shadow:0 3px 8px rgba(122,16,32,.5)}
+
+/* ইনপুট ও মডাল */
+input,select,textarea{border-radius:10px}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold)!important;box-shadow:0 0 0 3px rgba(212,167,58,.35)}
+.modal-overlay>*{border-radius:14px;border:1px solid var(--gold);border-top:8px solid var(--ink);outline:1px solid rgba(212,167,58,.6);outline-offset:-8px;box-shadow:0 24px 60px rgba(0,0,0,.5)}
+
+/* ফুটার */
+footer{position:relative;background:linear-gradient(180deg,#171b4d,#0f1238);background-image:var(--lattice),linear-gradient(180deg,#171b4d,#0f1238);background-size:56px 56px,auto;color:var(--gold-l);border-top:0;padding-top:34px;border-radius:0}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--stitch) repeat-x;background-size:28px 10px}
+footer p{color:var(--gold-l);font-family:var(--serif)}
+footer::after{content:"";display:block;height:20px;width:min(220px,70%);margin:12px auto 0;background:var(--orn) center/contain no-repeat}
+.discrete-admin-avatar{border:2px solid var(--gold)}
+
+/* এনিমেশন */
+@keyframes herIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+.section-block.active>*{animation:herIn .55s ease both}
+.section-block.active>*:nth-child(2){animation-delay:.08s}.section-block.active>*:nth-child(3){animation-delay:.16s}.section-block.active>*:nth-child(4){animation-delay:.24s}
+@media (prefers-reduced-motion:reduce){.section-block.active>*{animation:none}}
+}
+@media screen and (max-width:600px){header h2{font-size:24px}}
+</style>
 </head>
 <body>
 
@@ -1327,7 +1424,7 @@ footer{border-top:4px solid #f42a41}
     <div class="admin-entry-panel" id="universalAdminPanel">
         <div class="admin-panel-top">
             <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
-            <button class="panel-logout-btn" onclick="logoutAdmin()" title="লগআউট">🚪 লগআউট</button>
+            <button class="panel-logout-btn" onclick="logoutAdmin()" title="লগআউট">🔒 লগআউট</button>
         </div>
         <div class="admin-entry-grid">
             <div class="custom-select-wrapper">
