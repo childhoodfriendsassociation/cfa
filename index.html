@@ -1,1228 +1,724 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-    <link rel="preconnect" href="https://script.google.com">
-    <link rel="preconnect" href="https://script.googleusercontent.com" crossorigin>
-    <link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin>
-    <script>
-    window.__cfaEarly=fetch("https://script.google.com/macros/s/AKfycbwJTtTE3XYTGjw5nADnZDbPumt2DKuVLGx4BzWB5_yOSZPfMVb9m7GyINiBeRYaAwQ/exec").then(function(r){if(!r.ok)throw new Error("net");return r.json();});
-    window.__cfaEarly.catch(function(){});
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta property="og:title" content="বন্ধুত্বের স্মারক সমিতি">
-    <meta property="og:description" content="বন্ধুত্বের স্মারক সমিতির হিসাব-নিকাশ, লেনদেন ও ব্লাড ব্যাংক বিবরণী">
-    <meta property="og:image" content="https://lh3.googleusercontent.com/d/1Tg-8lq2_Zd1_4i7smErkt19zE_5aeCmI">
-    <meta property="og:url" content="https://childhoodfriendsassociation.github.io/cfa">
-    <meta property="og:type" content="website">
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' 'unsafe-inline' https://script.google.com https://script.googleusercontent.com https://ipapi.co https://api.open-meteo.com https://fonts.googleapis.com https://fonts.gstatic.com https://lh3.googleusercontent.com; img-src 'self' data: https:;">
-    <meta http-equiv="X-Frame-Options" content="DENY">
-    <meta http-equiv="X-Content-Type-Options" content="nosniff">
-    <meta name="referrer" content="strict-origin-when-cross-origin">
-    <title id="pageDynamicTitle">Childhood Friends Association</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Bengali:wght@500;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root{--primary-color:#1b1f5e;--primary-dark:#0f1238;--accent-color:#b8532e;--bg-color:#f6efdf;--card-bg:#fffaf0;--text-color:#241c12;--text-muted:#6b5d49;--border-color:#e2d3ac;--table-header-bg:#1b1f5e;--table-header-text:#f1d98f;--nav-bg:#1b1f5e;--shadow:0 6px 22px rgba(27,31,94,.12);--box-bg:rgba(212,167,58,.14);--box-text:#1b1f5e;--gold:#d4a73a;--gold-l:#f1d98f;--ink:#1b1f5e;--terra:#b8532e;--lattice:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-opacity='.38' stroke-width='1'%3E%3Cpath d='M28 2 L54 28 L28 54 L2 28 Z'/%3E%3Cpath d='M28 12 L44 28 L28 44 L12 28 Z'/%3E%3Cpath d='M0 0 L56 56 M56 0 L0 56' stroke-opacity='.1'/%3E%3C/g%3E%3Cg fill='%23d4a73a'%3E%3Ccircle cx='28' cy='28' r='2.6' fill-opacity='.75'/%3E%3Ccircle cx='0' cy='0' r='2' fill-opacity='.5'/%3E%3Ccircle cx='56' cy='0' r='2' fill-opacity='.5'/%3E%3Ccircle cx='0' cy='56' r='2' fill-opacity='.5'/%3E%3Ccircle cx='56' cy='56' r='2' fill-opacity='.5'/%3E%3C/g%3E%3C/svg%3E");--stitch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='10' viewBox='0 0 28 10'%3E%3Crect width='28' height='10' fill='%230f1238'/%3E%3Cpath d='M2 5 H12 M16 5 H26' stroke='%23e9c97a' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M14 1 L16 5 L14 9 L12 5 Z' fill='%23b8532e'/%3E%3C/svg%3E");--orn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='20' viewBox='0 0 220 20'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M6 10 H88'/%3E%3Cpath d='M132 10 H214'/%3E%3Cpath d='M88 10 C96 2 104 2 110 10 C116 18 124 18 132 10'/%3E%3C/g%3E%3Cpath d='M110 3 L117 10 L110 17 L103 10 Z' fill='%23b8532e' stroke='%23d4a73a' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='10' r='2.5' fill='%23d4a73a'/%3E%3Ccircle cx='214' cy='10' r='2.5' fill='%23d4a73a'/%3E%3C/svg%3E");--star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='%231b1f5e' stroke-opacity='.075' stroke-width='.8'%3E%3Crect x='-26' y='-26' width='52' height='52'/%3E%3Crect x='-26' y='-26' width='52' height='52' transform='rotate%2845%29'/%3E%3Ccircle r='34'/%3E%3Ccircle r='20'/%3E%3Crect x='-14' y='-14' width='28' height='28' transform='rotate%2822.5%29'/%3E%3Crect x='-14' y='-14' width='28' height='28' transform='rotate%2867.5%29'/%3E%3C/g%3E%3Ccircle r='3' fill='%23d4a73a' fill-opacity='.2'/%3E%3C/svg%3E");--corner:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M3 31 V12 Q3 3 12 3 H31'/%3E%3Cpath d='M9 31 V16 Q9 9 16 9 H31' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M3 3 L8 3 L3 8 Z' fill='%23b8532e'/%3E%3Ccircle cx='15' cy='15' r='2.4' fill='%23d4a73a'/%3E%3C/svg%3E");--mehrab:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34' viewBox='0 0 120 34'%3E%3Cpath d='M0 34 V30 Q60 -22 120 30 V34 Z' fill='%23d4a73a'/%3E%3Cpath d='M0 34 V32 Q60 -14 120 32 V34 Z' fill='%23b8532e'/%3E%3C/svg%3E");--serif:'Noto Serif Bengali','Anek Bangla',serif}
-        body.dark-mode{--primary-color:#e9c97a;--primary-dark:#d4a73a;--accent-color:#e08a62;--bg-color:#0b0d26;--card-bg:#161a45;--text-color:#f4ecd8;--text-muted:#c4bb9f;--border-color:#2b3070;--table-header-bg:#0f1238;--table-header-text:#f1d98f;--nav-bg:#10143f;--shadow:0 6px 22px rgba(0,0,0,.45);--box-bg:rgba(233,201,122,.12);--box-text:#e9c97a;--ink:#e9c97a}
-        *{box-sizing:border-box;margin:0;padding:0;font-family:'Anek Bangla','Inter',-apple-system,BlinkMacSystemFont,sans-serif;transition:background-color .3s,color .3s,border-color .3s}
-        html,body{overflow-x:hidden;width:100%}
-        body{background-color:var(--bg-color);color:var(--text-color);padding-top:118px;padding-bottom:20px;-webkit-user-select:text;user-select:text;word-wrap:break-word;background-image:var(--star),var(--star),radial-gradient(circle at 1px 1px,rgba(184,83,46,.13) 1px,transparent 1.4px);background-size:260px 260px,260px 260px,18px 18px;background-repeat:no-repeat,no-repeat,repeat;background-position:right -80px top 340px,left -100px bottom 80px,0 0;background-attachment:fixed,fixed,scroll}
-        body.dark-mode{background-image:radial-gradient(circle at 1px 1px,rgba(233,201,122,.07) 1px,transparent 1.4px);background-size:18px 18px;background-repeat:repeat;background-attachment:scroll}
-        input,select,textarea{-webkit-user-select:auto;user-select:auto}
-        .navbar{position:fixed;top:0;left:0;right:0;height:55px;background:linear-gradient(180deg,#232880,#10143f);border-bottom:0;display:flex;align-items:center;justify-content:center;padding:0 4px;z-index:1000;box-shadow:0 3px 14px rgba(0,0,0,.28);backdrop-filter:blur(8px)}
-        .navbar::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;background:var(--stitch) repeat-x;background-size:28px 10px;box-shadow:0 3px 8px rgba(0,0,0,.3)}
-        .top-widgets-bar{position:fixed;top:55px;left:0;right:0;height:56px;background:linear-gradient(180deg,#0f1238,#171b4d);border-bottom:1px solid rgba(212,167,58,.4);display:flex;align-items:center;justify-content:center;padding:10px 8px 0;z-index:999;backdrop-filter:blur(8px)}
-        .top-widgets-inner{display:flex;gap:8px;width:100%;max-width:900px;justify-content:space-between}
-        .nav-menu{display:flex;align-items:center;justify-content:space-around;width:100%;max-width:700px;list-style:none;gap:2px}
-        .nav-item{position:relative}
-        .nav-btn{background:transparent;border:none;color:var(--gold-l);padding:6px 8px;border-radius:10px;cursor:pointer;font-size:13.5px;font-weight:600;display:flex;align-items:center;justify-content:center;gap:3px;white-space:nowrap;letter-spacing:.2px}
-        .nav-btn *{pointer-events:none}
-        .nav-btn:hover{background:rgba(212,167,58,.2);color:#fff}
-        .dropdown-menu{display:none;position:absolute;top:100%;right:-20px;background:var(--card-bg);border:1px solid var(--border-color);border-top:3px solid var(--gold);border-radius:12px;box-shadow:0 14px 34px rgba(15,18,56,.4);min-width:210px;max-height:75vh;overflow-y:auto;z-index:1001;padding:6px 0}
-        .dropdown-menu.show{display:block}
-        .dropdown-item{padding:8px 12px;display:flex;align-items:center;gap:8px;color:var(--primary-color);text-decoration:none;font-size:13.5px;font-weight:700;cursor:pointer;border-bottom:1px solid var(--border-color)}
-        .dropdown-item:last-child{border-bottom:none}
-        .dropdown-item:hover{background:rgba(27,31,94,.1);color:var(--primary-color)!important}
-        .dropdown-avatar,.custom-select-avatar,.summary-avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;background:#fff}
-        .container{width:100%;max-width:900px;margin:0 auto;background:transparent;padding:0 0 16px;border-radius:0 0 18px 18px;box-shadow:0 18px 50px rgba(15,18,56,.28);background-color:var(--card-bg);overflow:hidden}
-        .container>*:not(header){margin-left:14px;margin-right:14px}
-        .container>.section-block:not(.active){display:none}
-        header{background-color:#12163f;background-image:var(--lattice),radial-gradient(120% 100% at 50% 0%,#2a3092 0%,#1b1f5e 50%,#0d1033 100%);background-size:56px 56px,auto;border-radius:0 0 50% 50%/0 0 34px 34px;padding:26px 16px 44px;margin:0 0 26px;border-bottom:0;position:relative;text-align:center}
-        header::before{content:"";position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);width:130px;height:36px;background:var(--mehrab) center bottom/100% 100% no-repeat;opacity:.95}
-        header::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:5px;border-radius:99px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
-        header h1{font-family:var(--serif);font-size:15px;font-weight:500;color:var(--gold-l);margin-bottom:6px;opacity:.95}
-        .header-title-container{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;margin:12px 0 6px}
-        .association-logo{width:104px;height:104px;border-radius:50%;object-fit:cover;border:5px solid var(--gold);background:#fff;box-shadow:0 0 0 5px #0f1238,0 0 0 8px var(--gold),0 0 0 15px rgba(212,167,58,.2),0 14px 30px rgba(0,0,0,.5);flex-shrink:0}
-        header h2{font-family:var(--serif);font-size:30px;font-weight:800;background:linear-gradient(180deg,#fff7d6,#e3b94f 60%,#c9972a);-webkit-background-clip:text;background-clip:text;color:transparent;-webkit-text-fill-color:transparent;margin-bottom:0;filter:drop-shadow(0 2px 6px rgba(0,0,0,.45))}
-        header h4{display:inline-block;border-top:0;padding:5px 20px;border-radius:99px;color:var(--gold-l);background:rgba(0,0,0,.28);box-shadow:inset 0 0 0 1.5px var(--gold),0 0 0 3px rgba(212,167,58,.25);font-family:var(--serif);font-size:14px;margin-bottom:8px;font-weight:500}
-        .static-quote-box{background:rgba(255,255,255,.07);border:1px solid rgba(212,167,58,.6);border-radius:14px;margin-top:8px;font-size:14px;font-weight:600;color:#f7ecc7;font-style:italic;line-height:1.5;text-align:center;box-shadow:inset 0 0 0 4px rgba(15,18,56,.5);padding:10px 12px}
-        #sec-welcome{text-align:center}
-        .welcome-hero{text-align:center;margin-top:4px}
-        .welcome-hero h1{color:var(--primary-color);font-size:24px;font-weight:800;margin-bottom:6px}
-        .welcome-hero h1.salam-txt{font-family:var(--serif);font-size:18px;color:var(--terra);margin-bottom:10px;font-weight:700;line-height:1.6}
-        body.dark-mode .welcome-hero h1.salam-txt{color:#e9a07e}
-        .welcome-hero h1#welcomeHeading{font-family:var(--serif);font-size:28px;font-weight:800;color:var(--ink)}
-        .welcome-hero h1#welcomeHeading::after{content:"";display:block;height:20px;width:min(240px,80%);margin:8px auto 6px;background:var(--orn) center/contain no-repeat}
-        .live-widget-card{background:rgba(212,167,58,.1);padding:4px 8px;border-radius:12px;flex:1;height:44px;border:1px solid rgba(212,167,58,.55);font-size:12px;font-weight:600;color:var(--gold-l);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.03)}
-        .live-widget-card .widget-label{font-size:9px;color:var(--gold-l);font-weight:600;text-transform:uppercase;line-height:1}
-        .live-widget-card .widget-value{font-size:11.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%;line-height:1.2;color:var(--gold-l)}
-        .glass-marquee-container{position:relative;width:100%;margin:10px 0;overflow:hidden;border-radius:99px;background:linear-gradient(90deg,#8d3a1c,#b8532e,#8d3a1c);border:2px solid var(--gold);padding:10px 0;box-shadow:0 0 0 4px #0f1238,0 0 0 6px var(--gold),0 10px 22px rgba(15,18,56,.35)}
-        .glass-marquee-track{display:inline-block;white-space:nowrap;animation:marqueeRun 18s linear infinite;font-size:15px;font-weight:700;color:#fff3cf;font-family:var(--serif)}
-        .glass-marquee-container:hover .glass-marquee-track{animation-play-state:paused}
-        @keyframes marqueeRun{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
-        .member-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px}
-        .member-card,.profile-header-card,.shortcut-dashboard,.complaint-box{position:relative;background:var(--card-bg);border:1px solid var(--gold);border-radius:6px;outline:1px solid rgba(212,167,58,.55);outline-offset:-7px;box-shadow:0 10px 26px rgba(27,31,94,.13);padding:12px;padding-top:22px}
-        .member-card{display:flex;align-items:center;gap:12px}
-        .shortcut-dashboard,.complaint-box{padding:12px}
-        .shortcut-dashboard{margin:16px 0;width:100%}
-        .member-card::after,.shortcut-dashboard::before,.profile-header-card::before,.shortcut-dashboard::after,.profile-header-card::after{content:"";position:absolute;width:34px;height:34px;background:var(--corner) no-repeat;background-size:contain;pointer-events:none}
-        .shortcut-dashboard::before,.profile-header-card::before{left:5px;top:5px}
-        .shortcut-dashboard::after,.profile-header-card::after,.member-card::after{right:5px;bottom:5px;transform:rotate(180deg)}
-        .member-card:hover{transform:translateY(-4px);box-shadow:0 18px 34px rgba(27,31,94,.25)}
-        .member-avatar,.profile-header-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);flex-shrink:0;background:#fff;box-shadow:0 0 0 3px var(--card-bg),0 0 0 5px var(--terra),0 6px 14px rgba(0,0,0,.25)}
-        .profile-header-avatar{width:84px;height:84px}
-        .summary-name-cell{display:flex;align-items:center;gap:8px;text-align:left}
-        .summary-avatar{width:28px;height:28px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);flex-shrink:0;background:#fff}
-        .member-info h4{font-size:15px;color:var(--text-color);margin-bottom:2px}
-        .member-info p{font-size:12px;color:var(--text-muted);margin-bottom:2px}
-        .blood-badge{display:inline-flex;align-items:center;gap:4px;background:radial-gradient(circle at 30% 30%,#d9434f,#7a1020);color:#fff;border:2px solid var(--gold);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:4px;box-shadow:0 3px 8px rgba(122,16,32,.5)}
-        body.dark-mode .blood-badge{background:radial-gradient(circle at 30% 30%,#d9434f,#7a1020);color:#fff;border-color:var(--gold)}
-        .progress-bar-container{width:100%;background-color:var(--border-color);border-radius:10px;height:10px;overflow:hidden;margin-top:6px;position:relative}
-        .progress-bar-fill{height:100%;background-color:var(--accent-color);border-radius:10px;transition:width .6s ease}
-        .progress-text-label{font-size:11px;font-weight:700;color:var(--text-muted);margin-top:2px;display:block}
-        .card-actions{margin-left:auto;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px}
-        .action-icon-btn{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none;background:transparent;transition:transform .2s ease}
-        .action-icon-btn:hover{transform:scale(1.15)}
-        .shortcut-dashboard h3,h3.section-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);margin-bottom:10px;text-align:center;position:relative;border:0;padding:0 0 18px;display:block}
-        .shortcut-dashboard h3::after,h3.section-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(200px,70%);height:16px;background:var(--orn) center/contain no-repeat}
-        .modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:2000;justify-content:center;align-items:center;padding:15px}
-        .modal-overlay.show{display:flex}
-        .passcode-box{background:var(--card-bg);padding:20px;border-radius:14px;width:100%;max-width:360px;border:1px solid var(--gold);border-top:8px solid var(--ink);outline:1px solid rgba(212,167,58,.6);outline-offset:-8px;box-shadow:0 24px 60px rgba(0,0,0,.5);text-align:left}
-        .passcode-box h3{color:var(--primary-color);margin-bottom:12px;font-size:17px}
-        .passcode-box .form-group{margin-bottom:12px}
-        .passcode-box label{display:block;font-weight:600;color:var(--primary-color);font-size:14px;margin-bottom:4px}
-        .passcode-box input{width:100%;padding:8px 10px;font-size:14px;border-radius:10px;border:1px solid var(--border-color);outline:none;background:var(--bg-color);color:var(--text-color)}
-        .login-btn-container{display:flex;gap:8px;margin-top:12px}
-        .unlock-btn{background:linear-gradient(180deg,#2a3092,#10143f);color:var(--gold-l);padding:8px;font-size:14px;font-weight:600;border:1.5px solid var(--gold);border-radius:99px;cursor:pointer;flex:1;font-family:var(--serif);box-shadow:0 4px 0 #080a24,0 8px 16px rgba(15,18,56,.3)}
-        .unlock-btn.cancel-btn{background-color:#ef4444;border-color:#b91c1c;color:#fff}
-        .error-msg{color:#ef4444;font-size:13px;margin-top:8px;font-weight:600;text-align:center;display:none}
-        .admin-entry-panel{display:none;background:rgba(245,158,11,.12);border:1px solid #fde68a;padding:12px;border-radius:10px;margin-bottom:16px}
-        .admin-panel-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-        .admin-entry-panel h4{color:#f59e0b;font-size:15px;margin-bottom:0}
-        .panel-logout-btn{background-color:#ef4444;color:#ffffff;border:none;padding:4px 10px;font-size:12px;font-weight:700;border-radius:6px;cursor:pointer;display:inline-flex;align-items:center;gap:4px;transition:background-color .2s}
-        .panel-logout-btn:hover{background-color:#dc2626}
-        .admin-entry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin-bottom:8px}
-        .admin-entry-grid select,.admin-entry-grid input{padding:6px;border:1px solid var(--border-color);border-radius:10px;font-size:13px;background:var(--card-bg);color:var(--text-color);width:100%}
-        .custom-select-wrapper{position:relative;width:100%;user-select:text}
-        .custom-select-trigger{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border:1px solid var(--border-color);border-radius:10px;background:var(--card-bg);color:var(--text-color);font-size:13px;cursor:pointer;height:33px}
-        .custom-select-trigger-content{display:flex;align-items:center;gap:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-        .custom-options-container{display:none;position:absolute;top:100%;left:0;right:0;background:var(--card-bg);border:1px solid var(--border-color);border-radius:6px;box-shadow:var(--shadow);max-height:200px;overflow-y:auto;z-index:1050;margin-top:2px}
-        .custom-options-container.open{display:block}
-        .custom-option-header{padding:4px 8px;font-size:11px;font-weight:700;color:var(--text-muted);background:var(--box-bg);border-bottom:1px solid var(--border-color)}
-        .custom-option-item{display:flex;align-items:center;gap:8px;padding:6px 8px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--border-color);color:var(--text-color)}
-        .custom-option-item:last-child{border-bottom:none}
-        .custom-option-item:hover,.custom-option-item.selected{background:var(--primary-color);color:#ffffff}
-        .custom-option-item:hover .custom-select-avatar,.custom-option-item.selected .custom-select-avatar{border-color:#ffffff}
-        .admin-action-buttons{display:flex;gap:8px;flex-wrap:wrap}
-        .admin-save-btn{background:linear-gradient(180deg,#2a3092,#10143f);color:var(--gold-l);border:1.5px solid var(--gold);padding:8px;font-weight:600;border-radius:99px;cursor:pointer;width:100%;font-size:14px;font-family:var(--serif);box-shadow:0 4px 0 #080a24,0 8px 16px rgba(15,18,56,.3)}
-        .whatsapp-share-btn,.messenger-share-btn{color:#white;border:none;padding:8px 12px;font-weight:600;border-radius:6px;cursor:pointer;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;white-space:nowrap;flex:1}
-        .whatsapp-share-btn{background-color:#25D366;color:#fff}
-        .messenger-share-btn{background-color:#0084FF;color:#fff}
-        .section-block{display:none;margin-bottom:16px}
-        .section-block.active{display:block}
-        .info-box,.summary-box{background:linear-gradient(90deg,rgba(212,167,58,.2),rgba(255,255,255,0));padding:12px 14px;border-radius:8px;font-size:14px;margin-bottom:14px;border:1px solid rgba(212,167,58,.6);border-left:6px solid var(--terra);line-height:1.6;color:var(--text-color)}
-        .info-box p{margin:4px 0}
-        .profile-header-card{display:flex;align-items:center;gap:14px;margin-bottom:12px}
-        .profile-header-info h3{font-size:17px;color:var(--text-color);margin-bottom:3px}
-        .profile-header-info p{font-size:12.5px;color:var(--text-muted);margin-bottom:3px}
-        .table-responsive{width:100%;overflow-x:auto;margin-bottom:12px;-webkit-overflow-scrolling:touch;border-radius:10px;border:1px solid var(--gold);box-shadow:0 0 0 3px rgba(212,167,58,.18)}
-        table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap;color:var(--text-color)}
-        th,td{padding:7px 9px;border:1px solid var(--border-color);text-align:center}
-        th{background:linear-gradient(180deg,#242a82,#10143f);color:var(--gold-l);font-weight:600;font-family:var(--serif);border-bottom:3px solid var(--gold);letter-spacing:.2px}
-        td{border-bottom:1px dashed rgba(184,83,46,.3)}
-        tbody tr:nth-child(even){background:rgba(212,167,58,.14)}
-        body.dark-mode tbody tr:nth-child(even){background:rgba(233,201,122,.07)}
-        tbody tr:hover{background:rgba(184,83,46,.12)}
-        .summary-box{margin-top:8px}
-        .summary-box p{display:flex;justify-content:space-between;margin:4px 0;font-weight:700}
-        .complaint-box{width:100%;margin:16px auto 8px auto;text-align:center}
-        .complaint-box h3{color:var(--primary-color);font-size:15px;margin-bottom:4px}
-        .complaint-box p{font-size:12px;color:var(--text-muted);margin-bottom:10px}
-        .action-btn-group{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
-        .send-msg-btn{background:linear-gradient(180deg,#2a3092,#10143f);color:var(--gold-l);border:1.5px solid var(--gold);padding:6px 14px;font-size:13px;font-weight:600;border-radius:99px;cursor:pointer;text-decoration:none;display:inline-block;font-family:var(--serif);box-shadow:0 4px 0 #080a24,0 8px 16px rgba(15,18,56,.3)}
-        .send-msg-btn.profile-btn{background:linear-gradient(180deg,#c9622f,#8d3a1c);color:#fff3cf;box-shadow:0 4px 0 #5e2410,0 8px 16px rgba(141,58,28,.35)}
-        #loadingOverlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);color:#fff;text-align:center;padding-top:200px;font-size:16px;z-index:9999}
-        footer{position:relative;background:linear-gradient(180deg,#171b4d,#0f1238);background-image:var(--lattice),linear-gradient(180deg,#171b4d,#0f1238);background-size:56px 56px,auto;color:var(--gold-l);text-align:center;font-size:12px;margin-top:20px;border-top:0;padding-top:34px;display:flex;flex-direction:column;align-items:center;gap:6px;border-radius:0}
-        footer::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--stitch) repeat-x;background-size:28px 10px}
-        footer p{color:var(--gold-l);font-family:var(--serif)}
-        footer::after{content:"";display:block;height:20px;width:min(220px,70%);margin:12px auto 0;background:var(--orn) center/contain no-repeat}
-        .discrete-admin-btn{background:transparent;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:8px;opacity:.35;transition:opacity .2s,background .2s}
-        .discrete-admin-btn:hover{opacity:1;background:var(--box-bg)}
-        .discrete-admin-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#fff}
-        .discrete-admin-label{font-size:11px;font-weight:600;color:var(--text-muted);white-space:nowrap}
-        .print-only-footer{display:none;text-align:center;margin-top:30px;padding-top:10px;border-top:1px dashed var(--primary-color);font-size:12px;color:var(--text-color);font-weight:700}
-        input,select,textarea{border-radius:10px}
-        input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold)!important;box-shadow:0 0 0 3px rgba(212,167,58,.35)}
-        @keyframes herIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
-        .section-block.active>*{animation:herIn .55s ease both}
-        .section-block.active>*:nth-child(2){animation-delay:.08s}.section-block.active>*:nth-child(3){animation-delay:.16s}.section-block.active>*:nth-child(4){animation-delay:.24s}
-        @media(max-width:600px){body{padding-top:112px}.container{padding:0 0 12px;border-radius:0 0 12px 12px}header h2{font-size:24px}header h1{font-size:13px}.association-logo{width:86px;height:86px}.glass-marquee-track{font-size:13px}.nav-btn{font-size:11.5px;padding:4px 5px}th,td{padding:5px 6px;font-size:12px}.top-widgets-bar{height:50px}.live-widget-card{height:40px;font-size:10px;padding:3px 4px}.live-widget-card .widget-value{font-size:10px}.live-widget-card .widget-label{font-size:8px}}
-        @media print{body{background-color:var(--bg-color)!important;color:var(--text-color)!important;padding:0!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.navbar,.top-widgets-bar,.modal-overlay,.admin-entry-panel,.complaint-box,footer,#loadingOverlay{display:none!important}.container{box-shadow:none!important;padding:0!important;max-width:100%!important;background:var(--card-bg)!important}.section-block{display:none!important}.section-block.active{display:block!important}th{background-color:var(--table-header-bg)!important;color:var(--table-header-text)!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.info-box,.summary-box,.static-quote-box{background-color:var(--box-bg)!important;color:var(--box-text)!important;-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.print-only-footer{display:block!important}}
-    </style>
-    <meta name="theme-color" content="#0f1238">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover"><meta name="theme-color" content="#0f1238"><meta name="referrer" content="strict-origin-when-cross-origin">
+<title id="pageDynamicTitle">Childhood Friends Association</title>
+<link rel="preconnect" href="https://script.google.com"><link rel="preconnect" href="https://script.googleusercontent.com" crossorigin><link rel="preconnect" href="https://lh3.googleusercontent.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=Noto+Serif+Bengali:wght@500;700;800&display=swap" rel="stylesheet">
+<script>
+window.__cfaEarly=fetch("https://script.google.com/macros/s/AKfycbwJTtTE3XYTGjw5nADnZDbPumt2DKuVLGx4BzWB5_yOSZPfMVb9m7GyINiBeRYaAwQ/exec").then(r=>{if(!r.ok)throw new Error();return r.json();}).catch(()=>{});
+</script>
+<style>
+:root{--p:#1b1f5e;--pd:#0f1238;--acc:#b8532e;--bg:#f6efdf;--card:#fffaf0;--txt:#241c12;--muted:#6b5d49;--border:#e2d3ac;--thbg:#1b1f5e;--tht:#f1d98f;--gold:#d4a73a;--goldl:#f1d98f;--ink:#1b1f5e;--terra:#b8532e;
+--lattice:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56' viewBox='0 0 56 56'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-opacity='.38' stroke-width='1'%3E%3Cpath d='M28 2 L54 28 L28 54 L2 28 Z'/%3E%3Cpath d='M28 12 L44 28 L28 44 L12 28 Z'/%3E%3Cpath d='M0 0 L56 56 M56 0 L0 56' stroke-opacity='.1'/%3E%3C/g%3E%3Cg fill='%23d4a73a'%3E%3Ccircle cx='28' cy='28' r='2.6' fill-opacity='.75'/%3E%3Ccircle cx='0' cy='0' r='2' fill-opacity='.5'/%3E%3Ccircle cx='56' cy='0' r='2' fill-opacity='.5'/%3E%3Ccircle cx='0' cy='56' r='2' fill-opacity='.5'/%3E%3Ccircle cx='56' cy='56' r='2' fill-opacity='.5'/%3E%3C/g%3E%3C/svg%3E");
+--stitch:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='10' viewBox='0 0 28 10'%3E%3Crect width='28' height='10' fill='%230f1238'/%3E%3Cpath d='M2 5 H12 M16 5 H26' stroke='%23e9c97a' stroke-width='2' stroke-linecap='round'/%3E%3Cpath d='M14 1 L16 5 L14 9 L12 5 Z' fill='%23b8532e'/%3E%3C/svg%3E");
+--orn:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='20' viewBox='0 0 220 20'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M6 10 H88'/%3E%3Cpath d='M132 10 H214'/%3E%3Cpath d='M88 10 C96 2 104 2 110 10 C116 18 124 18 132 10'/%3E%3C/g%3E%3Cpath d='M110 3 L117 10 L110 17 L103 10 Z' fill='%23b8532e' stroke='%23d4a73a' stroke-width='1.2'/%3E%3Ccircle cx='6' cy='10' r='2.5' fill='%23d4a73a'/%3E%3Ccircle cx='214' cy='10' r='2.5' fill='%23d4a73a'/%3E%3C/svg%3E");
+--star:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='260' height='260' viewBox='-50 -50 100 100'%3E%3Cg fill='none' stroke='%231b1f5e' stroke-opacity='.075' stroke-width='.8'%3E%3Crect x='-26' y='-26' width='52' height='52'/%3E%3Crect x='-26' y='-26' width='52' height='52' transform='rotate%2845%29'/%3E%3Ccircle r='34'/%3E%3Ccircle r='20'/%3E%3Crect x='-14' y='-14' width='28' height='28' transform='rotate%2822.5%29'/%3E%3Crect x='-14' y='-14' width='28' height='28' transform='rotate%2867.5%29'/%3E%3C/g%3E%3Ccircle r='3' fill='%23d4a73a' fill-opacity='.2'/%3E%3C/svg%3E");
+--corner:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='34' viewBox='0 0 34 34'%3E%3Cg fill='none' stroke='%23d4a73a' stroke-width='1.6' stroke-linecap='round'%3E%3Cpath d='M3 31 V12 Q3 3 12 3 H31'/%3E%3Cpath d='M9 31 V16 Q9 9 16 9 H31' stroke-opacity='.55'/%3E%3C/g%3E%3Cpath d='M3 3 L8 3 L3 8 Z' fill='%23b8532e'/%3E%3Ccircle cx='15' cy='15' r='2.4' fill='%23d4a73a'/%3E%3C/svg%3E");
+--mehrab:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='34' viewBox='0 0 120 34'%3E%3Cpath d='M0 34 V30 Q60 -22 120 30 V34 Z' fill='%23d4a73a'/%3E%3Cpath d='M0 34 V32 Q60 -14 120 32 V34 Z' fill='%23b8532e'/%3E%3C/svg%3E");
+--serif:'Noto Serif Bengali','Anek Bangla',serif}
+body.dark-mode{--p:#e9c97a;--pd:#d4a73a;--acc:#e08a62;--bg:#0b0d26;--card:#161a45;--txt:#f4ecd8;--muted:#c4bb9f;--border:#2b3070;--thbg:#0f1238;--tht:#f1d98f;--ink:#e9c97a}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Anek Bangla','Inter',sans-serif;transition:background-color .3s,color .3s,border-color .3s}
+body{background:var(--bg);color:var(--txt);padding:118px 0 20px;overflow-x:hidden;background-image:var(--star),var(--star),radial-gradient(circle at 1px 1px,rgba(184,83,46,.13) 1px,transparent 1.4px);background-size:260px 260px,260px 260px,18px 18px;background-repeat:no-repeat,no-repeat,repeat;background-position:right -80px top 340px,left -100px bottom 80px,0 0;background-attachment:fixed,fixed,scroll}
+body.dark-mode{background-image:radial-gradient(circle at 1px 1px,rgba(233,201,122,.07) 1px,transparent 1.4px);background-attachment:scroll}
+.navbar{position:fixed;top:0;left:0;right:0;height:55px;background:linear-gradient(180deg,#232880,#10143f);display:flex;align-items:center;justify-content:center;z-index:1000;box-shadow:0 3px 14px rgba(0,0,0,.28)}
+.navbar::after{content:"";position:absolute;left:0;right:0;bottom:-10px;height:10px;background:var(--stitch) repeat-x;background-size:28px 10px}
+.top-widgets-bar{position:fixed;top:55px;left:0;right:0;height:56px;background:linear-gradient(180deg,#0f1238,#171b4d);border-bottom:1px solid rgba(212,167,58,.4);display:flex;align-items:center;justify-content:center;padding:10px 8px 0;z-index:999}
+.top-widgets-inner{display:flex;gap:8px;width:100%;max-width:900px;justify-content:space-between}
+.nav-menu{display:flex;align-items:center;justify-content:space-around;width:100%;max-width:700px;list-style:none;gap:2px}
+.nav-btn{background:0 0;border:none;color:var(--goldl);padding:6px 8px;border-radius:10px;cursor:pointer;font-size:13.5px;font-weight:600;display:flex;align-items:center;gap:3px;white-space:nowrap}
+.nav-btn:hover{background:rgba(212,167,58,.2);color:#fff}
+.dropdown-menu{display:none;position:absolute;top:100%;right:-20px;background:var(--card);border:1px solid var(--border);border-top:3px solid var(--gold);border-radius:12px;box-shadow:0 14px 34px rgba(15,18,56,.4);min-width:210px;max-height:75vh;overflow-y:auto;z-index:1001;padding:6px 0}
+.dropdown-menu.show{display:block}
+.dropdown-item{padding:8px 12px;display:flex;align-items:center;gap:8px;color:var(--p);text-decoration:none;font-size:13.5px;font-weight:700;cursor:pointer;border-bottom:1px solid var(--border)}
+.dropdown-item:hover{background:rgba(27,31,94,.1);color:var(--p)!important}
+.dropdown-avatar,.custom-select-avatar,.summary-avatar{width:26px;height:26px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#fff;flex-shrink:0}
+.container{width:100%;max-width:900px;margin:0 auto;background:var(--card);padding:0 0 16px;border-radius:0 0 18px 18px;box-shadow:0 18px 50px rgba(15,18,56,.28);overflow:hidden}
+.container>*:not(header){margin-left:14px;margin-right:14px}
+.container>.section-block:not(.active){display:none}
+header{background-color:#12163f;background-image:var(--lattice),radial-gradient(120% 100% at 50% 0%,#2a3092 0%,#1b1f5e 50%,#0d1033 100%);border-radius:0 0 50% 50%/0 0 34px 34px;padding:26px 16px 44px;margin:0 0 26px;position:relative;text-align:center}
+header::before{content:"";position:absolute;left:50%;bottom:-1px;transform:translateX(-50%);width:130px;height:36px;background:var(--mehrab) center bottom/100% 100% no-repeat}
+header::after{content:"";position:absolute;left:12%;right:12%;bottom:0;height:5px;border-radius:99px;background:linear-gradient(90deg,transparent,var(--gold),transparent)}
+header h1{font-family:var(--serif);font-size:15px;color:var(--goldl);margin-bottom:6px}
+.header-title-container{display:flex;flex-direction:column;align-items:center;gap:12px;margin:12px 0 6px}
+.association-logo{width:104px;height:104px;border-radius:50%;object-fit:cover;border:5px solid var(--gold);background:#fff;box-shadow:0 0 0 5px #0f1238,0 0 0 8px var(--gold),0 0 0 15px rgba(212,167,58,.2),0 14px 30px rgba(0,0,0,.5)}
+header h2{font-family:var(--serif);font-size:30px;font-weight:800;background:linear-gradient(180deg,#fff7d6,#e3b94f 60%,#c9972a);-webkit-background-clip:text;background-clip:text;color:transparent}
+header h4{display:inline-block;padding:5px 20px;border-radius:99px;color:var(--goldl);background:rgba(0,0,0,.28);box-shadow:inset 0 0 0 1.5px var(--gold);font-family:var(--serif);font-size:14px;margin-bottom:8px}
+.static-quote-box{background:rgba(255,255,255,.07);border:1px solid rgba(212,167,58,.6);border-radius:14px;margin-top:8px;font-size:14px;font-weight:600;color:#f7ecc7;font-style:italic;padding:10px 12px;text-align:center}
+.welcome-hero{text-align:center;margin-top:4px}
+.welcome-hero h1.salam-txt{font-family:var(--serif);font-size:18px;color:var(--terra);margin-bottom:10px;font-weight:700}
+.welcome-hero h1#welcomeHeading{font-family:var(--serif);font-size:28px;font-weight:800;color:var(--ink)}
+.welcome-hero h1#welcomeHeading::after{content:"";display:block;height:20px;width:min(240px,80%);margin:8px auto 6px;background:var(--orn) center/contain no-repeat}
+.live-widget-card{background:rgba(212,167,58,.1);padding:4px 8px;border-radius:12px;flex:1;height:44px;border:1px solid rgba(212,167,58,.55);font-size:12px;font-weight:600;color:var(--goldl);text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.live-widget-card .widget-label{font-size:9px;text-transform:uppercase}
+.live-widget-card .widget-value{font-size:11.5px;font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;width:100%}
+.glass-marquee-container{position:relative;width:100%;margin:10px 0;overflow:hidden;border-radius:99px;background:linear-gradient(90deg,#8d3a1c,#b8532e,#8d3a1c);border:2px solid var(--gold);padding:10px 0;box-shadow:0 0 0 4px #0f1238,0 0 0 6px var(--gold)}
+.glass-marquee-track{display:inline-block;white-space:nowrap;animation:marqueeRun 18s linear infinite;font-size:15px;font-weight:700;color:#fff3cf;font-family:var(--serif)}
+@keyframes marqueeRun{0%{transform:translateX(100%)}100%{transform:translateX(-100%)}}
+.member-cards-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:12px;margin-top:12px}
+.member-card,.profile-header-card,.shortcut-dashboard,.complaint-box{position:relative;background:var(--card);border:1px solid var(--gold);border-radius:6px;outline:1px solid rgba(212,167,58,.55);outline-offset:-7px;box-shadow:0 10px 26px rgba(27,31,94,.13);padding:12px;padding-top:22px}
+.member-card{display:flex;align-items:center;gap:12px}
+.shortcut-dashboard{margin:16px 0;width:100%}
+.member-card::after,.shortcut-dashboard::before,.profile-header-card::before,.shortcut-dashboard::after,.profile-header-card::after{content:"";position:absolute;width:34px;height:34px;background:var(--corner) no-repeat;background-size:contain;pointer-events:none}
+.shortcut-dashboard::before,.profile-header-card::before{left:5px;top:5px}
+.shortcut-dashboard::after,.profile-header-card::after,.member-card::after{right:5px;bottom:5px;transform:rotate(180deg)}
+.member-avatar,.profile-header-avatar{width:64px;height:64px;border-radius:50%;object-fit:cover;border:3px solid var(--gold);background:#fff;flex-shrink:0}
+.profile-header-avatar{width:84px;height:84px}
+.summary-name-cell{display:flex;align-items:center;gap:8px}
+.blood-badge{display:inline-flex;align-items:center;gap:4px;background:radial-gradient(circle at 30% 30%,#d9434f,#7a1020);color:#fff;border:2px solid var(--gold);font-size:12px;font-weight:700;padding:3px 10px;border-radius:20px;margin-top:4px}
+.progress-bar-container{width:100%;background-color:var(--border);border-radius:10px;height:10px;overflow:hidden;margin-top:6px}
+.progress-bar-fill{height:100%;background-color:var(--acc);border-radius:10px;transition:width .6s ease}
+.progress-text-label{font-size:11px;font-weight:700;color:var(--muted);margin-top:2px;display:block}
+.card-actions{margin-left:auto;display:flex;flex-direction:column;gap:6px}
+.action-icon-btn{width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-decoration:none}
+.shortcut-dashboard h3,h3.section-title{font-family:var(--serif);font-size:19px;font-weight:700;color:var(--ink);margin-bottom:10px;text-align:center;position:relative;padding-bottom:18px}
+.shortcut-dashboard h3::after,h3.section-title::after{content:"";position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(200px,70%);height:16px;background:var(--orn) center/contain no-repeat}
+.modal-overlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);z-index:2000;justify-content:center;align-items:center;padding:15px}
+.modal-overlay.show{display:flex}
+.passcode-box{background:var(--card);padding:20px;border-radius:14px;width:100%;max-width:360px;border:1px solid var(--gold);border-top:8px solid var(--ink);box-shadow:0 24px 60px rgba(0,0,0,.5)}
+.passcode-box label{display:block;font-weight:600;color:var(--p);font-size:14px;margin-bottom:4px}
+.passcode-box input{width:100%;padding:8px 10px;font-size:14px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--txt);outline:none}
+.login-btn-container{display:flex;gap:8px;margin-top:12px}
+.unlock-btn{background:linear-gradient(180deg,#2a3092,#10143f);color:var(--goldl);padding:8px;font-size:14px;font-weight:600;border:1.5px solid var(--gold);border-radius:99px;cursor:pointer;flex:1;font-family:var(--serif)}
+.unlock-btn.cancel-btn{background-color:#ef4444;color:#fff;border-color:#b91c1c}
+.error-msg{color:#ef4444;font-size:13px;margin-top:8px;font-weight:600;text-align:center;display:none}
+.admin-entry-panel{display:none;background:rgba(245,158,11,.12);border:1px solid #fde68a;padding:12px;border-radius:10px;margin-bottom:16px}
+.admin-panel-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.admin-panel-top h4{color:#f59e0b;font-size:15px}
+.panel-logout-btn{background-color:#ef4444;color:#fff;border:none;padding:4px 10px;font-size:12px;font-weight:700;border-radius:6px;cursor:pointer}
+.admin-entry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin-bottom:8px}
+.admin-entry-grid select,.admin-entry-grid input{padding:6px;border:1px solid var(--border);border-radius:10px;font-size:13px;background:var(--card);color:var(--txt);width:100%}
+.custom-select-wrapper{position:relative;width:100%}
+.custom-select-trigger{display:flex;align-items:center;justify-content:space-between;padding:5px 8px;border:1px solid var(--border);border-radius:10px;background:var(--card);color:var(--txt);font-size:13px;cursor:pointer;height:33px}
+.custom-select-trigger-content{display:flex;align-items:center;gap:6px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.custom-options-container{display:none;position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:6px;box-shadow:0 6px 22px rgba(27,31,94,.12);max-height:200px;overflow-y:auto;z-index:1050;margin-top:2px}
+.custom-options-container.open{display:block}
+.custom-option-header{padding:4px 8px;font-size:11px;font-weight:700;color:var(--muted);background:var(--box-bg,rgba(212,167,58,.14));border-bottom:1px solid var(--border)}
+.custom-option-item{display:flex;align-items:center;gap:8px;padding:6px 8px;font-size:13px;cursor:pointer;border-bottom:1px solid var(--border);color:var(--txt)}
+.custom-option-item:hover,.custom-option-item.selected{background:var(--p);color:#fff}
+.admin-save-btn{background:linear-gradient(180deg,#2a3092,#10143f);color:var(--goldl);border:1.5px solid var(--gold);padding:8px;font-weight:600;border-radius:99px;cursor:pointer;width:100%;font-size:14px;font-family:var(--serif)}
+.whatsapp-share-btn,.messenger-share-btn{border:none;padding:8px 12px;font-weight:600;border-radius:6px;cursor:pointer;font-size:14px;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:5px;flex:1;color:#fff}
+.whatsapp-share-btn{background-color:#25D366}
+.messenger-share-btn{background-color:#0084FF}
+.section-block{display:none;margin-bottom:16px}
+.section-block.active{display:block}
+.info-box,.summary-box{background:linear-gradient(90deg,rgba(212,167,58,.2),rgba(255,255,255,0));padding:12px 14px;border-radius:8px;font-size:14px;margin-bottom:14px;border:1px solid rgba(212,167,58,.6);border-left:6px solid var(--terra);line-height:1.6;color:var(--txt)}
+.info-box p{margin:4px 0}
+.profile-header-card{display:flex;align-items:center;gap:14px;margin-bottom:12px}
+.profile-header-info h3{font-size:17px;color:var(--txt);margin-bottom:3px}
+.profile-header-info p{font-size:12.5px;color:var(--muted);margin-bottom:3px}
+.table-responsive{width:100%;overflow-x:auto;margin-bottom:12px;border-radius:10px;border:1px solid var(--gold)}
+table{width:100%;border-collapse:collapse;font-size:13px;white-space:nowrap;color:var(--txt)}
+th,td{padding:7px 9px;border:1px solid var(--border);text-align:center}
+th{background:linear-gradient(180deg,#242a82,#10143f);color:var(--tht);font-weight:600;font-family:var(--serif);border-bottom:3px solid var(--gold)}
+tbody tr:nth-child(even){background:rgba(212,167,58,.14)}
+body.dark-mode tbody tr:nth-child(even){background:rgba(233,201,122,.07)}
+.summary-box p{display:flex;justify-content:space-between;margin:4px 0;font-weight:700}
+.complaint-box{width:100%;margin:16px auto 8px;text-align:center}
+.complaint-box h3{color:var(--p);font-size:15px;margin-bottom:4px}
+.complaint-box p{font-size:12px;color:var(--muted);margin-bottom:10px}
+.action-btn-group{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}
+.send-msg-btn{background:linear-gradient(180deg,#2a3092,#10143f);color:var(--goldl);border:1.5px solid var(--gold);padding:6px 14px;font-size:13px;font-weight:600;border-radius:99px;text-decoration:none;display:inline-block;font-family:var(--serif)}
+.send-msg-btn.profile-btn{background:linear-gradient(180deg,#c9622f,#8d3a1c);color:#fff3cf}
+#loadingOverlay{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.6);color:#fff;text-align:center;padding-top:200px;font-size:16px;z-index:9999}
+footer{position:relative;background:linear-gradient(180deg,#171b4d,#0f1238);color:var(--goldl);text-align:center;font-size:12px;margin-top:20px;padding-top:34px;display:flex;flex-direction:column;align-items:center;gap:6px}
+footer::before{content:"";position:absolute;left:0;right:0;top:0;height:10px;background:var(--stitch) repeat-x;background-size:28px 10px}
+footer p{font-family:var(--serif)}
+footer::after{content:"";display:block;height:20px;width:min(220px,70%);margin:12px auto 0;background:var(--orn) center/contain no-repeat}
+.discrete-admin-btn{background:0 0;border:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;padding:4px 10px;border-radius:8px;opacity:.35}
+.discrete-admin-btn:hover{opacity:1;background:rgba(212,167,58,.14)}
+.discrete-admin-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid var(--gold);background:#fff}
+.discrete-admin-label{font-size:11px;font-weight:600;color:var(--muted)}
+.print-only-footer{display:none;text-align:center;margin-top:30px;padding-top:10px;border-top:1px dashed var(--p);font-size:12px;font-weight:700}
+input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold)!important;box-shadow:0 0 0 3px rgba(212,167,58,.35)}
+@media(max-width:600px){body{padding-top:112px}header h2{font-size:24px}header h1{font-size:13px}.association-logo{width:86px;height:86px}.glass-marquee-track{font-size:13px}.nav-btn{font-size:11.5px;padding:4px 5px}th,td{padding:5px 6px;font-size:12px}}
+@media print{body{padding:0!important;-webkit-print-color-adjust:exact!important}.navbar,.top-widgets-bar,.modal-overlay,.admin-entry-panel,.complaint-box,footer,#loadingOverlay{display:none!important}.container{box-shadow:none!important;max-width:100%!important}.section-block{display:none!important}.section-block.active{display:block!important}.print-only-footer{display:block!important}}
+</style>
 </head>
 <body>
 <div id="loadingOverlay"><div id="loadingContent"><span id="loadingTxt">ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</span><br><button id="retryBtn" onclick="fetchFromGoogleSheet()" style="display:none;margin-top:12px;padding:8px 16px;background:#2563eb;color:#fff;border:none;border-radius:6px;cursor:pointer;font-weight:bold;">পুনরায় চেষ্টা করুন (Retry)</button></div></div>
-<div id="dataStatusNotice" role="status" aria-live="polite" style="display:none;position:fixed;z-index:9998;top:118px;left:12px;right:12px;padding:9px 12px;border-radius:8px;background:#fff4d6;color:#704b00;border:1px solid #e5c46a;font-size:13px;box-shadow:0 2px 8px rgba(0,0,0,.12)"></div>
+<div id="dataStatusNotice" role="status" aria-live="polite" style="display:none;position:fixed;z-index:9998;top:118px;left:12px;right:12px;padding:9px 12px;border-radius:8px;background:#fff4d6;color:#704b00;border:1px solid #e5c46a;font-size:13px"></div>
 
-<nav class="navbar">
-    <ul class="nav-menu">
-        <li class="nav-item"><button class="nav-btn" onclick="showHomepage()">🏠 <span id="lblNavHome">হোম</span></button></li>
-        <li class="nav-item"><button class="nav-btn" onclick="openMemberPage('sec-directory')"><span id="lblNavDirectory">🩸প্রোফাইল</span></button></li>
-        <li class="nav-item">
-            <button class="nav-btn" onclick="toggleDropdown('membersDropdown')"><span>👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</span></button>
-            <div class="dropdown-menu" id="membersDropdown">
-                <a class="dropdown-item" id="menu-awal" onclick="openMemberPage('sec-awal')"><img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" alt="Awal" class="dropdown-avatar" loading="lazy"><span>আবদুল আউয়াল</span></a>
-                <a class="dropdown-item" id="menu-arif" onclick="openMemberPage('sec-arif')"><img src="https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw" alt="Arif" class="dropdown-avatar" loading="lazy"><span>আরিফ হোসেন</span></a>
-                <a class="dropdown-item" id="menu-babor" onclick="openMemberPage('sec-babor')"><img src="https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl" alt="Babor" class="dropdown-avatar" loading="lazy"><span>বাবর পাটোয়ারী</span></a>
-                <a class="dropdown-item" id="menu-babul" onclick="openMemberPage('sec-babul')"><img src="https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA" alt="Babul" class="dropdown-avatar" loading="lazy"><span>বাবুল হোসেন</span></a>
-                <a class="dropdown-item" id="menu-jasim" onclick="openMemberPage('sec-jasim')"><img src="https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK" alt="Jasim" class="dropdown-avatar" loading="lazy"><span>জসিম উদ্দিন</span></a>
-                <a class="dropdown-item" id="menu-main" onclick="openMemberPage('sec-main')"><img src="https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX" alt="Main" class="dropdown-avatar" loading="lazy"><span>মঈন উদ্দিন</span></a>
-                <a class="dropdown-item" id="menu-saiem" onclick="openMemberPage('sec-saiem')"><img src="https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG" alt="Saiem" class="dropdown-avatar" loading="lazy"><span>মোঃ সায়েম</span></a>
-                <a class="dropdown-item" id="menu-selim" onclick="openMemberPage('sec-selim')"><img src="https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0" alt="Selim" class="dropdown-avatar" loading="lazy"><span>সেলিম পাটোয়ারী</span></a>
-                <a class="dropdown-item" id="menu-sanawer" onclick="openMemberPage('sec-sanawer')"><img src="https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J" alt="Sanawer" class="dropdown-avatar" loading="lazy"><span>সানোয়ার কাদের</span></a>
-                <a class="dropdown-item" onclick="openMemberPage('sec-payment')" style="font-weight:bold;color:var(--primary-color);justify-content:center;" id="lblNavProperty">সম্পত্তির পরিশোধিত মূল্য</a>
-            </div>
-        </li>
-        <li class="nav-item"><button class="nav-btn" onclick="window.print()">🖨️</button></li>
-        <li class="nav-item"><button class="nav-btn" onclick="toggleDarkMode()">🌙</button></li>
-        <li class="nav-item"><button class="nav-btn" id="langBtn" onclick="toggleLanguage()">EN</button></li>
-    </ul>
-</nav>
-
-<div class="top-widgets-bar">
-    <div class="top-widgets-inner">
-        <div class="live-widget-card"><span class="widget-label" id="lblLocTitle">📍 LOCATION</span><span class="widget-value" id="userLocation">লোড হচ্ছে...</span></div>
-        <div class="live-widget-card"><span class="widget-label" id="lblTimeTitle">⏰ LIVE TIME</span><span class="widget-value" id="liveClock">লোড হচ্ছে...</span></div>
-        <div class="live-widget-card"><span class="widget-label" id="lblDateTitle">📅 DATE</span><span class="widget-value" id="liveDate">লোড হচ্ছে...</span></div>
-        <div class="live-widget-card"><span class="widget-label" id="lblWeatherTitle">🌤 WEATHER</span><span class="widget-value" id="userWeather">লোড হচ্ছে...</span></div>
-    </div>
+<nav class="navbar"><ul class="nav-menu">
+<li class="nav-item"><button class="nav-btn" onclick="showHomepage()">🏠 <span id="lblNavHome">হোম</span></button></li>
+<li class="nav-item"><button class="nav-btn" onclick="openMemberPage('sec-directory')"><span id="lblNavDirectory">🩸প্রোফাইল</span></button></li>
+<li class="nav-item">
+<button class="nav-btn" onclick="toggleDropdown('membersDropdown')"><span>👥 <span id="lblNavMembers">সদস্যবৃন্দ</span> ▼</span></button>
+<div class="dropdown-menu" id="membersDropdown">
+<a class="dropdown-item" id="menu-awal" onclick="openMemberPage('sec-awal')"><img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" alt="Awal" class="dropdown-avatar" loading="lazy"><span>আবদুল আউয়াল</span></a>
+<a class="dropdown-item" id="menu-arif" onclick="openMemberPage('sec-arif')"><img src="https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw" alt="Arif" class="dropdown-avatar" loading="lazy"><span>আরিফ হোসেন</span></a>
+<a class="dropdown-item" id="menu-babor" onclick="openMemberPage('sec-babor')"><img src="https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl" alt="Babor" class="dropdown-avatar" loading="lazy"><span>বাবর পাটোয়ারী</span></a>
+<a class="dropdown-item" id="menu-babul" onclick="openMemberPage('sec-babul')"><img src="https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA" alt="Babul" class="dropdown-avatar" loading="lazy"><span>বাবুল হোসেন</span></a>
+<a class="dropdown-item" id="menu-jasim" onclick="openMemberPage('sec-jasim')"><img src="https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK" alt="Jasim" class="dropdown-avatar" loading="lazy"><span>জসিম উদ্দিন</span></a>
+<a class="dropdown-item" id="menu-main" onclick="openMemberPage('sec-main')"><img src="https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX" alt="Main" class="dropdown-avatar" loading="lazy"><span>মঈন উদ্দিন</span></a>
+<a class="dropdown-item" id="menu-saiem" onclick="openMemberPage('sec-saiem')"><img src="https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG" alt="Saiem" class="dropdown-avatar" loading="lazy"><span>মোঃ সায়েম</span></a>
+<a class="dropdown-item" id="menu-selim" onclick="openMemberPage('sec-selim')"><img src="https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0" alt="Selim" class="dropdown-avatar" loading="lazy"><span>সেলিম পাটোয়ারী</span></a>
+<a class="dropdown-item" id="menu-sanawer" onclick="openMemberPage('sec-sanawer')"><img src="https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J" alt="Sanawer" class="dropdown-avatar" loading="lazy"><span>সানোয়ার কাদের</span></a>
+<a class="dropdown-item" onclick="openMemberPage('sec-payment')" style="font-weight:bold;color:var(--p);justify-content:center;" id="lblNavProperty">সম্পত্তির পরিশোধিত মূল্য</a>
 </div>
+</li>
+<li class="nav-item"><button class="nav-btn" onclick="window.print()">🖨️</button></li>
+<li class="nav-item"><button class="nav-btn" onclick="toggleDarkMode()">🌙</button></li>
+<li class="nav-item"><button class="nav-btn" id="langBtn" onclick="toggleLanguage()">EN</button></li>
+</ul></nav>
 
-<div class="modal-overlay" id="adminModal">
-    <div class="passcode-box">
-        <h3 id="lblAdminModalTitle">এডমিন লগইন</h3>
-        <div class="form-group"><label for="adminPasscode" id="lblAdminPass">এডমিন পাসওয়ার্ড দিন</label><input type="password" id="adminPasscode" placeholder="পাসওয়ার্ড লিখুন" autocomplete="off"></div>
-        <p id="errorMsg" class="error-msg">অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!</p>
-        <div class="login-btn-container"><button class="unlock-btn cancel-btn" onclick="closeAdminModal()" id="btnModalCancel">বাতিল</button><button class="unlock-btn" onclick="submitAdminLogin()" id="btnModalLogin">লগইন</button></div>
-    </div>
-</div>
+<div class="top-widgets-bar"><div class="top-widgets-inner">
+<div class="live-widget-card"><span class="widget-label" id="lblLocTitle">📍 LOCATION</span><span class="widget-value" id="userLocation">লোড হচ্ছে...</span></div>
+<div class="live-widget-card"><span class="widget-label" id="lblTimeTitle">⏰ LIVE TIME</span><span class="widget-value" id="liveClock">লোড হচ্ছে...</span></div>
+<div class="live-widget-card"><span class="widget-label" id="lblDateTitle">📅 DATE</span><span class="widget-value" id="liveDate">লোড হচ্ছে...</span></div>
+<div class="live-widget-card"><span class="widget-label" id="lblWeatherTitle">🌤 WEATHER</span><span class="widget-value" id="userWeather">লোড হচ্ছে...</span></div>
+</div></div>
+
+<div class="modal-overlay" id="adminModal"><div class="passcode-box">
+<h3 id="lblAdminModalTitle" style="color:var(--p);margin-bottom:12px;font-size:17px">এডমিন লগইন</h3>
+<div style="margin-bottom:12px"><label for="adminPasscode" id="lblAdminPass">এডমিন পাসওয়ার্ড দিন</label><input type="password" id="adminPasscode" placeholder="পাসওয়ার্ড লিখুন" autocomplete="current-password" maxlength="256"></div>
+<p id="errorMsg" class="error-msg">অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!</p>
+<div class="login-btn-container"><button class="unlock-btn cancel-btn" onclick="closeAdminModal()" id="btnModalCancel">বাতিল</button><button class="unlock-btn" onclick="submitAdminLogin()" id="btnModalLogin">লগইন</button></div>
+</div></div>
 
 <div class="container">
-    <header>
-        <h1 id="hdrBismillah">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</h1>
-        <div class="header-title-container">
-            <img src="https://drive.google.com/file/d/1Z4w-xN9vSUtDHm41PbHW6TDB6d59yVK5/view?usp=drivesdk" alt="CFA Logo" class="association-logo">
-            <h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2>
-        </div>
-        <h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
-        <div class="static-quote-box" id="dynamicQuoteStatic">লোড হচ্ছে...</div>
-    </header>
+<header>
+<h1 id="hdrBismillah">পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি</h1>
+<div class="header-title-container"><img src="https://drive.google.com/file/d/1Z4w-xN9vSUtDHm41PbHW6TDB6d59yVK5/view?usp=drivesdk" alt="CFA Logo" class="association-logo"><h2 id="hdrTitle">বন্ধুত্বের স্মারক সমিতি</h2></div>
+<h4 id="hdrEst">স্থাপিত: ২০২৬</h4>
+<div class="static-quote-box" id="dynamicQuoteStatic">লোড হচ্ছে...</div>
+</header>
 
-    <div id="sec-welcome" class="section-block active">
-        <div class="welcome-hero">
-            <h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
-            <h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
-            <div class="glass-marquee-container"><div class="glass-marquee-track">🌟 <span id="marqueePrefix">সমিতির তহবিলে বর্তমানে জমা আছে:</span> <span id="marqueeTotal">0.00</span> <span id="marqueeSuffix">টাকা মাত্র</span> 🌟</div></div>
-        </div>
-        <div class="shortcut-dashboard">
-            <h3 id="currentMonthTitle">📊 চলতি মাসের জমার বিবরণ (চলতি মাস)</h3>
-            <div class="table-responsive"><table><thead><tr><th id="thCurrName">সদস্যের নাম</th><th id="thCurrAmount">চলতি মাসে জমা</th></tr></thead><tbody id="currentMonthSummaryBody"></tbody></table></div>
-        </div>
-        <div class="shortcut-dashboard">
-            <h3 id="summaryTitle">📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)</h3>
-            <div class="table-responsive"><table><thead><tr><th id="thName">সদস্যের নাম</th><th id="thShare">শেয়ার</th><th id="thTotal">মোট জমা</th><th id="thStatus">অবস্থা / বকেয়া</th><th id="thTarget">নির্ধারিত মূল্য</th></tr></thead><tbody id="frontSummaryBody"></tbody></table></div>
-        </div>
-    </div>
+<div id="sec-welcome" class="section-block active">
+<div class="welcome-hero">
+<h1 id="welcomeSalam" class="salam-txt">আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক</h1>
+<h1 id="welcomeHeading">আপনাকে স্বাগতম</h1>
+<div class="glass-marquee-container"><div class="glass-marquee-track">🌟 <span id="marqueePrefix">সমিতির তহবিলে বর্তমানে জমা আছে:</span> <span id="marqueeTotal">0.00</span> <span id="marqueeSuffix">টাকা মাত্র</span> 🌟</div></div>
+</div>
+<div class="shortcut-dashboard">
+<h3 id="currentMonthTitle">📊 চলতি মাসের জমার বিবরণ (চলতি মাস)</h3>
+<div class="table-responsive"><table><thead><tr><th id="thCurrName">সদস্যের নাম</th><th id="thCurrAmount">চলতি মাসে জমা</th></tr></thead><tbody id="currentMonthSummaryBody"></tbody></table></div>
+</div>
+<div class="shortcut-dashboard">
+<h3 id="summaryTitle">📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)</h3>
+<div class="table-responsive"><table><thead><tr><th id="thName">সদস্যের নাম</th><th id="thShare">শেয়ার</th><th id="thTotal">মোট জমা</th><th id="thStatus">অবস্থা / বকেয়া</th><th id="thTarget">নির্ধারিত মূল্য</th></tr></thead><tbody id="frontSummaryBody"></tbody></table></div>
+</div>
+</div>
 
-    <div id="sec-directory" class="section-block">
-        <h3 class="section-title" id="dirTitle">সদস্যবৃন্দের ডায়রেক্টরি ও ব্লাড ব্যাংক</h3>
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:12px;" id="dirSub">জরুরি প্রয়োজনে সদস্যদের সাথে সরাসরি যোগাযোগ ও রক্তের গ্রুপিং বিবরণী:</p>
-        <div class="member-cards-grid" id="memberCardsGrid"></div>
-    </div>
+<div id="sec-directory" class="section-block">
+<h3 class="section-title" id="dirTitle">সদস্যবৃন্দের ডায়রেক্টরি ও ব্লাড ব্যাংক</h3>
+<p style="font-size:13px;color:var(--muted);margin-bottom:12px;" id="dirSub">জরুরি প্রয়োজনে সদস্যদের সাথে সরাসরি যোগাযোগ ও রক্তের গ্রুপিং বিবরণী:</p>
+<div class="member-cards-grid" id="memberCardsGrid"></div>
+</div>
 
-    <div class="admin-entry-panel" id="universalAdminPanel">
-        <div class="admin-panel-top">
-            <h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4>
-            <button class="panel-logout-btn" onclick="logoutAdmin()">🔒 লগআউট</button>
-        </div>
-        <div class="admin-entry-grid">
-            <div class="custom-select-wrapper">
-                <input type="hidden" id="targetMemberSelect" value="awal">
-                <div class="custom-select-trigger" onclick="toggleCustomMemberSelect()">
-                    <div class="custom-select-trigger-content" id="selectedMemberDisplay"><img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" class="custom-select-avatar" alt="Awal"><span>আবদুল আউয়াল</span></div>
-                    <span style="font-size:10px;">▼</span>
-                </div>
-                <div class="custom-options-container" id="customMemberOptions">
-                    <div class="custom-option-header" id="grpMembers">সদস্যের পেজসমূহ</div>
-                    <div class="custom-option-item selected" onclick="selectMemberOption('awal')"><img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" class="custom-select-avatar" alt="Awal"><span id="opt-awal">আবদুল আউয়াল</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('arif')"><img src="https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw" class="custom-select-avatar" alt="Arif"><span id="opt-arif">আরিফ হোসেন</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('babor')"><img src="https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl" class="custom-select-avatar" alt="Babor"><span id="opt-babor">বাবর পাটোয়ারী</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('babul')"><img src="https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA" class="custom-select-avatar" alt="Babul"><span id="opt-babul">বাবুল হোসেন</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('jasim')"><img src="https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK" class="custom-select-avatar" alt="Jasim"><span id="opt-jasim">জসিম উদ্দিন</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('main')"><img src="https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX" class="custom-select-avatar" alt="Main"><span id="opt-main">মঈন উদ্দিন</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('saiem')"><img src="https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG" class="custom-select-avatar" alt="Saiem"><span id="opt-saiem">মোঃ সায়েম</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('selim')"><img src="https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0" class="custom-select-avatar" alt="Selim"><span id="opt-selim">সেলিম পাটোয়ারী</span></div>
-                    <div class="custom-option-item" onclick="selectMemberOption('sanawer')"><img src="https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J" class="custom-select-avatar" alt="Sanawer"><span id="opt-sanawer">সানোয়ার কাদের</span></div>
-                    <div class="custom-option-header" id="grpOthers">অন্যান্য পেজসমূহ</div>
-                    <div class="custom-option-item" onclick="selectMemberOption('sec-payment')"><span style="font-size:16px;">🏢</span><span id="opt-payment">সম্পত্তির পরিশোধিত মূল্য</span></div>
-                </div>
-            </div>
-            <input type="date" id="inputDate" required>
-            <input type="text" id="inputRef" placeholder="Ref. No / ID" required autocomplete="off">
-            <input type="text" id="inputBankFrom" placeholder="Sender Bank" required autocomplete="off">
-            <input type="text" id="inputBankTo" placeholder="Receiver Bank" required autocomplete="off">
-            <input type="text" id="inputMonth" placeholder="Month (e.g. January)" required autocomplete="off">
-            <input type="text" id="inputYear" placeholder="Year (e.g. 2026)" required autocomplete="off">
-            <input type="number" id="inputAmount" placeholder="Amount (BDT)" required step="any">
-        </div>
-        <div class="admin-action-buttons" style="flex-direction:column;">
-            <button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
-            <div style="display:flex;gap:8px;width:100%;">
-                <a id="whatsappShareBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-share-btn" style="display:none;">💬 WhatsApp-এ পাঠান</a>
-                <button id="messengerShareBtn" onclick="shareToMessenger()" class="messenger-share-btn" style="display:none;">💬 Messenger-এ পাঠান</button>
-            </div>
-        </div>
-    </div>
+<div class="admin-entry-panel" id="universalAdminPanel">
+<div class="admin-panel-top"><h4 id="adminPanelHeader">এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)</h4><button class="panel-logout-btn" onclick="logoutAdmin()">🔒 লগআউট</button></div>
+<div class="admin-entry-grid">
+<div class="custom-select-wrapper">
+<input type="hidden" id="targetMemberSelect" value="awal">
+<div class="custom-select-trigger" onclick="toggleCustomMemberSelect()">
+<div class="custom-select-trigger-content" id="selectedMemberDisplay"><img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" class="custom-select-avatar" alt="Awal"><span>আবদুল আউয়াল</span></div>
+<span style="font-size:10px;">▼</span>
+</div>
+<div class="custom-options-container" id="customMemberOptions">
+<div class="custom-option-header" id="grpMembers">সদস্যের পেজসমূহ</div>
+<div class="custom-option-item selected" onclick="selectMemberOption('awal')"><img src="https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u" class="custom-select-avatar" alt="Awal"><span id="opt-awal">আবদুল আউয়াল</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('arif')"><img src="https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw" class="custom-select-avatar" alt="Arif"><span id="opt-arif">আরিফ হোসেন</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('babor')"><img src="https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl" class="custom-select-avatar" alt="Babor"><span id="opt-babor">বাবর পাটোয়ারী</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('babul')"><img src="https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA" class="custom-select-avatar" alt="Babul"><span id="opt-babul">বাবুল হোসেন</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('jasim')"><img src="https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK" class="custom-select-avatar" alt="Jasim"><span id="opt-jasim">জসিম উদ্দিন</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('main')"><img src="https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX" class="custom-select-avatar" alt="Main"><span id="opt-main">মঈন উদ্দিন</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('saiem')"><img src="https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG" class="custom-select-avatar" alt="Saiem"><span id="opt-saiem">মোঃ সায়েম</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('selim')"><img src="https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0" class="custom-select-avatar" alt="Selim"><span id="opt-selim">সেলিম পাটোয়ারী</span></div>
+<div class="custom-option-item" onclick="selectMemberOption('sanawer')"><img src="https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J" class="custom-select-avatar" alt="Sanawer"><span id="opt-sanawer">সানোয়ার কাদের</span></div>
+<div class="custom-option-header" id="grpOthers">অন্যান্য পেজসমূহ</div>
+<div class="custom-option-item" onclick="selectMemberOption('sec-payment')"><span style="font-size:16px;">🏢</span><span id="opt-payment">সম্পত্তির পরিশোধিত মূল্য</span></div>
+</div>
+</div>
+<input type="date" id="inputDate" required><input type="text" id="inputRef" placeholder="Ref. No / ID" required autocomplete="off" maxlength="100"><input type="text" id="inputBankFrom" placeholder="Sender Bank" required autocomplete="off" maxlength="120"><input type="text" id="inputBankTo" placeholder="Receiver Bank" required autocomplete="off" maxlength="120"><input type="text" id="inputMonth" placeholder="Month" required autocomplete="off" maxlength="80"><input type="text" id="inputYear" placeholder="Year" required autocomplete="off" maxlength="20"><input type="number" id="inputAmount" placeholder="Amount" required min="0.01" max="100000000000" step="0.01" inputmode="decimal">
+</div>
+<div style="display:flex;flex-direction:column;gap:8px;">
+<button class="admin-save-btn" id="btnSaveData" onclick="submitNewTransaction()">ডাটা সেভ করুন</button>
+<div style="display:flex;gap:8px;width:100%;">
+<a id="whatsappShareBtn" href="#" target="_blank" rel="noopener noreferrer" class="whatsapp-share-btn" style="display:none;">💬 WhatsApp-এ পাঠান</a>
+<button id="messengerShareBtn" onclick="shareToMessenger()" class="messenger-share-btn" style="display:none;">💬 Messenger-এ পাঠান</button>
+</div>
+</div>
+</div>
 
-    <div id="sec-awal" class="section-block">
-        <div class="profile-header-card" id="profile-card-awal"></div>
-        <div class="info-box" id="info-awal"></div>
-        <h3 class="section-title"><span id="title-awal">Abdul Awal</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-awal"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-awal">0.00 BDT</span></p></div>
-    </div>
+<!-- Dynamic Member & Payment Sections generated via loop logic / clean structure -->
+<div id="sec-awal" class="section-block"><div class="profile-header-card" id="profile-card-awal"></div><div class="info-box" id="info-awal"></div><h3 class="section-title"><span id="title-awal">Abdul Awal</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-awal"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-awal">0.00 BDT</span></p></div></div>
+<div id="sec-arif" class="section-block"><div class="profile-header-card" id="profile-card-arif"></div><div class="info-box" id="info-arif"></div><h3 class="section-title"><span id="title-arif">Arif Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-arif"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-arif">0.00 BDT</span></p></div></div>
+<div id="sec-babor" class="section-block"><div class="profile-header-card" id="profile-card-babor"></div><div class="info-box" id="info-babor"></div><h3 class="section-title"><span id="title-babor">Babor Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-babor"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-babor">0.00 BDT</span></p></div></div>
+<div id="sec-babul" class="section-block"><div class="profile-header-card" id="profile-card-babul"></div><div class="info-box" id="info-babul"></div><h3 class="section-title"><span id="title-babul">Babul Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-babul"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-babul">0.00 BDT</span></p></div></div>
+<div id="sec-jasim" class="section-block"><div class="profile-header-card" id="profile-card-jasim"></div><div class="info-box" id="info-jasim"></div><h3 class="section-title"><span id="title-jasim">Jasim Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-jasim"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-jasim">0.00 BDT</span></p></div></div>
+<div id="sec-main" class="section-block"><div class="profile-header-card" id="profile-card-main"></div><div class="info-box" id="info-main"></div><h3 class="section-title"><span id="title-main">Main Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-main"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-main">0.00 BDT</span></p></div></div>
+<div id="sec-saiem" class="section-block"><div class="profile-header-card" id="profile-card-saiem"></div><div class="info-box" id="info-saiem"></div><h3 class="section-title"><span id="title-saiem">Md. Saiem</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-saiem"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-saiem">0.00 BDT</span></p></div></div>
+<div id="sec-selim" class="section-block"><div class="profile-header-card" id="profile-card-selim"></div><div class="info-box" id="info-selim"></div><h3 class="section-title"><span id="title-selim">Selim Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-selim"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-selim">0.00 BDT</span></p></div></div>
+<div id="sec-sanawer" class="section-block"><div class="profile-header-card" id="profile-card-sanawer"></div><div class="info-box" id="info-sanawer"></div><h3 class="section-title"><span id="title-sanawer">Sanawer Quder</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-sanawer"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-sanawer">0.00 BDT</span></p></div></div>
 
-    <div id="sec-arif" class="section-block">
-        <div class="profile-header-card" id="profile-card-arif"></div>
-        <div class="info-box" id="info-arif"></div>
-        <h3 class="section-title"><span id="title-arif">Arif Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-arif"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-arif">0.00 BDT</span></p></div>
-    </div>
+<div id="sec-payment" class="section-block">
+<div class="info-box">
+<p><strong id="lblLandPrice">খরিদকৃত জমির মূল্য:</strong> <span id="valLandPrice">9,100,000.00 BDT</span></p>
+<p><strong id="lblPaidAmount">প্রদেয় টাকার পরিমাণ:</strong> <span id="valPaidAmount">0.00 BDT</span></p>
+<p><strong id="lblDueAmount">প্রদানের বাকি মূল্য:</strong> <span id="valDueAmount" style="color:#ef4444;font-weight:bold;">0.00 BDT</span></p>
+</div>
+<h3 class="section-title" id="pmtTitle">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</h3>
+<div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th id="thReason">কারণ</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-payment"></tbody></table></div>
+<div class="summary-box"><p><span id="lblTotalPaid">সর্বমোট পরিশোধ:</span> <span id="paymentTotal">0.00</span></p></div>
+</div>
 
-    <div id="sec-babor" class="section-block">
-        <div class="profile-header-card" id="profile-card-babor"></div>
-        <div class="info-box" id="info-babor"></div>
-        <h3 class="section-title"><span id="title-babor">Babor Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-babor"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-babor">0.00 BDT</span></p></div>
-    </div>
+<div class="complaint-box">
+<h3 id="lblCompTitle">💥অভিযোগ বা পরামর্শ দিন💥</h3>
+<p id="lblCompSub">যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝:</p>
+<div class="action-btn-group">
+<a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnAdminMessenger">🏡 এডমিন</a>
+<a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t" target="_blank" rel="noopener noreferrer" class="send-msg-btn profile-btn" id="btnMyMessenger">👥 সম্মানিত সদস্যবৃন্দ</a>
+</div>
+</div>
 
-    <div id="sec-babul" class="section-block">
-        <div class="profile-header-card" id="profile-card-babul"></div>
-        <div class="info-box" id="info-babul"></div>
-        <h3 class="section-title"><span id="title-babul">Babul Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-babul"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-babul">0.00 BDT</span></p></div>
-    </div>
-
-    <div id="sec-jasim" class="section-block">
-        <div class="profile-header-card" id="profile-card-jasim"></div>
-        <div class="info-box" id="info-jasim"></div>
-        <h3 class="section-title"><span id="title-jasim">Jasim Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-jasim"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-jasim">0.00 BDT</span></p></div>
-    </div>
-
-    <div id="sec-main" class="section-block">
-        <div class="profile-header-card" id="profile-card-main"></div>
-        <div class="info-box" id="info-main"></div>
-        <h3 class="section-title"><span id="title-main">Main Uddin</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-main"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-main">0.00 BDT</span></p></div>
-    </div>
-
-    <div id="sec-saiem" class="section-block">
-        <div class="profile-header-card" id="profile-card-saiem"></div>
-        <div class="info-box" id="info-saiem"></div>
-        <h3 class="section-title"><span id="title-saiem">Md. Saiem</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-saiem"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-saiem">0.00 BDT</span></p></div>
-    </div>
-
-    <div id="sec-selim" class="section-block">
-        <div class="profile-header-card" id="profile-card-selim"></div>
-        <div class="info-box" id="info-selim"></div>
-        <h3 class="section-title"><span id="title-selim">Selim Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-selim"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-selim">0.00 BDT</span></p></div>
-    </div>
-
-    <div id="sec-sanawer" class="section-block">
-        <div class="profile-header-card" id="profile-card-sanawer"></div>
-        <div class="info-box" id="info-sanawer"></div>
-        <h3 class="section-title"><span id="title-sanawer">Sanawer Quder</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3>
-        <div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-sanawer"></tbody></table></div>
-        <div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-sanawer">0.00 BDT</span></p></div>
-    </div>
-
-    <div id="sec-payment" class="section-block">
-        <div class="info-box">
-            <p><strong id="lblLandPrice">খরিদকৃত জমির মূল্য:</strong> <span id="valLandPrice">9,100,000.00 BDT</span></p>
-            <p><strong id="lblPaidAmount">প্রদেয় টাকার পরিমাণ:</strong> <span id="valPaidAmount">0.00 BDT</span></p>
-            <p><strong id="lblDueAmount">প্রদানের বাকি মূল্য:</strong> <span id="valDueAmount" style="color:#ef4444;font-weight:bold;">0.00 BDT</span></p>
-        </div>
-        <h3 class="section-title" id="pmtTitle">সম্পত্তির পরিশোধিত মূল্যের বিবরণ</h3>
-        <div class="table-responsive">
-            <table><thead><tr><th class="tblHeaderDate">তারিখ ও সময়</th><th class="tblHeaderRef">রেফারেন্স নং (ID)</th><th class="tblHeaderSender">প্রেরক ব্যাংক</th><th class="tblHeaderReceiver">প্রাপক ব্যাংক</th><th id="thReason">কারণ / বিবরণ</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-payment"></tbody></table>
-        </div>
-        <div class="summary-box"><p><span id="lblTotalPaid">সর্বমোট পরিশোধ:</span> <span id="paymentTotal">0.00</span></p></div>
-    </div>
-
-    <div class="complaint-box">
-        <h3 id="lblCompTitle">💥অভিযোগ বা পরামর্শ দিন💥</h3>
-        <p id="lblCompSub">যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝:</p>
-        <div class="action-btn-group">
-            <a href="https://m.me/musafiraawal" target="_blank" rel="noopener noreferrer" class="send-msg-btn" id="btnAdminMessenger">🏡 এডমিন</a>
-            <a href="https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t" target="_blank" rel="noopener noreferrer" class="send-msg-btn profile-btn" id="btnMyMessenger">👥 সম্মানিত সদস্যবৃন্দ</a>
-        </div>
-    </div>
-
-    <footer>
-        <button class="discrete-admin-btn" id="discreteAdminBtn" onclick="openAdminModal()" title="Data Administrator">
-            <img src="https://drive.google.com/file/d/1Z4w-xN9vSUtDHm41PbHW6TDB6d59yVK5/view?usp=drivesdk" alt="CFA Logo" class="discrete-admin-avatar">
-            <span class="discrete-admin-label">ডাটা এডমিনিস্ট্রেটর</span>
-        </button>
-        <p id="ftrCopyright">© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।</p>
-    </footer>
-
-    <div class="print-only-footer" id="printSystemNotice">🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই।</div>
+<footer>
+<button class="discrete-admin-btn" id="discreteAdminBtn" onclick="openAdminModal()" title="Data Administrator">
+<img src="https://drive.google.com/file/d/1Z4w-xN9vSUtDHm41PbHW6TDB6d59yVK5/view?usp=drivesdk" alt="CFA Logo" class="discrete-admin-avatar">
+<span class="discrete-admin-label">ডাটা এডমিনিস্ট্রেটর</span>
+</button>
+<p id="ftrCopyright">© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।</p>
+</footer>
+<div class="print-only-footer" id="printSystemNotice">🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই।</div>
 </div>
 
 <script>
-    const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwJTtTE3XYTGjw5nADnZDbPumt2DKuVLGx4BzWB5_yOSZPfMVb9m7GyINiBeRYaAwQ/exec";
-    let isAdminMode = false, globalAdminToken = "", activePageId = "", currentLang = 'bn', userDetectedTimezone = "", lastGeneratedMessage = "", lastFetchedWeather = null;
-
-    const islamicAndPhilosophicalQuotes = [
-        "\"মুমিনগণ পরস্পর ভাই ভাই, অতএব তোমরা তোমাদের ভাইদের মধ্যে আপস-মীমাংসা করে দাও।\" — আল-কুরআন (সূরা আল-হুজুরাত: ১০)",
-        "\"হে ঈমানদারগণ! একে অপরের সম্পত্তি অন্যায়ভাবে ভক্ষণ করো না, কেবল পারস্পরিক সম্মতির ভিত্তিতে যে ব্যবসা করা হয় তা ভিন্ন।\" — আল-কুরআন (সূরা আন-নিসা: ২৯)",
-        "\"সৎ ও বিশ্বস্ত ব্যবসায়ী কিয়ামতের দিন নবীগণ, সিদ্দিক ও শহীদগণের সাথে থাকবে।\" — আল-হাদীস (তিরমিজি)",
-        "\"যে ব্যক্তি কোনো মুমিনের দুনিয়াবি বিপদ দূর করে, আল্লাহ তাআলা কিয়ামতের দিন তার বিপদ দূর করবেন।\" — আল-হাদীস (সহীহ মুসলিম)",
-        "\"ব্যবসা হলো সততা এবং আস্থার এক পবিত্র বন্ধন, যেখানে লাভ শুধু অর্থের নয়, বরং বিশ্বাসের।\" — দার্শনিক উক্তি",
-        "\"দুজন ভালো বন্ধুর মিলন মানে একটি নতুন শক্তির জন্ম, যা যেকোনো কঠিন পাহাড়সম কাজকে সহজ করে দিতে পারে।\" — দার্শনিক উক্তি",
-        "\"সত্যিকারের বন্ধু সেই যে বিপদে পাশে থাকে এবং লেনদেনে পরম বিশ্বস্ততা বজায় রাখে।\" — ইসলামিক প্রবাদ",
-        "\"যে ব্যবসায় সততা ও পারস্পরিক সহযোগিতা থাকে, সেখানে আল্লাহর বরকত স্বয়ংক্রিয়ভাবে নেমে আসে।\" — ইসলামিক নীতি",
-        "\"পরস্পর সৎকর্মে ও তাকওয়ায় একে অপরকে সহযোগিতা করো এবং পাপ ও সীমা লঙ্ঘনে সহযোগিতা করো না।\" — আল-কুরআন (সূরা আল-মায়িদা: ২)"
-    ];
-
-    const memberKeys = ["awal", "arif", "babor", "babul", "jasim", "main", "saiem", "selim", "sanawer"];
-    const memberShares = { awal: 1, arif: 1, babor: 2, babul: 1, jasim: 2, main: 1, saiem: 1, selim: 1, sanawer: 2 };
-    const memberDirectory = {
-        awal: { blood: "B+", photo: "https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u", fb: "https://www.facebook.com/musafiraawal", email: "aawal86@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        arif: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw", fb: "https://www.facebook.com/arif.hussein.3726", email: "mdarifbaibd2022@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        babor: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl", fb: "https://www.facebook.com/babor.babor.96558", email: "baborhossain693@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        babul: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA", fb: "https://www.facebook.com/mohbabulhossain.rana", email: "babulrana778800@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        jasim: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK", fb: "https://www.facebook.com/md.jasim.uddin.660296", email: "jasimuddin7072@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        main: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX", fb: "https://www.facebook.com/moin.ahamed.sumon", email: "sumonraipur987@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        saiem: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG", fb: "https://www.facebook.com/md.shakil.752", email: "mdsaiem86@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        selim: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0", fb: "https://www.facebook.com/salim.patwary.846831", email: "salimpatwarys111@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } },
-        sanawer: { blood: "-", photo: "https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J", fb: "https://www.facebook.com/sq.arif", email: "sqarif84@gmail.com", role: { bn: "সম্মানিত সদস্য", en: "Honorable Member" } }
-    };
-
-    const TOTAL_LAND_PRICE = 9100000, TOTAL_SHARES = 12, PER_SHARE_PRICE = TOTAL_LAND_PRICE / TOTAL_SHARES;
-
-    const memberNames = {
-        bn: { awal: "আবদুল আউয়াল", arif: "আরিফ হোসেন", babor: "বাবর পাটোয়ারী", babul: "বাবুল হোসেন", jasim: "জসিম উদ্দিন", main: "মঈন উদ্দিন", saiem: "মোঃ সায়েম", selim: "সেলিম পাটোয়ারী", sanawer: "সানোয়ার কাদের" },
-        en: { awal: "Abdul Awal", arif: "Arif Hossain", babor: "Babor Patwary", babul: "Babul Hossain", jasim: "Jasim Uddin", main: "Main Uddin", saiem: "Md. Saiem", selim: "Selim Patwary", sanawer: "Sanawer Quder" }
-    };
-
-    const langText = {
-        bn: {
-            loading: "ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...",
-            hdrBismillah: "পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি",
-            welcomeSalam: "আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক",
-            hdrTitle: "বন্ধুত্বের স্মারক সমিতি", hdrEst: "স্থাপিত: ২০২৬", welcomeHeading: "আপনাকে স্বাগতম",
-            userLocFail: "বাংলাদেশ (BD)", weatherFail: "তথ্য নেই",
-            lblLocTitle: "📍 লোকেশন", lblTimeTitle: "⏰ সময়", lblDateTitle: "📅 তারিখ", lblWeatherTitle: "🌤️ আবহাওয়া",
-            marqueePrefix: "সমিতির তহবিলে বর্তমানে জমা আছে:", marqueeSuffix: "টাকা মাত্র",
-            lblNavHome: "হোম", lblNavMembers: "সদস্যবৃন্দ", lblNavDirectory: "🩸প্রোফাইল", lblNavProperty: "সম্পত্তির পরিশোধিত মূল্য",
-            lblAdminModalTitle: "এডমিন লগইন", lblAdminPass: "এডমিন পাসওয়ার্ড দিন", adminPassHolder: "পাসওয়ার্ড লিখুন",
-            btnModalCancel: "বাতিল", btnModalLogin: "লগইন", errorMsg: "অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!",
-            currentMonthTitle: "📊 চলতি মাসের জমার বিবরণ", thCurrName: "সদস্যের নাম", thCurrAmount: "চলতি মাসে জমা",
-            summaryTitle: "📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)", thName: "সদস্যের নাম", thShare: "শেয়ার", thTotal: "মোট জমা", thStatus: "অবস্থা / বকেয়া", thTarget: "নির্ধারিত মূল্য",
-            dueLabel: "(বকেয়া)", surplusLabel: "(উদ্বৃত্ত)", paidLabel: "(পরিশোধিত)", grandTotal: "সর্বমোট",
-            adminHeaderMember: "এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)", adminHeaderProperty: "এডমিন ডাটা এন্ট্রি প্যানেল (সম্পত্তির পরিশোধিত মূল্য)",
-            grpMembers: "সদস্যের পেজসমূহ", grpOthers: "অন্যান্য পেজসমূহ", optPayment: "সম্পত্তির পরিশোধিত মূল্য", btnSaveData: "ডাটা সেভ করুন", noData: "- কোন তথ্য পাওয়া যায়নি -",
-            dirTitle: "সদস্যবৃন্দের ডায়রেক্টরি ও ব্লাড ব্যাংক", dirSub: "জরুরি প্রয়োজনে সদস্যদের সাথে সরাসরি যোগাযোগ ও রক্তের গ্রুপিং বিবরণী:",
-            tblDate: "তারিখ ও সময়", tblRef: "রেফারেন্স নং", tblSender: "প্রেরক ব্যাংক", tblReceiver: "প্রাপক ব্যাংক", tblMonth: "মাস/বছর", tblAmount: "পরিমাণ", tblDetailsTxt: "লেনদেনের বিবরণ", lblTotalDep: "মোট জমা:",
-            lblLandPrice: "খরিদকৃত জমির মূল্য:", lblPaidAmount: "প্রদেয় টাকার পরিমাণ:", lblDueAmount: "প্রদানের বাকি মূল্য:", pmtTitle: "সম্পত্তির পরিশোধিত মূল্যের বিবরণ", thReason: "কারণ / বিবরণ", lblTotalPaid: "সর্বমোট পরিশোধ:",
-            lblShareholder: "শেয়ারহোল্ডারের নাম:", lblAllocatedShares: "বরাদ্দকৃত শেয়ার:", lblTargetAmount: "নির্ধারিত মূল্য:", lblTotalDeposited: "সর্বমোট জমা:", lblRemainingDue: "অবশিষ্ট বকেয়া / অবস্থা:", lblStatementDate: "স্টেটমেন্ট তারিখ:",
-            lblCompTitle: "💥অভিযোগ বা পরামর্শ দিন💥", lblCompSub: "যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝", btnAdminMessenger: "🏡 এডমিন", btnMyMessenger: "👥 সম্মানিত সদস্যবৃন্দ",
-            ftrCopyright: "© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।", printNotice: "🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই."
-        },
-        en: {
-            loading: "Processing data, please wait...",
-            hdrBismillah: "In the name of Allah, the Most Gracious, the Most Merciful",
-            welcomeSalam: "Peace, mercy, and blessings of Allah be upon you",
-            hdrTitle: "Childhood Friends Association", hdrEst: "Established: 2026", welcomeHeading: "Welcome",
-            userLocFail: "Bangladesh (BD)", weatherFail: "No Weather",
-            lblLocTitle: "📍 LOCATION", lblTimeTitle: "⏰ LIVE TIME", lblDateTitle: "📅 DATE", lblWeatherTitle: "🌤️ WEATHER",
-            marqueePrefix: "Current Balance in Association Fund:", marqueeSuffix: "BDT only",
-            lblNavHome: "Home", lblNavMembers: "Members", lblNavDirectory: "🩸Profile", lblNavProperty: "Paid Property Value",
-            lblAdminModalTitle: "Admin Login", lblAdminPass: "Enter Admin Password", adminPassHolder: "Enter password",
-            btnModalCancel: "Cancel", btnModalLogin: "Login", errorMsg: "Please enter the correct password for Admin login!",
-            currentMonthTitle: "📊 Current Month Deposit Statement", thCurrName: "Member Name", thCurrAmount: "Current Month Deposit",
-            summaryTitle: "📊 Summary of Members' Accounts at a Glance (Live)", thName: "Member Name", thShare: "Share(s)", thTotal: "Total Deposited", thStatus: "Status / Due", thTarget: "Target Value",
-            dueLabel: "(Due)", surplusLabel: "(Surplus)", paidLabel: "(Paid)", grandTotal: "Grand Total",
-            adminHeaderMember: "Data Administrator (Member Deposit)", adminHeaderProperty: "Data Administrator (Paid Property Value)",
-            grpMembers: "Member Pages", grpOthers: "Other Pages", optPayment: "Paid Property Value", btnSaveData: "Save Data", noData: "- No data found -",
-            dirTitle: "Member Directory & Blood Bank", dirSub: "Direct contact info and blood group records for emergency needs:",
-            tblDate: "Date & Time", tblRef: "Ref. No", tblSender: "Sender Bank", tblReceiver: "Receiver Bank", tblMonth: "Month/Year", tblAmount: "Amount", tblDetailsTxt: "Transaction Details", lblTotalDep: "Total Deposited:",
-            lblLandPrice: "Purchased Land Value:", lblPaidAmount: "Total Paid Amount:", lblDueAmount: "Remaining Due Amount:", pmtTitle: "Payment Statement - Transaction Details", thReason: "Reason / Title", lblTotalPaid: "Total Paid:",
-            lblShareholder: "Shareholder Name:", lblAllocatedShares: "Allocated Shares:", lblTargetAmount: "Target Amount:", lblTotalDeposited: "Total Deposited:", lblRemainingDue: "Remaining Due / Status:", lblStatementDate: "Statement Date:",
-            lblCompTitle: "💥Complaints or Feedback💥", lblCompSub: "Please write 📝 for any complaints or suggestions:", btnAdminMessenger: "🏡 Admin", btnMyMessenger: "👥 Honorable Members",
-            ftrCopyright: "© 2026 Childhood Friends Association. All Rights Reserved.", printNotice: "🔒 This is a system-generated automatic document. No signature is required."
-        }
-    };
-
-    let db = { transactions: { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] }, payments: [] };
-
-    const gmailSvgIcon = `<svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#4285F4" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/><path fill="#34A853" d="M2 6v12c0 1.1.9 2 2 2h2V8.5L2 6z"/><path fill="#EA4335" d="M20 4H4c-.7 0-1.3.4-1.7 1L12 12.5 21.7 5c-.4-.6-1-.9-1.7-.9z"/><path fill="#FBBC04" d="M22 6l-4 2.5V20h2c1.1 0 2-.9 2-2V6z"/><path fill="#C5221F" d="M12 12.5L2 6v2.5l10 6.5 10-6.5V6l-10 6.5z"/></svg>`;
-    const fbSvgIcon = `<svg width="32" height="32" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg"><path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/><path fill="#FFFFFF" d="M24.238 23.203l.752-5.203h-4.707v-3.352c0-1.342.657-2.65 2.764-2.65h2.141V7.82s-1.943-.332-3.8-.332c-3.877 0-6.41 2.35-6.41 6.602V18H10.88v5.203h4.308v12.572C16.136 35.918 17.058 36 18 36c.942 0 1.864-.082 2.812-.225V23.203h3.426z"/></svg>`;
-
-    function loadRandomQuote() {
-        const randomIndex = Math.floor(Math.random() * islamicAndPhilosophicalQuotes.length);
-        const quoteEl = document.getElementById("dynamicQuoteStatic");
-        if (quoteEl) quoteEl.textContent = islamicAndPhilosophicalQuotes[randomIndex];
-    }
-
-    function sanitizeInput(str) {
-        if (typeof str !== 'string') return str;
-        return str.replace(/[&<>"']/g, function(match) {
-            const escapeMap = { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#x27;' };
-            return escapeMap[match];
-        });
-    }
-
-    function toggleDropdown(id) { document.getElementById(id).classList.toggle('show'); }
-    function toggleCustomMemberSelect() { document.getElementById("customMemberOptions").classList.toggle("open"); }
-
-    function selectMemberOption(val) {
-        document.getElementById("targetMemberSelect").value = val;
-        const display = document.getElementById("selectedMemberDisplay");
-        if (val === "sec-payment") {
-            display.innerHTML = `<span style="font-size:16px;">🏢</span> <span>${langText[currentLang].optPayment}</span>`;
-        } else {
-            const photo = memberDirectory[val].photo;
-            const name = memberNames[currentLang][val];
-            display.innerHTML = `<img src="${photo}" class="custom-select-avatar" alt="${val}"> <span>${name}</span>`;
-        }
-        document.querySelectorAll(".custom-option-item").forEach(item => item.classList.remove("selected"));
-        event.currentTarget.classList.add("selected");
-        document.getElementById("customMemberOptions").classList.remove("open");
-        adjustAdminFormFields();
-    }
-
-    window.onclick = function(event) {
-        if (!event.target.closest('.nav-item')) {
-            const dropdowns = document.getElementsByClassName("dropdown-menu");
-            for (let i = 0; i < dropdowns.length; i++) dropdowns[i].classList.remove('show');
-        }
-        if (!event.target.closest('.custom-select-wrapper')) {
-            const customOpt = document.getElementById("customMemberOptions");
-            if (customOpt && customOpt.classList.contains("open")) customOpt.classList.remove("open");
-        }
-    }
-
-    function toggleDarkMode() { document.body.classList.toggle('dark-mode'); }
-    function toggleLanguage() {
-        currentLang = (currentLang === 'bn') ? 'en' : 'bn';
-        document.getElementById("langBtn").textContent = (currentLang === 'bn') ? 'EN' : 'BN';
-        applyLanguageStrings();
-    }
-
-    function applyLanguageStrings() {
-        const t = langText[currentLang];
-        document.getElementById("loadingTxt").textContent = t.loading;
-        document.getElementById("hdrBismillah").textContent = t.hdrBismillah;
-        document.getElementById("welcomeSalam").textContent = t.welcomeSalam;
-        document.getElementById("hdrTitle").textContent = t.hdrTitle;
-        document.getElementById("hdrEst").textContent = t.hdrEst;
-        document.getElementById("welcomeHeading").textContent = t.welcomeHeading;
-        document.getElementById("lblLocTitle").textContent = t.lblLocTitle;
-        document.getElementById("lblTimeTitle").textContent = t.lblTimeTitle;
-        document.getElementById("lblDateTitle").textContent = t.lblDateTitle;
-        document.getElementById("lblWeatherTitle").textContent = t.lblWeatherTitle;
-        document.getElementById("marqueePrefix").textContent = t.marqueePrefix;
-        document.getElementById("marqueeSuffix").textContent = t.marqueeSuffix;
-
-        document.getElementById("lblNavHome").textContent = t.lblNavHome;
-        document.getElementById("lblNavMembers").textContent = t.lblNavMembers;
-        document.getElementById("lblNavDirectory").textContent = t.lblNavDirectory;
-        document.getElementById("lblNavProperty").textContent = t.lblNavProperty;
-
-        document.getElementById("dirTitle").textContent = t.dirTitle;
-        document.getElementById("dirSub").textContent = t.dirSub;
-
-        memberKeys.forEach(key => {
-            const name = memberNames[currentLang][key];
-            const menuEl = document.getElementById(`menu-${key}`);
-            const optEl = document.getElementById(`opt-${key}`);
-            const titleEl = document.getElementById(`title-${key}`);
-            if (menuEl) { const spanEl = menuEl.querySelector("span"); if (spanEl) spanEl.textContent = name; }
-            if (optEl) optEl.textContent = name;
-            if (titleEl) titleEl.textContent = name;
-        });
-
-        document.getElementById("lblAdminModalTitle").textContent = t.lblAdminModalTitle;
-        document.getElementById("lblAdminPass").textContent = t.lblAdminPass;
-        document.getElementById("adminPasscode").placeholder = t.adminPassHolder;
-        document.getElementById("btnModalLogin").textContent = t.btnModalLogin;
-        document.getElementById("btnModalCancel").textContent = t.btnModalCancel;
-        document.getElementById("errorMsg").textContent = t.errorMsg;
-
-        document.getElementById("currentMonthTitle").textContent = t.currentMonthTitle;
-        document.getElementById("thCurrName").textContent = t.thCurrName;
-        document.getElementById("thCurrAmount").textContent = t.thCurrAmount;
-
-        document.getElementById("summaryTitle").textContent = t.summaryTitle;
-        document.getElementById("thName").textContent = t.thName;
-        document.getElementById("thShare").textContent = t.thShare;
-        document.getElementById("thTotal").textContent = t.thTotal;
-        document.getElementById("thStatus").textContent = t.thStatus;
-        document.getElementById("thTarget").textContent = t.thTarget;
-
-        document.getElementById("grpMembers").textContent = t.grpMembers;
-        document.getElementById("grpOthers").textContent = t.grpOthers;
-        document.getElementById("opt-payment").textContent = t.optPayment;
-        document.getElementById("btnSaveData").textContent = t.btnSaveData;
-
-        const currentTargetVal = document.getElementById("targetMemberSelect").value;
-        const display = document.getElementById("selectedMemberDisplay");
-        if (currentTargetVal === "sec-payment") {
-            display.innerHTML = `<span style="font-size:16px;">🏢</span> <span>${t.optPayment}</span>`;
-        } else {
-            const photo = memberDirectory[currentTargetVal].photo;
-            const name = memberNames[currentLang][currentTargetVal];
-            display.innerHTML = `<img src="${photo}" class="custom-select-avatar" alt="${currentTargetVal}"> <span>${name}</span>`;
-        }
-
-        document.querySelectorAll(".tblHeaderDate").forEach(el => el.textContent = t.tblDate);
-        document.querySelectorAll(".tblHeaderRef").forEach(el => el.textContent = t.tblRef);
-        document.querySelectorAll(".tblHeaderSender").forEach(el => el.textContent = t.tblSender);
-        document.querySelectorAll(".tblHeaderReceiver").forEach(el => el.textContent = t.tblReceiver);
-        document.querySelectorAll(".tblHeaderMonth").forEach(el => el.textContent = t.tblMonth);
-        document.querySelectorAll(".tblHeaderAmount").forEach(el => el.textContent = t.tblAmount);
-        document.querySelectorAll(".titleDetailsTxt").forEach(el => el.textContent = t.tblDetailsTxt);
-        document.querySelectorAll(".lblTotalDep").forEach(el => el.textContent = t.lblTotalDep);
-
-        document.getElementById("lblLandPrice").textContent = t.lblLandPrice;
-        document.getElementById("lblPaidAmount").textContent = t.lblPaidAmount;
-        document.getElementById("lblDueAmount").textContent = t.lblDueAmount;
-        document.getElementById("pmtTitle").textContent = t.pmtTitle;
-        document.getElementById("thReason").textContent = t.thReason;
-        document.getElementById("lblTotalPaid").textContent = t.lblTotalPaid;
-
-        document.getElementById("lblCompTitle").textContent = t.lblCompTitle;
-        document.getElementById("lblCompSub").textContent = t.lblCompSub;
-        document.getElementById("btnAdminMessenger").textContent = t.btnAdminMessenger;
-        document.getElementById("btnMyMessenger").textContent = t.btnMyMessenger;
-
-        document.getElementById("ftrCopyright").textContent = t.ftrCopyright;
-        document.getElementById("printSystemNotice").textContent = t.printNotice;
-
-        adjustAdminFormFields();
-        renderAllData();
-        renderMemberDirectory();
-        updateLiveClockAndDate();
-        
-        if (lastFetchedWeather) {
-            displayWeather(lastFetchedWeather.temp, lastFetchedWeather.code, lastFetchedWeather.isDay);
-        } else {
-            fetchDeviceLocationAndWeather();
-        }
-    }
-
-    function renderMemberDirectory() {
-        const grid = document.getElementById("memberCardsGrid");
-        if (!grid) return;
-        let html = "";
-        memberKeys.forEach(key => {
-            const name = memberNames[currentLang][key];
-            const info = memberDirectory[key];
-            const roleTxt = info.role[currentLang];
-            html += `
-                <div class="member-card">
-                    <img src="${info.photo}" alt="${name}" class="member-avatar">
-                    <div class="member-info">
-                        <h4>${name}</h4>
-                        <p>${roleTxt}</p>
-                        <span class="blood-badge">🩸 Group: ${info.blood}</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="mailto:${info.email}" class="action-icon-btn" title="Email ${name}">${gmailSvgIcon}</a>
-                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook Profile">${fbSvgIcon}</a>
-                    </div>
-                </div>
-            `;
-        });
-        grid.innerHTML = html;
-    }
-
-    function showLoading(show) { document.getElementById('loadingOverlay').style.display = show ? 'block' : 'none'; }
-    function openAdminModal() { document.getElementById("adminModal").classList.add("show"); document.getElementById("adminPasscode").value = ""; document.getElementById("errorMsg").style.display = "none"; }
-    function closeAdminModal() { document.getElementById("adminModal").classList.remove("show"); }
-
-    function submitAdminLogin() {
-        const adminPass = document.getElementById("adminPasscode").value;
-        showLoading(true);
-        fetch(SCRIPT_URL, {
-            method: "POST",
-            headers: { "Content-Type": "text/plain;charset=utf-8" },
-            body: JSON.stringify({ action: "verify_admin", password: adminPass })
-        })
-        .then(res => res.json())
-        .then(res => {
-            showLoading(false);
-            if (res.success) {
-                isAdminMode = true;
-                globalAdminToken = adminPass;
-                closeAdminModal();
-                document.getElementById("discreteAdminBtn").style.display = "none";
-                document.getElementById("universalAdminPanel").style.display = "block";
-                adjustAdminFormFields();
-            } else {
-                document.getElementById("errorMsg").style.display = "block";
-            }
-        })
-        .catch(() => { showLoading(false); alert("Connection error!"); });
-    }
-
-    function logoutAdmin() {
-        isAdminMode = false;
-        globalAdminToken = "";
-        document.getElementById("discreteAdminBtn").style.display = "inline-flex";
-        document.getElementById("universalAdminPanel").style.display = "none";
-        document.getElementById("whatsappShareBtn").style.display = "none";
-        document.getElementById("messengerShareBtn").style.display = "none";
-    }
-
-    function showHomepage() {
-        const sections = document.getElementsByClassName("section-block");
-        for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
-        document.getElementById("sec-welcome").classList.add("active");
-        document.getElementById("pageDynamicTitle").textContent = "CFA Homepage";
-    }
-
-    function openMemberPage(sectionId) {
-        const sections = document.getElementsByClassName("section-block");
-        for (let i = 0; i < sections.length; i++) sections[i].classList.remove("active");
-        const targetSec = document.getElementById(sectionId);
-        if (targetSec) {
-            targetSec.classList.add("active");
-            activePageId = sectionId;
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-            document.getElementById("membersDropdown").classList.remove("show");
-            if (sectionId === "sec-payment") {
-                document.getElementById("pageDynamicTitle").textContent = "Payment CFA";
-            } else if (memberKeys.some(k => sectionId === `sec-${k}`)) {
-                const memberKey = sectionId.replace("sec-", "");
-                const memberName = memberNames['bn'][memberKey];
-                document.getElementById("pageDynamicTitle").textContent = `${memberName} Statement`;
-            } else if (sectionId === "sec-directory") {
-                document.getElementById("pageDynamicTitle").textContent = "CFA Directory & Blood Bank";
-            }
-        }
-    }
-
-    function adjustAdminFormFields() {
-        const target = document.getElementById("targetMemberSelect").value;
-        const panelHeader = document.getElementById("adminPanelHeader");
-        const bankFromInput = document.getElementById("inputBankFrom");
-        const bankToInput = document.getElementById("inputBankTo");
-        const monthInput = document.getElementById("inputMonth");
-        const yearInput = document.getElementById("inputYear");
-        const t = langText[currentLang];
-
-        if (target === "sec-payment") {
-            panelHeader.textContent = t.adminHeaderProperty;
-            bankFromInput.placeholder = "Sender Bank";
-            bankToInput.placeholder = "Receiver Bank";
-            monthInput.placeholder = currentLang === 'bn' ? "কারণ / বিবরণ" : "Reason / Title";
-            yearInput.placeholder = "Year (e.g. 2026)";
-            yearInput.style.display = "inline-block";
-        } else {
-            panelHeader.textContent = t.adminHeaderMember;
-            bankFromInput.placeholder = "Sender Bank";
-            bankToInput.placeholder = "Receiver Bank";
-            monthInput.placeholder = "Month (e.g. January)";
-            yearInput.placeholder = "Year (e.g. 2026)";
-            yearInput.style.display = "inline-block";
-        }
-    }
-
-    function applyData(data) {
-        if (!Array.isArray(data)) throw new Error("Invalid Google Sheets response");
-        db.transactions = { awal: [], arif: [], babor: [], babul: [], jasim: [], main: [], saiem: [], selim: [], sanawer: [] };
-        db.payments = [];
-        data.forEach(item => {
-            if (!item || typeof item !== "object") return;
-            const target = sanitizeInput(item.target);
-            const amountText = String(item.amount ?? "").trim();
-            if (!/^-?(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(amountText)) return;
-            const amount = Number(amountText.replace(/,/g, ""));
-            if (!Number.isFinite(amount)) return;
-
-            if (target === "sec-payment") {
-                db.payments.push({
-                    date: sanitizeInput(item.date),
-                    ref: sanitizeInput(item.ref),
-                    senderBank: sanitizeInput(item.senderBank || item.bankFrom),
-                    receiverBank: sanitizeInput(item.receiverBank || item.bankTo),
-                    reasonTitle: sanitizeInput(item.reasonTitle || item.month),
-                    year: sanitizeInput(item.year || "-"),
-                    amount: amount
-                });
-            } else if (memberKeys.includes(target)) {
-                db.transactions[target].push({
-                    date: sanitizeInput(item.date),
-                    ref: sanitizeInput(item.ref),
-                    bankFrom: sanitizeInput(item.bankFrom),
-                    bankTo: sanitizeInput(item.bankTo),
-                    month: sanitizeInput(item.month),
-                    year: sanitizeInput(item.year),
-                    amount: amount
-                });
-            }
-        });
-        renderAllData();
-    }
-
-    function fetchFromGoogleSheet() {
-        if (!SCRIPT_URL) return Promise.resolve();
-        let hadCache = false;
-        if (!window.__cfaCacheTried) {
-            window.__cfaCacheTried = true;
-            try {
-                const c = localStorage.getItem('cfa_cache_v1');
-                if (c) { applyData(JSON.parse(c)); hadCache = true; }
-            } catch (e) {}
-        }
-
-        showLoading(!hadCache);
-        const statusNotice = document.getElementById("dataStatusNotice");
-        if (statusNotice && !hadCache) statusNotice.style.display = "none";
-        const retryBtn = document.getElementById("retryBtn");
-        if (retryBtn) retryBtn.style.display = "none";
-        document.getElementById("loadingTxt").textContent = langText[currentLang].loading;
-
-        let req;
-        if (window.__cfaEarly && !window.__cfaEarlyUsed) {
-            window.__cfaEarlyUsed = true;
-            req = window.__cfaEarly;
-        } else {
-            req = fetch(SCRIPT_URL).then(res => { if (!res.ok) throw new Error("Network error"); return res.json(); });
-        }
-
-        return req.then(data => {
-            if (!Array.isArray(data)) throw new Error("Invalid response");
-            applyData(data);
-            try { localStorage.setItem('cfa_cache_v1', JSON.stringify(data)); } catch (e) {}
-            if (statusNotice) statusNotice.style.display = "none";
-            showLoading(false);
-        }).catch(err => {
-            console.error(err);
-            if (hadCache) {
-                showLoading(false);
-                if (statusNotice) {
-                    statusNotice.textContent = currentLang === 'bn' ? "⚠️ ইন্টারনেট/Google Sheets সংযোগ পাওয়া যায়নি। নিচে সংরক্ষিত পুরোনো ডাটা দেখানো হচ্ছে—নতুন তথ্য নাও থাকতে পারে।" : "⚠️ Google Sheets is unavailable. Showing cached data.";
-                    statusNotice.style.display = "block";
-                }
-                return;
-            }
-            document.getElementById("loadingTxt").textContent = currentLang === 'bn' ? "⚠️ ডাটা লোড করতে ব্যর্থ হয়েছে। ইন্টারনেট কানেকশন চেক করুন।" : "⚠️ Failed to load data.";
-            if (retryBtn) retryBtn.style.display = "inline-block";
-        });
-    }
-
-    function submitNewTransaction() {
-        const target = sanitizeInput(document.getElementById("targetMemberSelect").value);
-        const rawDate = sanitizeInput(document.getElementById("inputDate").value.trim());
-        const ref = sanitizeInput(document.getElementById("inputRef").value.trim());
-        const bankFrom = sanitizeInput(document.getElementById("inputBankFrom").value.trim());
-        const bankTo = sanitizeInput(document.getElementById("inputBankTo").value.trim());
-        const month = sanitizeInput(document.getElementById("inputMonth").value.trim());
-        const year = sanitizeInput(document.getElementById("inputYear").value.trim());
-        const rawAmount = document.getElementById("inputAmount").value.trim();
-
-        if (!rawDate || !ref || !bankFrom || !bankTo || !month || !year || !rawAmount) {
-            alert(currentLang === 'bn' ? "⚠️ অনুগ্রহ করে সব তথ্য সম্পূর্ণ পূরণ করুন!" : "⚠ Please fill in all fields!");
-            return;
-        }
-
-        const amount = Number(rawAmount.replace(/,/g, ""));
-        if (!/^(?:\d+|\d{1,3}(?:,\d{3})+)(?:\.\d+)?$/.test(rawAmount) || !Number.isFinite(amount) || amount <= 0) {
-            alert(currentLang === 'bn' ? "⚠️ টাকার পরিমাণ সঠিক নয়!" : "⚠ Invalid Amount!");
-            return;
-        }
-
-        const now = new Date();
-        const currentTime = now.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, timeZone: userDetectedTimezone || undefined });
-        const dateParts = rawDate.split("-");
-        const formattedDateTime = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]} ${currentTime}`;
-
-        let payload = { action: "save_transaction", adminPassword: globalAdminToken, target, date: formattedDateTime, ref, amount, bankFrom, bankTo, month, year };
-
-        if (SCRIPT_URL) {
-            showLoading(true);
-            fetch(SCRIPT_URL, {
-                method: "POST",
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify(payload)
-            })
-            .then(res => res.json())
-            .then(res => {
-                showLoading(false);
-                if (res.success) {
-                    alert(currentLang === 'bn' ? "ডাটা সফলভাবে গুগল শিটে সেভ হয়েছে!" : "Data saved successfully!");
-                    if (target === "sec-payment") {
-                        db.payments.push({ amount, date: formattedDateTime });
-                    } else if (memberKeys.includes(target)) {
-                        db.transactions[target].push({ amount, date: formattedDateTime });
-                    }
-                    
-                    // --- মেসেজ জেনারেট এবং শেয়ার বাটন দৃশ্যমান করার অংশ যোগ করা হলো ---
-                    let calcTotalDeposited = 0;
-                    memberKeys.forEach(k => { (db.transactions[k] || []).forEach(item => { calcTotalDeposited += item.amount; }); });
-                    let calcTotalPayment = 0;
-                    db.payments.forEach(item => { calcTotalPayment += item.amount; });
-                    const currentFundBalanceStr = (calcTotalDeposited - calcTotalPayment).toFixed(2);
-                    let memberExtraInfo = "";
-                    let targetNameStr = target === "sec-payment" ? "সম্পত্তির পরিশোধিত মূল্য" : memberNames['bn'][target];
-
-                    if (memberKeys.includes(target)) {
-                        let memberTotal = 0;
-                        if (db.transactions[target]) { db.transactions[target].forEach(item => memberTotal += item.amount); }
-                        const shares = memberShares[target];
-                        const targetAmount = shares * PER_SHARE_PRICE;
-                        const diff = targetAmount - memberTotal;
-                        let memberPct = (memberTotal / targetAmount) * 100;
-                        if (isNaN(memberPct)) memberPct = 0;
-
-                        let statusText = diff > 0 ? `${diff.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT (বকেয়া)` : (diff < 0 ? `+${Math.abs(diff).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT (উদ্বৃত্ত)` : `0.00 BDT (পরিশোধিত)`);
-                        memberExtraInfo = `👤 *সদস্যের মোট জমা:* ${memberTotal.toFixed(2)} BDT\n` +
-                                          `📈 *পরিশোধের অগ্রগতি:* ${memberPct.toFixed(1)}%\n` +
-                                          `📊 *অবস্থা/বকেয়া:* ${statusText}\n`;
-                    }
-
-                    lastGeneratedMessage = `📢 *বন্ধুত্বের স্মারক সমিতি - নতুন জমা এন্ট্রি*\n\n` +
-                                           `👤 *নাম/খাত:* ${targetNameStr}\n` +
-                                           `💰 *এবারের জমা:* ${amount.toFixed(2)} BDT\n` +
-                                           `${memberExtraInfo}` +
-                                           `📅 *তারিখ:* ${formattedDateTime}\n` +
-                                           `🔢 *রেফারেন্স নং:* ${ref}\n` +
-                                           `🏦 *প্রেরক ব্যাংক:* ${bankFrom}\n` +
-                                           `🏦 *প্রাপক ব্যাংক:* ${bankTo}\n` +
-                                           `📌 *মাস/বছর:* ${month} ${year}\n\n` +
-                                           `━━━━━━━━━━━━━━━\n` +
-                                           `💼 *সমিতির তহবিলে বর্তমান জমা:* ${currentFundBalanceStr} BDT\n` +
-                                           `━━━━━━━━━━━━━━━\n\n` +
-                                           `🙏 প্রিয় *${targetNameStr}*, আপনাকে অনেক ধন্যবাদ! বিস্তারিত দেখতে ভিজিট করুন: https://childhoodfriendsassociation.github.io/cfa`;
-
-                    const waBtn = document.getElementById("whatsappShareBtn");
-                    waBtn.href = `https://api.whatsapp.com/send?text=${encodeURIComponent(lastGeneratedMessage)}`;
-                    waBtn.style.display = "inline-flex";
-
-                    const messengerBtn = document.getElementById("messengerShareBtn");
-                    messengerBtn.style.display = "inline-flex";
-                    // -------------------------------------------------------------
-
-                    fetchFromGoogleSheet();
-                } else {
-                    alert("Error: " + res.message);
-                }
-            })
-            .catch(() => { showLoading(false); alert("Error saving data!"); });
-        }
-    }
-
-    function shareToMessenger() {
-        if (!lastGeneratedMessage) return;
-        if (navigator.clipboard && navigator.clipboard.writeText) {
-            navigator.clipboard.writeText(lastGeneratedMessage).then(() => {
-                alert(currentLang === 'bn' ? "📋 মেসেজের বিবরণীটি কপি করা হয়েছে! মেসেঞ্জার অপশন খোলার পর চ্যাটে Paste করে দিন।" : "📋 Message copied!");
-            }).catch(() => {});
-        }
-        window.open("https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t", "_blank");
-    }
-
-    function isCurrentMonthTransaction(dateStr) {
-        if (!dateStr) return false;
-        try {
-            let parts = dateStr.split(' ')[0].split('/');
-            let day, month, year;
-            if (parts.length === 3) {
-                day = parseInt(parts[0], 10); month = parseInt(parts[1], 10); year = parseInt(parts[2], 10);
-            } else {
-                let dashParts = dateStr.split(' ')[0].split('-');
-                if (dashParts.length === 3) { year = parseInt(dashParts[0], 10); month = parseInt(dashParts[1], 10); day = parseInt(dashParts[2], 10); }
-                else return false;
-            }
-            const now = new Date();
-            return (month === (now.getMonth() + 1) && year === now.getFullYear());
-        } catch (e) { return false; }
-    }
-
-    function renderAllData() {
-        let grandTotalDeposited = 0, grandTotalTarget = 0, grandTotalDue = 0;
-        const t = langText[currentLang];
-        const frontBody = document.getElementById("frontSummaryBody");
-        let frontBodyHTML = "", currentMonthHTML = "", totalCurrentMonthAll = 0;
-        const todayStr = new Date().toLocaleDateString(currentLang === 'bn' ? 'bn-BD' : 'en-US', { year: 'numeric', month: 'long', day: 'numeric', timeZone: userDetectedTimezone || undefined });
-
-        memberKeys.forEach(key => {
-            const list = db.transactions[key] || [];
-            let total = 0, currentMonthTotal = 0;
-            const tbody = document.getElementById(`table-${key}`);
-            if (tbody) {
-                let tbodyHTML = "";
-                list.forEach(item => {
-                    total += item.amount;
-                    if (isCurrentMonthTransaction(item.date)) currentMonthTotal += item.amount;
-                    let monthYearStr = "-";
-                    if (item.month && item.month !== "-" && item.year && item.year !== "-") monthYearStr = `${item.month}/${item.year}`;
-                    else if (item.month && item.month !== "-") monthYearStr = item.month;
-                    else if (item.year && item.year !== "-") monthYearStr = item.year;
-
-                    tbodyHTML += `<tr><td>${item.date}</td><td>${item.ref}</td><td>${item.bankFrom}</td><td>${item.bankTo}</td><td>${monthYearStr}</td><td>${item.amount.toFixed(2)}</td></tr>`;
-                });
-                if (list.length === 0) tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
-                tbody.innerHTML = tbodyHTML;
-            }
-
-            totalCurrentMonthAll += currentMonthTotal;
-            const memberPhotoUrl = memberDirectory[key].photo, memberDisplayName = memberNames[currentLang][key];
-
-            currentMonthHTML += `<tr><td><div class="summary-name-cell"><img src="${memberPhotoUrl}" alt="${memberDisplayName}" class="summary-avatar"><span>${memberDisplayName}</span></div></td><td style="font-weight:bold;color:var(--accent-color);">${currentMonthTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>`;
-
-            const shares = memberShares[key], targetAmount = shares * PER_SHARE_PRICE, balanceDiff = targetAmount - total;
-            let rawPercentage = (total / targetAmount) * 100, percentage = rawPercentage > 100 ? 100 : rawPercentage;
-            if (isNaN(percentage)) percentage = 0;
-
-            let statusText = "", statusColor = "";
-            if (balanceDiff > 0) {
-                statusText = `${balanceDiff.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${t.dueLabel}`; statusColor = "#ef4444";
-            } else if (balanceDiff < 0) {
-                statusText = `+${Math.abs(balanceDiff).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${t.surplusLabel}`; statusColor = "#10b981"; percentage = 100;
-            } else {
-                statusText = `0.00 ${t.paidLabel}`; statusColor = "#10b981";
-            }
-
-            const infoProfileCard = document.getElementById(`profile-card-${key}`);
-            if (infoProfileCard) {
-                const info = memberDirectory[key];
-                infoProfileCard.innerHTML = `
-                    <img src="${info.photo}" alt="${memberDisplayName}" class="profile-header-avatar">
-                    <div class="profile-header-info">
-                        <h3>${memberDisplayName}</h3>
-                        <p>${info.role[currentLang]}</p>
-                        <span class="blood-badge">🩸 Group: ${info.blood}</span>
-                    </div>
-                    <div class="card-actions">
-                        <a href="mailto:${info.email}" class="action-icon-btn" title="Email">${gmailSvgIcon}</a>
-                        <a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn" title="Facebook">${fbSvgIcon}</a>
-                    </div>
-                `;
-            }
-
-            const infoBox = document.getElementById(`info-${key}`);
-            if (infoBox) {
-                infoBox.innerHTML = `
-                    <p><strong>${t.lblShareholder}</strong> ${memberDisplayName}</p>
-                    <p><strong>${t.lblAllocatedShares}</strong> ${shares} Share(s)</p>
-                    <p><strong>${t.lblTargetAmount}</strong> ${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
-                    <p><strong>${t.lblTotalDeposited}</strong> ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} BDT</p>
-                    <p><strong>${t.lblRemainingDue}</strong> <span style="color:${statusColor};font-weight:bold;">${statusText}</span></p>
-                    <p><strong>${t.lblStatementDate}</strong> ${todayStr}</p>
-                    <div style="margin-top:10px;">
-                        <span class="progress-text-label">💳 Payment Progress: ${rawPercentage.toFixed(1)}% Paid</span>
-                        <div class="progress-bar-container"><div class="progress-bar-fill" style="width:${percentage}%;background-color:${rawPercentage >= 100 ? '#10b981' : '#2563eb'};"></div></div>
-                    </div>
-                `;
-            }
-
-            const totalLabel = document.getElementById(`total-${key}`);
-            if (totalLabel) totalLabel.textContent = `${total.toFixed(2)} BDT`;
-
-            grandTotalDeposited += total; grandTotalTarget += targetAmount; grandTotalDue += balanceDiff;
-
-            frontBodyHTML += `
-                <tr>
-                    <td><div class="summary-name-cell"><img src="${memberPhotoUrl}" alt="${memberDisplayName}" class="summary-avatar"><span>${memberDisplayName}</span></div></td>
-                    <td>${shares}</td>
-                    <td>${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${percentage}%;background-color:${rawPercentage >= 100 ? '#10b981' : '#2563eb'};"></div></div><span style="font-size:9.5px;color:var(--text-muted);font-weight:700;">${rawPercentage.toFixed(1)}%</span></td>
-                    <td style="color:${statusColor};font-weight:bold;">${statusText}</td>
-                    <td>${targetAmount.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-                </tr>
-            `;
-        });
-
-        currentMonthHTML += `<tr style="font-weight:bold;background-color:var(--box-bg);"><td>${t.grandTotal}</td><td style="color:var(--accent-color);">${totalCurrentMonthAll.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td></tr>`;
-        document.getElementById("currentMonthSummaryBody").innerHTML = currentMonthHTML;
-
-        let grandStatusText = "", grandStatusColor = "#10b981";
-        if (grandTotalDue > 0) { grandStatusText = `${grandTotalDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${t.dueLabel}`; grandStatusColor = "#ef4444"; }
-        else if (grandTotalDue < 0) { grandStatusText = `+${Math.abs(grandTotalDue).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})} ${t.surplusLabel}`; }
-        else { grandStatusText = `0.00 ${t.paidLabel}`; }
-
-        let grandPercentage = (grandTotalDeposited / grandTotalTarget) * 100;
-        if (isNaN(grandPercentage)) grandPercentage = 0;
-        if (grandPercentage > 100) grandPercentage = 100;
-
-        frontBodyHTML += `
-            <tr style="font-weight:bold;background-color:var(--box-bg);">
-                <td>${t.grandTotal}</td>
-                <td>${TOTAL_SHARES}</td>
-                <td>${grandTotalDeposited.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${grandPercentage}%;"></div></div><span style="font-size:9.5px;color:var(--text-muted);font-weight:700;">${grandPercentage.toFixed(1)}%</span></td>
-                <td style="color:${grandStatusColor};">${grandStatusText}</td>
-                <td>${grandTotalTarget.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</td>
-            </tr>
-        `;
-        frontBody.innerHTML = frontBodyHTML;
-
-        const totalPayment = renderPaymentStatement();
-        document.getElementById("marqueeTotal").textContent = (grandTotalDeposited - totalPayment).toFixed(2);
-    }
-
-    function renderPaymentStatement() {
-        const tbody = document.getElementById("table-payment");
-        if (!tbody) return 0;
-        let payTotal = 0, tbodyHTML = "";
-        const t = langText[currentLang];
-        db.payments.forEach(item => {
-            payTotal += item.amount;
-            tbodyHTML += `<tr><td>${item.date}</td><td>${item.ref}</td><td>${item.senderBank}</td><td>${item.receiverBank}</td><td>${item.reasonTitle}</td><td>${item.amount.toFixed(2)}</td></tr>`;
-        });
-        if (db.payments.length === 0) tbodyHTML = `<tr><td colspan="6">${t.noData}</td></tr>`;
-        tbody.innerHTML = tbodyHTML;
-        const remainingLandDue = TOTAL_LAND_PRICE - payTotal;
-        document.getElementById("valLandPrice").textContent = TOTAL_LAND_PRICE.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
-        document.getElementById("valPaidAmount").textContent = payTotal.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
-        document.getElementById("valDueAmount").textContent = remainingLandDue.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2}) + " BDT";
-        document.getElementById("paymentTotal").textContent = payTotal.toFixed(2);
-        return payTotal;
-    }
-
-    function updateLiveClockAndDate() {
-        const now = new Date(), localeStr = currentLang === 'bn' ? 'bn-BD' : 'en-US', timeZoneOptions = userDetectedTimezone ? { timeZone: userDetectedTimezone } : {};
-        const clockEl = document.getElementById("liveClock");
-        if (clockEl) clockEl.textContent = now.toLocaleTimeString(localeStr, { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true, ...timeZoneOptions });
-        const dateEl = document.getElementById("liveDate");
-        if (dateEl) dateEl.textContent = now.toLocaleDateString(localeStr, { year: 'numeric', month: 'short', day: 'numeric', ...timeZoneOptions });
-    }
-
-    function fetchDeviceLocationAndWeather() {
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(position => {
-                const lat = position.coords.latitude, lon = position.coords.longitude;
-                fetch('https://ipapi.co/json/').then(res => res.json()).then(data => {
-                    const locBox = document.getElementById("userLocation");
-                    if (locBox && data && (data.country_name || data.country)) {
-                        locBox.textContent = `${data.city ? data.city + ', ' : ''}${sanitizeInput(data.country_code || data.country || "")}`;
-                    } else fallbackLocation();
-                    if (data && data.timezone) { userDetectedTimezone = data.timezone; updateLiveClockAndDate(); }
-                }).catch(() => fallbackLocation());
-                fetchWeather(lat, lon);
-            }, () => fetchIPLocationAndWeather(), { timeout: 10000, maximumAge: 60000 });
-        } else fetchIPLocationAndWeather();
-    }
-
-    function fetchIPLocationAndWeather() {
-        fetch('https://ipapi.co/json/').then(res => res.json()).then(data => {
-            const locBox = document.getElementById("userLocation");
-            if (locBox && data && (data.country_name || data.country)) {
-                locBox.textContent = `${data.city ? data.city + ', ' : ''}${sanitizeInput(data.country_code || data.country || "")}`;
-            } else fallbackLocation();
-            if (data && data.timezone) { userDetectedTimezone = data.timezone; updateLiveClockAndDate(); }
-            if (data && data.latitude && data.longitude) fetchWeather(data.latitude, data.longitude);
-            else fallbackWeather();
-        }).catch(() => { fallbackLocation(); fallbackWeather(); });
-    }
-
-    function fetchWeather(lat, lon) {
-        fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day`)
-            .then(res => res.json())
-            .then(weatherData => {
-                if (weatherData && weatherData.current) {
-                    const temp = Math.round(weatherData.current.temperature_2m), code = weatherData.current.weather_code, isDay = weatherData.current.is_day;
-                    lastFetchedWeather = { temp, code, isDay };
-                    displayWeather(temp, code, isDay);
-                } else fallbackWeather();
-            }).catch(() => fallbackWeather());
-    }
-
-    function displayWeather(temp, code, isDay) {
-        const weatherBox = document.getElementById("userWeather");
-        if (weatherBox) {
-            const info = getCompactWeatherIconAndText(code, isDay);
-            weatherBox.innerHTML = `<span style="font-size:13px;">${info.icon}</span> ${temp}°C <span style="font-size:10px;opacity:0.8;">${info.text}</span>`;
-        }
-    }
-
-    function getCompactWeatherIconAndText(code, isDay) {
-        let icon = "☀️", text = currentLang === 'bn' ? 'রৌদ্রোজ্জ্বল' : 'Clear';
-        if (code === 0) { icon = isDay === 0 ? "🌙" : "☀️"; text = isDay === 0 ? (currentLang === 'bn' ? 'পরিষ্কার' : 'Clear') : (currentLang === 'bn' ? 'রৌদ্রোজ্জ্বল' : 'Sunny'); }
-        else if (code >= 1 && code <= 3) { icon = isDay === 0 ? "☁️" : "⛅"; text = isDay === 0 ? (currentLang === 'bn' ? 'মেঘলা' : 'Cloudy') : (currentLang === 'bn' ? 'আংশিক মেঘলা' : 'Partly Cloudy'); }
-        else if (code >= 45 && code <= 48) { icon = "🌫️"; text = currentLang === 'bn' ? 'কুয়াশাচ্ছন্ন' : 'Foggy'; }
-        else if (code >= 51 && code <= 67) { icon = "🌧️"; text = currentLang === 'bn' ? 'বৃষ্টি' : 'Rainy'; }
-        else if (code >= 71 && code <= 77) { icon = "❄️"; text = currentLang === 'bn' ? 'তুষারপাত' : 'Snowy'; }
-        else if (code >= 80 && code <= 82) { icon = "🌦️"; text = currentLang === 'bn' ? 'বজ্রবৃষ্টি' : 'Showers'; }
-        else if (code >= 95 && code <= 99) { icon = "⛈️"; text = currentLang === 'bn' ? 'ঝড়-বৃষ্টি' : 'Stormy'; }
-        return { icon, text };
-    }
-
-    function fallbackLocation() { const b = document.getElementById("userLocation"); if (b) b.textContent = langText[currentLang].userLocFail; }
-    function fallbackWeather() { const b = document.getElementById("userWeather"); if (b) b.textContent = langText[currentLang].weatherFail; }
-
-    window.addEventListener('DOMContentLoaded', () => {
-        document.getElementById("inputDate").value = new Date().toISOString().split('T')[0];
-        loadRandomQuote();
-        updateLiveClockAndDate();
-        setInterval(updateLiveClockAndDate, 1000);
-        fetchDeviceLocationAndWeather();
-        applyLanguageStrings();
-        fetchFromGoogleSheet();
-    });
+const SCRIPT_URL="https://script.google.com/macros/s/AKfycbwJTtTE3XYTGjw5nADnZDbPumt2DKuVLGx4BzWB5_yOSZPfMVb9m7GyINiBeRYaAwQ/exec";
+let isAdminMode=false,globalAdminToken="",activePageId="",currentLang='bn',userDetectedTimezone="",lastGeneratedMessage="",lastFetchedWeather=null;
+const quotes=[
+"\"মুমিনগণ পরস্পর ভাই ভাই, অতএব তোমরা তোমাদের ভাইদের মধ্যে আপস-মীমাংসা করে দাও।\" — আল-কুরআন (সূরা আল-হুজুরাত: ১০)",
+"\"হে ঈমানদারগণ! একে অপরের সম্পত্তি অন্যায়ভাবে ভক্ষণ করো না, কেবল পারস্পরিক সম্মতির ভিত্তিতে যে ব্যবসা করা হয় তা ভিন্ন।\" — আল-কুরআন (সূরা আন-নিসা: ২৯)",
+"\"সৎ ও বিশ্বস্ত ব্যবসায়ী কিয়ামতের দিন নবীগণ, সিদ্দিক ও শহীদগণের সাথে থাকবে।\" — আল-হাদীস (তিরমিজি)",
+"\"যে ব্যক্তি কোনো মুমিনের দুনিয়াবি বিপদ দূর করে, আল্লাহ তাআলা কিয়ামতের দিন তার বিপদ দূর করবেন।\" — আল-হাদীস (সহীহ মুসলিম)",
+"\"ব্যবসা হলো সততা এবং আস্থার এক পবিত্র বন্ধন, যেখানে লাভ শুধু অর্থের নয়, বরং বিশ্বাসের।\" — দার্শনিক উক্তি",
+"\"দুজন ভালো বন্ধুর মিলন মানে একটি নতুন শক্তির জন্ম, যা যেকোনো কঠিন পাহাড়সম কাজকে সহজ করে দিতে পারে।\" — দার্শনিক উক্তি",
+"\"সত্যিকারের বন্ধু সেই যে বিপদে পাশে থাকে এবং লেনদেনে পরম বিশ্বস্ততা বজায় রাখে।\" — ইসলামিক প্রবাদ",
+"\"যে ব্যবসায় সততা ও পারস্পরিক সহযোগিতা থাকে, সেখানে আল্লাহর বরকত স্বয়ংক্রিয়ভাবে নেমে আসে।\" — ইসলামিক নীতি",
+"\"পরস্পর সৎকর্মে ও তাকওয়ায় একে অপরকে সহযোগিতা করো এবং পাপ ও সীমা লঙ্ঘনে সহযোগিতা করো না।\" — আল-কুরআন (সূরা আল-মায়িদা: ২)"
+];
+const memberKeys=["awal","arif","babor","babul","jasim","main","saiem","selim","sanawer"];
+const memberShares={awal:1,arif:1,babor:2,babul:1,jasim:2,main:1,saiem:1,selim:1,sanawer:2};
+const memberDirectory={
+awal:{blood:"B+",photo:"https://lh3.googleusercontent.com/d/1wdhnza5ir-4AoAeeUHigSFDqTyhBRP0u",fb:"https://www.facebook.com/musafiraawal",email:"aawal86@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+arif:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1rOPNf63UPAyWRfySyZoP1CDPuNi-E3Nw",fb:"https://www.facebook.com/arif.hussein.3726",email:"mdarifbaibd2022@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+babor:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1uyJ3ApI25MlpzaO8yFJrN0FlJUlGNmvl",fb:"https://www.facebook.com/babor.babor.96558",email:"baborhossain693@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+babul:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1y2JphiW1wKr5_t6XdsmhfcGVELrJWRqA",fb:"https://www.facebook.com/mohbabulhossain.rana",email:"babulrana778800@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+jasim:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1ih18m7Smbmh4TvY0PX0JVFRccIyiTdEK",fb:"https://www.facebook.com/md.jasim.uddin.660296",email:"jasimuddin7072@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+main:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1FJgD4Ok5r3ngr_Qk9hkSUJHRyI6X22XX",fb:"https://www.facebook.com/moin.ahamed.sumon",email:"sumonraipur987@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+saiem:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1JX9M6oFguFV13c9gjIn25nDHqVjRk2uG",fb:"https://www.facebook.com/md.shakil.752",email:"mdsaiem86@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+selim:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1KYVj70d6ZzR7L3aU8CFh6Txd7SaRoKs0",fb:"https://www.facebook.com/salim.patwary.846831",email:"salimpatwarys111@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}},
+sanawer:{blood:"-",photo:"https://lh3.googleusercontent.com/d/1J-6-dkkBeQ5b9AeX6fq3supTllITWV6J",fb:"https://www.facebook.com/sq.arif",email:"sqarif84@gmail.com",role:{bn:"সম্মানিত সদস্য",en:"Honorable Member"}}
+};
+const TOTAL_LAND_PRICE=9100000,TOTAL_SHARES=12,PER_SHARE_PRICE=TOTAL_LAND_PRICE/TOTAL_SHARES;
+const memberNames={
+bn:{awal:"আবদুল আউয়াল",arif:"আরিফ হোসেন",babor:"বাবর পাটোয়ারী",babul:"বাবুল হোসেন",jasim:"জসিম উদ্দিন",main:"মঈন উদ্দিন",saiem:"মোঃ সায়েম",selim:"সেলিম পাটোয়ারী",sanawer:"সানোয়ার কাদের"},
+en:{awal:"Abdul Awal",arif:"Arif Hossain",babor:"Babor Patwary",babul:"Babul Hossain",jasim:"Jasim Uddin",main:"Main Uddin",saiem:"Md. Saiem",selim:"Selim Patwary",sanawer:"Sanawer Quder"}
+};
+const langText={
+bn:{loading:"ডাটা প্রসেস হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...",hdrBismillah:"পরম করুণাময় ও অসীম দয়ালু আল্লাহর নামে শুরু করছি",welcomeSalam:"আপনার ওপর আল্লাহর শান্তি, রহমত ও বরকত বর্ষিত হোক",hdrTitle:"বন্ধুত্বের স্মারক সমিতি",hdrEst:"স্থাপিত: ২০২৬",welcomeHeading:"আপনাকে স্বাগতম",userLocFail:"বাংলাদেশ (BD)",weatherFail:"তথ্য নেই",lblLocTitle:"📍 লোকেশন",lblTimeTitle:"⏰ সময়",lblDateTitle:"📅 তারিখ",lblWeatherTitle:"🌤️ আবহাওয়া",marqueePrefix:"সমিতির তহবিলে বর্তমানে জমা আছে:",marqueeSuffix:"টাকা মাত্র",lblNavHome:"হোম",lblNavMembers:"সদস্যবৃন্দ",lblNavDirectory:"🩸প্রোফাইল",lblNavProperty:"সম্পত্তির পরিশোধিত মূল্য",lblAdminModalTitle:"এডমিন লগইন",lblAdminPass:"এডমিন পাসওয়ার্ড দিন",adminPassHolder:"পাসওয়ার্ড লিখুন",btnModalCancel:"বাতিল",btnModalLogin:"লগইন",errorMsg:"অনুগ্রহ করে সঠিক পাসওয়ার্ড দিয়ে এডমিন লগইন করুন!",currentMonthTitle:"📊 চলতি মাসের জমার বিবরণ",thCurrName:"সদস্যের নাম",thCurrAmount:"চলতি মাসে জমা",summaryTitle:"📊 এক নজরে সদস্যদের সংক্ষিপ্ত হিসাব (Live)",thName:"সদস্যের নাম",thShare:"শেয়ার",thTotal:"মোট জমা",thStatus:"অবস্থা / বকেয়া",thTarget:"নির্ধারিত মূল্য",dueLabel:"(বকেয়া)",surplusLabel:"(উদ্বৃত্ত)",paidLabel:"(পরিশোধিত)",grandTotal:"সর্বমোট",adminHeaderMember:"এডমিন ডাটা এন্ট্রি প্যানেল (সদস্যের জমা)",adminHeaderProperty:"এডমিন ডাটা এন্ট্রি প্যানেল (সম্পত্তির পরিশোধিত মূল্য)",grpMembers:"সদস্যের পেজসমূহ",grpOthers:"অন্যান্য পেজসমূহ",optPayment:"সম্পত্তির পরিশোধিত মূল্য",btnSaveData:"ডাটা সেভ করুন",noData:"- কোন তথ্য পাওয়া যায়নি -",dirTitle:"সদস্যবৃন্দের ডায়রেক্টরি ও ব্লাড ব্যাংক",dirSub:"জরুরি প্রয়োজনে সদস্যদের সাথে সরাসরি যোগাযোগ ও রক্তের গ্রুপিং বিবরণী:",tblDate:"তারিখ ও সময়",tblRef:"রেফারেন্স নং",tblSender:"প্রেরক ব্যাংক",tblReceiver:"প্রাপক ব্যাংক",tblMonth:"মাস/বছর",tblAmount:"পরিমাণ",tblDetailsTxt:"লেনদেনের বিবরণ",lblTotalDep:"মোট জমা:",lblLandPrice:"খরিদকৃত জমির মূল্য:",lblPaidAmount:"প্রদেয় টাকার পরিমাণ:",lblDueAmount:"প্রদানের বাকি মূল্য:",pmtTitle:"সম্পত্তির পরিশোধিত মূল্যের বিবরণ",thReason:"কারণ / বিবরণ",lblTotalPaid:"সর্বমোট পরিশোধ:",lblShareholder:"শেয়ারহোল্ডারের নাম:",lblAllocatedShares:"বরাদ্দকৃত শেয়ার:",lblTargetAmount:"নির্ধারিত মূল্য:",lblTotalDeposited:"সর্বমোট জমা:",lblRemainingDue:"অবশিষ্ট বকেয়া / অবস্থা:",lblStatementDate:"স্টেটমেন্ট তারিখ:",lblCompTitle:"💥অভিযোগ বা পরামর্শ দিন💥",lblCompSub:"যেকোনো অভিযোগ বা পরামর্শের জন্য অনুগ্রহ করে লিখুন 📝",btnAdminMessenger:"🏡 এডমিন",btnMyMessenger:"👥 সম্মানিত সদস্যবৃন্দ",ftrCopyright:"© ২০২৬ বন্ধুত্বের স্মারক সমিতি। সর্বস্বত্ব সংরক্ষিত।",printNotice:"🔒 এটি একটি সিস্টেম-জেনারেটেড স্বয়ংক্রিয় নথি। কোনো স্বাক্ষরের প্রয়োজন নেই."},
+en:{loading:"Processing data, please wait...",hdrBismillah:"In the name of Allah, the Most Gracious, the Most Merciful",welcomeSalam:"Peace, mercy, and blessings of Allah be upon you",hdrTitle:"Childhood Friends Association",hdrEst:"Established: 2026",welcomeHeading:"Welcome",userLocFail:"Bangladesh (BD)",weatherFail:"No Weather",lblLocTitle:"📍 LOCATION",lblTimeTitle:"⏰ LIVE TIME",lblDateTitle:"📅 DATE",lblWeatherTitle:"🌤️ WEATHER",marqueePrefix:"Current Balance in Association Fund:",marqueeSuffix:"BDT only",lblNavHome:"Home",lblNavMembers:"Members",lblNavDirectory:"🩸Profile",lblNavProperty:"Paid Property Value",lblAdminModalTitle:"Admin Login",lblAdminPass:"Enter Admin Password",adminPassHolder:"Enter password",btnModalCancel:"Cancel",btnModalLogin:"Login",errorMsg:"Please enter the correct password for Admin login!",currentMonthTitle:"📊 Current Month Deposit Statement",thCurrName:"Member Name",thCurrAmount:"Current Month Deposit",summaryTitle:"📊 Summary of Members' Accounts at a Glance (Live)",thName:"Member Name",thShare:"Share(s)",thTotal:"Total Deposited",thStatus:"Status / Due",thTarget:"Target Value",dueLabel:"(Due)",surplusLabel:"(Surplus)",paidLabel:"(Paid)",grandTotal:"Grand Total",adminHeaderMember:"Data Administrator (Member Deposit)",adminHeaderProperty:"Data Administrator (Paid Property Value)",grpMembers:"Member Pages",grpOthers:"Other Pages",optPayment:"Paid Property Value",btnSaveData:"Save Data",noData:"- No data found -",dirTitle:"Member Directory & Blood Bank",dirSub:"Direct contact info and blood group records for emergency needs:",tblDate:"Date & Time",tblRef:"Ref. No",tblSender:"Sender Bank",tblReceiver:"Receiver Bank",tblMonth:"Month/Year",tblAmount:"Amount",tblDetailsTxt:"Transaction Details",lblTotalDep:"Total Deposited:",lblLandPrice:"Purchased Land Value:",lblPaidAmount:"Total Paid Amount:",lblDueAmount:"Remaining Due Amount:",pmtTitle:"Payment Statement - Transaction Details",thReason:"Reason / Title",lblTotalPaid:"Total Paid:",lblShareholder:"Shareholder Name:",lblAllocatedShares:"Allocated Shares:",lblTargetAmount:"Target Amount:",lblTotalDeposited:"Total Deposited:",lblRemainingDue:"Remaining Due / Status:",lblStatementDate:"Statement Date:",lblCompTitle:"💥Complaints or Feedback💥",lblCompSub:"Please write 📝 for any complaints or suggestions:",btnAdminMessenger:"🏡 Admin",btnMyMessenger:"👥 Honorable Members",ftrCopyright:"© 2026 Childhood Friends Association. All Rights Reserved.",printNotice:"🔒 This is a system-generated automatic document. No signature is required."}
+};
+let db={transactions:{awal:[],arif:[],babor:[],babul:[],jasim:[],main:[],saiem:[],selim:[],sanawer:[]},payments:[]};
+const gmailSvgIcon=`<svg width="32" height="32" viewBox="0 0 24 24"><path fill="#4285F4" d="M22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6z"/><path fill="#34A853" d="M2 6v12c0 1.1.9 2 2 2h2V8.5L2 6z"/><path fill="#EA4335" d="M20 4H4c-.7 0-1.3.4-1.7 1L12 12.5 21.7 5c-.4-.6-1-.9-1.7-.9z"/><path fill="#FBBC04" d="M22 6l-4 2.5V20h2c1.1 0 2-.9 2-2V6z"/><path fill="#C5221F" d="M12 12.5L2 6v2.5l10 6.5 10-6.5V6l-10 6.5z"/></svg>`;
+const fbSvgIcon=`<svg width="32" height="32" viewBox="0 0 36 36"><path fill="#1877F2" d="M36 18C36 8.059 27.941 0 18 0S0 8.059 0 18c0 8.983 6.58 16.425 15.188 17.775V23.203H10.88V18h4.308v-3.961c0-4.252 2.533-6.602 6.41-6.602 1.857 0 3.8.332 3.8.332v4.178h-2.141c-2.107 0-2.764 1.308-2.764 2.65V18h4.707l-.752 5.203h-3.955V35.775C29.42 34.425 36 26.983 36 18z"/><path fill="#FFFFFF" d="M24.238 23.203l.752-5.203h-4.707v-3.352c0-1.342.657-2.65 2.764-2.65h2.141V7.82s-1.943-.332-3.8-.332c-3.877 0-6.41 2.35-6.41 6.602V18H10.88v5.203h4.308v12.572C16.136 35.918 17.058 36 18 36c.942 0 1.864-.082 2.812-.225V23.203h3.426z"/></svg>`;
+
+function loadRandomQuote(){document.getElementById("dynamicQuoteStatic").textContent=quotes[Math.floor(Math.random()*quotes.length)];}
+function sanitizeInput(s){if(typeof s!=='string')return s;return s.replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#x27;'}[m]));}
+function escapeHtml(value){return String(value??"").replace(/[&<>\"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#39;"}[m]));}
+function toCents(value){const n=Number(value);return Number.isFinite(n)?Math.round((n+Number.EPSILON)*100):0;}
+function fromCents(cents){return cents/100;}
+function validISODate(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;const d=new Date(value+"T00:00:00Z");return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===value;}
+function boundedText(el,max){return String(el?.value??"").trim().slice(0,max);}
+function setSavingState(saving){const b=document.getElementById("btnSaveData");if(b){b.disabled=saving;b.setAttribute("aria-busy",String(saving));b.style.opacity=saving?".65":"";}}
+
+function toggleDropdown(id){document.getElementById(id).classList.toggle('show');}
+function toggleCustomMemberSelect(){document.getElementById("customMemberOptions").classList.toggle("open");}
+function selectMemberOption(val){
+document.getElementById("targetMemberSelect").value=val;
+let disp=document.getElementById("selectedMemberDisplay");
+if(val==="sec-payment")disp.innerHTML=`<span style="font-size:16px;">🏢</span> <span>${langText[currentLang].optPayment}</span>`;
+else if(memberDirectory[val])disp.innerHTML=`<img src="${memberDirectory[val].photo}" class="custom-select-avatar" alt="${val}"> <span>${memberNames[currentLang][val]}</span>`;
+document.querySelectorAll(".custom-option-item").forEach(i=>i.classList.remove("selected"));
+event.currentTarget.classList.add("selected");
+document.getElementById("customMemberOptions").classList.remove("open");
+adjustAdminFormFields();
+}
+window.onclick=function(e){
+if(!e.target.closest('.nav-item'))document.querySelectorAll(".dropdown-menu").forEach(d=>d.classList.remove('show'));
+if(!e.target.closest('.custom-select-wrapper')){let opt=document.getElementById("customMemberOptions");if(opt)opt.classList.remove("open");}
+};
+function toggleDarkMode(){document.body.classList.toggle('dark-mode');}
+function toggleLanguage(){
+currentLang=currentLang==='bn'?'en':'bn';
+document.getElementById("langBtn").textContent=currentLang==='bn'?'EN':'BN';
+applyLanguageStrings();
+}
+function applyLanguageStrings(){
+let t=langText[currentLang];
+document.getElementById("loadingTxt").textContent=t.loading;
+document.getElementById("hdrBismillah").textContent=t.hdrBismillah;
+document.getElementById("welcomeSalam").textContent=t.welcomeSalam;
+document.getElementById("hdrTitle").textContent=t.hdrTitle;
+document.getElementById("hdrEst").textContent=t.hdrEst;
+document.getElementById("welcomeHeading").textContent=t.welcomeHeading;
+document.getElementById("lblLocTitle").textContent=t.lblLocTitle;
+document.getElementById("lblTimeTitle").textContent=t.lblTimeTitle;
+document.getElementById("lblDateTitle").textContent=t.lblDateTitle;
+document.getElementById("lblWeatherTitle").textContent=t.lblWeatherTitle;
+document.getElementById("marqueePrefix").textContent=t.marqueePrefix;
+document.getElementById("marqueeSuffix").textContent=t.marqueeSuffix;
+document.getElementById("lblNavHome").textContent=t.lblNavHome;
+document.getElementById("lblNavMembers").textContent=t.lblNavMembers;
+document.getElementById("lblNavDirectory").textContent=t.lblNavDirectory;
+document.getElementById("lblNavProperty").textContent=t.lblNavProperty;
+document.getElementById("dirTitle").textContent=t.dirTitle;
+document.getElementById("dirSub").textContent=t.dirSub;
+memberKeys.forEach(k=>{
+let name=memberNames[currentLang][k],mEl=document.getElementById(`menu-${k}`),oEl=document.getElementById(`opt-${k}`),tEl=document.getElementById(`title-${k}`);
+if(mEl){let s=mEl.querySelector("span");if(s)s.textContent=name;}
+if(oEl)oEl.textContent=name;
+if(tEl)tEl.textContent=name;
+});
+document.getElementById("lblAdminModalTitle").textContent=t.lblAdminModalTitle;
+document.getElementById("lblAdminPass").textContent=t.lblAdminPass;
+document.getElementById("adminPasscode").placeholder=t.adminPassHolder;
+document.getElementById("btnModalLogin").textContent=t.btnModalLogin;
+document.getElementById("btnModalCancel").textContent=t.btnModalCancel;
+document.getElementById("errorMsg").textContent=t.errorMsg;
+document.getElementById("currentMonthTitle").textContent=t.currentMonthTitle;
+document.getElementById("thCurrName").textContent=t.thCurrName;
+document.getElementById("thCurrAmount").textContent=t.thCurrAmount;
+document.getElementById("summaryTitle").textContent=t.summaryTitle;
+document.getElementById("thName").textContent=t.thName;
+document.getElementById("thShare").textContent=t.thShare;
+document.getElementById("thTotal").textContent=t.thTotal;
+document.getElementById("thStatus").textContent=t.thStatus;
+document.getElementById("thTarget").textContent=t.thTarget;
+document.getElementById("grpMembers").textContent=t.grpMembers;
+document.getElementById("grpOthers").textContent=t.grpOthers;
+document.getElementById("opt-payment").textContent=t.optPayment;
+document.getElementById("btnSaveData").textContent=t.btnSaveData;
+
+let tVal=document.getElementById("targetMemberSelect").value,disp=document.getElementById("selectedMemberDisplay");
+if(tVal==="sec-payment")disp.innerHTML=`<span style="font-size:16px;">🏢</span> <span>${t.optPayment}</span>`;
+else if(memberDirectory[tVal])disp.innerHTML=`<img src="${memberDirectory[tVal].photo}" class="custom-select-avatar" alt="${tVal}"> <span>${memberNames[currentLang][tVal]}</span>`;
+
+document.querySelectorAll(".tblHeaderDate").forEach(e=>e.textContent=t.tblDate);
+document.querySelectorAll(".tblHeaderRef").forEach(e=>e.textContent=t.tblRef);
+document.querySelectorAll(".tblHeaderSender").forEach(e=>e.textContent=t.tblSender);
+document.querySelectorAll(".tblHeaderReceiver").forEach(e=>e.textContent=t.tblReceiver);
+document.querySelectorAll(".tblHeaderMonth").forEach(e=>e.textContent=t.tblMonth);
+document.querySelectorAll(".tblHeaderAmount").forEach(e=>e.textContent=t.tblAmount);
+document.querySelectorAll(".titleDetailsTxt").forEach(e=>e.textContent=t.tblDetailsTxt);
+document.querySelectorAll(".lblTotalDep").forEach(e=>e.textContent=t.lblTotalDep);
+document.getElementById("lblLandPrice").textContent=t.lblLandPrice;
+document.getElementById("lblPaidAmount").textContent=t.lblPaidAmount;
+document.getElementById("lblDueAmount").textContent=t.lblDueAmount;
+document.getElementById("pmtTitle").textContent=t.pmtTitle;
+document.getElementById("thReason").textContent=t.thReason;
+document.getElementById("lblTotalPaid").textContent=t.lblTotalPaid;
+document.getElementById("lblCompTitle").textContent=t.lblCompTitle;
+document.getElementById("lblCompSub").textContent=t.lblCompSub;
+document.getElementById("btnAdminMessenger").textContent=t.btnAdminMessenger;
+document.getElementById("btnMyMessenger").textContent=t.btnMyMessenger;
+document.getElementById("ftrCopyright").textContent=t.ftrCopyright;
+document.getElementById("printSystemNotice").textContent=t.printNotice;
+adjustAdminFormFields();
+renderAllData();
+renderMemberDirectory();
+updateLiveClockAndDate();
+if(lastFetchedWeather)displayWeather(lastFetchedWeather.temp,lastFetchedWeather.code,lastFetchedWeather.isDay);
+else fetchDeviceLocationAndWeather();
+}
+function renderMemberDirectory(){
+let grid=document.getElementById("memberCardsGrid");if(!grid)return;
+let html="";
+memberKeys.forEach(k=>{
+let name=memberNames[currentLang][k],info=memberDirectory[k];
+html+=`<div class="member-card"><img src="${info.photo}" alt="${name}" class="member-avatar"><div class="member-info"><h4>${name}</h4><p>${info.role[currentLang]}</p><span class="blood-badge">🩸 Group: ${info.blood}</span></div><div class="card-actions"><a href="mailto:${info.email}" class="action-icon-btn">${gmailSvgIcon}</a><a href="${info.fb}" target="_blank" rel="noopener noreferrer" class="action-icon-btn">${fbSvgIcon}</a></div></div>`;
+});
+grid.innerHTML=html;
+}
+function showLoading(show){document.getElementById('loadingOverlay').style.display=show?'block':'none';}
+function openAdminModal(){document.getElementById("adminModal").classList.add("show");document.getElementById("adminPasscode").value="";document.getElementById("errorMsg").style.display="none";}
+function closeAdminModal(){document.getElementById("adminModal").classList.remove("show");}
+document.addEventListener("keydown",e=>{if(e.key==="Enter"&&document.getElementById("adminModal")?.classList.contains("show")){e.preventDefault();submitAdminLogin();}});
+function submitAdminLogin(){
+const passEl=document.getElementById("adminPasscode");let p=passEl.value;if(!p||!p.trim()){document.getElementById("errorMsg").style.display="block";passEl.focus();return;}showLoading(true);
+fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"verify_admin",password:p})})
+.then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();}).then(res=>{
+showLoading(false);
+if(res&&res.success){isAdminMode=true;globalAdminToken=p;passEl.value="";closeAdminModal();document.getElementById("discreteAdminBtn").style.display="none";document.getElementById("universalAdminPanel").style.display="block";adjustAdminFormFields();}
+else document.getElementById("errorMsg").style.display="block";
+}).catch(()=>{showLoading(false);alert("Connection error!");});
+}
+function logoutAdmin(){
+isAdminMode=false;globalAdminToken="";document.getElementById("discreteAdminBtn").style.display="inline-flex";document.getElementById("universalAdminPanel").style.display="none";document.getElementById("whatsappShareBtn").style.display="none";document.getElementById("messengerShareBtn").style.display="none";
+}
+function showHomepage(){
+document.querySelectorAll(".section-block").forEach(s=>s.classList.remove("active"));
+document.getElementById("sec-welcome").classList.add("active");document.getElementById("pageDynamicTitle").textContent="CFA Homepage";
+}
+function openMemberPage(id){
+document.querySelectorAll(".section-block").forEach(s=>s.classList.remove("active"));
+let target=document.getElementById(id);
+if(target){
+target.classList.add("active");activePageId=id;window.scrollTo({top:0,behavior:'smooth'});document.getElementById("membersDropdown").classList.remove("show");
+if(id==="sec-payment")document.getElementById("pageDynamicTitle").textContent="Payment CFA";
+else if(memberKeys.some(k=>id===`sec-${k}`))document.getElementById("pageDynamicTitle").textContent=`${memberNames['bn'][id.replace("sec-","")]} Statement`;
+else if(id==="sec-directory")document.getElementById("pageDynamicTitle").textContent="CFA Directory & Blood Bank";
+}
+}
+function adjustAdminFormFields(){
+let target=document.getElementById("targetMemberSelect").value,ph=document.getElementById("adminPanelHeader"),m=document.getElementById("inputMonth"),y=document.getElementById("inputYear"),t=langText[currentLang];
+if(target==="sec-payment"){ph.textContent=t.adminHeaderProperty;m.placeholder=currentLang==='bn'?"কারণ":"Reason";}
+else{ph.textContent=t.adminHeaderMember;m.placeholder="Month";}
+y.style.display="inline-block";
+}
+function applyData(data){
+if(!Array.isArray(data))throw new Error();
+db.transactions={awal:[],arif:[],babor:[],babul:[],jasim:[],main:[],saiem:[],selim:[],sanawer:[]};db.payments=[];
+data.forEach(item=>{
+if(!item||typeof item!=="object")return;
+let target=sanitizeInput(item.target),amt=Number(String(item.amount||"").trim().replace(/,/g,""));
+if(!Number.isFinite(amt))return;
+if(target==="sec-payment"){
+db.payments.push({date:sanitizeInput(item.date),ref:sanitizeInput(item.ref),senderBank:sanitizeInput(item.senderBank||item.bankFrom),receiverBank:sanitizeInput(item.receiverBank||item.bankTo),reasonTitle:sanitizeInput(item.reasonTitle||item.month),amount:amt});
+}else if(memberKeys.includes(target)){
+db.transactions[target].push({date:sanitizeInput(item.date),ref:sanitizeInput(item.ref),bankFrom:sanitizeInput(item.bankFrom),bankTo:sanitizeInput(item.bankTo),month:sanitizeInput(item.month),year:sanitizeInput(item.year),amount:amt});
+}
+});
+renderAllData();
+}
+function fetchFromGoogleSheet(){
+if(!SCRIPT_URL)return Promise.resolve(false);
+showLoading(true);
+const notice=document.getElementById("dataStatusNotice"),retry=document.getElementById("retryBtn");
+if(notice)notice.style.display="none";
+if(retry)retry.style.display="none";
+const req=window.__cfaEarly&&!window.__cfaEarlyUsed?(window.__cfaEarlyUsed=true,window.__cfaEarly):fetch(SCRIPT_URL).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();});
+return req.then(data=>{applyData(data);if(notice)notice.style.display="none";showLoading(false);return true;}).catch(()=>{
+showLoading(false);
+const loadingTxt=document.getElementById("loadingTxt");
+if(loadingTxt)loadingTxt.textContent=currentLang==='bn'?"⚠️ ডাটা লোড ব্যর্থ।":"⚠️ Failed to load data.";
+if(notice){notice.textContent=currentLang==='bn'?"⚠️ সর্বশেষ হিসাব আনা যায়নি। দেখানো তথ্যকে বর্তমান হিসাব ধরে নেবেন না।":"⚠️ Latest data could not be loaded. Do not treat displayed figures as current.";notice.style.display="block";}
+if(retry)retry.style.display="inline-block";
+return false;
+});
+}
+function submitNewTransaction(){
+if(!isAdminMode||!globalAdminToken){alert(currentLang==='bn'?"অনুগ্রহ করে আবার এডমিন লগইন করুন।":"Please sign in as admin again.");return;}
+const target=document.getElementById("targetMemberSelect").value;
+const rD=boundedText(document.getElementById("inputDate"),10);
+const ref=boundedText(document.getElementById("inputRef"),100);
+const bF=boundedText(document.getElementById("inputBankFrom"),120);
+const bT=boundedText(document.getElementById("inputBankTo"),120);
+const m=boundedText(document.getElementById("inputMonth"),80);
+const y=boundedText(document.getElementById("inputYear"),20);
+const rA=String(document.getElementById("inputAmount").value||"").trim();
+if(!(target==="sec-payment"||memberKeys.includes(target))){alert(currentLang==='bn'?"সদস্য নির্বাচন সঠিক নয়।":"Invalid member selection.");return;}
+if(!rD||!ref||!bF||!bT||!m||!y||!rA){alert(currentLang==='bn'?"⚠️ সব তথ্য পূরণ করুন!":"⚠️ Fill all fields!");return;}
+if(!validISODate(rD)){alert(currentLang==='bn'?"⚠️ সঠিক তারিখ দিন।":"⚠️ Enter a valid date.");return;}
+const amtNum=Number(rA);
+if(!Number.isFinite(amtNum)||amtNum<=0||amtNum>100000000000||!/^\d+(\.\d{1,2})?$/.test(rA.replace(/,/g,""))){alert(currentLang==='bn'?"⚠️ পরিমাণ ০-এর বেশি এবং সর্বোচ্চ দুই দশমিক ঘরসহ লিখুন।":"⚠️ Enter a positive amount with up to two decimal places.");return;}
+const amt=fromCents(toCents(amtNum));
+const now=new Date(),time=now.toLocaleTimeString('en-US',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true,timeZone:userDetectedTimezone||undefined});
+const parts=rD.split("-");const dateStr=`${parts[2]}/${parts[1]}/${parts[0]} ${time}`;
+setSavingState(true);showLoading(true);
+fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({action:"save_transaction",adminPassword:globalAdminToken,target,date:dateStr,ref,amount:amt,bankFrom:bF,bankTo:bT,month:m,year:y})})
+.then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
+.then(res=>{
+if(!res||!res.success)throw new Error((res&&res.message)||"Save rejected");
+// Do not optimistically append a partial record: refresh the canonical sheet data first.
+return fetchFromGoogleSheet().then(refreshed=>{
+if(!refreshed){alert(currentLang==='bn'?"সেভ হয়েছে, কিন্তু নতুন হিসাব শিট থেকে আনা যায়নি। পুনরায় জমা দেবেন না; সংযোগ ফিরে এলে যাচাই করুন।":"Saved, but fresh totals could not be loaded. Do not submit again; verify the sheet when connection returns.");return;}
+let totalDepCents=0;memberKeys.forEach(k=>(db.transactions[k]||[]).forEach(i=>{totalDepCents+=toCents(i.amount);}));
+let totalPayCents=0;db.payments.forEach(i=>{totalPayCents+=toCents(i.amount);});
+const bal=fromCents(totalDepCents-totalPayCents).toFixed(2);
+const tName=target==="sec-payment"?"সম্পত্তির পরিশোধিত মূল্য":memberNames['bn'][target];
+let mInfo="";
+if(memberKeys.includes(target)){
+let mTotCents=0;(db.transactions[target]||[]).forEach(i=>{mTotCents+=toCents(i.amount);});
+const mTot=fromCents(mTotCents),tAmt=memberShares[target]*PER_SHARE_PRICE,diff=fromCents(toCents(tAmt)-mTotCents),pct=tAmt>0?(mTot/tAmt)*100:0;
+const st=diff>0?`${diff.toLocaleString()} (বকেয়া)`:(diff<0?`+${Math.abs(diff).toLocaleString()} (উদ্বৃত্ত)`:`0.00 (পরিশোধিত)`);
+mInfo=`👤 *জমা:* ${mTot.toFixed(2)} BDT\n📈 *অগ্রগতি:* ${pct.toFixed(1)}%\n📊 *অবস্থা:* ${st}\n`;
+}
+lastGeneratedMessage=`📢 *নতুন জমা এন্ট্রি*\n\n👤 *নাম:* ${tName}\n💰 *জমা:* ${amt.toFixed(2)} BDT\n${mInfo}📅 *তারিখ:* ${dateStr}\n🔢 *রেফ:* ${ref}\n🏦 *প্রেরক:* ${bF}\n🏦 *প্রাপক:* ${bT}\n📌 *মাস:* ${m} ${y}\n\n💼 *তহবিল:* ${bal} BDT\n\nhttps://childhoodfriendsassociation.github.io/cfa`;
+document.getElementById("whatsappShareBtn").href=`https://api.whatsapp.com/send?text=${encodeURIComponent(lastGeneratedMessage)}`;
+document.getElementById("whatsappShareBtn").style.display="inline-flex";
+document.getElementById("messengerShareBtn").style.display="inline-flex";
+alert(currentLang==='bn'?"সেভ হয়েছে এবং শিটের ডাটা পুনরায় লোড করা হয়েছে।":"Saved and sheet data refreshed.");
+});
+})
+.catch(err=>{console.error("CFA transaction save failed:",err);alert(currentLang==='bn'?"সেভ নিশ্চিত করা যায়নি। শিটে যাচাই করুন; নিশ্চিত না হয়ে আবার জমা দেবেন না।":"Save could not be confirmed. Check the sheet before retrying to avoid a duplicate.");})
+.finally(()=>{showLoading(false);setSavingState(false);});
+}
+function shareToMessenger(){
+if(!lastGeneratedMessage)return;
+if(navigator.clipboard&&navigator.clipboard.writeText)navigator.clipboard.writeText(lastGeneratedMessage);
+window.open("https://m.me/j/AbYCDokDuB-IvIW_/?send_source=gc%3Acopy_invite_link_t","_blank");
+}
+function isCurrentMonthTransaction(d){
+if(d===null||d===undefined||d==="")return false;
+try{
+const raw=String(d).trim();
+let day,month,year;
+// Accept DD/MM/YYYY (the format created by this site), YYYY-MM-DD,
+// ISO timestamps, and common Google Sheets date strings.
+let match=raw.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s|T|$)/);
+if(match){day=Number(match[1]);month=Number(match[2]);year=Number(match[3]);}
+else {
+match=raw.match(/^(\d{4})[\/-](\d{1,2})[\/-](\d{1,2})(?:\s|T|$)/);
+if(match){year=Number(match[1]);month=Number(match[2]);day=Number(match[3]);}
+else {
+const parsed=new Date(raw);
+if(!Number.isNaN(parsed.getTime())){day=parsed.getDate();month=parsed.getMonth()+1;year=parsed.getFullYear();}
+}
+}
+if(!day||!month||!year||month<1||month>12||day<1||day>31)return false;
+const now=new Date();
+return month===now.getMonth()+1&&year===now.getFullYear();
+}catch(e){return false;}
+}
+function renderAllData(){
+let gDep=0,gTarget=0,gDue=0,t=langText[currentLang],frontHtml="",curHtml="",curTot=0,today=new Date().toLocaleDateString(currentLang==='bn'?'bn-BD':'en-US',{year:'numeric',month:'long',day:'numeric',timeZone:userDetectedTimezone||undefined});
+memberKeys.forEach(k=>{
+let list=db.transactions[k]||[],total=0,curTotMem=0,tbody=document.getElementById(`table-${k}`),tbodyHtml="";
+list.forEach(i=>{
+total=fromCents(toCents(total)+toCents(i.amount));if(isCurrentMonthTransaction(i.date))curTotMem=fromCents(toCents(curTotMem)+toCents(i.amount));
+let my=i.month&&i.month!=="-"&&i.year&&i.year!=="-"?`${i.month}/${i.year}`:(i.month!=="-"?i.month:i.year);
+tbodyHtml+=`<tr><td>${i.date}</td><td>${i.ref}</td><td>${i.bankFrom}</td><td>${i.bankTo}</td><td>${my}</td><td>${i.amount.toFixed(2)}</td></tr>`;
+});
+if(list.length===0)tbodyHtml=`<tr><td colspan="6">${t.noData}</td></tr>`;
+if(tbody)tbody.innerHTML=tbodyHtml;
+curTot=fromCents(toCents(curTot)+toCents(curTotMem));
+let photo=memberDirectory[k].photo,name=memberNames[currentLang][k],sh=memberShares[k],tAmt=sh*PER_SHARE_PRICE,diff=tAmt-total;
+curHtml+=`<tr><td><div class="summary-name-cell"><img src="${photo}" class="summary-avatar"><span>${name}</span></div></td><td style="font-weight:bold;color:var(--acc);">${curTotMem.toLocaleString()}</td></tr>`;
+let rawPct=(total/tAmt)*100,pct=rawPct>100?100:(isNaN(rawPct)?0:rawPct);
+let stText=diff>0?`${diff.toLocaleString()} ${t.dueLabel}`:(diff<0?`+${Math.abs(diff).toLocaleString()} ${t.surplusLabel}`:`0.00 ${t.paidLabel}`);
+let stColor=diff>0?"#ef4444":"#10b981";
+
+let iCard=document.getElementById(`profile-card-${k}`);
+if(iCard)iCard.innerHTML=`<img src="${photo}" class="profile-header-avatar"><div class="profile-header-info"><h3>${name}</h3><p>${memberDirectory[k].role[currentLang]}</p><span class="blood-badge">🩸 Group: ${memberDirectory[k].blood}</span></div><div class="card-actions"><a href="mailto:${memberDirectory[k].email}" class="action-icon-btn">${gmailSvgIcon}</a><a href="${memberDirectory[k].fb}" target="_blank" class="action-icon-btn">${fbSvgIcon}</a></div>`;
+
+let iBox=document.getElementById(`info-${k}`);
+if(iBox)iBox.innerHTML=`<p><strong>${t.lblShareholder}</strong> ${name}</p><p><strong>${t.lblAllocatedShares}</strong> ${sh} Share(s)</p><p><strong>${t.lblTargetAmount}</strong> ${tAmt.toLocaleString()} BDT</p><p><strong>${t.lblTotalDeposited}</strong> ${total.toLocaleString()} BDT</p><p><strong>${t.lblRemainingDue}</strong> <span style="color:${stColor};font-weight:bold;">${stText}</span></p><p><strong>${t.lblStatementDate}</strong> ${today}</p><div style="margin-top:10px;"><span class="progress-text-label">💳 Payment Progress: ${rawPct.toFixed(1)}% Paid</span><div class="progress-bar-container"><div class="progress-bar-fill" style="width:${pct}%;background-color:${rawPct>=100?'#10b981':'#2563eb'};"></div></div></div>`;
+
+let tLbl=document.getElementById(`total-${k}`);if(tLbl)tLbl.textContent=`${total.toFixed(2)} BDT`;
+gDep=fromCents(toCents(gDep)+toCents(total));gTarget+=tAmt;gDue=fromCents(toCents(gDue)+toCents(diff));
+
+frontHtml+=`<tr><td><div class="summary-name-cell"><img src="${photo}" class="summary-avatar"><span>${name}</span></div></td><td>${sh}</td><td>${total.toLocaleString()}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${pct}%;background-color:${rawPct>=100?'#10b981':'#2563eb'};"></div></div><span style="font-size:9.5px;color:var(--muted);font-weight:700;">${rawPct.toFixed(1)}%</span></td><td style="color:${stColor};font-weight:bold;">${stText}</td><td>${tAmt.toLocaleString()}</td></tr>`;
+});
+curHtml+=`<tr style="font-weight:bold;background-color:rgba(212,167,58,.14);"><td>${t.grandTotal}</td><td style="color:var(--acc);">${curTot.toLocaleString()}</td></tr>`;
+document.getElementById("currentMonthSummaryBody").innerHTML=curHtml;
+
+let gColor=gDue>0?"#ef4444":"#10b981",gText=gDue>0?`${gDue.toLocaleString()} ${t.dueLabel}`:(gDue<0?`+${Math.abs(gDue).toLocaleString()} ${t.surplusLabel}`:`0.00 ${t.paidLabel}`);
+gDue=fromCents(toCents(gDue));let gPct=(gDep/gTarget)*100;gPct=gPct>100?100:(isNaN(gPct)?0:gPct);
+frontHtml+=`<tr style="font-weight:bold;background-color:rgba(212,167,58,.14);"><td>${t.grandTotal}</td><td>${TOTAL_SHARES}</td><td>${gDep.toLocaleString()}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${gPct}%;"></div></div><span style="font-size:9.5px;color:var(--muted);font-weight:700;">${gPct.toFixed(1)}%</span></td><td style="color:${gColor};">${gText}</td><td>${gTarget.toLocaleString()}</td></tr>`;
+document.getElementById("frontSummaryBody").innerHTML=frontHtml;
+
+let pTot=renderPaymentStatement();
+document.getElementById("marqueeTotal").textContent=(gDep-pTot).toFixed(2);
+}
+function renderPaymentStatement(){
+let tbody=document.getElementById("table-payment");if(!tbody)return 0;
+let payTotCents=0,html="",t=langText[currentLang];
+db.payments.forEach(i=>{
+payTotCents+=toCents(i.amount);
+html+=`<tr><td>${i.date}</td><td>${i.ref}</td><td>${i.senderBank}</td><td>${i.receiverBank}</td><td>${i.reasonTitle}</td><td>${i.amount.toFixed(2)}</td></tr>`;
+});
+const payTot=fromCents(payTotCents);
+if(db.payments.length===0)html=`<tr><td colspan="6">${t.noData}</td></tr>`;
+tbody.innerHTML=html;
+let rem=fromCents(toCents(TOTAL_LAND_PRICE)-payTotCents);
+document.getElementById("valLandPrice").textContent=TOTAL_LAND_PRICE.toLocaleString()+" BDT";
+document.getElementById("valPaidAmount").textContent=payTot.toLocaleString()+" BDT";
+document.getElementById("valDueAmount").textContent=rem.toLocaleString()+" BDT";
+document.getElementById("paymentTotal").textContent=payTot.toFixed(2);
+return payTot;
+}
+function updateLiveClockAndDate(){
+let now=new Date(),loc=currentLang==='bn'?'bn-BD':'en-US',tz=userDetectedTimezone?{timeZone:userDetectedTimezone}:{};
+let cEl=document.getElementById("liveClock");if(cEl)cEl.textContent=now.toLocaleTimeString(loc,{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:true,...tz});
+let dEl=document.getElementById("liveDate");if(dEl)dEl.textContent=now.toLocaleDateString(loc,{year:'numeric',month:'short',day:'numeric',...tz});
+}
+function fetchDeviceLocationAndWeather(){
+if(navigator.geolocation){
+navigator.geolocation.getCurrentPosition(pos=>{
+let lat=pos.coords.latitude,lon=pos.coords.longitude;
+fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+let lB=document.getElementById("userLocation");if(lB&&d&&(d.country_name||d.country))lB.textContent=`${d.city?d.city+', ':''}${sanitizeInput(d.country_code||d.country||"")}`;else fallbackLocation();
+if(d&&d.timezone){userDetectedTimezone=d.timezone;updateLiveClockAndDate();}
+}).catch(()=>fallbackLocation());
+fetchWeather(lat,lon);
+},()=>fetchIPLocationAndWeather(),{timeout:10000,maximumAge:60000});
+}else fetchIPLocationAndWeather();
+}
+function fetchIPLocationAndWeather(){
+fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+let lB=document.getElementById("userLocation");if(lB&&d&&(d.country_name||d.country))lB.textContent=`${d.city?d.city+', ':''}${sanitizeInput(d.country_code||d.country||"")}`;else fallbackLocation();
+if(d&&d.timezone){userDetectedTimezone=d.timezone;updateLiveClockAndDate();}
+if(d&&d.latitude&&d.longitude)fetchWeather(d.latitude,d.longitude);else fallbackWeather();
+}).catch(()=>{fallbackLocation();fallbackWeather();});
+}
+function fetchWeather(lat,lon){
+fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,weather_code,is_day`)
+.then(r=>r.json()).then(wd=>{
+if(wd&&wd.current){
+let temp=Math.round(wd.current.temperature_2m),code=wd.current.weather_code,isDay=wd.current.is_day;
+lastFetchedWeather={temp,code,isDay};displayWeather(temp,code,isDay);
+}else fallbackWeather();
+}).catch(()=>fallbackWeather());
+}
+function displayWeather(temp,code,isDay){
+let wB=document.getElementById("userWeather");
+if(wB){let info=getCompactWeatherIconAndText(code,isDay);wB.innerHTML=`<span style="font-size:13px;">${info.icon}</span> ${temp}°C <span style="font-size:10px;opacity:0.8;">${info.text}</span>`;}
+}
+function getCompactWeatherIconAndText(code,isDay){
+let icon="☀️",text=currentLang==='bn'?'রৌদ্রোজ্জ্বল':'Clear';
+if(code===0){icon=isDay===0?"🌙":"☀️";text=isDay===0?(currentLang==='bn'?'পরিষ্কার':'Clear'):(currentLang==='bn'?'রৌদ্রোজ্জ্বল':'Sunny');}
+else if(code>=1&&code<=3){icon=isDay===0?"☁️":"⛅";text=isDay===0?(currentLang==='bn'?'মেঘলা':'Cloudy'):(currentLang==='bn'?'আংশিক মেঘলা':'Partly Cloudy');}
+else if(code>=45&&code<=48){icon="🌫️";text=currentLang==='bn'?'কুয়াশাচ্ছন্ন':'Foggy';}
+else if(code>=51&&code <=67){icon="🌧️";text=currentLang==='bn'?'বৃষ্টি':'Rainy';}
+else if(code>=71&&code<=77){icon="❄️";text=currentLang==='bn'?'তুষারপাত':'Snowy';}
+else if(code>=80&&code<=82){icon="🌦️";text=currentLang==='bn'?'বজ্রবৃষ্টি':'Showers';}
+else if(code>=95&&code<=99){icon="⛈️";text=currentLang==='bn'?'ঝড়-বৃষ্টি':'Stormy';}
+return{icon,text};
+}
+function fallbackLocation(){let b=document.getElementById("userLocation");if(b)b.textContent=langText[currentLang].userLocFail;}
+function fallbackWeather(){let b=document.getElementById("userWeather");if(b)b.textContent=langText[currentLang].weatherFail;}
+
+window.addEventListener('DOMContentLoaded',()=>{
+document.getElementById("inputDate").value=new Date().toISOString().split('T')[0];
+loadRandomQuote();updateLiveClockAndDate();setInterval(updateLiveClockAndDate,1000);
+fetchDeviceLocationAndWeather();applyLanguageStrings();fetchFromGoogleSheet();
+});
 </script>
 
 <script>
 (function(){
-  function fileId(u){var m=(u||"").match(/\/d\/([\w-]+)/)||(u||"").match(/[?&]id=([\w-]+)/);return m?m[1]:null}
-  function svg(ch,isLogo){
-    var inner=isLogo?'<circle cx="50" cy="50" r="50" fill="#006a4e"/><circle cx="45" cy="50" r="22" fill="#f42a41"/>':'<circle cx="50" cy="50" r="50" fill="#006a4e"/><text x="50" y="66" font-size="46" font-weight="700" text-anchor="middle" fill="#fff" font-family="sans-serif">'+ch+'</text>';
-    return "data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">'+inner+'</svg>');
-  }
-  function chain(id){return ["https://lh3.googleusercontent.com/d/"+id+"=w400","https://drive.google.com/thumbnail?id="+id+"&sz=w400","https://drive.google.com/uc?export=view&id="+id]}
-  document.addEventListener("error",function(e){
-    var im=e.target;if(!im||im.tagName!=="IMG"||im.dataset.fbDone)return;
-    var id=im.dataset.fbId||fileId(im.getAttribute("src"));
-    var step=+(im.dataset.fbStep||0);
-    if(id&&step<3){im.dataset.fbId=id;im.dataset.fbStep=step+1;im.referrerPolicy="no-referrer";im.src=chain(id)[step];return}
-    im.dataset.fbDone=1;
-    var logo=/logo/i.test(im.alt||"")||/association-logo|discrete-admin-avatar/.test(im.className);
-    var ch=((im.alt||"?").trim().charAt(0)||"?").toUpperCase();
-    im.src=svg(ch,logo);
-  },true);
-  var mo=new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType!==1)return;(n.tagName==="IMG"?[n]:n.querySelectorAll?n.querySelectorAll("img"):[]).forEach(function(i){i.referrerPolicy="no-referrer";i.decoding="async"})})})});
-  document.addEventListener("DOMContentLoaded",function(){
-    document.querySelectorAll("img").forEach(function(i){i.referrerPolicy="no-referrer"});
-    mo.observe(document.body,{childList:true,subtree:true});
-    document.querySelectorAll("img").forEach(function(i){if(i.complete&&i.naturalWidth===0)i.dispatchEvent(new Event("error"))});
-  });
+function fileId(u){var m=(u||"").match(/\/d\/([\w-]+)/)||(u||"").match(/[?&]id=([\w-]+)/);return m?m[1]:null}
+function svg(ch,isLogo){
+var inner=isLogo?'<circle cx="50" cy="50" r="50" fill="#006a4e"/><circle cx="45" cy="50" r="22" fill="#f42a41"/>':'<circle cx="50" cy="50" r="50" fill="#006a4e"/><text x="50" y="66" font-size="46" font-weight="700" text-anchor="middle" fill="#fff" font-family="sans-serif">'+ch+'</text>';
+return "data:image/svg+xml;utf8,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">'+inner+'</svg>');
+}
+function chain(id){return ["https://lh3.googleusercontent.com/d/"+id+"=w400","https://drive.google.com/thumbnail?id="+id+"&sz=w400","https://drive.google.com/uc?export=view&id="+id]}
+document.addEventListener("error",function(e){
+var im=e.target;if(!im||im.tagName!=="IMG"||im.dataset.fbDone)return;
+var id=im.dataset.fbId||fileId(im.getAttribute("src"));
+var step=+(im.dataset.fbStep||0);
+if(id&&step<3){im.dataset.fbId=id;im.dataset.fbStep=step+1;im.referrerPolicy="no-referrer";im.src=chain(id)[step];return}
+im.dataset.fbDone=1;
+var logo=/logo/i.test(im.alt||"")||/association-logo|discrete-admin-avatar/.test(im.className);
+var ch=((im.alt||"?").trim().charAt(0)||"?").toUpperCase();
+im.src=svg(ch,logo);
+},true);
+var mo=new MutationObserver(function(ms){ms.forEach(function(m){m.addedNodes.forEach(function(n){if(n.nodeType!==1)return;(n.tagName==="IMG"?[n]:n.querySelectorAll?n.querySelectorAll("img"):[]).forEach(function(i){i.referrerPolicy="no-referrer";i.decoding="async"})})})});
+document.addEventListener("DOMContentLoaded",function(){
+document.querySelectorAll("img").forEach(function(i){i.referrerPolicy="no-referrer"});
+mo.observe(document.body,{childList:true,subtree:true});
+document.querySelectorAll("img").forEach(function(i){if(i.complete&&i.naturalWidth===0)i.dispatchEvent(new Event("error"))});
+});
 })();
 </script>
 </body>
