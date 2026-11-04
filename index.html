@@ -241,7 +241,7 @@ input:focus,select:focus,textarea:focus{outline:0;border-color:var(--gold)!impor
 </div>
 </div>
 
-<!-- Dynamic Member & Payment Sections generated via loop logic / clean structure -->
+<!-- Dynamic Member & Payment Sections -->
 <div id="sec-awal" class="section-block"><div class="profile-header-card" id="profile-card-awal"></div><div class="info-box" id="info-awal"></div><h3 class="section-title"><span id="title-awal">Abdul Awal</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-awal"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-awal">0.00 BDT</span></p></div></div>
 <div id="sec-arif" class="section-block"><div class="profile-header-card" id="profile-card-arif"></div><div class="info-box" id="info-arif"></div><h3 class="section-title"><span id="title-arif">Arif Hossain</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-arif"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-arif">0.00 BDT</span></p></div></div>
 <div id="sec-babor" class="section-block"><div class="profile-header-card" id="profile-card-babor"></div><div class="info-box" id="info-babor"></div><h3 class="section-title"><span id="title-babor">Babor Patwary</span> - <span class="titleDetailsTxt">লেনদেনের বিবরণ</span></h3><div class="table-responsive"><table><thead><tr><th class="tblHeaderDate">তারিখ</th><th class="tblHeaderRef">রেফারেন্স</th><th class="tblHeaderSender">প্রেরক</th><th class="tblHeaderReceiver">প্রাপক</th><th class="tblHeaderMonth">মাস/বছর</th><th class="tblHeaderAmount">পরিমাণ</th></tr></thead><tbody id="table-babor"></tbody></table></div><div class="summary-box"><p><span class="lblTotalDep">মোট জমা:</span> <span id="total-babor">0.00 BDT</span></p></div></div>
@@ -488,14 +488,27 @@ db.payments.push({date:sanitizeInput(item.date),ref:sanitizeInput(item.ref),send
 db.transactions[target].push({date:sanitizeInput(item.date),ref:sanitizeInput(item.ref),bankFrom:sanitizeInput(item.bankFrom),bankTo:sanitizeInput(item.bankTo),month:sanitizeInput(item.month),year:sanitizeInput(item.year),amount:amt});
 }
 });
+// Save synced data to localStorage for local-first/offline experience
+try{ localStorage.setItem("cfa_db_cache", JSON.stringify(data)); }catch(e){}
 renderAllData();
 }
+
 function fetchFromGoogleSheet(){
 if(!SCRIPT_URL)return Promise.resolve(false);
-showLoading(true);
 const notice=document.getElementById("dataStatusNotice"),retry=document.getElementById("retryBtn");
 if(notice)notice.style.display="none";
 if(retry)retry.style.display="none";
+
+// Non-blocking background sync: if cached data exists, load it immediately without full-screen loading block
+let cached=null;
+try{ cached = JSON.parse(localStorage.getItem("cfa_db_cache")); }catch(e){}
+
+if(cached && Array.isArray(cached) && cached.length > 0){
+  try{ applyData(cached); }catch(e){}
+} else {
+  showLoading(true);
+}
+
 const req=window.__cfaEarly&&!window.__cfaEarlyUsed?(window.__cfaEarlyUsed=true,window.__cfaEarly):fetch(SCRIPT_URL).then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();});
 return req.then(data=>{applyData(data);if(notice)notice.style.display="none";showLoading(false);return true;}).catch(()=>{
 showLoading(false);
@@ -506,6 +519,7 @@ if(retry)retry.style.display="inline-block";
 return false;
 });
 }
+
 function submitNewTransaction(){
 if(!isAdminMode||!globalAdminToken){alert(currentLang==='bn'?"অনুগ্রহ করে আবার এডমিন লগইন করুন।":"Please sign in as admin again.");return;}
 const target=document.getElementById("targetMemberSelect").value;
@@ -529,7 +543,6 @@ fetch(SCRIPT_URL,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-
 .then(r=>{if(!r.ok)throw new Error("HTTP "+r.status);return r.json();})
 .then(res=>{
 if(!res||!res.success)throw new Error((res&&res.message)||"Save rejected");
-// Do not optimistically append a partial record: refresh the canonical sheet data first.
 return fetchFromGoogleSheet().then(refreshed=>{
 if(!refreshed){alert(currentLang==='bn'?"সেভ হয়েছে, কিন্তু নতুন হিসাব শিট থেকে আনা যায়নি। পুনরায় জমা দেবেন না; সংযোগ ফিরে এলে যাচাই করুন।":"Saved, but fresh totals could not be loaded. Do not submit again; verify the sheet when connection returns.");return;}
 let totalDepCents=0;memberKeys.forEach(k=>(db.transactions[k]||[]).forEach(i=>{totalDepCents+=toCents(i.amount);}));
@@ -563,8 +576,6 @@ if(d===null||d===undefined||d==="")return false;
 try{
 const raw=String(d).trim();
 let day,month,year;
-// Accept DD/MM/YYYY (the format created by this site), YYYY-MM-DD,
-// ISO timestamps, and common Google Sheets date strings.
 let match=raw.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})(?:\s|T|$)/);
 if(match){day=Number(match[1]);month=Number(match[2]);year=Number(match[3]);}
 else {
