@@ -338,6 +338,7 @@ function sanitizeInput(s){if(typeof s!=='string')return s;return s.replace(/[&<>
 function escapeHtml(value){return String(value??"").replace(/[&<>\"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'\"':"&quot;","'":"&#39;"}[m]));}
 function toCents(value){const n=Number(value);return Number.isFinite(n)?Math.round((n+Number.EPSILON)*100):0;}
 function fromCents(cents){return cents/100;}
+function formatCurrencyFixed(val){return Number(val||0).toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});}
 function validISODate(value){if(!/^\d{4}-\d{2}-\d{2}$/.test(value))return false;const d=new Date(value+"T00:00:00Z");return Number.isFinite(d.getTime())&&d.toISOString().slice(0,10)===value;}
 function boundedText(el,max){return String(el?.value??"").trim().slice(0,max);}
 function setSavingState(saving){const b=document.getElementById("btnSaveData");if(b){b.disabled=saving;b.setAttribute("aria-busy",String(saving));b.style.opacity=saving?".65":"";}}
@@ -499,7 +500,6 @@ db.payments.push({date:sanitizeInput(item.date),ref:sanitizeInput(item.ref),send
 db.transactions[target].push({date:sanitizeInput(item.date),ref:sanitizeInput(item.ref),bankFrom:sanitizeInput(item.bankFrom),bankTo:sanitizeInput(item.bankTo),month:sanitizeInput(item.month),year:sanitizeInput(item.year),amount:amt});
 }
 });
-// Save synced data to localStorage for local-first/offline experience
 try{ localStorage.setItem("cfa_db_cache", JSON.stringify(data)); }catch(e){}
 renderAllData();
 }
@@ -510,7 +510,6 @@ const notice=document.getElementById("dataStatusNotice"),retry=document.getEleme
 if(notice)notice.style.display="none";
 if(retry)retry.style.display="none";
 
-// Non-blocking background sync: if cached data exists, load it immediately without full-screen loading block
 let cached=null;
 try{ cached = JSON.parse(localStorage.getItem("cfa_db_cache")); }catch(e){}
 
@@ -558,16 +557,16 @@ return fetchFromGoogleSheet().then(refreshed=>{
 if(!refreshed){alert(currentLang==='bn'?"সেভ হয়েছে, কিন্তু নতুন হিসাব শিট থেকে আনা যায়নি। পুনরায় জমা দেবেন না; সংযোগ ফিরে এলে যাচাই করুন।":"Saved, but fresh totals could not be loaded. Do not submit again; verify the sheet when connection returns.");return;}
 let totalDepCents=0;memberKeys.forEach(k=>(db.transactions[k]||[]).forEach(i=>{totalDepCents+=toCents(i.amount);}));
 let totalPayCents=0;db.payments.forEach(i=>{totalPayCents+=toCents(i.amount);});
-const bal=fromCents(totalDepCents-totalPayCents).toFixed(2);
+const bal=formatCurrencyFixed(fromCents(totalDepCents-totalPayCents));
 const tName=target==="sec-payment"?"সম্পত্তির পরিশোধিত মূল্য":memberNames['bn'][target];
 let mInfo="";
 if(memberKeys.includes(target)){
 let mTotCents=0;(db.transactions[target]||[]).forEach(i=>{mTotCents+=toCents(i.amount);});
 const mTot=fromCents(mTotCents),tAmt=memberShares[target]*PER_SHARE_PRICE,diff=fromCents(toCents(tAmt)-mTotCents),pct=tAmt>0?(mTot/tAmt)*100:0;
-const st=diff>0?`${diff.toLocaleString()} (বকেয়া)`:(diff<0?`+${Math.abs(diff).toLocaleString()} (উদ্বৃত্ত)`:`0.00 (পরিশোধিত)`);
-mInfo=`👤 *জমা:* ${mTot.toFixed(2)} BDT\n📈 *অগ্রগতি:* ${pct.toFixed(1)}%\n📊 *অবস্থা:* ${st}\n`;
+const st=diff>0?`${formatCurrencyFixed(diff)} (বকেয়া)`:(diff<0?`+${formatCurrencyFixed(Math.abs(diff))} (উদ্বৃত্ত)`:`0.00 (পরিশোধিত)`);
+mInfo=`👤 *জমা:* ${formatCurrencyFixed(mTot)} BDT\n📈 *অগ্রগতি:* ${pct.toFixed(1)}%\n📊 *অবস্থা:* ${st}\n`;
 }
-lastGeneratedMessage=`📢 *নতুন জমা এন্ট্রি*\n\n👤 *নাম:* ${tName}\n💰 *জমা:* ${amt.toFixed(2)} BDT\n${mInfo}📅 *তারিখ:* ${dateStr}\n🔢 *রেফ:* ${ref}\n🏦 *প্রেরক:* ${bF}\n🏦 *প্রাপক:* ${bT}\n📌 *মাস:* ${m} ${y}\n\n💼 *তহবিল:* ${bal} BDT\n\nhttps://childhoodfriendsassociation.github.io/cfa`;
+lastGeneratedMessage=`📢 *নতুন জমা এন্ট্রি*\n\n👤 *নাম:* ${tName}\n💰 *জমা:* ${formatCurrencyFixed(amt)} BDT\n${mInfo}📅 *তারিখ:* ${dateStr}\n🔢 *রেফ:* ${ref}\n🏦 *প্রেরক:* ${bF}\n🏦 *প্রাপক:* ${bT}\n📌 *মাস:* ${m} ${y}\n\n💼 *তহবিল:* ${bal} BDT\n\nhttps://childhoodfriendsassociation.github.io/cfa`;
 document.getElementById("whatsappShareBtn").href=`https://api.whatsapp.com/send?text=${encodeURIComponent(lastGeneratedMessage)}`;
 document.getElementById("whatsappShareBtn").style.display="inline-flex";
 document.getElementById("messengerShareBtn").style.display="inline-flex";
@@ -609,54 +608,54 @@ let list=db.transactions[k]||[],total=0,curTotMem=0,tbody=document.getElementByI
 list.forEach(i=>{
 total=fromCents(toCents(total)+toCents(i.amount));if(isCurrentMonthTransaction(i.date))curTotMem=fromCents(toCents(curTotMem)+toCents(i.amount));
 let my=i.month&&i.month!=="-"&&i.year&&i.year!=="-"?`${i.month}/${i.year}`:(i.month!=="-"?i.month:i.year);
-tbodyHtml+=`<tr><td>${i.date}</td><td>${i.ref}</td><td>${i.bankFrom}</td><td>${i.bankTo}</td><td>${my}</td><td>${i.amount.toFixed(2)}</td></tr>`;
+tbodyHtml+=`<tr><td>${i.date}</td><td>${i.ref}</td><td>${i.bankFrom}</td><td>${i.bankTo}</td><td>${my}</td><td>${formatCurrencyFixed(i.amount)}</td></tr>`;
 });
 if(list.length===0)tbodyHtml=`<tr><td colspan="6">${t.noData}</td></tr>`;
 if(tbody)tbody.innerHTML=tbodyHtml;
 curTot=fromCents(toCents(curTot)+toCents(curTotMem));
 let photo=memberDirectory[k].photo,name=memberNames[currentLang][k],sh=memberShares[k],tAmt=sh*PER_SHARE_PRICE,diff=tAmt-total;
-curHtml+=`<tr><td><div class="summary-name-cell"><img src="${photo}" class="summary-avatar"><span>${name}</span></div></td><td style="font-weight:bold;color:var(--acc);">${curTotMem.toLocaleString()}</td></tr>`;
+curHtml+=`<tr><td><div class="summary-name-cell"><img src="${photo}" class="summary-avatar"><span>${name}</span></div></td><td style="font-weight:bold;color:var(--acc);">${formatCurrencyFixed(curTotMem)}</td></tr>`;
 let rawPct=(total/tAmt)*100,pct=rawPct>100?100:(isNaN(rawPct)?0:rawPct);
-let stText=diff>0?`${diff.toLocaleString()} ${t.dueLabel}`:(diff<0?`+${Math.abs(diff).toLocaleString()} ${t.surplusLabel}`:`0.00 ${t.paidLabel}`);
+let stText=diff>0?`${formatCurrencyFixed(diff)} ${t.dueLabel}`:(diff<0?`+${formatCurrencyFixed(Math.abs(diff))} ${t.surplusLabel}`:`0.00 ${t.paidLabel}`);
 let stColor=diff>0?"#ef4444":"#10b981";
 
 let iCard=document.getElementById(`profile-card-${k}`);
 if(iCard)iCard.innerHTML=`<img src="${photo}" class="profile-header-avatar"><div class="profile-header-info"><h3>${name}</h3><p>${memberDirectory[k].role[currentLang]}</p><span class="blood-badge">🩸 Group: ${memberDirectory[k].blood}</span></div><div class="card-actions"><a href="mailto:${memberDirectory[k].email}" class="action-icon-btn">${gmailSvgIcon}</a><a href="${memberDirectory[k].fb}" target="_blank" class="action-icon-btn">${fbSvgIcon}</a></div>`;
 
 let iBox=document.getElementById(`info-${k}`);
-if(iBox)iBox.innerHTML=`<p><strong>${t.lblShareholder}</strong> ${name}</p><p><strong>${t.lblAllocatedShares}</strong> ${sh} Share(s)</p><p><strong>${t.lblTargetAmount}</strong> ${tAmt.toLocaleString()} BDT</p><p><strong>${t.lblTotalDeposited}</strong> ${total.toLocaleString()} BDT</p><p><strong>${t.lblRemainingDue}</strong> <span style="color:${stColor};font-weight:bold;">${stText}</span></p><p><strong>${t.lblStatementDate}</strong> ${today}</p><div style="margin-top:10px;"><span class="progress-text-label">💳 Payment Progress: ${rawPct.toFixed(1)}% Paid</span><div class="progress-bar-container"><div class="progress-bar-fill" style="width:${pct}%;background-color:${rawPct>=100?'#10b981':'#2563eb'};"></div></div></div>`;
+if(iBox)iBox.innerHTML=`<p><strong>${t.lblShareholder}</strong> ${name}</p><p><strong>${t.lblAllocatedShares}</strong> ${sh} Share(s)</p><p><strong>${t.lblTargetAmount}</strong> ${formatCurrencyFixed(tAmt)} BDT</p><p><strong>${t.lblTotalDeposited}</strong> ${formatCurrencyFixed(total)} BDT</p><p><strong>${t.lblRemainingDue}</strong> <span style="color:${stColor};font-weight:bold;">${stText}</span></p><p><strong>${t.lblStatementDate}</strong> ${today}</p><div style="margin-top:10px;"><span class="progress-text-label">💳 Payment Progress: ${rawPct.toFixed(1)}% Paid</span><div class="progress-bar-container"><div class="progress-bar-fill" style="width:${pct}%;background-color:${rawPct>=100?'#10b981':'#2563eb'};"></div></div></div>`;
 
-let tLbl=document.getElementById(`total-${k}`);if(tLbl)tLbl.textContent=`${total.toFixed(2)} BDT`;
+let tLbl=document.getElementById(`total-${k}`);if(tLbl)tLbl.textContent=`${formatCurrencyFixed(total)} BDT`;
 gDep=fromCents(toCents(gDep)+toCents(total));gTarget+=tAmt;gDue=fromCents(toCents(gDue)+toCents(diff));
 
-frontHtml+=`<tr><td><div class="summary-name-cell"><img src="${photo}" class="summary-avatar"><span>${name}</span></div></td><td>${sh}</td><td>${total.toLocaleString()}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${pct}%;background-color:${rawPct>=100?'#10b981':'#2563eb'};"></div></div><span style="font-size:9.5px;color:var(--muted);font-weight:700;">${rawPct.toFixed(1)}%</span></td><td style="color:${stColor};font-weight:bold;">${stText}</td><td>${tAmt.toLocaleString()}</td></tr>`;
+frontHtml+=`<tr><td><div class="summary-name-cell"><img src="${photo}" class="summary-avatar"><span>${name}</span></div></td><td>${sh}</td><td>${formatCurrencyFixed(total)}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${pct}%;background-color:${rawPct>=100?'#10b981':'#2563eb'};"></div></div><span style="font-size:9.5px;color:var(--muted);font-weight:700;">${rawPct.toFixed(1)}%</span></td><td style="color:${stColor};font-weight:bold;">${stText}</td><td>${formatCurrencyFixed(tAmt)}</td></tr>`;
 });
-curHtml+=`<tr style="font-weight:bold;background-color:rgba(212,167,58,.14);"><td>${t.grandTotal}</td><td style="color:var(--acc);">${curTot.toLocaleString()}</td></tr>`;
+curHtml+=`<tr style="font-weight:bold;background-color:rgba(212,167,58,.14);"><td>${t.grandTotal}</td><td style="color:var(--acc);">${formatCurrencyFixed(curTot)}</td></tr>`;
 document.getElementById("currentMonthSummaryBody").innerHTML=curHtml;
 
-let gColor=gDue>0?"#ef4444":"#10b981",gText=gDue>0?`${gDue.toLocaleString()} ${t.dueLabel}`:(gDue<0?`+${Math.abs(gDue).toLocaleString()} ${t.surplusLabel}`:`0.00 ${t.paidLabel}`);
+let gColor=gDue>0?"#ef4444":"#10b981",gText=gDue>0?`${formatCurrencyFixed(gDue)} ${t.dueLabel}`:(gDue<0?`+${formatCurrencyFixed(Math.abs(gDue))} ${t.surplusLabel}`:`0.00 ${t.paidLabel}`);
 gDue=fromCents(toCents(gDue));let gPct=(gDep/gTarget)*100;gPct=gPct>100?100:(isNaN(gPct)?0:gPct);
-frontHtml+=`<tr style="font-weight:bold;background-color:rgba(212,167,58,.14);"><td>${t.grandTotal}</td><td>${TOTAL_SHARES}</td><td>${gDep.toLocaleString()}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${gPct}%;"></div></div><span style="font-size:9.5px;color:var(--muted);font-weight:700;">${gPct.toFixed(1)}%</span></td><td style="color:${gColor};">${gText}</td><td>${gTarget.toLocaleString()}</td></tr>`;
+frontHtml+=`<tr style="font-weight:bold;background-color:rgba(212,167,58,.14);"><td>${t.grandTotal}</td><td>${TOTAL_SHARES}</td><td>${formatCurrencyFixed(gDep)}<div class="progress-bar-container" style="width:100px;height:6px;margin:2px auto 0 auto;"><div class="progress-bar-fill" style="width:${gPct}%;"></div></div><span style="font-size:9.5px;color:var(--muted);font-weight:700;">${gPct.toFixed(1)}%</span></td><td style="color:${gColor};">${gText}</td><td>${formatCurrencyFixed(gTarget)}</td></tr>`;
 document.getElementById("frontSummaryBody").innerHTML=frontHtml;
 
 let pTot=renderPaymentStatement();
-document.getElementById("marqueeTotal").textContent=(gDep-pTot).toFixed(2);
+document.getElementById("marqueeTotal").textContent=formatCurrencyFixed(gDep-pTot);
 }
 function renderPaymentStatement(){
 let tbody=document.getElementById("table-payment");if(!tbody)return 0;
 let payTotCents=0,html="",t=langText[currentLang];
 db.payments.forEach(i=>{
 payTotCents+=toCents(i.amount);
-html+=`<tr><td>${i.date}</td><td>${i.ref}</td><td>${i.senderBank}</td><td>${i.receiverBank}</td><td>${i.reasonTitle}</td><td>${i.amount.toFixed(2)}</td></tr>`;
+html+=`<tr><td>${i.date}</td><td>${i.ref}</td><td>${i.senderBank}</td><td>${i.receiverBank}</td><td>${i.reasonTitle}</td><td>${formatCurrencyFixed(i.amount)}</td></tr>`;
 });
 const payTot=fromCents(payTotCents);
 if(db.payments.length===0)html=`<tr><td colspan="6">${t.noData}</td></tr>`;
 tbody.innerHTML=html;
 let rem=fromCents(toCents(TOTAL_LAND_PRICE)-payTotCents);
-document.getElementById("valLandPrice").textContent=TOTAL_LAND_PRICE.toLocaleString()+" BDT";
-document.getElementById("valPaidAmount").textContent=payTot.toLocaleString()+" BDT";
-document.getElementById("valDueAmount").textContent=rem.toLocaleString()+" BDT";
-document.getElementById("paymentTotal").textContent=payTot.toFixed(2);
+document.getElementById("valLandPrice").textContent=formatCurrencyFixed(TOTAL_LAND_PRICE)+" BDT";
+document.getElementById("valPaidAmount").textContent=formatCurrencyFixed(payTot)+" BDT";
+document.getElementById("valDueAmount").textContent=formatCurrencyFixed(rem)+" BDT";
+document.getElementById("paymentTotal").textContent=formatCurrencyFixed(payTot);
 return payTot;
 }
 function updateLiveClockAndDate(){
